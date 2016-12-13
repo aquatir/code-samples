@@ -2,23 +2,21 @@ package learntocode.patterns.factories.factoryMethod;
 
 public class ConcreteFactoryTwo extends SuperFactory {
 
-    public ConcreteFactoryTwo(int value) {
-        setConcreteFactorySpecificValue(value);
-    }
-
+    /**
+     * Overrides superclass factory method to create Product Objects
+     * @param value some random value
+     * @return concrete Product
+     */
+    @Override
     public Product createProduct(int value) {
         switch (value) {
             case 3:
-                return new ProductThree(getConcreteFactorySpecificValue());
+                return new ProductThree(value);
             case 4:
-                return new ProductFour(getConcreteFactorySpecificValue());
+                return new ProductFour(value);
             default:
                 throw new IllegalArgumentException("Wrong product number");
         }
     }
 
-    @Override
-    public void concreteFactorySpecificMethod() {
-        System.out.println("This method is specific for concrete factory two");
-    }
 }

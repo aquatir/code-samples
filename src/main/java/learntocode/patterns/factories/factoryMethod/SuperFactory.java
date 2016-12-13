@@ -2,16 +2,11 @@ package learntocode.patterns.factories.factoryMethod;
 
 public abstract class SuperFactory {
 
-    private int concreteFactorySpecificValue;
-
-    public int getConcreteFactorySpecificValue() {
-        return concreteFactorySpecificValue;
-    }
-
-    public void setConcreteFactorySpecificValue( int value ) {
-        this.concreteFactorySpecificValue = value;
-    }
-
-    public void concreteFactorySpecificMethod() {}
+    /**
+     * This is a factory method. It allows creating Products in subclasses
+     * @param value some random value
+     * @return Concrete Product
+     */
+    public abstract Product createProduct(int value);
 
 }
