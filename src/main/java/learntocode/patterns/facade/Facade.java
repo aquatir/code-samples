@@ -1,10 +1,14 @@
 package learntocode.patterns.facade;
 
-public class SuperEasyFacade {
+/**
+ * Facade simply takes all you unbearably complicated object and create simple methods to call those objects' methods
+ * in desired order
+ */
+public class Facade {
     SuperHardClassOne classOne;
     SuperHardClassTwo classTwo;
 
-    public SuperEasyFacade(SuperHardClassOne one, SuperHardClassTwo two) {
+    public Facade(SuperHardClassOne one, SuperHardClassTwo two) {
         this.classOne = one;
         this.classTwo = two;
     }

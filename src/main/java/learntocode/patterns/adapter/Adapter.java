@@ -1,10 +1,13 @@
 package learntocode.patterns.adapter;
 
-public class AdaptedClass implements AdaptOverThisInterface {
+/**
+ * This is a class used as adapter for another class using desired interface. See adapted class {@link SomeClass}
+ */
+public class Adapter implements AdapterInterface {
 
     private SomeClass clazz;
 
-    public AdaptedClass (SomeClass clazz){
+    public Adapter(SomeClass clazz){
         this.clazz = clazz;
     }
 
