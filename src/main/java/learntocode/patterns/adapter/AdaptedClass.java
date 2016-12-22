@@ -8,10 +8,12 @@ public class AdaptedClass implements AdaptOverThisInterface {
         this.clazz = clazz;
     }
 
+    @Override
     public void adaptedMethodOne() {
         clazz.methodOne();
     }
 
+    @Override
     public void adaptedMethodTwo() {
         clazz.methodTwo();
     }
