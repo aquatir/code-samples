@@ -1,12 +1,10 @@
 package learntocode.patterns.factories.factoryMethod;
 
+/**
+ * Overrides superclass factory method to create Product Objects
+ */
 public class ConcreteFactoryTwo extends SuperFactory {
 
-    /**
-     * Overrides superclass factory method to create Product Objects
-     * @param value some random value
-     * @return concrete Product
-     */
     @Override
     public Product createProduct(int value) {
         switch (value) {

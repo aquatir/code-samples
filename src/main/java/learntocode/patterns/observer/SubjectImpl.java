@@ -2,6 +2,9 @@ package learntocode.patterns.observer;
 
 import java.util.ArrayList;
 
+/**
+ * Simple concrete subject implementation. Can add/remove/notify observer
+ */
 public class SubjectImpl implements Subject {
 
     ArrayList<Observer> observers;

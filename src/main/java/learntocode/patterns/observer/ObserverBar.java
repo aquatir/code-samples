@@ -1,5 +1,8 @@
 package learntocode.patterns.observer;
 
+/**
+ * Simple observer implementation
+ */
 public class ObserverBar implements Observer {
 
     private int someValue;
