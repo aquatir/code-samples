@@ -17,12 +17,25 @@ public class View implements Observer{
     JPanel viewPanel;
     JLabel viewLabel;
 
-
+    /** Bind model to this view and bind controller to model.
+     * Register this view as observer to model.
+     */
     public View() {
         this.model = new Model();
         this.controller = new Controller(model);
-
         model.registerObserver(this);
+
+        initDisplayedComponents();
+        viewFrame.setVisible(true);
+    }
+
+    @Override
+    public void update() {
+        viewLabel.setText(String.format("%d", model.getDisplayedNumber()));
+        viewFrame.pack();
+    }
+
+    private void initDisplayedComponents() {
         viewFrame = new JFrame();
         viewFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -30,27 +43,29 @@ public class View implements Observer{
         viewLabel = new JLabel();
         viewLabel.setText(String.format("%d",model.getDisplayedNumber()));
 
+        /* When this button is pressed, controller increments number */
         viewPanel.add(viewLabel);
-        JButton pressMe = new JButton("Plus one");
-        pressMe.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controller.incrementDisplayedNumber();
-            }
-        });
-
+        JButton pressMe = new myButton("Plus one");
         viewPanel.add(pressMe);
 
 
         viewFrame.add(viewPanel);
         viewFrame.pack();
-        viewFrame.setVisible(true);
-
     }
 
-    @Override
-    public void update() {
-        viewLabel.setText(String.format("%d", model.getDisplayedNumber()));
-        viewFrame.pack();
+    /**
+     * Button with {@link ActionListener} bounded to it.
+     * Thit button increments number when pressed.
+     */
+    private class myButton extends JButton {
+        public myButton(String str) {
+            super(str);
+            this.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    controller.incrementDisplayedNumber();
+                }
+            });
+        }
     }
 }

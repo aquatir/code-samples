@@ -19,6 +19,7 @@ public class Controller implements  ControllerInterface {
         model.setDisplayedNumber(number);
     }
 
+    /* Controller is used to call for model method */
     @Override
     public void incrementDisplayedNumber() {
         model.setDisplayedNumber(model.getDisplayedNumber() + 1);

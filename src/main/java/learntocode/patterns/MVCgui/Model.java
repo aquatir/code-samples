@@ -1,6 +1,6 @@
 package learntocode.patterns.MVCgui;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * Model represent the inner state of view.
@@ -9,11 +9,14 @@ import java.util.ArrayList;
  */
 public class Model implements ModelInterface {
 
-    private ArrayList<Observer> observedViews;
+    private LinkedList<Observer> observedViews;
     private int displayedNumber;
 
+    /**
+     * Create LinkedList of view observers when created
+     */
     public Model() {
-        observedViews = new ArrayList<Observer>();
+        observedViews = new LinkedList<Observer>();
         displayedNumber = 0;
     }
 
@@ -34,6 +37,11 @@ public class Model implements ModelInterface {
         }
     }
 
+    /**
+     * Method should only be called from controller. The controller is specified when creating {@link View}
+     * Controller does not trigger redraw. It should be done in {@link View}
+     * @param number number to be displayed.
+     */
     @Override
     public void setDisplayedNumber(int number) {
         displayedNumber = number;
