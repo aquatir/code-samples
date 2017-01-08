@@ -17,7 +17,7 @@ public class View implements Observer{
     JPanel viewPanel;
     JLabel viewLabel;
 
-    /** Bind model to this view and bind controller to model.
+    /** Bind model to this view and bind  controller to model.
      * Register this view as observer to model.
      */
     public View() {
