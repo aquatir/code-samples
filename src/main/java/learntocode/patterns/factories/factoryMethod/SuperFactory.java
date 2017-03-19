@@ -6,5 +6,4 @@ package learntocode.patterns.factories.factoryMethod;
  */
 public abstract class SuperFactory {
     abstract Product createProduct(int value);
-
 }
