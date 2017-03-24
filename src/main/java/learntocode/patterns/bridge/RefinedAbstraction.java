@@ -15,7 +15,7 @@ public class RefinedAbstraction extends Abstraction {
 
     @Override
     public void implementationSpecificMethod() {
-        implementation.implementationMethod();
+        super.getImplementation().implementationMethod();
     }
 
     public void nonImplementationSpecificMethod() {

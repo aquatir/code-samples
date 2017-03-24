@@ -10,10 +10,14 @@ package learntocode.patterns.bridge;
  */
 public abstract class Abstraction {
 
-    protected Implementation implementation;
+    private Implementation implementation;
 
     public  Abstraction(Implementation impl) {
         implementation = impl;
+    }
+
+    public Implementation getImplementation() {
+        return implementation;
     }
 
     public void implementationSpecificMethod() {};
