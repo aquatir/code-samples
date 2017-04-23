@@ -5,12 +5,22 @@ package learntocode.patterns.templateMethod;
  */
 public class TemplateUser extends TemplateHolder{
     @Override
-    public void someMethodOne() {
+    void someMethodOne() {
         System.out.println("Concrete implementation of someMethodOne()");
     }
 
     @Override
-    public void someMethodTwo() {
+    void someMethodTwo() {
         System.out.println("Concrete implementation of someMethodTwo()");
+    }
+
+    @Override
+    void optionalMethod() {
+        System.out.println("Optional method is called");
+    }
+
+    @Override
+    boolean userDesiresTo() {
+        return true;
     }
 }

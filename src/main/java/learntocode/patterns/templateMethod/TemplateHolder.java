@@ -30,15 +30,24 @@ public abstract class TemplateHolder {
     }
 
     private final void concreteMethodTwo() {
-        System.out.println("Always do this step in the same way");
+        System.out.println("User desired to always do this step in the same way");
     }
 
-    public abstract void someMethodOne();
-    public abstract void someMethodTwo();
 
+    /** Note: next 4 methods are package-private. Usually you would want to put TemplateHolder and
+    * it's subclasses into a separate package. This way, when you instantiate TemplateUser in some
+     * other package, you could only make a call to executionPath() */
 
-    public void optionalMethod() {};
-    public boolean userDesiresTo() {
+    /* this too methods should always be overriden */
+    abstract void someMethodOne();
+    abstract void someMethodTwo();
+
+    /* If overriden, this method would be called somewhere in executionPath(), but default behavior is: do nothing*/
+    void optionalMethod() {};
+
+    /* If this method is overriden to return true, a call to concreteMethodTwo() would accure as it's mentioned
+    * int executionPath() */
+    boolean userDesiresTo() {
         return false;
     }
 
