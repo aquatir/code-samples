@@ -11,7 +11,7 @@ package learntocode.patterns.visitor;
  * If you don't want every single visitor to be able to work with every single client subclass you can
  * divide visitor interface into many interfaces one for each client subclass and only implement those what you need
  * for each concrete Client subclass. This method not only reduce number of visit(? extends Client) methods you should
- * implement but also provide compile-time class safety.
+ * implement but also provide compile-time class-type safety.
  */
 public interface Visitor {
     public void visit(ConcreteClientOne clientOne);
