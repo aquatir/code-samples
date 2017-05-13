@@ -9,6 +9,6 @@ public class AnnotatedTestClass {
 
     @TestAnnotation(value = 99, str = "World")
     public void demonstrateAnnotation() {
-        System.out.println("Something is done!");
+        System.out.println("Something is done againt!");
     }
 }
