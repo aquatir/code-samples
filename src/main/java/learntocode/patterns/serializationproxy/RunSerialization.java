@@ -10,21 +10,18 @@ public class RunSerialization {
 
         ClassToGetSerialized serialize = new ClassToGetSerialized(10, "foo");
 
-        /* serialize */
-        try {
-            FileOutputStream fileOut =
-                    new FileOutputStream(serFilePath);
-
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOut);
-
+        /* serialize with try-with-resources */
+        try (FileOutputStream fileOut =
+                     new FileOutputStream(serFilePath);
+             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOut)
+        ) {
             objectOutputStream.writeObject(serialize);
-            objectOutputStream.close();
-            fileOut.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        /* deserialize. Also deleting serialized file */
+        /* deserialize. Also deleting serialized file. Can't use try-with-resources, because File doesn't' implement Autoclosable */
         try {
             File file = new File(serFilePath);
             FileInputStream fileIn =

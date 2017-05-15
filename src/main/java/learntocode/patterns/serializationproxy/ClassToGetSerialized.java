@@ -82,6 +82,4 @@ class ClassToGetSerialized implements Serializable {
             return new ClassToGetSerialized(intField, stringField);
         }
     }
-
-
 }
