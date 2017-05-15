@@ -14,10 +14,27 @@ public class InitParameters {
         initValue = value;
     }
 
-    /** it is important to override hashcode in InitParameters class in order to make sure
-    * that HashMap in {@link FlyweightFactory} works correctly*/
+    public int getInitValue() {
+        return initValue;
+    }
+
+    /** it is important to override hashcode and equals in InitParameters class in order to make sure
+    * that HashMap in {@link FlyweightFactory} works correctly
+     * In other words: Respect hashCode/equals contract! */
     @Override
     public int hashCode() {
         return initValue;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof InitParameters))
+            return false;
+
+        InitParameters other = (InitParameters) obj;
+        if (other.getInitValue() != this.getInitValue())
+            return false;
+
+        return true;
     }
 }

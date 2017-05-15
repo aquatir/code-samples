@@ -12,8 +12,7 @@ public class FlyweightFactory {
     private WeakHashMap<Integer, FlyweightObject> flyweightMap = new WeakHashMap<Integer, FlyweightObject>();
 
     /**
-     * Make sure that {@link InitParameters} does return correct hashCode if value which this hashcode
-     * is based on is getting changed
+     * Make sure that {@link InitParameters} does respect hashCode/equals contract in order for map to work.
      * @param initParams input parameters. Can actually be anything. You only need to determine a way to
      *                   get hashcode from this parameters
      * @return {@link FlyweightObject}
