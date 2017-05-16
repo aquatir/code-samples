@@ -25,7 +25,7 @@ public class Leaf extends Component {
     }
 
     @Override
-    void removeThis() {
+    void removeSelf() {
         remove(this);
     }
 

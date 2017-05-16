@@ -38,7 +38,7 @@ public class Composite extends Component {
     }
 
     @Override
-    void removeThis() {
+    void removeSelf() {
         removeAllChildren();
         Component parent = getParent();
         if (parent != null)

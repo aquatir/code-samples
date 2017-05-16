@@ -23,7 +23,7 @@ public class CompositeUser {
         }
 
         System.out.println(" \nDeleting sub composite one and calling operation of everything again\n");
-        SubCompositeOne.removeThis();
+        SubCompositeOne.removeSelf();
 
         for (Component comp: SuperComposite.getChildren()) {
             comp.operation();
