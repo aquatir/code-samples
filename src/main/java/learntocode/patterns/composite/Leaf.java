@@ -8,7 +8,6 @@ import java.util.List;
  */
 public class Leaf extends Component {
 
-    private Component parent;
     private String name;
 
     public Leaf(String name) {
@@ -32,7 +31,7 @@ public class Leaf extends Component {
 
     @Override
     void remove(Component component) {
-        parent.remove(component);
+        getParent().remove(component);
     }
 
 
@@ -44,16 +43,6 @@ public class Leaf extends Component {
     @Override
     String getName() {
         return name;
-    }
-
-    @Override
-    Component getParent() {
-        return parent;
-    }
-
-    @Override
-    void setParent(Component component) {
-        this.parent = component;
     }
 
     @Override

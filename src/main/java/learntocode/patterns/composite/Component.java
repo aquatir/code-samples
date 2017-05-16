@@ -13,7 +13,17 @@ import java.util.List;
  * NOTE2: method remove(Component component) should not actually be called on leaf. You should only call removeThis() when removing
  * leafs. This is probably a bad design but I can't think of a better solution right now.
  */
-public abstract class Component  {
+public abstract class Component {
+
+    private Component parent;
+
+    Component getParent() {
+        return parent;
+    }
+    void setParent(Component component) {
+        this.parent = component;
+    }
+
     abstract void addComponent(Component component);
 
     abstract void removeThis();
@@ -21,8 +31,7 @@ public abstract class Component  {
     abstract void removeAllChildren();
     abstract String getName();
 
-    abstract Component getParent();
-    abstract void setParent(Component component);
+
 
     abstract List<Component> getChildren();
     abstract boolean hasChildren();

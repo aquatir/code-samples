@@ -12,7 +12,6 @@ import java.util.List;
 public class Composite extends Component {
 
     private ArrayList<Component> components;
-    private Component parent;
     private String name;
 
     public Composite(String name) {
@@ -41,6 +40,7 @@ public class Composite extends Component {
     @Override
     void removeThis() {
         removeAllChildren();
+        Component parent = getParent();
         if (parent != null)
             parent.remove(this);
     }
@@ -67,16 +67,6 @@ public class Composite extends Component {
     @Override
     String getName() {
         return name;
-    }
-
-    @Override
-    Component getParent() {
-        return parent;
-    }
-
-    @Override
-    void setParent(Component component) {
-        this.parent = component;
     }
 
     @Override
