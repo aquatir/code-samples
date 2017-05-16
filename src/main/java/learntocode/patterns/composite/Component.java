@@ -1,5 +1,7 @@
 package learntocode.patterns.composite;
 
+import java.util.List;
+
 /**
  * Abstract class representing both leafs and composites.
  * Composite should implement every method on Component, while leaf can implement only operation throwing
@@ -8,6 +10,6 @@ package learntocode.patterns.composite;
 public abstract class Component  {
     abstract void addComponents(Component component);
     abstract void remove(Component component);
-    abstract Component getChild(int id);
+    abstract List<Component> getChildren();
     abstract void operation();
 }

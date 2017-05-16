@@ -1,5 +1,8 @@
 package learntocode.patterns.composite;
 
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Leaf class extends component but does not implement all of the operations
  */
@@ -21,8 +24,7 @@ public class Leaf extends Component {
     }
 
     @Override
-    Component getChild(int id) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException();
+    List<Component> getChildren() {
+        return Collections.emptyList();
     }
-
 }

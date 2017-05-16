@@ -1,6 +1,7 @@
 package learntocode.patterns.composite;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Composite class can store other Components. It implements all Component methods
@@ -34,9 +35,8 @@ public class Composite extends Component {
     }
 
     @Override
-    Component getChild(int id) {
-        return components.get(id);
+    List<Component> getChildren() {
+        return null;
     }
-
 
 }
