@@ -2,20 +2,36 @@ package learntocode.patterns.composite;
 
 public class CompositeUser {
     public static void main(String[] args) {
-        Composite composite = new Composite();
-        Leaf leaf1 = new Leaf();
-        Leaf leaf2 = new Leaf();
+        Composite SuperComposite = new Composite("SuperComposite");
+        Composite SubCompositeOne = new Composite("SubCompositeOne");
+        Component SubCompositeTwo = new Composite("SubCompositeTwo");
+        Leaf leaf1 = new Leaf("Leaf One");
+        Leaf leaf2 = new Leaf("Leaf Two");
+        Leaf leaf3 = new Leaf("Leaf Three");
+        Leaf leaf4 = new Leaf("Leaf Four");
 
-        composite.addComponent(leaf1);
-        composite.addComponent(leaf2);
+        SubCompositeOne.addComponent(leaf1);
+        SubCompositeOne.addComponent(leaf2);
+        SubCompositeTwo.addComponent(leaf3);
+        SubCompositeTwo.addComponent(leaf4);
 
-        for (Component comp: composite.getChildren()) {
+        SuperComposite.addComponent(SubCompositeOne);
+        SuperComposite.addComponent(SubCompositeTwo);
+
+        for (Component comp: SuperComposite.getChildren()) {
             comp.operation();
         }
 
-        composite.removeThis();
-        System.out.println("kek");
-        for (Component comp: composite.getChildren()) {
+        System.out.println(" \nDeleting sub composite one and calling operation of everything again\n");
+        SubCompositeOne.removeThis();
+
+        for (Component comp: SuperComposite.getChildren()) {
+            comp.operation();
+        }
+
+        System.out.println(" \nDeleting leaf 4 and calling operation of everything again\n");
+        SubCompositeTwo.remove(leaf4);
+        for (Component comp: SuperComposite.getChildren()) {
             comp.operation();
         }
     }

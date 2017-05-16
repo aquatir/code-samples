@@ -1,23 +1,31 @@
 package learntocode.patterns.composite;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
- * Composite class can store other Components. It implements all Component methods
+ * Composite class can store other Components. It implements all Component methods.
+ * It may still contains some bugs as of current version. BE AWARE AND TEST BEFORE USE!
+ * or wait till I add up test methods.
  */
 public class Composite extends Component {
 
     private ArrayList<Component> components;
     private Component parent;
+    private String name;
 
-    public Composite() {
+    public Composite(String name) {
         components = new ArrayList<>();
+        this.name = name;
     }
 
     @Override
     void operation() {
-        System.out.println("Operation on Composite is called");
+        for (Component component: components) {
+            component.operation();
+        }
+        System.out.println("Called operation on Composite " + name);
     }
 
     @Override
@@ -44,12 +52,21 @@ public class Composite extends Component {
 
     @Override
     void removeAllChildren() {
-        for (Component component: components) {
-            if (component.canHasChildren())
+        for (Iterator<Component> itr = components.iterator(); itr.hasNext();) {
+            Component component = itr.next();
+
+            if (component.canHasChildren()){
                 component.removeAllChildren();
-            else
-                components.remove(component);
+            } else {
+                component.setParent(null);
+                itr.remove();
+            }
         }
+    }
+
+    @Override
+    String getName() {
+        return name;
     }
 
     @Override

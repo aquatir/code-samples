@@ -9,13 +9,15 @@ import java.util.List;
 public class Leaf extends Component {
 
     private Component parent;
+    private String name;
 
-    public Leaf() {
+    public Leaf(String name) {
+        this.name = name;
     }
 
     @Override
     void operation() {
-        System.out.println("Operation of leaf is called");
+        System.out.println("Operation is called of leaf " + name);
     }
 
     @Override
@@ -37,6 +39,11 @@ public class Leaf extends Component {
     @Override
     void removeAllChildren() throws UnsupportedOperationException{
         throw new UnsupportedOperationException("Can not make a call to removeAllChildren() on leaf element");
+    }
+
+    @Override
+    String getName() {
+        return name;
     }
 
     @Override
