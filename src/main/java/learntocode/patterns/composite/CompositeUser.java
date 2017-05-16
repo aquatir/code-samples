@@ -6,12 +6,17 @@ public class CompositeUser {
         Leaf leaf1 = new Leaf();
         Leaf leaf2 = new Leaf();
 
-        composite.addComponents(leaf1);
-        composite.addComponents(leaf2);
+        composite.addComponent(leaf1);
+        composite.addComponent(leaf2);
 
-        for (Component comp: composite.getAllComponents()) {
+        for (Component comp: composite.getChildren()) {
             comp.operation();
         }
-        composite.operation();
+
+        composite.removeThis();
+        System.out.println("kek");
+        for (Component comp: composite.getChildren()) {
+            comp.operation();
+        }
     }
 }
