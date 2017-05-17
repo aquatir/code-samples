@@ -23,6 +23,8 @@ public class InitParameters {
      * In other words: Respect hashCode/equals contract! */
     @Override
     public int hashCode() {
+
+        System.out.println("Counting hashcode");
         return initValue;
     }
 
