@@ -21,6 +21,13 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- USED IN learntocode/javaapi/jmx/AttachAgentToRemoteJvm class -->
+        <dependency>
+            <groupId>sun</groupId>
+            <artifactId>tools-linux</artifactId>
+            <version>1.6.0_45</version>
+        </dependency>
     </dependencies>
 
     <build>
