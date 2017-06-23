@@ -1,4 +1,4 @@
-package learntocode.patterns.templateMethod;
+package learntocode.patterns.template_method;
 
 /**
  * Template User provides implementation for all abstracts in superclass TemplateHolder

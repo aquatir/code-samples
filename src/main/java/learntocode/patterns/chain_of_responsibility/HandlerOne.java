@@ -1,4 +1,4 @@
-package learntocode.patterns.chainofresponsibility;
+package learntocode.patterns.chain_of_responsibility;
 
 public class HandlerOne extends  Handler {
 

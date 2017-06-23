@@ -1,4 +1,4 @@
-package learntocode.patterns.templateMethod;
+package learntocode.patterns.template_method;
 
 /**
  * Template Method states a final path of execution which should not be overridden

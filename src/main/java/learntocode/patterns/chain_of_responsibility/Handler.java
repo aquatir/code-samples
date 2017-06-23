@@ -1,4 +1,4 @@
-package learntocode.patterns.chainofresponsibility;
+package learntocode.patterns.chain_of_responsibility;
 
 /**
  * Chain of responsibility consists of multiple handlers. Each of them can either

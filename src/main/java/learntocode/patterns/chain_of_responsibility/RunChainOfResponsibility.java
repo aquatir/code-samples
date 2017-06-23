@@ -1,4 +1,4 @@
-package learntocode.patterns.chainofresponsibility;
+package learntocode.patterns.chain_of_responsibility;
 
 /**
  * Create a chain of 3 handlers.

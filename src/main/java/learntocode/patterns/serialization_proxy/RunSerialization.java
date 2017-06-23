@@ -1,4 +1,4 @@
-package learntocode.patterns.serializationproxy;
+package learntocode.patterns.serialization_proxy;
 
 import java.io.*;
 

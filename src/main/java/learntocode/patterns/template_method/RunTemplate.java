@@ -1,4 +1,4 @@
-package learntocode.patterns.templateMethod;
+package learntocode.patterns.template_method;
 
 public class RunTemplate {
     public static void main(String[] args) {
