@@ -1,8 +1,8 @@
-package learntocode.javaapi.lambdas.static_method_references;
+package learntocode.javaapi.lambdas.static_class_method_references;
 
 import learntocode.javaapi.lambdas.StringOpRunner;
 
-public class StaticReferenceRunner {
+public class StaticMethodReferenceRunner {
     public static void main(String[] args) {
         String hello = "hello, world!";
         StringOpRunner opRunner = new StringOpRunner();

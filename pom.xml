@@ -24,10 +24,12 @@
 
         <!-- USED IN learntocode/javaapi/jmx/AttachAgentToRemoteJvm class -->
         <dependency>
-            <groupId>sun</groupId>
-            <artifactId>tools-linux</artifactId>
-            <version>1.6.0_45</version>
-        </dependency>
+        <groupId>com.sun</groupId>
+        <artifactId>tools</artifactId>
+        <version>1.6.0</version>
+        <scope>system</scope>
+        <systemPath>${env.JAVA_HOME}/lib/tools.jar</systemPath>
+    </dependency>
     </dependencies>
 
     <build>
