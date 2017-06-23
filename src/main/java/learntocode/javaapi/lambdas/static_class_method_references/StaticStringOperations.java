@@ -11,7 +11,7 @@ public class StaticStringOperations {
         return sb.reverse().toString();
     }
 
-    static String cutFiveTrailingChars(String str) {
+    public static String cutFiveTrailingChars(String str) {
         return str.substring(0, str.length() - 5);
     }
 
