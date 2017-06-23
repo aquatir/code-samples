@@ -6,6 +6,8 @@ import java.util.Random;
 
 public class FilterExampleRunner {
     public static void main(String[] args) {
+
+        /* initialization */
         int capacity = 10;
         List<Integer> list = new ArrayList<>(capacity);
         Random rnd = new Random();
@@ -23,6 +25,7 @@ public class FilterExampleRunner {
             return 0;
         });
 
+        /* Starting here */
         System.out.println("Initial list: ");
         list.forEach(element -> System.out.print(element + " "));
         System.out.println("\n");
