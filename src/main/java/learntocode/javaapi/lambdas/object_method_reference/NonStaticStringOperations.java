@@ -2,7 +2,7 @@ package learntocode.javaapi.lambdas.object_method_reference;
 
 
 /**
- * Take note that methods in this class have the save signature as {@link learntocode.somestuff.LambdaTest.StringFunc} functional interface.
+ * Take note that methods in this class have the save signature as {@link learntocode.javaapi.lambdas.StringFunc} functional interface.
  * This is required in order to make :: notation references
  */
 public class NonStaticStringOperations {
