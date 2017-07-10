@@ -5,7 +5,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SeekableByteChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;g
+import java.nio.file.StandardOpenOption;
 
 public class ByteChannelAndByteBufferExample {
 
