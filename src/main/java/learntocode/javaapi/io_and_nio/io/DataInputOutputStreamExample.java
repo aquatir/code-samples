@@ -8,7 +8,7 @@ import java.io.*;
  */
 public class DataInputOutputStreamExample {
     public static void main(String[] args) throws IOException {
-        File f = FilesCreatorIO.createFilesIO()[0];
+        File f = FilesCreatorIO.createFiles()[0];
 
         try (DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(f))) {
 

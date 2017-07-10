@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class FileFilter {
     public static void main(String[] args) {
 
-        FilesCreatorIO.createFilesIO();
+        FilesCreatorIO.createFiles();
         String dir = FilesCreatorIO.getDirIOFiles();
         String template = FilesCreatorIO.getFileNameTemplate();
 

@@ -18,12 +18,8 @@ public class FilesCreatorIO {
     public static String getDirIOFiles() { return dirIOFiles; }
     public static String getFileNameTemplate() { return fileNameTemplate; }
 
-    public static File[] createFilesIO () {
+    public static File[] createFiles() {
         setDirsByOs();
-        return createFiles(dirIOFiles);
-    }
-
-    private static File[] createFiles(String dir) {
         int numOfFiles = 10;
         File[] files = new File[numOfFiles];
         File directoryFile = new File(dirIOFiles);

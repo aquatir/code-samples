@@ -9,7 +9,7 @@ import java.io.RandomAccessFile;
  */
 public class RandomAccessFileExample {
     public static void main(String[] args) throws IOException {
-        File f = FilesCreatorIO.createFilesIO()[0];
+        File f = FilesCreatorIO.createFiles()[0];
 
         try (RandomAccessFile randomAccessFile = new RandomAccessFile(f, "rw")) {
             randomAccessFile.writeChars("Hello, world!");
