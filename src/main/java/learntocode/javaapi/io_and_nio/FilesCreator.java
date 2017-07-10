@@ -1,4 +1,4 @@
-package io_and_nio;
+package learntocode.javaapi.io_and_nio;
 
 import java.io.File;
 import java.io.IOException;

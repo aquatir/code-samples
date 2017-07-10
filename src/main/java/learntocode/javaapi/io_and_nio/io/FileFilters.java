@@ -1,12 +1,12 @@
-package io_and_nio.io;
+package learntocode.javaapi.io_and_nio.io;
 
-import io_and_nio.FilesCreator;
+import learntocode.javaapi.io_and_nio.FilesCreator;
 
 import java.io.File;
 import java.util.Arrays;
 
 /**
- * Class assumes that test files were already created with {@link FilesCreator}
+ * Class assumes that test files were already created with {@link learntocode.javaapi.io_and_nio.FilesCreator}
  */
 public class FileFilters {
     public static void main(String[] args) {
