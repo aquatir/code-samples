@@ -1,4 +1,4 @@
-package learntocode.javaapi.standard_func_interfaces_example;
+package learntocode.javaapi.lambdas.standard_func_interfaces_example;
 
 import java.util.function.*;
 
