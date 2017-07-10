@@ -1,7 +1,7 @@
 package learntocode.javaapi.io_and_nio.nio;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -10,10 +10,9 @@ import java.nio.file.Paths;
  * Is used in every class io and nio packages examples
  * <br>
  * Change directories in this file to ones you like better
- */ /*
+ */
 public class FilesCreatorNIO {
 
-    private static String dirIOFiles;
     private static String dirNIOFiles;
 
     private static String fileNameTemplate = "file_";
@@ -21,31 +20,26 @@ public class FilesCreatorNIO {
     public static String getDirNIOFiles() { return dirNIOFiles; }
     public static String getFileNameTemplate() { return fileNameTemplate; }
 
-    public static void createFilesNIO() {
-        createFiles(dirNIOFiles);
-    }
-
-    private static File[] createFiles(String dir) {
+    public static Path[] createFiles() {
+        setDirsByOs();
         int numOfFiles = 10;
         Path[] files = new Path[numOfFiles];
-        Path directoryFile = Paths.get(dirIOFiles);
-        //directoryFile.
+        Path directoryFile = Paths.get(dirNIOFiles);
+        try {
+            Files.createDirectories(directoryFile);
+        } catch (IOException e) {
+            System.out.println("Could not create directories to" + directoryFile.toString());
+            e.printStackTrace();
+        }
 
         for (int i =0; i < numOfFiles; i++) {
             try {
-                File f = new File(dirIOFiles, fileNameTemplate + i);
-                if (f.exists()) {
-                    f.delete();
+                Path f = Paths.get(dirNIOFiles, fileNameTemplate + i);
+                if (Files.exists(f)) {
+                    Files.delete(f);
                 }
-                System.out.print("Creating file " + f.getAbsolutePath() + " ... ");
-                boolean fileCreated = f.createNewFile();
-                if (!fileCreated) {
-                    System.out.println(" ERROR! Could not create file " + fileNameTemplate + i + " in directory " + dirIOFiles);
-                    break;
-                } else {
-                    files[i] = f;
-                    System.out.println("Success!");
-                }
+                System.out.println("Creating file " + f.toString() + " ... Success!");
+                files[i] = Files.createFile(f);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -69,4 +63,3 @@ public class FilesCreatorNIO {
                 "  NIO: " + dirNIOFiles);
     }
 }
-*/
