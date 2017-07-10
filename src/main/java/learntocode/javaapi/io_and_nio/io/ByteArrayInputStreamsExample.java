@@ -1,10 +1,11 @@
 package learntocode.javaapi.io_and_nio.io;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 
 public class ByteArrayInputStreamsExample {
 
-    public static void main (String[] args) {
+    public static void main (String[] args) throws IOException {
 
         /*  ------------------------------
             ------------------------------
@@ -48,5 +49,9 @@ public class ByteArrayInputStreamsExample {
             System.out.print(Character.toUpperCase((char) b) + " ");
         }
         System.out.println("\n");
+
+
+        /* closing stream */
+        inputStream.close();
     }
 }

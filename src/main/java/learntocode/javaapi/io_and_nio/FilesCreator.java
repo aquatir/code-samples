@@ -20,18 +20,19 @@ public class FilesCreator {
     public static String getDirNIOFiles() { return dirNIOFiles; }
     public static String getFileNameTemplate() { return fileNameTemplate; }
 
-    public static void createFilesIO () {
+    public static File[] createFilesIO () {
         setDirsByOs();
-        createFiles(dirIOFiles);
+
+        return createFiles(dirIOFiles);
     }
 
     public static void createFilesNIO() {
         createFiles(dirNIOFiles);
     }
 
-    private static void createFiles(String dir) {
+    private static File[] createFiles(String dir) {
         int numOfFiles = 10;
-
+        File[] files = new File[numOfFiles];
         File directoryFile = new File(dirIOFiles);
         directoryFile.mkdirs();
 
@@ -47,14 +48,15 @@ public class FilesCreator {
                     System.out.println(" ERROR! Could not create file " + fileNameTemplate + i + " in directory " + dirIOFiles);
                     break;
                 } else {
+                    files[i] = f;
                     System.out.println("Success!");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
         System.out.println("Initialization finished. Your output: \n");
+        return files;
     }
 
 
