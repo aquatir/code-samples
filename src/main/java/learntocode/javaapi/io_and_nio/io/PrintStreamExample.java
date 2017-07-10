@@ -1,4 +1,4 @@
-package learntocode.javaapi.io_and_nio.io.bytes_input;
+package learntocode.javaapi.io_and_nio.io;
 import learntocode.javaapi.io_and_nio.FilesCreator;
 
 import java.io.*;
