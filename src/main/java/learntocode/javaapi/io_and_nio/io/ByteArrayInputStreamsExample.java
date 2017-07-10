@@ -13,6 +13,7 @@ public class ByteArrayInputStreamsExample {
             ------------------------------
         */
         /* Alphabet */
+        System.out.println("Example 1:");
         String abc = "abcdefghijklmnopqrstuvwzyx";
         byte[] arr = abc.getBytes();
 
@@ -30,6 +31,7 @@ public class ByteArrayInputStreamsExample {
             ------------------------------
             ------------------------------
         */
+        System.out.println("Example 2:");
         inputStream = new ByteArrayInputStream(arr, 10,10);
 
         int i =0;
@@ -45,5 +47,6 @@ public class ByteArrayInputStreamsExample {
         while ((b = inputStream.read()) != -1) {
             System.out.print(Character.toUpperCase((char) b) + " ");
         }
+        System.out.println("\n");
     }
 }
