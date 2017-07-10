@@ -8,7 +8,7 @@ import java.util.Arrays;
 /**
  * Class assumes that test files were already created with {@link learntocode.javaapi.io_and_nio.FilesCreator}
  */
-public class FileFilters {
+public class FileFilter {
     public static void main(String[] args) {
 
         FilesCreator.createFilesIO();
