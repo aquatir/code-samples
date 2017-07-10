@@ -1,19 +1,17 @@
 package learntocode.javaapi.io_and_nio.io;
 
-import learntocode.javaapi.io_and_nio.FilesCreator;
-
 import java.io.File;
 import java.util.Arrays;
 
 /**
- * Class assumes that test files were already created with {@link learntocode.javaapi.io_and_nio.FilesCreator}
+ * Class assumes that test files were already created with {@link FilesCreatorIO}
  */
 public class FileFilter {
     public static void main(String[] args) {
 
-        FilesCreator.createFilesIO();
-        String dir = FilesCreator.getDirIOFiles();
-        String template = FilesCreator.getFileNameTemplate();
+        FilesCreatorIO.createFilesIO();
+        String dir = FilesCreatorIO.getDirIOFiles();
+        String template = FilesCreatorIO.getFileNameTemplate();
 
         File startingDir = new File(dir);
 

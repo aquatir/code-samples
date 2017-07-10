@@ -1,5 +1,4 @@
 package learntocode.javaapi.io_and_nio.io;
-import learntocode.javaapi.io_and_nio.FilesCreator;
 
 import java.io.*;
 
@@ -8,7 +7,7 @@ import java.io.*;
  */
 public class PrintStreamExample {
     public static void main(String[] args) throws IOException {
-        File f = FilesCreator.createFilesIO()[0];
+        File f = FilesCreatorIO.createFilesIO()[0];
         try (PrintStream prs = new PrintStream(f)) {
             prs.printf("Character: %c \nInteger: %1$d", 107);
         }

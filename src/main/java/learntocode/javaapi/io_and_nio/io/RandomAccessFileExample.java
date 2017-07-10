@@ -1,7 +1,5 @@
 package learntocode.javaapi.io_and_nio.io;
 
-import learntocode.javaapi.io_and_nio.FilesCreator;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -11,7 +9,7 @@ import java.io.RandomAccessFile;
  */
 public class RandomAccessFileExample {
     public static void main(String[] args) throws IOException {
-        File f = FilesCreator.createFilesIO()[0];
+        File f = FilesCreatorIO.createFilesIO()[0];
 
         try (RandomAccessFile randomAccessFile = new RandomAccessFile(f, "rw")) {
             randomAccessFile.writeChars("Hello, world!");

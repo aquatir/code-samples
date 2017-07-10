@@ -1,4 +1,4 @@
-package learntocode.javaapi.io_and_nio;
+package learntocode.javaapi.io_and_nio.io;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,25 +9,18 @@ import java.io.IOException;
  * <br>
  * Change directories in this file to ones you like better
  */
-public class FilesCreator {
+public class FilesCreatorIO {
 
     private static String dirIOFiles;
-    private static String dirNIOFiles;
 
     private static String fileNameTemplate = "file_";
 
     public static String getDirIOFiles() { return dirIOFiles; }
-    public static String getDirNIOFiles() { return dirNIOFiles; }
     public static String getFileNameTemplate() { return fileNameTemplate; }
 
     public static File[] createFilesIO () {
         setDirsByOs();
-
         return createFiles(dirIOFiles);
-    }
-
-    public static void createFilesNIO() {
-        createFiles(dirNIOFiles);
     }
 
     private static File[] createFiles(String dir) {
@@ -66,14 +59,11 @@ public class FilesCreator {
             System.out.println("Current OS is Windows");
             String homeDrive = System.getProperty("user.home");
             dirIOFiles = homeDrive + "\\test_files_io";
-            dirNIOFiles = homeDrive + "\\test_files_nio";
         } else {
             dirIOFiles = "/tmp/test_files_io";
-            dirNIOFiles = "/tmp/test_files_nio";
         }
 
         System.out.println("Setting test files directories to: \n" +
-                "  IO: " + dirIOFiles + "\n" +
-                "  NIO: " + dirNIOFiles);
+                "  IO: " + dirIOFiles);
     }
 }
