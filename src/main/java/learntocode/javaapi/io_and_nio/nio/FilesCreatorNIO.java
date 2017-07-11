@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 /**
  * Provide methods to create directories with files on you machine.
- * Is used in every class io and nio packages examples
+ * Is used in NIO package examples
  * <br>
  * Change directories in this file to ones you like better
  */
@@ -23,7 +23,7 @@ public class FilesCreatorNIO {
     public static Path[] createFiles() {
         setDirsByOs();
         int numOfFiles = 10;
-        Path[] files = new Path[numOfFiles];
+        Path[] filePaths = new Path[numOfFiles];
         Path directoryFile = Paths.get(dirNIOFiles);
         try {
             Files.createDirectories(directoryFile);
@@ -39,13 +39,13 @@ public class FilesCreatorNIO {
                     Files.delete(f);
                 }
                 System.out.println("Creating file " + f.toString() + " ... Success!");
-                files[i] = Files.createFile(f);
+                filePaths[i] = Files.createFile(f);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
         System.out.println("Initialization finished. Your output: \n");
-        return files;
+        return filePaths;
     }
 
 

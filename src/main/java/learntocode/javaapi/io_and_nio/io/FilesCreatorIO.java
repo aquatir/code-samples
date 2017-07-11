@@ -5,7 +5,7 @@ import java.io.IOException;
 
 /**
  * Provide methods to create directories with files on you machine.
- * Is used in every class io and nio packages examples
+ * Is used in IO package examples
  * <br>
  * Change directories in this file to ones you like better
  */
