@@ -4,7 +4,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
- * Show some methods
+ * Shows some methods which you can query from files.
+ * Also note static class references used here. For more of this check out learntocode/javaapi/lambdas
  */
 public class FileParameters {
     public static void main(String[] args) {

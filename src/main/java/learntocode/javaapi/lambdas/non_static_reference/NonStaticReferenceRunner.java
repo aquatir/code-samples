@@ -12,7 +12,7 @@ public class NonStaticReferenceRunner {
 
         SomeClassWithNonStaticMethod matchAgainst = new SomeClassWithNonStaticMethod(5);
 
-        /* take not, that the function reference is
+        /* take note, that the function reference is
         * 1) made to non-static method (it's public in fact)
         * 2) it's type-safe because of generic count method signature
         * */
