@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.function.Predicate;
 
 /**
  * Shows some methods which you can query from files.
@@ -35,14 +36,10 @@ public class FileParameters {
 
     }
 
-    private static void checkAndPrint(String checkName, BooleanByPathFuncInterface function, Path p) {
-        if (function.check(p))
+    private static void checkAndPrint(String checkName, Predicate<Path> function, Path p) {
+        if (function.test(p))
             System.out.println("File IS " + checkName );
         else
             System.out.println("File IS NOT " + checkName);
-    }
-
-    private interface BooleanByPathFuncInterface {
-        boolean check(Path p);
     }
 }
