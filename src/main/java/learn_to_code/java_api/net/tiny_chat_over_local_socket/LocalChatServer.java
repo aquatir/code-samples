@@ -80,14 +80,65 @@ public class LocalChatServer {
 
                     GO TO 1.2.
 
+            1.3. ANYTHING else
+
+                [anything which is not 1.1 or 1.2]
+                bla-bla-bla <
+
+                > Sorry, I can't understand your request.
+
+                GO TO 1.
+
 
         2. Login successful
             > Login successful. What would you like to do next?
             > 1. To check your contact list print "contacts"
-            > 2. To connect to other online user print "connect %USER_LOGIN%". Note: active users are marked with * after call to contacts.
+            > 2. To add new contacts print "add new"
+            > 3. To connect to other online user print "connect %USER_LOGIN%". Note: active users are marked with * after call to contacts.
 
             ...
 
+            2.1.
+                < contacts
+
+                SERVER GENERATES A LIST OF CONTACTS
+
+                > your contacts are following. Contacts with * sign are online right now:
+                 bla-bla-bla-bla
+
+                 GO TO 2.
+
+            2.2.
+                < add new
+
+                > Insert user's login
+
+                < user's login
+
+                CHECKS IF USER WITH THIS LOGIN EXISTS
+
+                2.2.1. User with login exists
+
+                    ADD USER TO THIS CLIENTS USER BASE
+
+                    > Success! User %USER_NAME% is now your contact
+
+                2.2.2. User with login does not exist
+
+                    > User does not exists.
+
+                    GO TO 2.
+
+             2.3.
+                <connect login
+
+                SERVER TREES TO FIND A USER
+
+                2.3.1. Login does not exists
+
+                2.3.2. Login is okay. User is offline
+
+                2.3.3. Login is okay. User is online. Starting a chat
         */
     }
 }
