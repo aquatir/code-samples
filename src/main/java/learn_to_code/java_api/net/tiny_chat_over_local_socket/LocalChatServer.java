@@ -1,7 +1,11 @@
 package learn_to_code.java_api.net.tiny_chat_over_local_socket;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -20,8 +24,51 @@ public class LocalChatServer {
     public static void main(String[] args) throws IOException {
 
         try (ServerSocket serverSocket = new ServerSocket(10000)) {
+
+            ChatClientTask task = new ChatClientTask(serverSocket);
+
+                /* This call will block, until first user finishes his requests, after this,
+                 * server will return to waiting state and wait for another user.
+                 * The only way to shutdown this server is to kill JVM where it is running.
+                 * Most of the time, you'll need to implement a better way to shutdown server
+                 * something like polling on server-shutdown signal once in a while.
+                 *
+                 * When the connection get accepted, a task is submitted which return imminently,
+                 * so the waiting for next connection begins almost instantly.
+                 * The only critical section between tasks is their server socket, which is natural,
+                 * because the are all connected to a single source
+                 */
+            task.acceptConnection();
+
+            executor.submit(task);
+        }
+    }
+
+    private static class ChatClientTask implements Runnable {
+
+        ServerSocket serverSocket;
+        Socket clientSocket;
+        PrintWriter toClient;
+        BufferedReader fromClient;
+
+        public ChatClientTask(ServerSocket serverSocket) {
+            this.serverSocket = serverSocket;
         }
 
+        private Socket acceptConnection() throws IOException {
+            Socket acceptedSocket = serverSocket.accept();
+            this.clientSocket = acceptedSocket;
+            this.toClient = new PrintWriter(clientSocket.getOutputStream(), true);
+            this.fromClient = new BufferedReader(
+                    new InputStreamReader(clientSocket.getInputStream()));
+            return acceptedSocket;
+        }
+
+        @Override
+        public void run() {
+
+        }
+    }
         /*
         1. Start
 
@@ -129,7 +176,7 @@ public class LocalChatServer {
 
                     GO TO 2.
 
-             2.3.
+            2.3.
                 <connect login
 
                 SERVER TREES TO FIND A USER
@@ -139,6 +186,9 @@ public class LocalChatServer {
                 2.3.2. Login is okay. User is offline
 
                 2.3.3. Login is okay. User is online. Starting a chat
+
+                GO TO 3
+
+            3. CHAT IS IN PROGRESS
         */
-    }
 }
