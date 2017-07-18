@@ -1,4 +1,6 @@
-package learn_to_code.java_api.net.tiny_chat_over_local_socket.protocol;
+package learn_to_code.java_api.net.tiny_chat_over_local_socket.protocol.states;
+
+import java.util.Map;
 
 /**
  * Enum shows all possible states where a chat can be. <br>
@@ -26,9 +28,12 @@ package learn_to_code.java_api.net.tiny_chat_over_local_socket.protocol;
  * <li>{@code TERMINATE_CLIENT} -> </li>
  * </ul>
  * Almost every state can go to itself. This mainly (but not always happens when an error occur.
+ * <br>
  *
+ * The inner class provides a map with between enum elements and actual implementations of
+ * {@link learn_to_code.java_api.net.tiny_chat_over_local_socket.protocol.states.ChatState} interface
  */
-public enum ChatState {
+public enum ChatStates {
     CONNECTION_INITIATED,
     ADDING_NEW_CLIENT,
     LOGIN_TO_EXISTING_CLIENT,
@@ -36,5 +41,32 @@ public enum ChatState {
     ADDING_NEW_CONTACT,
     CONNECTION_TO_CONTACT,
     CHAT_ESTABLISHED,
-    TERMINATE_CLIENT
+    TERMINATE_CLIENT;
+
+    private ChatStatesMap chatList = new ChatStatesMap();
+
+    public ChatState getState() {
+        return chatList.getState(this);
+    }
+
+    private class ChatStatesMap {
+
+        Map<ChatStates, ChatState> states;
+
+        private ChatStatesMap() {
+            states.put(ChatStates.CONNECTION_INITIATED, null);
+            states.put(ChatStates.ADDING_NEW_CLIENT, null);
+            states.put(ChatStates.LOGIN_TO_EXISTING_CLIENT, null);
+            states.put(ChatStates.LOGGED_IN, null);
+            states.put(ChatStates.ADDING_NEW_CONTACT, null);
+            states.put(ChatStates.CONNECTION_TO_CONTACT, null);
+            states.put(ChatStates.CHAT_ESTABLISHED, null);
+            states.put(ChatStates.TERMINATE_CLIENT, null);
+        }
+        public ChatState getState(ChatStates state) {
+            return states.get(state);
+        }
+    }
 }
+
+
