@@ -1,5 +1,8 @@
 package learn_to_code.java_api.net.tiny_chat_over_local_socket;
 
+import learn_to_code.java_api.net.tiny_chat_over_local_socket.protocol.ChatProtocol;
+import learn_to_code.java_api.net.tiny_chat_over_local_socket.protocol.ConnectionStream;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -39,34 +42,33 @@ public class LocalChatServer {
                  * because the are all connected to a single source
                  */
             task.acceptConnection();
-
             executor.submit(task);
         }
     }
 
+    /**
+     *
+     */
     private static class ChatClientTask implements Runnable {
 
         ServerSocket serverSocket;
-        Socket clientSocket;
-        PrintWriter toClient;
-        BufferedReader fromClient;
+        ChatProtocol serverProtocol;
 
         public ChatClientTask(ServerSocket serverSocket) {
             this.serverSocket = serverSocket;
         }
 
-        private Socket acceptConnection() throws IOException {
-            Socket acceptedSocket = serverSocket.accept();
-            this.clientSocket = acceptedSocket;
-            this.toClient = new PrintWriter(clientSocket.getOutputStream(), true);
-            this.fromClient = new BufferedReader(
-                    new InputStreamReader(clientSocket.getInputStream()));
-            return acceptedSocket;
+        private void acceptConnection() throws IOException {
+            Socket clientSocket = serverSocket.accept();
+            ConnectionStream serverConnection = new ConnectionStream(
+                    new PrintWriter(clientSocket.getOutputStream(), true),
+                    new BufferedReader(new InputStreamReader(clientSocket.getInputStream())));
+            serverProtocol = new ChatProtocol(serverConnection);
         }
 
         @Override
         public void run() {
-
+            serverProtocol.initiateCommunication();
         }
     }
         /*

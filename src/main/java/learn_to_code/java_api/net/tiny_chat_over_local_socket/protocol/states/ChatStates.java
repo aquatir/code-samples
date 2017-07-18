@@ -43,10 +43,10 @@ public enum ChatStates {
     CHAT_ESTABLISHED,
     TERMINATE_CLIENT;
 
-    private ChatStatesMap chatList = new ChatStatesMap();
+    private ChatStatesMap chatMap = new ChatStatesMap();
 
     public ChatState getState() {
-        return chatList.getState(this);
+        return chatMap.getState(this);
     }
 
     private class ChatStatesMap {

@@ -1,24 +1,27 @@
 package learn_to_code.java_api.net.tiny_chat_over_local_socket.protocol;
 
 import learn_to_code.java_api.net.tiny_chat_over_local_socket.protocol.states.ChatState;
-
-import java.io.BufferedReader;
-import java.io.PrintWriter;
+import learn_to_code.java_api.net.tiny_chat_over_local_socket.protocol.states.ChatStates;
 
 public class ChatProtocol {
 
-    PrintWriter to;
-    BufferedReader from;
+    ChatState currentState;
+    ConnectionStream connection;
 
-    public ChatProtocol(PrintWriter to, BufferedReader from) {
-        this.to = to;
-        this.from = from;
-
+    public ChatProtocol(ConnectionStream connection) {
+        this.connection = connection;
     }
 
-    private void goBackToState(ChatState state) {}
+    public void initiateCommunication() {
+        currentState = ChatStates.CONNECTION_INITIATED.getState();
 
-    private void proceedState(ChatState state) {
-        state.proceedState();
+        while (currentState != ChatStates.TERMINATE_CLIENT.getState()) {
+            currentState = proceedState();
+        }
+        connection.close();
+    }
+
+    public ChatState proceedState() {
+        return currentState.proceed(connection);
     }
 }
