@@ -15,9 +15,25 @@ public class LocalChatClient {
              ConnectionStream clientStream = new ConnectionStream(
                      new PrintWriter(socket.getOutputStream(), true),
                      new BufferedReader(new InputStreamReader(socket.getInputStream())));
+
+             BufferedReader clientConsole = new BufferedReader(new InputStreamReader(System.in));
         ) {
 
+            while (true) {
 
+                String serverOutput = clientStream.readStringFrom();
+                System.out.println("Server: " + serverOutput);
+
+                System.out.print("Client: ");
+                String clientString = clientConsole.readLine();
+                clientStream.writeStringTo(clientString);
+
+                if (clientString.toLowerCase().equals("bye")) {
+                    String lastServerResponse = clientStream.readStringFrom();
+                    System.out.println("Server: " + lastServerResponse);
+                    break;
+                }
+            }
         }
     }
 }
