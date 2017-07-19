@@ -14,7 +14,7 @@ public class ConnectionInitiatedState extends ChatState {
     public ChatState proceed(ConnectionStream stream) {
 
         System.out.println("Proceeding state. Writing data to user ");
-        ChatState newState = ChatStates.CONNECTION_INITIATED.getState();
+        ChatState newState = ChatStatesMap.getState(ChatStates.CONNECTION_INITIATED);
         stream.writeAllTo("Hello!\n" +
                 "Pick option: \n" +
                 "'1' to add new user\n" +
@@ -28,20 +28,24 @@ public class ConnectionInitiatedState extends ChatState {
             int userInput = 0;
             if (dataFromUser.length() != 1) {
                 stream.writeAllTo("Incorrect Input!\n");
-                newState = ChatStates.CONNECTION_INITIATED.getState();
+                newState = ChatStatesMap.getState(ChatStates.CONNECTION_INITIATED);
             } else {
                 userInput = Integer.parseInt(dataFromUser);
             }
 
             switch (userInput) {
                 case 1:
-                    newState = ChatStates.ADDING_NEW_CLIENT.getState();
+                    newState = ChatStatesMap.getState(ChatStates.ADDING_NEW_CLIENT);
+                    break;
                 case 2:
-                    newState = ChatStates.LOGIN_TO_EXISTING_CLIENT.getState();
+                    newState = ChatStatesMap.getState(ChatStates.LOGIN_TO_EXISTING_CLIENT);
+                    break;
                 case 3:
-                    newState = ChatStates.TERMINATE_CLIENT.getState();
+                    System.out.println("New state is " + ChatStates.TERMINATE_CLIENT);
+                    newState = ChatStatesMap.getState(ChatStates.TERMINATE_CLIENT);
+                    break;
                 default:
-                    newState = ChatStates.CONNECTION_INITIATED.getState(); // Should never happen;
+                    newState = ChatStatesMap.getState(ChatStates.CONNECTION_INITIATED); // Should never happen;
             }
 
         } catch (IOException e) {
@@ -50,10 +54,5 @@ public class ConnectionInitiatedState extends ChatState {
         }
 
         return newState;
-    }
-
-    @Override
-    public String toString() {
-        return "CONNECTION_INITIATED state";
     }
 }

@@ -2,6 +2,7 @@ package learn_to_code.java_api.net.tiny_chat_over_local_socket.protocol;
 
 import learn_to_code.java_api.net.tiny_chat_over_local_socket.protocol.states.ChatState;
 import learn_to_code.java_api.net.tiny_chat_over_local_socket.protocol.states.ChatStates;
+import learn_to_code.java_api.net.tiny_chat_over_local_socket.protocol.states.ChatStatesMap;
 
 public class ChatProtocol {
 
@@ -15,12 +16,11 @@ public class ChatProtocol {
 
     public void initiateCommunication() {
         System.out.println("Initiating new communication");
-        currentState = ChatStates.CONNECTION_INITIATED.getState();
+        currentState = ChatStatesMap.getState(ChatStates.CONNECTION_INITIATED);
         System.out.println("Set current state to: " + currentState.toString());
-        System.out.println("is it terminate state?:" + !currentState.equals(ChatStates.TERMINATE_CLIENT.getState()));
+        System.out.println("is it terminate state?: " + !currentState.equals(ChatStatesMap.getState(ChatStates.TERMINATE_CLIENT)));
 
-
-        while (!currentState.equals(ChatStates.TERMINATE_CLIENT.getState())) {
+        while (!currentState.equals(ChatStatesMap.getState(ChatStates.TERMINATE_CLIENT))) {
             System.out.println("Proceeding state " + currentState.toString());
             currentState = proceedState();
         }

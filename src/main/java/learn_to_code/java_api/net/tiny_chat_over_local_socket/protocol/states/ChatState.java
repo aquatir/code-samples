@@ -33,11 +33,14 @@ public abstract class ChatState {
             return false;
         }
         ChatState otherState = (ChatState) obj;
-        System.out.println("This type:" + this.getEnumType());
-        System.out.println("Other type:" + otherState.getEnumType());
 
         if (this.getEnumType() != otherState.getEnumType()) // 2 enums can be checked for equity by ==
             return false;
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return thisState.name();
     }
 }

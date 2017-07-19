@@ -24,8 +24,9 @@ public class ConnectionStream implements Closeable, AutoCloseable {
     }
 
     public void writeAllTo(String str) {
-        System.out.println("Writing to: " + str);
-        to.println(str);
+        for (String line: str.split("\n")) {
+            to.println(line + "\n");
+        }
         to.println(ChatState.getStopString());
     }
 
@@ -33,7 +34,6 @@ public class ConnectionStream implements Closeable, AutoCloseable {
         String partOfResponse;
         StringBuilder allResponse = new StringBuilder();
         while (! (partOfResponse = from.readLine().trim().replace("\n","")).equals(ChatState.getStopString())) {
-            System.out.println("Read line: " + partOfResponse);
             allResponse.append(partOfResponse);
         }
         return allResponse.toString();
@@ -45,7 +45,6 @@ public class ConnectionStream implements Closeable, AutoCloseable {
         try {
             from.close();
         } catch (IOException e) {
-            System.out.println("Could not close connection!");
             e.printStackTrace();
         }
     }
