@@ -59,15 +59,18 @@ public class LocalChatServer {
         }
 
         private void acceptConnection() throws IOException {
+            System.out.println("Accepting connection");
             Socket clientSocket = serverSocket.accept();
             ConnectionStream serverConnection = new ConnectionStream(
                     new PrintWriter(clientSocket.getOutputStream(), true),
                     new BufferedReader(new InputStreamReader(clientSocket.getInputStream())));
             serverProtocol = new ChatProtocol(serverConnection);
+            System.out.println("New connection accepted");
         }
 
         @Override
         public void run() {
+            System.out.println("Starting chat tread");
             serverProtocol.initiateCommunication();
         }
     }

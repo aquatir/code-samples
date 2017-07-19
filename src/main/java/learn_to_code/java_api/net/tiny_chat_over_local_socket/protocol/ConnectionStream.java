@@ -1,5 +1,7 @@
 package learn_to_code.java_api.net.tiny_chat_over_local_socket.protocol;
 
+import learn_to_code.java_api.net.tiny_chat_over_local_socket.protocol.states.ChatState;
+
 import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.IOException;
@@ -21,12 +23,20 @@ public class ConnectionStream implements Closeable, AutoCloseable {
         this.from = from;
     }
 
-    public void writeStringTo(String str) {
+    public void writeAllTo(String str) {
+        System.out.println("Writing to: " + str);
         to.println(str);
+        to.println(ChatState.getStopString());
     }
 
-    public String readStringFrom() throws IOException {
-        return from.readLine();
+    public String readAllFrom() throws IOException {
+        String partOfResponse;
+        StringBuilder allResponse = new StringBuilder();
+        while (! (partOfResponse = from.readLine().trim().replace("\n","")).equals(ChatState.getStopString())) {
+            System.out.println("Read line: " + partOfResponse);
+            allResponse.append(partOfResponse);
+        }
+        return allResponse.toString();
     }
 
     @Override

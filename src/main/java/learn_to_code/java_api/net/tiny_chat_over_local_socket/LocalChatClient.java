@@ -21,18 +21,12 @@ public class LocalChatClient {
 
             while (true) {
 
-                String serverOutput = clientStream.readStringFrom();
+                String serverOutput = clientStream.readAllFrom();
                 System.out.println("Server: " + serverOutput);
-
                 System.out.print("Client: ");
                 String clientString = clientConsole.readLine();
-                clientStream.writeStringTo(clientString);
+                clientStream.writeAllTo(clientString);
 
-                if (clientString.toLowerCase().equals("bye")) {
-                    String lastServerResponse = clientStream.readStringFrom();
-                    System.out.println("Server: " + lastServerResponse);
-                    break;
-                }
             }
         }
     }

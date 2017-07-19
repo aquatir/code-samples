@@ -46,6 +46,7 @@ public enum ChatStates {
     private ChatStatesMap chatMap = new ChatStatesMap();
 
     public ChatState getState() {
+        System.out.println("Returning state");
         return chatMap.getState(this);
     }
 
@@ -54,7 +55,10 @@ public enum ChatStates {
         Map<ChatStates, ChatState> states;
 
         private ChatStatesMap() {
-            states.put(ChatStates.CONNECTION_INITIATED, null);
+            /**
+             * This map knows how to get object by enum, but objects can also get enums because it's passed in as constructor argument
+             */
+            states.put(ChatStates.CONNECTION_INITIATED, new ConnectionInitiatedState(ChatStates.CONNECTION_INITIATED));
             states.put(ChatStates.ADDING_NEW_CLIENT, null);
             states.put(ChatStates.LOGIN_TO_EXISTING_CLIENT, null);
             states.put(ChatStates.LOGGED_IN, null);
