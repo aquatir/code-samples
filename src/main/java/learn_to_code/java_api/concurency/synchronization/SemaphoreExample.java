@@ -27,10 +27,10 @@ class SharedArea {
 }
 
 class Incrementer implements Runnable {
-    Semaphore sem;
-    int numOfIncrements;
+    private Semaphore sem;
+    private int numOfIncrements;
 
-    public Incrementer(Semaphore sem, int numOfIncrements) {
+    Incrementer(Semaphore sem, int numOfIncrements) {
         this.sem = sem;
         this.numOfIncrements = numOfIncrements;
     }
@@ -56,10 +56,10 @@ class Incrementer implements Runnable {
 
 class Decrementer implements Runnable{
 
-    Semaphore sem;
-    int numOfDecrements;
+    private Semaphore sem;
+    private int numOfDecrements;
 
-    public Decrementer(Semaphore sem, int numOfDecrements) {
+    Decrementer(Semaphore sem, int numOfDecrements) {
         this.sem = sem;
         this.numOfDecrements = numOfDecrements;
     }

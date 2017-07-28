@@ -15,7 +15,7 @@ public class CountDownLatchExample {
         CountDownLatch latch = new CountDownLatch(numOfCountDowns);
 
         System.out.println("Main thread is waiting for countdown latch");
-        Thread countDowner = new Thread(new CountDowner(latch, numOfCountDowns));
+        Thread countDowner = new Thread(new CountDownRunnable(latch, numOfCountDowns));
         countDowner.start();
 
         /* main thread will wait on this line of code until count down thread will
@@ -26,12 +26,12 @@ public class CountDownLatchExample {
     }
 }
 
-class CountDowner implements Runnable {
+class CountDownRunnable implements Runnable {
 
-    CountDownLatch latch;
-    int numOfCountDowns;
+    private CountDownLatch latch;
+    private int numOfCountDowns;
 
-    public CountDowner(CountDownLatch latch, int numOfCountDowns) {
+    public CountDownRunnable(CountDownLatch latch, int numOfCountDowns) {
         this.latch = latch;
         this.numOfCountDowns = numOfCountDowns;
     }
