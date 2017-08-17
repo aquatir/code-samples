@@ -7,7 +7,7 @@ import java.util.concurrent.RecursiveAction;
  * that classical Executor framework. One of the advantages of Fork/Join framework is RecursiveAction/RecursiveTask classes.
  * They provide a simple way to split execution of any task recursively.
  *
- * This example creates a recursive task to double each value in array and put it back
+ * This example creates a recursive action to double each value in array and put it back
  */
 public class RecursiveActionExample {
     public static void main(String[] args) {
