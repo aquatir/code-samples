@@ -43,6 +43,13 @@ public class UsingStreamApi {
         arrayStream.filter((element) -> (element % 2 == 0)).forEach(printInLine);
         System.out.println();
 
+        /* Methods such as anyMatch(), allMatch() and noneMatch() allow you to determine if predicate is true for all/some/none
+        elements in stream*/
+        arrayStream = Arrays.stream(array);
+        System.out.println("Element bigger than 10 exists: " + arrayStream.anyMatch(value -> value > 10));
+        arrayStream = Arrays.stream(array);
+        System.out.println("All elements are bigger that -1: " + arrayStream.allMatch(value -> value > -1));
+
         /* Reduce() turn your stream into a single value. It first takes 2 elements of streams, apply a BiFunction with
         method "CLASS apply(CLASS element1, CLASS element2)" which return a values and then use the result as the first
         element for next iteration. E.g. when summing values 1,2,3,4 reduce will go as following:
