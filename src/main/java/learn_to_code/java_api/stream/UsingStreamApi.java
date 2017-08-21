@@ -1,7 +1,10 @@
 package learn_to_code.java_api.stream;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.IntConsumer;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class UsingStreamApi {
@@ -56,7 +59,7 @@ public class UsingStreamApi {
         * For multiplying it would be 1, because x * 1 = x, etc
         * */
         arrayStream = Arrays.stream(array);
-        System.out.println("sum of elements: " + arrayStream.reduce(0, (a, b) -> (a+b)));
+        System.out.println("sum of elements: " + arrayStream.reduce(0, (a, b) -> (a + b)));
 
         /* Maps each values from input stream to output stream using provided function. Is NOT finishing operation */
         arrayStream = Arrays.stream(array);
@@ -70,7 +73,7 @@ public class UsingStreamApi {
         2. BiConsumer accumulator. It incorporates additional values into result. NOTE: stream string proceeding starts with empty string, so if
         you try to accumulate strings with spaces as I do here, remember that you should remove first space.
         3. BiConsumer combiner. It will combine result of 2 parallel tasks. If stream is sequential, this will be ignored, BUT FOR SOME REASON
-        if you provide null instead of BiConsumer you will get NPE ¯\_(ツ)_/¯. NOTE: the behavior of 'nothing being called on sequential stream'
+        if you provide null instead of BiConsumer you will get NPE ¯\_(ツ)_/¯. NOTE: the behavior of 'combiner not being called on sequential stream'
         is NOT GUARANTEED by specification, so you better provide you dummy combiner for sequential streams.
         * */
         String[] names = {"Ivan", "Vasili", "John", "Bob", "Katya"};
@@ -82,9 +85,34 @@ public class UsingStreamApi {
         String resultSequential = Arrays.stream(names).sequential().collect(StringBuilder::new,
                 (elementsSoFar, newElement) -> elementsSoFar.append(", ").append(newElement),
                 (firstParallelTask, secondParallelTask) -> System.out.println("I am actually getting called!"))
-                .delete(0,2).toString();
+                .delete(0, 2).toString();
 
-        System.out.println("result parallel: \"" + resultParallel+ "\"");
-        System.out.println("result sequential: \"" + resultSequential + "\"");
+        System.out.printf("%20s \"%s\"\n", "result parallel:", resultParallel);
+        System.out.printf("%20s \"%s\"\n", "result sequential:", resultSequential);
+
+        /* Also note, that collect method can be used to get COLLECTIONS from your streams using
+        * predefined static methods in Collectors class such as toSet() toList(), toMap(), toConcurrentMap()*/
+        Set<String> namesAsSet = Arrays.stream(names).collect(Collectors.toSet());
+        System.out.printf("%20s", "Elements in set 1: \"");
+        namesAsSet.stream().forEach((e) -> System.out.print(e + " "));
+        System.out.print("\"\n");
+
+        /* Instead of calling toSet you can actually do something like this:*/
+        namesAsSet = Arrays.stream(names).collect(HashSet::new,
+                HashSet::add,
+                HashSet::addAll);
+
+        System.out.printf("%20s", "Elements in set 2: \"");
+        namesAsSet.stream().forEach((e) -> System.out.print(e + " "));
+        System.out.print("\"\n");
+
+        /* Or like this: */
+        namesAsSet = Arrays.stream(names).collect(() -> new HashSet(),
+                (set, element) -> set.add(element),
+                (set1, set2) -> set1.addAll(set2));
+
+        System.out.printf("%20s", "Elements in set 3: \"");
+        namesAsSet.stream().forEach((e) -> System.out.print(e + " "));
+        System.out.print("\"\n");
     }
 }
