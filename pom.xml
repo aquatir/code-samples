@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>learntocode</groupId>
-    <artifactId>algorithms</artifactId>
+    <artifactId>learntocode</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>algorithms</name>
+    <name>learntocode</name>
     <url>http://maven.apache.org</url>
 
     <properties>
