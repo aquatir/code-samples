@@ -4,11 +4,12 @@ import javax.persistence.*;
 
 @Entity
 @Table
-public class Towns {
+public class Town {
 
-    public Towns() {
+    public Town() {
     }
-    public Towns(String townName, int distance) {
+
+    public Town(String townName, int distance) {
         setTownName(townName);
         setDistance(distance);
     }
@@ -47,5 +48,11 @@ public class Towns {
 
     public void setDistance(int distance) {
         this.distance = distance;
+    }
+
+
+    @Override
+    public String toString() {
+        return String.format("%4d %20s %6d", townId, townName, distance );
     }
 }
