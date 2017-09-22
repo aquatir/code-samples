@@ -3,6 +3,11 @@ package learn_to_code.frameworks.hibernate;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+/**
+ * It is recommended to create hibernate SessionFactory once for each of your databases so we use a singleton here.
+ *
+ * You can also replace call to {@link HibernateUtil#getSessionFactory()} with something line getSession().
+ */
 public class HibernateUtil {
 
     private static final SessionFactory sessionFactory = buildSessionFactory();

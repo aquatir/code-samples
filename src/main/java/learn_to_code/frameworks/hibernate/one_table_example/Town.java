@@ -1,4 +1,4 @@
-package learn_to_code.frameworks.hibernate;
+package learn_to_code.frameworks.hibernate.one_table_example;
 
 import javax.persistence.*;
 
