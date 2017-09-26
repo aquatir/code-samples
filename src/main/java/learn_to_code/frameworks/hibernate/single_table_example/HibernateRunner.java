@@ -26,8 +26,8 @@ public class HibernateRunner {
 
             printTowns(session);
         }
-        System.out.println();
 
+        System.out.println();
         System.out.println("Deleting Moscow in another session");
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
@@ -36,8 +36,8 @@ public class HibernateRunner {
 
             printTowns(session);
         }
-        System.out.println();
 
+        System.out.println();
         System.out.println("Get town from DB by normal id");
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
@@ -48,11 +48,11 @@ public class HibernateRunner {
 
             printTowns(session);
         }
-        System.out.println();
 
         /* You can get data by simple natural ID. Simple natural id (session.bySimpleNaturalId())  should be enough to determine a single row in database.
          * However, sometimes you need more then one key to determine a single row. In this case you should use natural id
           * and query all of them at once like in example */
+        System.out.println();
         System.out.println("Get town from DB by natural id");
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
@@ -65,6 +65,17 @@ public class HibernateRunner {
             System.out.println("Got Chertanovo by 2 naturals Ids");
             System.out.println(chertanovo2.toString());
 
+            printTowns(session);
+        }
+
+        System.out.println();
+        System.out.println("Now lets take chertanovo object, which was attached but now is detached from session, " +
+                "change it and attach it again to persistent state");
+        chertanovo.setDistance(666);
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.saveOrUpdate(chertanovo);
+            session.getTransaction().commit();
             printTowns(session);
         }
     }
