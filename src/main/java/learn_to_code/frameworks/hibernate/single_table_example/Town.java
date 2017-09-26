@@ -1,4 +1,6 @@
-package learn_to_code.frameworks.hibernate.one_table_example;
+package learn_to_code.frameworks.hibernate.single_table_example;
+
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 
@@ -9,9 +11,10 @@ public class Town {
     public Town() {
     }
 
-    public Town(String townName, int distance) {
+    public Town(String townName, int distance, String biggestRiver) {
         setTownName(townName);
         setDistance(distance);
+        setBiggestRiver(biggestRiver);
     }
 
     @Id
@@ -19,11 +22,17 @@ public class Town {
     @Column(name="town_id")
     private int townId;
 
+    @NaturalId
     @Column(name="town_name")
     private String townName;
 
+    @NaturalId
+    @Column(name="biggest_river")
+    private String biggestRiver;
+
     @Column(name="distance")
     private int distance;
+
 
 
     public int getTownId() {
@@ -50,9 +59,18 @@ public class Town {
         this.distance = distance;
     }
 
+    public String getBiggestRiver() {
+        return biggestRiver;
+    }
+
+    public void setBiggestRiver(String biggestRiver) {
+        this.biggestRiver = biggestRiver;
+    }
 
     @Override
     public String toString() {
-        return String.format("%4d %20s %6d", townId, townName, distance );
+        return String.format("%4d %20s %6d %20s", townId, townName, distance, biggestRiver );
     }
+
+
 }

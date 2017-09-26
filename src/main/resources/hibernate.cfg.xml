@@ -11,10 +11,10 @@
         <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/localhost_db</property>
 
         <property name="connection_pool_size">1</property>
-        <property name="show_sql">true</property>
+        <property name="show_sql">false</property>
         <property name="hbm2ddl.auto">create</property>
 
-        <mapping class="learn_to_code.frameworks.hibernate.one_table_example.Town"/>
+        <mapping class="learn_to_code.frameworks.hibernate.single_table_example.Town"/>
 
     </session-factory>
 </hibernate-configuration>
