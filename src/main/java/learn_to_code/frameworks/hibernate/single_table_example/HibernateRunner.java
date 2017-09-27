@@ -50,7 +50,7 @@ public class HibernateRunner {
         }
 
         /* You can get data by simple natural ID. Simple natural id (session.bySimpleNaturalId())  should be enough to determine a single row in database.
-         * However, sometimes you need more then one key to determine a single row. In this case you should use natural id
+         * However, sometimes you need more then one key to determine a single row. In this case you should use multiple natural ids
           * and query all of them at once like in example */
         System.out.println();
         System.out.println("Get town from DB by natural id");
@@ -84,6 +84,6 @@ public class HibernateRunner {
 
     private static void printTowns(Session session) {
         System.out.println("Printing list of towns:");
-        session.createQuery("from Town").list().forEach(town -> System.out.println(town));
+        session.createQuery("from Town").list().forEach(System.out::println);
     }
 }
