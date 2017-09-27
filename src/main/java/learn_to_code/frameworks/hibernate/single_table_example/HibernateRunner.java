@@ -41,7 +41,7 @@ public class HibernateRunner {
         System.out.println("Get town from DB by normal id");
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
-            Town chertanovo2 = session.byId(Town.class).load(chertanovo.getTownId());
+            Town chertanovo2 = session.byId(Town.class).load(chertanovo.getId());
             System.out.println("Got Chertanovo by normal id");
             System.out.println(chertanovo2.toString());
             session.getTransaction().commit();
@@ -78,6 +78,8 @@ public class HibernateRunner {
             session.getTransaction().commit();
             printTowns(session);
         }
+
+        HibernateUtil.getSessionFactory().close();
     }
 
     private static void printTowns(Session session) {

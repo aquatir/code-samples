@@ -19,8 +19,8 @@ public class Town {
 
     @Id
     @GeneratedValue
-    @Column(name="town_id")
-    private int townId;
+    @Column(name="id")
+    private int Id;
 
     @NaturalId
     @Column(name="town_name")
@@ -35,12 +35,12 @@ public class Town {
 
 
 
-    public int getTownId() {
-        return townId;
+    public int getId() {
+        return Id;
     }
 
-    public void setTownId(int townId) {
-        this.townId = townId;
+    public void setId(int townId) {
+        this.Id = townId;
     }
 
     public String getTownName() {
@@ -69,7 +69,7 @@ public class Town {
 
     @Override
     public String toString() {
-        return String.format("%4d %20s %6d %20s", townId, townName, distance, biggestRiver );
+        return String.format("%4d %20s %6d %20s", Id, townName, distance, biggestRiver );
     }
 
 
