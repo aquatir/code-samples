@@ -93,7 +93,7 @@ public class HibernateRunner {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
 
-            for (int i = 0; i < 10000; i++) {
+            for (int i = 0; i < 10_000; i++) {
                 Town town = new Town(UUID.randomUUID().toString(), i, UUID.randomUUID().toString());
                 session.save(town);
                 if (i % 20 == 0) {
@@ -110,7 +110,7 @@ public class HibernateRunner {
         System.out.println("Batch update example");
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
-            ScrollableResults towns = session.createQuery("from Town")
+            ScrollableResults towns = session.createQuery("select town from Town town")
                     .setCacheMode(CacheMode.IGNORE)
                     .scroll(ScrollMode.FORWARD_ONLY);
 
@@ -138,6 +138,6 @@ public class HibernateRunner {
 
     private static void printTowns(Session session) {
         System.out.println("Printing list of towns:");
-        session.createQuery("from Town").list().forEach(System.out::println);
+        session.createQuery("select town from Town town").list().forEach(System.out::println);
     }
 }
