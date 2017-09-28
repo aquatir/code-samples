@@ -15,7 +15,5 @@
         <property name="hbm2ddl.auto">create</property>
         <property name="hibernate.jdbc.batch_size">20</property>
 
-        <mapping class="learn_to_code.frameworks.hibernate.single_table_example.Town"/>
-
     </session-factory>
 </hibernate-configuration>

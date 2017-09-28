@@ -1,5 +1,6 @@
 package learn_to_code.frameworks.hibernate;
 
+import learn_to_code.frameworks.hibernate.single_table_example.Town;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -15,7 +16,11 @@ public class HibernateUtil {
     private static SessionFactory buildSessionFactory() {
         try {
             // Create the SessionFactory from hibernate.cfg.xml
-            return new Configuration().configure().buildSessionFactory();
+            return new Configuration()
+                    .addPackage("learn_to_code.frameworks.hibernate")
+                    .addAnnotatedClass(Town.class)
+                    .configure()
+                    .buildSessionFactory();
         } catch (Throwable ex) {
             // Make sure you log the exception, as it might be swallowed
             System.err.println("Initial SessionFactory creation failed." + ex);
