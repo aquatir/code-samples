@@ -106,7 +106,7 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>attach-javadocs</id>
+                        <shippingId>attach-javadocs</shippingId>
                         <goals>
                             <goal>jar</goal>
                         </goals>

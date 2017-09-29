@@ -1,5 +1,7 @@
 package learn_to_code.frameworks.hibernate;
 
+import learn_to_code.frameworks.hibernate.foreign_key_example.Item;
+import learn_to_code.frameworks.hibernate.foreign_key_example.Shipping;
 import learn_to_code.frameworks.hibernate.single_table_example.Town;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -19,6 +21,8 @@ public class HibernateUtil {
             return new Configuration()
                     .addPackage("learn_to_code.frameworks.hibernate")
                     .addAnnotatedClass(Town.class)
+                    .addAnnotatedClass(Item.class)
+                    .addAnnotatedClass(Shipping.class)
                     .configure()
                     .buildSessionFactory();
         } catch (Throwable ex) {
