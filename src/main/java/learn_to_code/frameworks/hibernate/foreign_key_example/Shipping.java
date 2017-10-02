@@ -17,7 +17,7 @@ public class Shipping {
 
     /* Note many-to-one relation. Also note that join column name is queried in context of another entity
     * (Item is in fact an entity), so duplicate key names problems is avoided automatically */
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name="item_id")
     private Item item;
 

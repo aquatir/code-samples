@@ -2,6 +2,8 @@ package learn_to_code.frameworks.hibernate;
 
 import learn_to_code.frameworks.hibernate.foreign_key_example.Item;
 import learn_to_code.frameworks.hibernate.foreign_key_example.Shipping;
+import learn_to_code.frameworks.hibernate.many_to_many_unidirectional.Option;
+import learn_to_code.frameworks.hibernate.many_to_many_unidirectional.OurUser;
 import learn_to_code.frameworks.hibernate.single_table_example.Town;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -23,6 +25,8 @@ public class HibernateUtil {
                     .addAnnotatedClass(Town.class)
                     .addAnnotatedClass(Item.class)
                     .addAnnotatedClass(Shipping.class)
+                    .addAnnotatedClass(Option.class)
+                    .addAnnotatedClass(OurUser.class)
                     .configure()
                     .buildSessionFactory();
         } catch (Throwable ex) {
