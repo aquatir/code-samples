@@ -12,7 +12,7 @@ public class Sorts {
      * @param left left index of array. Included in sort
      * @param right right index of array. NOT INCLUDED in sort
      */
-    static void selectionSort(Comparable[] array, int left, int right) {
+    public static void selectionSort(Comparable[] array, int left, int right) {
         for (int i = left; i < right; ++i) {
             int minIndex = i;
             int j;
@@ -30,7 +30,7 @@ public class Sorts {
      * @param left left index of array. Included in sort
      * @param right right index of array. NOT INCLUDED in sort 
      */
-    static void insertionSort(Comparable[] array, int left, int right) {
+    public static void insertionSort(Comparable[] array, int left, int right) {
         for (int i = left; i < right; ++i) {
             for (int j = left + 1; j < right - i; ++j) {
                 if (less( array[j], array[j-1] ) )
@@ -45,7 +45,7 @@ public class Sorts {
      * @param left left index of array. Included in sort
      * @param right right index of array. NOT INCLUDED in sort
      */
-    static void shellSort(Comparable[] array, int left, int right) {
+    public static void shellSort(Comparable[] array, int left, int right) {
         int N = right - left;
 
         /* generate maximum h value */

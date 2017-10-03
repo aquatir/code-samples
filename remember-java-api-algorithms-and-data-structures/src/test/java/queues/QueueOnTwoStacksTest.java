@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package learn_to_code.data_structures.queues;
+package queues;
 
+import learn_to_code.data_structures.queues.QueueOnTwoStacks;
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 
 /**
