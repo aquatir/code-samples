@@ -3,7 +3,7 @@ package learn_to_code.java_se_api.lambdas.generic_method_reference;
 public class ArrayOps {
     /**
      * Return number of elements in array which are equal to given value
-     * Method with same signature as {@link learn_to_code.javaSE_api.lambdas.generic_method_reference.ArrayElementFunctionalInterface}
+     * Method with same signature as {@link learn_to_code.java_se_api.lambdas.generic_method_reference.ArrayElementFunctionalInterface}
      * @param array any array
      * @param value value which may or may not be in array
      * @param <T> type of array and value

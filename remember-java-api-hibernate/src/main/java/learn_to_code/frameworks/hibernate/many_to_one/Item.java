@@ -1,4 +1,4 @@
-package learn_to_code.frameworks.hibernate.foreign_key_example;
+package learn_to_code.frameworks.hibernate.many_to_one;
 
 
 import javax.persistence.*;
