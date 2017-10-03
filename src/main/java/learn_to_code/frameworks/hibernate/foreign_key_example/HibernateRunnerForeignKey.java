@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import java.time.LocalDate;
 
 /**
- * Example of using two table linked by foreign key. Foreign key usage is shown in {@link Shipping}.
+ * Example of using two tables linked by foreign key. Foreign key usage is shown in {@link Shipping}.
  * Here we will store some data in main table and then use the same objects while storing data
  * in a table with foreign key.
  *

@@ -9,9 +9,10 @@ import java.util.Set;
 @Table(name = "some_user")
 public class OurUser {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private int id;
 
     @Column
@@ -19,11 +20,13 @@ public class OurUser {
 
     @ManyToMany
     @JoinTable(name = "enabled_options",
-            joinColumns = @JoinColumn(name="user_id"),
-            inverseJoinColumns = @JoinColumn(name="option_id"))
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "option_id"))
     private Set<Option> toggledOptions = new HashSet<>();
 
-    public OurUser() {}
+    public OurUser() {
+    }
+
     public OurUser(String name) {
         this.name = name;
     }
@@ -67,10 +70,32 @@ public class OurUser {
     @Override
     public String toString() {
         StringBuilder userWithOptions = new StringBuilder();
-        for (Option opt: toggledOptions) {
+        for (Option opt : toggledOptions) {
             userWithOptions.append(String.format("%3d %20s %20s", id, name, opt.getOptionName())).append("\n");
         }
-        userWithOptions.deleteCharAt(userWithOptions.length()-1);
+        userWithOptions.deleteCharAt(userWithOptions.length() - 1);
         return userWithOptions.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (toggledOptions != null ? toggledOptions.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof OurUser)) return false;
+
+        OurUser other = (OurUser) o;
+
+        if (id != other.id) return false;
+        if (!name.equals(other.name)) return false;
+        if (!toggledOptions.equals(other.toggledOptions)) return false;
+
+        return true;
     }
 }

@@ -3,25 +3,11 @@ package learn_to_code.frameworks.hibernate.many_to_many_unidirectional;
 import learn_to_code.frameworks.hibernate.HibernateUtil;
 import org.hibernate.Session;
 
+
 /**
- * Example of using two table linked by foreign key. Foreign key usage is shown in {@link learn_to_code.frameworks.hibernate.foreign_key_example.Shipping}.
- * Here we will store some data in main table and then use the same objects while storing data
- * in a table with foreign key.
- * <p/>
- * Note that we create Item objects and Shipping objects in two transactions. This is not necessary, and actually
- * may be troublesome for following reasons:
- * <p/>
- * When session is being closed, all associated entity objects are being detached. This mean that any changes to this
- * objects will no be propagated to database. This will allow us to create the following error:
- * 1) Create some entity object (Item in this case)
- * 2) Open session, store them, close session
- * 3) CHANGE some fields of entity objects (Not id/natural id as you can not change them anyway)
- * 4) Create some other entity objects using the ones created in first place (Shipping in this case)
- * 5) Open session, store them, close session
- * <p/>
- * This scenario will work, because the link between two entities is done by id field. So changing any fields
- * in detached objects will not lead to this objects being changed, until you update their references by call to
- * session.saveOrUpdate(SomeEntity entity).
+ * Example of many-to-many relationship. We have 2 tables - OurUser (Because simple User is not an appropriate name for
+ * postgres) and Option. Each user can have one or more special options turned on in his profile and we have to store
+ * this setting somewhere. In this example we will use an auxiliary table to store options which are turned on.
  */
 public class HibernateRunnerManyToManyUnidirectional {
     public static void main(String[] args) {
@@ -67,6 +53,11 @@ public class HibernateRunnerManyToManyUnidirectional {
                 session.getTransaction().commit();
 
                 session.createQuery("from OurUser").list().forEach(System.out::println);
+                System.out.println();
+
+                System.out.println("Let's get Ivan's options");
+                OurUser storedIvan = session.byId(OurUser.class).load(ivan.getId());
+                System.out.println(storedIvan.toString());
                 System.out.println();
             }
 
