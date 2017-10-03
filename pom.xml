@@ -8,6 +8,7 @@
     <modules>
         <module>hibernate-jpa</module>
         <module>aspectj</module>
+        <module>remember-java-api-java-se</module>
     </modules>
     <packaging>pom</packaging>
 
