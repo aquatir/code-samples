@@ -46,11 +46,13 @@ public class HibernateRunnerForeignKey {
             session.save(screwdriver);
             session.save(chair);
             session.save(headphone);
-            session.getTransaction().commit();
 
             System.out.println("Items in item table:");
             session.createQuery("from Item").list().forEach(System.out::println);
             System.out.println();
+
+            session.getTransaction().commit();
+
         }
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -61,11 +63,12 @@ public class HibernateRunnerForeignKey {
             session.save(screwdriverShipping);
             session.save(chairShipping);
             session.save(headphoneShipping);
-            session.getTransaction().commit();
 
             System.out.println("Shipping in shipping table:");
             session.createQuery("from Shipping").list().forEach(System.out::println);
             System.out.println();
+            session.getTransaction().commit();
+
         }
 
         HibernateUtil.getSessionFactory().close();

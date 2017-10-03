@@ -29,9 +29,10 @@ public class HibernateRunnerSingleTable {
             session.save(chertanovo);
             session.save(moscow);
             session.save(voronej);
-            session.getTransaction().commit();
 
             printTowns(session);
+            session.getTransaction().commit();
+
         }
 
         System.out.println();
@@ -39,9 +40,10 @@ public class HibernateRunnerSingleTable {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             session.remove(moscow);
-            session.getTransaction().commit();
 
             printTowns(session);
+            session.getTransaction().commit();
+
         }
 
         System.out.println();
@@ -51,9 +53,10 @@ public class HibernateRunnerSingleTable {
             Town chertanovo2 = session.byId(Town.class).load(chertanovo.getId());
             System.out.println("Got Chertanovo by normal id");
             System.out.println(chertanovo2.toString());
-            session.getTransaction().commit();
 
             printTowns(session);
+            session.getTransaction().commit();
+
         }
 
         /* You can get data by simple natural ID. Simple natural id (session.bySimpleNaturalId())  should be enough to determine a single row in database.
@@ -68,11 +71,12 @@ public class HibernateRunnerSingleTable {
                     .using("townName", "Chertanovo")
                     .getReference();
 
-            session.getTransaction().commit();
             System.out.println("Got Chertanovo by 2 naturals Ids");
             System.out.println(chertanovo2.toString());
 
             printTowns(session);
+            session.getTransaction().commit();
+
         }
 
         System.out.println();
@@ -82,8 +86,9 @@ public class HibernateRunnerSingleTable {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             session.saveOrUpdate(chertanovo);
-            session.getTransaction().commit();
             printTowns(session);
+            session.getTransaction().commit();
+
         }
 
         /* Note that session object cache all object created until you commit them. Because of
@@ -132,10 +137,6 @@ public class HibernateRunnerSingleTable {
 
         HibernateUtil.getSessionFactory().close();
     }
-
-
-
-
 
     private static void printTowns(Session session) {
         System.out.println("Printing list of towns:");

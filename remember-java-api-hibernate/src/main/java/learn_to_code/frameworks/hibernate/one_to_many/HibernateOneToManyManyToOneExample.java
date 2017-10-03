@@ -25,11 +25,12 @@ public class HibernateOneToManyManyToOneExample {
             session.save(schlossLindstedt);
             session.save(vasiliy);
 
-            session.getTransaction().commit();
 
             session.createQuery("from Production").list().forEach(System.out::println);
             System.out.println();
             session.createQuery("from Worker").list().forEach(System.out::println);
+            session.getTransaction().commit();
+
         }
 
         HibernateUtil.getSessionFactory().close();

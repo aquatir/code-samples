@@ -26,9 +26,9 @@ public class HibernateRunnerManyToManyUnidirectional {
                 session.save(opt3);
                 session.save(opt4);
 
-                session.getTransaction().commit();
 
                 session.createQuery("from Option").list().forEach(System.out::println);
+                session.getTransaction().commit();
                 System.out.println();
             }
 
@@ -50,7 +50,6 @@ public class HibernateRunnerManyToManyUnidirectional {
                 session.save(vasily);
                 session.save(masha);
 
-                session.getTransaction().commit();
 
                 session.createQuery("from OurUser").list().forEach(System.out::println);
                 System.out.println();
@@ -58,7 +57,9 @@ public class HibernateRunnerManyToManyUnidirectional {
                 System.out.println("Let's get Ivan's options");
                 OurUser storedIvan = session.byId(OurUser.class).load(ivan.getId());
                 System.out.println(storedIvan.toString());
+
                 System.out.println();
+                session.getTransaction().commit();
             }
 
         } finally {
