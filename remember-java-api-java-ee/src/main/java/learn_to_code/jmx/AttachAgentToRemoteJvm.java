@@ -1,4 +1,4 @@
-package learn_to_code.javaEE_api.jmx;
+package learn_to_code.jmx;
 
 import com.sun.tools.attach.AgentInitializationException;
 import com.sun.tools.attach.AgentLoadException;
