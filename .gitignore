@@ -5,7 +5,7 @@
 
 # Log file
 *.log
-src
+/src
 
 # BlueJ files
 *.ctxt
