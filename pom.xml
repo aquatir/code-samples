@@ -43,18 +43,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- USED IN learn_to_code/javaSE_api/jmx/AttachAgentToRemoteJvm class -->
-
-        <dependency>
-            <groupId>com.sun</groupId>
-            <artifactId>tools</artifactId>
-            <version>1.6.0</version>
-            <scope>system</scope>
-            <systemPath>${env.JAVA_HOME}/lib/tools.jar</systemPath>
-        </dependency>
-
-
-
     </dependencies>
 
 
