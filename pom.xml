@@ -6,12 +6,12 @@
     <artifactId>learntocode</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>hibernate-jpa</module>
-        <module>aspectj</module>
+        <module>remember-java-api-hibernate</module>
         <module>remember-java-api-java-se</module>
         <module>remember-java-api-algorithms-and-data-structures</module>
         <module>remember-java-api-patterns</module>
         <module>remember-java-api-java-ee</module>
+        <module>remember-java-api-aspectj</module>
     </modules>
     <packaging>pom</packaging>
 
