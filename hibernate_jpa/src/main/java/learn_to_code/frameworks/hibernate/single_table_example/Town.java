@@ -2,7 +2,11 @@ package learn_to_code.frameworks.hibernate.single_table_example;
 
 import org.hibernate.annotations.NaturalId;
 
-import javax.persistence.*;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Table;
 
 @Entity
 @Table
