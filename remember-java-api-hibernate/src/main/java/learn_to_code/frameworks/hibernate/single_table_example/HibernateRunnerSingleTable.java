@@ -101,6 +101,23 @@ public class HibernateRunnerSingleTable {
         }
 
 
+        System.out.println();
+        System.out.println("Merging object is another way to update detached state");
+        /* Take note that merge is a mechanism which CAN ALLOW you to work around situations when the same object
+        * is loaded twice in session (or is stored in session cached). Also remember that session.merge(..) will
+        * ALWAYS return an instance and them copy data from object you provided by parameter. */
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            /* This will get Town object if it's cached in session or will take it from table.
+            * After that this object will be initialized with data taken from chertanovo (Including id), thus
+            * any updates which you perform after call to merge(..) should be performed on this object */
+            Town newInstance = (Town) session.merge(chertanovo);
+            newInstance.setDistance(450);
+            printTowns(session);
+            session.getTransaction().commit();
+        }
+
+
         /* Note that session object cache all object created until you commit them. Because of
         * that you have to:
         * 1) set hibernate.jdbc.batch_size  property (see hibernate.cfg.xml)
