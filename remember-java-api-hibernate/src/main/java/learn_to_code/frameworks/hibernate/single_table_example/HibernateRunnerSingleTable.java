@@ -1,10 +1,7 @@
 package learn_to_code.frameworks.hibernate.single_table_example;
 
 import learn_to_code.frameworks.hibernate.HibernateUtil;
-import org.hibernate.CacheMode;
-import org.hibernate.ScrollMode;
-import org.hibernate.ScrollableResults;
-import org.hibernate.Session;
+import org.hibernate.*;
 
 import java.util.UUID;
 
@@ -76,20 +73,33 @@ public class HibernateRunnerSingleTable {
 
             printTowns(session);
             session.getTransaction().commit();
-
         }
+
 
         System.out.println();
         System.out.println("Now lets take chertanovo object, which was attached but now is detached from session, " +
-                "change it and attach it again to persistent state");
-        chertanovo.setDistance(666);
+                "change it and attach it again to persistent state. ");
+        /* There are actually multiple ways to do it. First let's take a look into saveOrUpdate method call.
+        It will either insert a new row into table or update existing.*/
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
+            chertanovo.setDistance(666);
             session.saveOrUpdate(chertanovo);
             printTowns(session);
             session.getTransaction().commit();
-
         }
+
+        System.out.println();
+        System.out.println("Now let update chertanovo object, but first we will have to call lock(..) to attach object " +
+                " again");
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.buildLockRequest(LockOptions.UPGRADE).lock(chertanovo);
+            chertanovo.setDistance(500);
+            printTowns(session);
+            session.getTransaction().commit();
+        }
+
 
         /* Note that session object cache all object created until you commit them. Because of
         * that you have to:
@@ -104,6 +114,7 @@ public class HibernateRunnerSingleTable {
                 Town town = new Town(UUID.randomUUID().toString(), i, UUID.randomUUID().toString());
                 session.save(town);
                 if (i % 20 == 0) {
+                    /* Flush and clear and current persistent context */
                     session.flush();
                     session.clear();
                 }
@@ -127,6 +138,7 @@ public class HibernateRunnerSingleTable {
                 town.setDistance(i+ 10);
                 i++;
                 if (i % 20 == 0) {
+                    /* Flush and clear and current persistent context */
                     session.flush();
                     session.clear();
                 }
