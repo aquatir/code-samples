@@ -1,4 +1,4 @@
-package learn_to_code.frameworks.hibernate.single_table_example;
+package learn_to_code.frameworks.hibernate.crud_operations_example;
 
 import org.hibernate.annotations.NaturalId;
 
