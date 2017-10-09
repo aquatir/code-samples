@@ -2,6 +2,13 @@ package learn_to_code.frameworks.hibernate.embedded_and_enum_and_super_class;
 
 import javax.persistence.*;
 
+/**
+ * {@link learn_to_code.frameworks.hibernate.embedded_and_enum_and_super_class.Character} is defined with
+ * {@link javax.persistence.MappedSuperclass} annotations thus all field from that class will be present in this entity.
+ *
+ * Note that {@link Power} field is embedded. It means that all fields from Power object will be stored in
+ * this entity.
+ */
 @Entity
 @Table
 public class Hero extends Character {

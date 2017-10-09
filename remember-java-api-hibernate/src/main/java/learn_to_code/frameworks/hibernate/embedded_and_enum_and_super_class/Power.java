@@ -4,6 +4,12 @@ import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
+/**
+ * {@link javax.persistence.Embeddable} annotation states that this class will not be stored as entity, but
+ * will appear as part of another entity ({@link Hero} in this example).
+ *
+ * Also note {@link javax.persistence.Enumerated} which can be used to store java enum types in entities.
+ */
 @Embeddable
 public class Power {
     private String powerName;

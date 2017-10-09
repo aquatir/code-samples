@@ -5,6 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+/**
+ * If you are using superclass which should not be stored in database (Thus, no {@link javax.persistence.Entity}
+ * annotation is present) you should use {@link javax.persistence.MappedSuperclass} annotation.
+ * All fields defined in this class will be present in subclasses.
+ */
 @MappedSuperclass
 public abstract class Character {
 
