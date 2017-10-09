@@ -10,7 +10,7 @@ import javax.persistence.*;
  * this entity.
  */
 @Entity
-@Table
+@Table(schema = "table_per_example")
 public class Hero extends Character {
 
     @Embedded

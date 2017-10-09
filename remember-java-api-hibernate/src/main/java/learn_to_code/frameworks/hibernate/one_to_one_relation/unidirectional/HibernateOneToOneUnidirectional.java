@@ -3,8 +3,10 @@ package learn_to_code.frameworks.hibernate.one_to_one_relation.unidirectional;
 import learn_to_code.frameworks.hibernate.HibernateUtil;
 import org.hibernate.Session;
 
+import java.io.IOException;
+
 public class HibernateOneToOneUnidirectional {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         DogUni korgi = new DogUni("Korgi");
         DogUni pug = new DogUni("Pug");
 
@@ -35,6 +37,8 @@ public class HibernateOneToOneUnidirectional {
             session.getTransaction().commit();
         }
 
+        System.out.println("You can check DB state for now. Press any key to finish example and clear DB");
+        System.in.read();
         HibernateUtil.getSessionFactory().close();
     }
 }

@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(schema = "table_per_example")
 public class Town {
 
     public Town() {

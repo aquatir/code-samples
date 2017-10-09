@@ -3,7 +3,7 @@ package learn_to_code.frameworks.hibernate.one_to_one_relation.bidirectional;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "owner_bidirectional", schema = "one_to_one")
 public class OwnerBidirectional {
 
     @Id
@@ -13,7 +13,7 @@ public class OwnerBidirectional {
     private String name;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(name = "dog_id")
+    @JoinColumn(name = "dog_id")
     private DogBidirectional dog;
 
     public OwnerBidirectional() {}

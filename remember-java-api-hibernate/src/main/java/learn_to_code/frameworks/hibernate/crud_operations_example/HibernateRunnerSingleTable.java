@@ -3,6 +3,7 @@ package learn_to_code.frameworks.hibernate.crud_operations_example;
 import learn_to_code.frameworks.hibernate.HibernateUtil;
 import org.hibernate.*;
 
+import java.io.IOException;
 import java.util.UUID;
 
 /**
@@ -13,7 +14,7 @@ import java.util.UUID;
  * Note that session object implements auto-closable, so using try-with-resources is encouraged.
  */
 public class HibernateRunnerSingleTable {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         Town chertanovo = new Town("Chertanovo", 50, "Big awesome river");
         Town moscow = new Town ("Moscow", 5, "River of love");
@@ -164,6 +165,8 @@ public class HibernateRunnerSingleTable {
             session.getTransaction().commit();
         }
 
+        System.out.println("You can check DB state for now. Press any key to finish example and clear DB");
+        System.in.read();
         HibernateUtil.getSessionFactory().close();
     }
 

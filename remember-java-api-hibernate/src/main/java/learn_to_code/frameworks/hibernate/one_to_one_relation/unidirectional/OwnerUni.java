@@ -3,7 +3,7 @@ package learn_to_code.frameworks.hibernate.one_to_one_relation.unidirectional;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "owner_unidirectional", schema = "one_to_one")
 public class OwnerUni {
 
     @Id

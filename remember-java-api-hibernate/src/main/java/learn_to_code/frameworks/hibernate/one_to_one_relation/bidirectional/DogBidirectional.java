@@ -3,7 +3,7 @@ package learn_to_code.frameworks.hibernate.one_to_one_relation.bidirectional;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "dog_birirectional", schema = "one_to_one")
 public class DogBidirectional {
 
     @Id
