@@ -1,13 +1,14 @@
 package learn_to_code.frameworks.hibernate;
 
 
-import learn_to_code.frameworks.hibernate.many_to_one.Shipping;
+import learn_to_code.frameworks.hibernate.crud_operations_example.Town;
+import learn_to_code.frameworks.hibernate.embedded_and_enum_and_super_class.Hero;
 import learn_to_code.frameworks.hibernate.many_to_many_unidirectional.Option;
+import learn_to_code.frameworks.hibernate.many_to_many_unidirectional.OurUser;
+import learn_to_code.frameworks.hibernate.many_to_one.Item;
+import learn_to_code.frameworks.hibernate.many_to_one.Shipping;
 import learn_to_code.frameworks.hibernate.one_to_many.Production;
 import learn_to_code.frameworks.hibernate.one_to_many.Worker;
-import learn_to_code.frameworks.hibernate.crud_operations_example.Town;
-import learn_to_code.frameworks.hibernate.many_to_one.Item;
-import learn_to_code.frameworks.hibernate.many_to_many_unidirectional.OurUser;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -32,6 +33,7 @@ public class HibernateUtil {
                     .addAnnotatedClass(OurUser.class)
                     .addAnnotatedClass(Production.class)
                     .addAnnotatedClass(Worker.class)
+                    .addAnnotatedClass(Hero.class)
                     .configure()
                     .buildSessionFactory();
         } catch (Throwable ex) {

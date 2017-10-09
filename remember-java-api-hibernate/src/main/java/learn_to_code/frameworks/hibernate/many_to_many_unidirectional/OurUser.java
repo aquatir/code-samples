@@ -9,7 +9,6 @@ import java.util.Set;
 @Table(name = "some_user")
 public class OurUser {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
