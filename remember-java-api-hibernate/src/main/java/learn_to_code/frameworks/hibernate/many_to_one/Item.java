@@ -1,4 +1,4 @@
-package learn_to_code.frameworks.hibernate.foreign_key_example;
+package learn_to_code.frameworks.hibernate.many_to_one;
 
 
 import javax.persistence.*;
@@ -21,10 +21,6 @@ public class Item {
 
     public int getItemId() {
         return itemId;
-    }
-
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
     }
 
     public String getItemName() {

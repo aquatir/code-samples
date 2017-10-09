@@ -1,4 +1,4 @@
-package learn_to_code.frameworks.hibernate.single_table_example;
+package learn_to_code.frameworks.hibernate.crud_operations_example;
 
 import org.hibernate.annotations.NaturalId;
 
@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(schema = "table_per_example")
 public class Town {
 
     public Town() {
@@ -41,10 +41,6 @@ public class Town {
 
     public int getId() {
         return Id;
-    }
-
-    public void setId(int townId) {
-        this.Id = townId;
     }
 
     public String getTownName() {

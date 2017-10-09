@@ -1,4 +1,4 @@
-package learn_to_code.frameworks.hibernate.foreign_key_example;
+package learn_to_code.frameworks.hibernate.many_to_one;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -32,10 +32,6 @@ public class Shipping {
 
     public int getShippingId() {
         return shippingId;
-    }
-
-    public void setShippingId(int shippingId) {
-        this.shippingId = shippingId;
     }
 
     public LocalDate getDate() {

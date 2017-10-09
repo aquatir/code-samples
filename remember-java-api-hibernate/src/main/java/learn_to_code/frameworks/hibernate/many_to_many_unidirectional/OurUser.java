@@ -9,7 +9,6 @@ import java.util.Set;
 @Table(name = "some_user")
 public class OurUser {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -33,10 +32,6 @@ public class OurUser {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {

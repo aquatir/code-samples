@@ -1,11 +1,9 @@
-package learn_to_code.frameworks.hibernate.single_table_example;
+package learn_to_code.frameworks.hibernate.crud_operations_example;
 
 import learn_to_code.frameworks.hibernate.HibernateUtil;
-import org.hibernate.CacheMode;
-import org.hibernate.ScrollMode;
-import org.hibernate.ScrollableResults;
-import org.hibernate.Session;
+import org.hibernate.*;
 
+import java.io.IOException;
 import java.util.UUID;
 
 /**
@@ -16,7 +14,7 @@ import java.util.UUID;
  * Note that session object implements auto-closable, so using try-with-resources is encouraged.
  */
 public class HibernateRunnerSingleTable {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         Town chertanovo = new Town("Chertanovo", 50, "Big awesome river");
         Town moscow = new Town ("Moscow", 5, "River of love");
@@ -29,9 +27,10 @@ public class HibernateRunnerSingleTable {
             session.save(chertanovo);
             session.save(moscow);
             session.save(voronej);
-            session.getTransaction().commit();
 
             printTowns(session);
+            session.getTransaction().commit();
+
         }
 
         System.out.println();
@@ -39,9 +38,10 @@ public class HibernateRunnerSingleTable {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             session.remove(moscow);
-            session.getTransaction().commit();
 
             printTowns(session);
+            session.getTransaction().commit();
+
         }
 
         System.out.println();
@@ -51,9 +51,10 @@ public class HibernateRunnerSingleTable {
             Town chertanovo2 = session.byId(Town.class).load(chertanovo.getId());
             System.out.println("Got Chertanovo by normal id");
             System.out.println(chertanovo2.toString());
-            session.getTransaction().commit();
 
             printTowns(session);
+            session.getTransaction().commit();
+
         }
 
         /* You can get data by simple natural ID. Simple natural id (session.bySimpleNaturalId())  should be enough to determine a single row in database.
@@ -68,23 +69,55 @@ public class HibernateRunnerSingleTable {
                     .using("townName", "Chertanovo")
                     .getReference();
 
-            session.getTransaction().commit();
             System.out.println("Got Chertanovo by 2 naturals Ids");
             System.out.println(chertanovo2.toString());
 
             printTowns(session);
+            session.getTransaction().commit();
         }
+
 
         System.out.println();
         System.out.println("Now lets take chertanovo object, which was attached but now is detached from session, " +
-                "change it and attach it again to persistent state");
-        chertanovo.setDistance(666);
+                "change it and attach it again to persistent state. ");
+        /* There are actually multiple ways to do it. First let's take a look into saveOrUpdate method call.
+        It will either insert a new row into table or update existing.*/
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
+            chertanovo.setDistance(666);
             session.saveOrUpdate(chertanovo);
-            session.getTransaction().commit();
             printTowns(session);
+            session.getTransaction().commit();
         }
+
+        System.out.println();
+        System.out.println("Now let update chertanovo object, but first we will have to call lock(..) to attach object " +
+                " again");
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.buildLockRequest(LockOptions.UPGRADE).lock(chertanovo);
+            chertanovo.setDistance(500);
+            printTowns(session);
+            session.getTransaction().commit();
+        }
+
+
+        System.out.println();
+        System.out.println("Merging object is another way to update detached state");
+        /* Take note that merge is a mechanism which CAN ALLOW you to work around situations when the same object
+        * is loaded twice in session (or is stored in session cached). Also remember that session.merge(..) will
+        * ALWAYS return an instance and them copy data from object you provided by parameter. */
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            /* This will get Town object if it's cached in session or will take it from table.
+            * After that this object will be initialized with data taken from chertanovo (Including id), thus
+            * any updates which you perform after call to merge(..) should be performed on this object */
+            Town newInstance = (Town) session.merge(chertanovo);
+            newInstance.setDistance(450);
+            printTowns(session);
+            session.getTransaction().commit();
+        }
+
 
         /* Note that session object cache all object created until you commit them. Because of
         * that you have to:
@@ -99,6 +132,7 @@ public class HibernateRunnerSingleTable {
                 Town town = new Town(UUID.randomUUID().toString(), i, UUID.randomUUID().toString());
                 session.save(town);
                 if (i % 20 == 0) {
+                    /* Flush and clear and current persistent context */
                     session.flush();
                     session.clear();
                 }
@@ -122,6 +156,7 @@ public class HibernateRunnerSingleTable {
                 town.setDistance(i+ 10);
                 i++;
                 if (i % 20 == 0) {
+                    /* Flush and clear and current persistent context */
                     session.flush();
                     session.clear();
                 }
@@ -130,12 +165,10 @@ public class HibernateRunnerSingleTable {
             session.getTransaction().commit();
         }
 
+        System.out.println("You can check DB state for now. Press any key to finish example and clear DB");
+        System.in.read();
         HibernateUtil.getSessionFactory().close();
     }
-
-
-
-
 
     private static void printTowns(Session session) {
         System.out.println("Printing list of towns:");
