@@ -9,6 +9,8 @@ import learn_to_code.frameworks.hibernate.many_to_one.Item;
 import learn_to_code.frameworks.hibernate.many_to_one.Shipping;
 import learn_to_code.frameworks.hibernate.one_to_many.Production;
 import learn_to_code.frameworks.hibernate.one_to_many.Worker;
+import learn_to_code.frameworks.hibernate.one_to_one_relation.bidirectional.DogBidirectional;
+import learn_to_code.frameworks.hibernate.one_to_one_relation.bidirectional.OwnerBidirectional;
 import learn_to_code.frameworks.hibernate.one_to_one_relation.unidirectional.DogUni;
 import learn_to_code.frameworks.hibernate.one_to_one_relation.unidirectional.OwnerUni;
 import org.hibernate.SessionFactory;
@@ -38,6 +40,8 @@ public class HibernateUtil {
                     .addAnnotatedClass(Hero.class)
                     .addAnnotatedClass(DogUni.class)
                     .addAnnotatedClass(OwnerUni.class)
+                    .addAnnotatedClass(DogBidirectional.class)
+                    .addAnnotatedClass(OwnerBidirectional.class)
                     .configure()
                     .buildSessionFactory();
         } catch (Throwable ex) {
