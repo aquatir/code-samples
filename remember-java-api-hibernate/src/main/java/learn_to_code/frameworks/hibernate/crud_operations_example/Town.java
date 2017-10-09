@@ -43,10 +43,6 @@ public class Town {
         return Id;
     }
 
-    public void setId(int townId) {
-        this.Id = townId;
-    }
-
     public String getTownName() {
         return townName;
     }

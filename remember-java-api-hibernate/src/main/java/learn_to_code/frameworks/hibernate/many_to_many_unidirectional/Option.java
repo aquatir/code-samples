@@ -31,10 +31,6 @@ public class Option {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     @Override
     public String toString() {
         return String.format("%3d %20s", id, optionName);

@@ -1,5 +1,6 @@
 package learn_to_code.frameworks.hibernate.embedded_and_enum_and_super_class;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
@@ -10,6 +11,8 @@ public abstract class Character {
     @Id
     @GeneratedValue
     private int id;
+
+    @Column(nullable = false, updatable = false)
     private String name;
 
     public Character() {}
@@ -21,16 +24,8 @@ public abstract class Character {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     @Override

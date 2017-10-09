@@ -23,10 +23,6 @@ public class Item {
         return itemId;
     }
 
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
-    }
-
     public String getItemName() {
         return itemName;
     }

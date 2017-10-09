@@ -34,10 +34,6 @@ public class Shipping {
         return shippingId;
     }
 
-    public void setShippingId(int shippingId) {
-        this.shippingId = shippingId;
-    }
-
     public LocalDate getDate() {
         return date;
     }
