@@ -25,7 +25,7 @@ import java.lang.annotation.Target;
  * </p>
  * <p>
  *  Annotations can have field with name {@literal "value"}. This and only this field can be filled with annotations
- *  without specifying annotations filed's name. See {@link AnnotatedTestClass} for more info.
+ *  without specifying annotations field's name. See {@link AnnotatedTestClass} for more info.
  * </p>
  * <p>
  *  See {@link GettingRuntimeAnnotations} to get more info about using Runtime annotations
