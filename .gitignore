@@ -3,16 +3,16 @@
 # Compiled class file
 *.class
 
-# Log file
 *.log
 /src
 
-# BlueJ files
 *.ctxt
 
-# Mobile Tools for Java (J2ME)
+*.iml
+target
+.idea
+
 .mtj.tmp/
-# Package Files #
 *.jar
 *.war
 *.ear
