@@ -3,6 +3,8 @@ package learn_to_code.frameworks.hibernate;
 
 import learn_to_code.frameworks.hibernate.crud_operations_example.Town;
 import learn_to_code.frameworks.hibernate.embedded_and_enum_and_super_class.Hero;
+import learn_to_code.frameworks.hibernate.many_to_many.biridectional.Concert;
+import learn_to_code.frameworks.hibernate.many_to_many.biridectional.Visitor;
 import learn_to_code.frameworks.hibernate.many_to_many.unidirectional.Option;
 import learn_to_code.frameworks.hibernate.many_to_many.unidirectional.OurUser;
 import learn_to_code.frameworks.hibernate.many_to_one.Item;
@@ -42,6 +44,8 @@ public class HibernateUtil {
                     .addAnnotatedClass(OwnerUni.class)
                     .addAnnotatedClass(DogBidirectional.class)
                     .addAnnotatedClass(OwnerBidirectional.class)
+                    .addAnnotatedClass(Concert.class)
+                    .addAnnotatedClass(Visitor.class)
                     .configure()
                     .buildSessionFactory();
         } catch (Throwable ex) {
