@@ -9,6 +9,9 @@ import learn_to_code.frameworks.hibernate.many_to_many.unidirectional.Option;
 import learn_to_code.frameworks.hibernate.many_to_many.unidirectional.OurUser;
 import learn_to_code.frameworks.hibernate.many_to_one.Item;
 import learn_to_code.frameworks.hibernate.many_to_one.Shipping;
+import learn_to_code.frameworks.hibernate.many_to_one_to_many_with_map.Company;
+import learn_to_code.frameworks.hibernate.many_to_one_to_many_with_map.CompanyContract;
+import learn_to_code.frameworks.hibernate.many_to_one_to_many_with_map.CompanyWorker;
 import learn_to_code.frameworks.hibernate.one_to_many.Production;
 import learn_to_code.frameworks.hibernate.one_to_many.Worker;
 import learn_to_code.frameworks.hibernate.one_to_one_relation.bidirectional.DogBidirectional;
@@ -46,6 +49,9 @@ public class HibernateUtil {
                     .addAnnotatedClass(OwnerBidirectional.class)
                     .addAnnotatedClass(Concert.class)
                     .addAnnotatedClass(Visitor.class)
+                    .addAnnotatedClass(Company.class)
+                    .addAnnotatedClass(CompanyContract.class)
+                    .addAnnotatedClass(CompanyWorker.class)
                     .configure()
                     .buildSessionFactory();
         } catch (Throwable ex) {
