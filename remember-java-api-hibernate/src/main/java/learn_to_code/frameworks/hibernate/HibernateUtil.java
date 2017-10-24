@@ -2,6 +2,8 @@ package learn_to_code.frameworks.hibernate;
 
 
 import learn_to_code.frameworks.hibernate.crud_operations_example.Town;
+import learn_to_code.frameworks.hibernate.element_collection.Ingredient;
+import learn_to_code.frameworks.hibernate.element_collection.Pizza;
 import learn_to_code.frameworks.hibernate.embedded_and_enum_and_super_class.Hero;
 import learn_to_code.frameworks.hibernate.many_to_many.biridectional.Concert;
 import learn_to_code.frameworks.hibernate.many_to_many.biridectional.Visitor;
@@ -52,6 +54,8 @@ public class HibernateUtil {
                     .addAnnotatedClass(Company.class)
                     .addAnnotatedClass(CompanyContract.class)
                     .addAnnotatedClass(CompanyWorker.class)
+                    .addAnnotatedClass(Pizza.class)
+                    .addAnnotatedClass(Ingredient.class)
                     .configure()
                     .buildSessionFactory();
         } catch (Throwable ex) {
