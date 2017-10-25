@@ -11,7 +11,7 @@
         <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/localhost_db</property>
 
         <property name="connection_pool_size">1</property>
-        <property name="show_sql">false</property>
+        <property name="show_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">create-drop</property>
         <property name="hibernate.hbm2ddl.import_files">schema_creator.sql</property>
         <property name="hibernate.jdbc.batch_size">20</property>

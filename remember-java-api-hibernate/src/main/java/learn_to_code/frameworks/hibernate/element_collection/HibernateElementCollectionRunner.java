@@ -25,6 +25,13 @@ public class HibernateElementCollectionRunner {
             session.save(peperoniPizza);
             session.save(italianPizza);
 
+            System.out.println("Available pizza:");
+            session.createQuery("from Pizza").list().forEach(c -> System.out.println(c));
+
+            System.out.println("Deleting peperoni pizza");
+            session.delete(peperoniPizza);
+
+            System.out.println("Available pizza");
             session.createQuery("from Pizza").list().forEach(c -> System.out.println(c));
 
             session.getTransaction().commit();

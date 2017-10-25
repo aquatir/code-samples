@@ -10,6 +10,13 @@ import java.util.Set;
  * when dealing with collection you do not have to do it.
  * 2) ElementCollection is used only for data which has a dependant lifecycle (i.g. without pizza we don't need
  * ingredient from which this specific pizza was made from)
+ *
+ * Take note that we must implement hashCode/equals for for Ingredient and Pizza in order to allow hibernate
+ * to determine what exactly ingredients should be deleted. Otherwise when deleting pizza, Hibernate will delete this pizza,
+ * ALL ingredient and then insert all those ingredient which should not have been deleted.
+ *
+ * Also note that hashCode/equals is required in Set and Map mappings. If you use List with indexColumn, Hibernate
+ * will be using indexes to determine entries which should be deleted
  */
 @Table
 @Entity
@@ -58,4 +65,25 @@ public class Pizza {
         return name + " ingredients: " + ingredientsString;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Pizza)) return false;
+
+        Pizza pizza = (Pizza) o;
+
+        if (id != pizza.id) return false;
+        if (ingredients != null ? !ingredients.equals(pizza.ingredients) : pizza.ingredients != null) return false;
+        if (name != null ? !name.equals(pizza.name) : pizza.name != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (ingredients != null ? ingredients.hashCode() : 0);
+        return result;
+    }
 }
