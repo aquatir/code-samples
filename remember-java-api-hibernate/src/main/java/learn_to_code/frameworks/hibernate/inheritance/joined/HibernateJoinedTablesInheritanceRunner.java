@@ -5,17 +5,16 @@ import org.hibernate.Session;
 
 import java.io.IOException;
 
-
 public class HibernateJoinedTablesInheritanceRunner {
     public static void main(String[] args) throws IOException {
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
 
-            JoinedWorm ivanWorm = new JoinedGrassWorm("GrassIvan", "Green grass");
-            JoinedWorm marinaWorm = new JoinedGrassWorm("GrassMarina", "Red grass");
-            JoinedWorm katyaWorm = new JoinedBookWorm("Katya", "Hygge");
-            JoinedWorm joraWorm = new JoinedBookWorm("Jora", "War and Peace");
+            JoinedGrassWorm ivanWorm = new JoinedGrassWorm("GrassIvan", "Green grass");
+            JoinedGrassWorm marinaWorm = new JoinedGrassWorm("GrassMarina", "Red grass");
+            JoinedBookWorm katyaWorm = new JoinedBookWorm("Katya", "Hygge");
+            JoinedBookWorm joraWorm = new JoinedBookWorm("Jora", "War and Peace");
 
             session.save(ivanWorm);
             session.save(marinaWorm);
