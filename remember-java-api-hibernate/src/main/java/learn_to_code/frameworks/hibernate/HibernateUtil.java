@@ -8,6 +8,9 @@ import learn_to_code.frameworks.hibernate.embedded_and_enum_and_super_class.Hero
 import learn_to_code.frameworks.hibernate.inheritance.joined.JoinedBookWorm;
 import learn_to_code.frameworks.hibernate.inheritance.joined.JoinedGrassWorm;
 import learn_to_code.frameworks.hibernate.inheritance.joined.JoinedWorm;
+import learn_to_code.frameworks.hibernate.inheritance.single_table.SingleTableBookWorm;
+import learn_to_code.frameworks.hibernate.inheritance.single_table.SingleTableGrassWorm;
+import learn_to_code.frameworks.hibernate.inheritance.single_table.SingleTableWorm;
 import learn_to_code.frameworks.hibernate.many_to_many.biridectional.Concert;
 import learn_to_code.frameworks.hibernate.many_to_many.biridectional.Visitor;
 import learn_to_code.frameworks.hibernate.many_to_many.unidirectional.Option;
@@ -59,9 +62,13 @@ public class HibernateUtil {
                     .addAnnotatedClass(CompanyWorker.class)
                     .addAnnotatedClass(Pizza.class)
                     .addAnnotatedClass(Ingredient.class)
+
                     .addAnnotatedClass(JoinedWorm.class)
                     .addAnnotatedClass(JoinedBookWorm.class)
                     .addAnnotatedClass(JoinedGrassWorm.class)
+                    .addAnnotatedClass(SingleTableWorm.class)
+                    .addAnnotatedClass(SingleTableBookWorm.class)
+                    .addAnnotatedClass(SingleTableGrassWorm.class)
                     .configure()
                     .buildSessionFactory();
         } catch (Throwable ex) {
