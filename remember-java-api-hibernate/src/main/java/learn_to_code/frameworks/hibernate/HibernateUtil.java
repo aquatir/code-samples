@@ -5,6 +5,9 @@ import learn_to_code.frameworks.hibernate.crud_operations_example.Town;
 import learn_to_code.frameworks.hibernate.element_collection.Ingredient;
 import learn_to_code.frameworks.hibernate.element_collection.Pizza;
 import learn_to_code.frameworks.hibernate.embedded_and_enum_and_super_class.Hero;
+import learn_to_code.frameworks.hibernate.inheritance.joined.JoinedBookWorm;
+import learn_to_code.frameworks.hibernate.inheritance.joined.JoinedGrassWorm;
+import learn_to_code.frameworks.hibernate.inheritance.joined.JoinedWorm;
 import learn_to_code.frameworks.hibernate.many_to_many.biridectional.Concert;
 import learn_to_code.frameworks.hibernate.many_to_many.biridectional.Visitor;
 import learn_to_code.frameworks.hibernate.many_to_many.unidirectional.Option;
@@ -56,6 +59,9 @@ public class HibernateUtil {
                     .addAnnotatedClass(CompanyWorker.class)
                     .addAnnotatedClass(Pizza.class)
                     .addAnnotatedClass(Ingredient.class)
+                    .addAnnotatedClass(JoinedWorm.class)
+                    .addAnnotatedClass(JoinedBookWorm.class)
+                    .addAnnotatedClass(JoinedGrassWorm.class)
                     .configure()
                     .buildSessionFactory();
         } catch (Throwable ex) {
