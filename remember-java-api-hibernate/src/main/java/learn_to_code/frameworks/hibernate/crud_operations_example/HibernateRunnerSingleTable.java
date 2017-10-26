@@ -10,14 +10,14 @@ import java.util.UUID;
  * Example of populating a table with data.
  * In this example we will use different hibernate techniques to store and query data
  * We will use a single table defined in {@link Town} class
- *
+ * <p/>
  * Note that session object implements auto-closable, so using try-with-resources is encouraged.
  */
 public class HibernateRunnerSingleTable {
     public static void main(String[] args) throws IOException {
 
         Town chertanovo = new Town("Chertanovo", 50, "Big awesome river");
-        Town moscow = new Town ("Moscow", 5, "River of love");
+        Town moscow = new Town("Moscow", 5, "River of love");
         Town voronej = new Town("Voronej", 100, "Nil");
 
         System.out.println("Save 3 cities");
@@ -91,7 +91,7 @@ public class HibernateRunnerSingleTable {
         }
 
         System.out.println();
-        System.out.println("Now let update chertanovo object, but first we will have to call lock(..) to attach object " +
+        System.out.println("Now lets update chertanovo object, but first we will have to call lock(..) to attach object " +
                 " again");
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
@@ -153,7 +153,7 @@ public class HibernateRunnerSingleTable {
             int i = 0;
             while (towns.next()) {
                 Town town = (Town) towns.get(0);
-                town.setDistance(i+ 10);
+                town.setDistance(i + 10);
                 i++;
                 if (i % 20 == 0) {
                     /* Flush and clear and current persistent context */

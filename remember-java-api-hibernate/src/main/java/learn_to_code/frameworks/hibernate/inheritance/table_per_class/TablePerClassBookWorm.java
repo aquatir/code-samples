@@ -9,7 +9,9 @@ public class TablePerClassBookWorm extends TablePerClassWorm {
 
     private String favouriteGrass;
 
-    public TablePerClassBookWorm() {}
+    public TablePerClassBookWorm() {
+    }
+
     public TablePerClassBookWorm(String name, String favouriteGrass) {
         super(name);
         this.favouriteGrass = favouriteGrass;

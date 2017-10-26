@@ -9,7 +9,9 @@ public class JoinedBookWorm extends JoinedWorm {
 
     private String favouriteGrass;
 
-    public JoinedBookWorm() {}
+    public JoinedBookWorm() {
+    }
+
     public JoinedBookWorm(String name, String favouriteGrass) {
         super(name);
         this.favouriteGrass = favouriteGrass;
