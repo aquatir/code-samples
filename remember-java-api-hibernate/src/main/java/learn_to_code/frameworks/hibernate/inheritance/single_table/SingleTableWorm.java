@@ -9,7 +9,7 @@ import javax.persistence.*;
  *
  * Pros/cons:
  * + Select, update, delete, insert statements use a single query.
- * All queries (apart from insert) will be specified by a single 'with' clause and discriminatorColumn value
+ * All queries (apart from insert) will be specified by a single 'where' clause and discriminatorColumn value
  * - In order to place multiple different subclasses into a single table, most fields (apart from those defined in superclass)
  * have to be nullable.
  */

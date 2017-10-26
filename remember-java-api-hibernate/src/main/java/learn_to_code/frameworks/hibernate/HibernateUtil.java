@@ -14,6 +14,9 @@ import learn_to_code.frameworks.hibernate.inheritance.mapped_super_class.MappedS
 import learn_to_code.frameworks.hibernate.inheritance.single_table.SingleTableBookWorm;
 import learn_to_code.frameworks.hibernate.inheritance.single_table.SingleTableGrassWorm;
 import learn_to_code.frameworks.hibernate.inheritance.single_table.SingleTableWorm;
+import learn_to_code.frameworks.hibernate.inheritance.table_per_class.TablePerClassBookWorm;
+import learn_to_code.frameworks.hibernate.inheritance.table_per_class.TablePerClassGrassWorm;
+import learn_to_code.frameworks.hibernate.inheritance.table_per_class.TablePerClassWorm;
 import learn_to_code.frameworks.hibernate.many_to_many.biridectional.Concert;
 import learn_to_code.frameworks.hibernate.many_to_many.biridectional.Visitor;
 import learn_to_code.frameworks.hibernate.many_to_many.unidirectional.Option;
@@ -35,7 +38,8 @@ import org.hibernate.cfg.Configuration;
 /**
  * It is recommended to create hibernate SessionFactory once for each of your databases so we use a singleton here.
  *
- * You can also replace call to {@link HibernateUtil#getSessionFactory()} with something line getSession().
+ * You can also replace call to {@link HibernateUtil#getSessionFactory()} with something like getSession().
+ * But then you would need to create and extra method for getStatelessSession() if needed.
  */
 public class HibernateUtil {
 
@@ -75,6 +79,9 @@ public class HibernateUtil {
                     .addAnnotatedClass(MappedSuperWorm.class)
                     .addAnnotatedClass(MappedSuperBookWorm.class)
                     .addAnnotatedClass(MappedSuperGrassWorm.class)
+                    .addAnnotatedClass(TablePerClassWorm.class)
+                    .addAnnotatedClass(TablePerClassBookWorm.class)
+                    .addAnnotatedClass(TablePerClassGrassWorm.class)
 
                     .configure()
                     .buildSessionFactory();
