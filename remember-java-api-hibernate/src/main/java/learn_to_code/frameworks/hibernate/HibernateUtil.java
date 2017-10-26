@@ -8,6 +8,9 @@ import learn_to_code.frameworks.hibernate.embedded_and_enum_and_super_class.Hero
 import learn_to_code.frameworks.hibernate.inheritance.joined.JoinedBookWorm;
 import learn_to_code.frameworks.hibernate.inheritance.joined.JoinedGrassWorm;
 import learn_to_code.frameworks.hibernate.inheritance.joined.JoinedWorm;
+import learn_to_code.frameworks.hibernate.inheritance.mapped_super_class.MappedSuperBookWorm;
+import learn_to_code.frameworks.hibernate.inheritance.mapped_super_class.MappedSuperGrassWorm;
+import learn_to_code.frameworks.hibernate.inheritance.mapped_super_class.MappedSuperWorm;
 import learn_to_code.frameworks.hibernate.inheritance.single_table.SingleTableBookWorm;
 import learn_to_code.frameworks.hibernate.inheritance.single_table.SingleTableGrassWorm;
 import learn_to_code.frameworks.hibernate.inheritance.single_table.SingleTableWorm;
@@ -69,6 +72,10 @@ public class HibernateUtil {
                     .addAnnotatedClass(SingleTableWorm.class)
                     .addAnnotatedClass(SingleTableBookWorm.class)
                     .addAnnotatedClass(SingleTableGrassWorm.class)
+                    .addAnnotatedClass(MappedSuperWorm.class)
+                    .addAnnotatedClass(MappedSuperBookWorm.class)
+                    .addAnnotatedClass(MappedSuperGrassWorm.class)
+
                     .configure()
                     .buildSessionFactory();
         } catch (Throwable ex) {
