@@ -2,11 +2,7 @@ package learn_to_code.frameworks.hibernate.crud_operations_example;
 
 import org.hibernate.annotations.NaturalId;
 
-import javax.persistence.Id;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(schema = "table_per_example")

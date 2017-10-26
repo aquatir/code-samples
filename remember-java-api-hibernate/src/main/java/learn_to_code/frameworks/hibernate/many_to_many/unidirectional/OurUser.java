@@ -1,4 +1,4 @@
-package learn_to_code.frameworks.hibernate.many_to_many_unidirectional;
+package learn_to_code.frameworks.hibernate.many_to_many.unidirectional;
 
 import javax.persistence.*;
 import java.util.HashSet;
