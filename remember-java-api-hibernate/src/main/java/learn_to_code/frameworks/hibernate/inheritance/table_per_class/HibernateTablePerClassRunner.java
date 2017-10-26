@@ -1,4 +1,4 @@
-package learn_to_code.frameworks.hibernate.inheritance.TablePerClass;
+package learn_to_code.frameworks.hibernate.inheritance.table_per_class;
 
 public class HibernateTablePerClassRunner {
     public static void main(String[] args) {
