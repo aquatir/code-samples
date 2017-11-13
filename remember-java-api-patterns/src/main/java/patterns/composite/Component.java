@@ -4,8 +4,8 @@ import java.util.List;
 
 /**
  * Abstract class representing both leafs and composites.
- * {@link learn_to_code.patterns.composite.Composite} should implement every method on Component
- * {@link learn_to_code.patterns.composite.Leaf} should implement some methods as you see adequate. For example,
+ * {@link patterns.composite.Composite} should implement every method on Component
+ * {@link .patterns.composite.Leaf} should implement some methods as you see adequate. For example,
  * leaf can not has children, so a call to removeAllChildren() might throw an exception or simply do nothing.
  * The same goes for hasChildren as leafs can never have children leafs.
  *<br><br>
