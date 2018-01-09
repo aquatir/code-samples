@@ -12,6 +12,7 @@
         <module>remember-java-api-patterns</module>
         <module>remember-java-api-java-ee</module>
         <module>remember-java-api-aspectj</module>
+        <module>remember-java-api-springboot</module>
     </modules>
     <packaging>pom</packaging>
 
