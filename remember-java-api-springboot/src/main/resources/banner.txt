@@ -9,3 +9,6 @@ Spring boot application ${application.title} ${application.version} powered by s
 ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄▄█░▒▒▒▓▒▒▒▒▒▒▒█░░█▄▄█▄▄█░░█
 ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█░░░█▄▄▄▄▄▄▄▄▄▄█░█▄▄▄▄▄▄▄▄▄█
 ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▄▄█░░█▄▄█░░░░░░█▄▄█░░█▄▄█
+Spring-boot banner is overridden automatically if banner.txt file is located on classpath.
+You can also specify banner location and encoding explicitly with banner.location and banner.charset properties.
+Banner can also be .gif / .jpg / .png file. You can set property banner.image.location for those banner types
