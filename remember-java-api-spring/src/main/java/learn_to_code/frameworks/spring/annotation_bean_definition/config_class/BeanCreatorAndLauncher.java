@@ -1,5 +1,6 @@
 package learn_to_code.frameworks.spring.annotation_bean_definition;
 
+import learn_to_code.frameworks.spring.annotation_bean_definition.beans.BeanConfiguration;
 import learn_to_code.frameworks.spring.annotation_bean_definition.beans.HelloDependency;
 import learn_to_code.frameworks.spring.annotation_bean_definition.beans.HelloWorldDependency;
 import learn_to_code.frameworks.spring.annotation_bean_definition.beans.WorldDependency;
@@ -13,7 +14,7 @@ public class BeanCreatorAndLauncher {
     private static final Logger log = LogManager.getLogger(BeanCreatorAndLauncher.class);
 
     public static void main(String[] args) {
-        ApplicationContext context = new AnnotationConfigApplicationContext(DependenciesHolder.class);
+        ApplicationContext context = new AnnotationConfigApplicationContext(BeanConfiguration.class);
         HelloDependency dependencyHello = context.getBean(HelloDependency.class);
         WorldDependency dependencyWorld = context.getBean(WorldDependency.class);
         HelloWorldDependency dependencyHelloGreatWorld = context.getBean(HelloWorldDependency.class);
