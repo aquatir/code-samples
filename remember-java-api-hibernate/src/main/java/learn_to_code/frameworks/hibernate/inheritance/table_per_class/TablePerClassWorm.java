@@ -7,7 +7,7 @@ import javax.persistence.*;
  * superclass. Entities keep their notion of inheritance thus query to super class WILL have an effect on all subclasses
  * (be it select or delete), BUT this will only work if super class and sub classes DO NOT HAVE repeating primary keys.
  * Use shared primary key generator if supported by DB when dealing with this relation
- *
+ * <p/>
  * Pros/cons:
  * + Select, update, delete, insert statements can use a single table if asking for sub classes
  * + Select, update, delete, insert statements can will join tables if asking for super class
@@ -22,7 +22,9 @@ public class TablePerClassWorm {
     private int id;
     private String name;
 
-    public TablePerClassWorm() {}
+    public TablePerClassWorm() {
+    }
+
     public TablePerClassWorm(String name) {
         this.name = name;
     }

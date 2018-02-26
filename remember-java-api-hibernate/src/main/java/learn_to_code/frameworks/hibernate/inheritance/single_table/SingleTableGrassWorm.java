@@ -11,7 +11,9 @@ public class SingleTableGrassWorm extends SingleTableWorm {
 
     private String favouriteBook;
 
-    public SingleTableGrassWorm(){}
+    public SingleTableGrassWorm() {
+    }
+
     public SingleTableGrassWorm(String name, String favouriteBook) {
         super(name);
         this.favouriteBook = favouriteBook;

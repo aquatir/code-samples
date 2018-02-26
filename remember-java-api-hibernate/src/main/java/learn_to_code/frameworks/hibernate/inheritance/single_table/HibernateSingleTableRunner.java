@@ -2,6 +2,7 @@ package learn_to_code.frameworks.hibernate.inheritance.single_table;
 
 import learn_to_code.frameworks.hibernate.HibernateUtil;
 import org.hibernate.Session;
+
 import java.io.IOException;
 
 public class HibernateSingleTableRunner {

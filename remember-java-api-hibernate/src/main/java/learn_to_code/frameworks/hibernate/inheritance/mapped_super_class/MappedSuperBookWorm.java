@@ -9,7 +9,9 @@ public class MappedSuperBookWorm extends MappedSuperWorm {
 
     private String favouriteGrass;
 
-    public MappedSuperBookWorm() {}
+    public MappedSuperBookWorm() {
+    }
+
     public MappedSuperBookWorm(String name, String favouriteGrass) {
         super(name);
         this.favouriteGrass = favouriteGrass;

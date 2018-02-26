@@ -10,7 +10,9 @@ import javax.persistence.Table;
 public class SingleTableBookWorm extends SingleTableWorm {
     private String favouriteGrass;
 
-    public SingleTableBookWorm() {}
+    public SingleTableBookWorm() {
+    }
+
     public SingleTableBookWorm(String name, String favouriteGrass) {
         super(name);
         this.favouriteGrass = favouriteGrass;

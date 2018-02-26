@@ -5,7 +5,7 @@ import javax.persistence.*;
 /**
  * Strategy InheritanceType.JOINED creates one SuperClass entity and a table for each SubClass.
  * SuperClass entity stores data superclass data and subclasses entities store data specific for this superclass.
- *
+ * <p/>
  * Pros/cons:
  * + no extra data is stored anywhere. The only extra field apart from classes data is foreign key reference in subclass
  * entity to primary key in superclass entity.
@@ -25,7 +25,9 @@ public abstract class JoinedWorm {
     private int id;
     private String name;
 
-    public JoinedWorm() {}
+    public JoinedWorm() {
+    }
+
     public JoinedWorm(String name) {
         this.name = name;
     }

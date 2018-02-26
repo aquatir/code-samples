@@ -6,7 +6,7 @@ import javax.persistence.*;
 /**
  * Strategy InheritanceType.SINGLE_TABLE create a single table which stores data from all subclasses. Each subclass
  * entry in determined by different value in @DiscriminatorColumn column
- *
+ * <p/>
  * Pros/cons:
  * + Select, update, delete, insert statements use a single query.
  * All queries (apart from insert) will be specified by a single 'where' clause and discriminatorColumn value
@@ -24,7 +24,9 @@ public abstract class SingleTableWorm {
     private int id;
     private String name;
 
-    public SingleTableWorm() {}
+    public SingleTableWorm() {
+    }
+
     public SingleTableWorm(String name) {
         this.name = name;
     }
