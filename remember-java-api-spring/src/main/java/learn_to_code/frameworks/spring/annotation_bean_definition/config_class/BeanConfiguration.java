@@ -1,6 +1,8 @@
-package learn_to_code.frameworks.spring.annotation_bean_definition.config_class.beans;
+package learn_to_code.frameworks.spring.annotation_bean_definition.config_class;
 
-import learn_to_code.frameworks.spring.annotation_bean_definition.config_class.BeanCreatorAndLauncher;
+import learn_to_code.frameworks.spring.annotation_bean_definition.config_class.beans.HelloDependency;
+import learn_to_code.frameworks.spring.annotation_bean_definition.config_class.beans.HelloWorldDependency;
+import learn_to_code.frameworks.spring.annotation_bean_definition.config_class.beans.WorldDependency;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

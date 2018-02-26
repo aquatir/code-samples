@@ -1,4 +1,4 @@
-package learn_to_code.frameworks.spring.annotation_bean_definition.beans;
+package learn_to_code.frameworks.spring.annotation_bean_definition.config_class.beans;
 
 public class HelloWorldDependency {
     private final HelloDependency helloDependency;
