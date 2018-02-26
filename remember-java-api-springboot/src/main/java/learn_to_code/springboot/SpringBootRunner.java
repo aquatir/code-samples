@@ -34,6 +34,9 @@ public class SpringBootRunner {
         SpringApplication.run(SpringBootRunner.class, args);
     }
 
+    /**
+     * This is one of the two beans you can override
+     */
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
