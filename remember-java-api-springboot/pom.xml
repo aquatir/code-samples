@@ -23,6 +23,12 @@
             <artifactId>spring-boot-starter-web</artifactId>
             <version>1.5.6.RELEASE</version>
         </dependency>
+        <!-- spring-boot-devtools is a powerful development tool which allow you to spend less time launching your application and more time coding.
+
+        it provides various ways to restart your spring-boot application. Restarting is generally faster then shutting down and booting your app again
+        so you probably should stick to it. Another note: devtools is not included if you launch your app with java -jar or with
+        special classloaders (Read spring-boot docs for more info).
+        -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
