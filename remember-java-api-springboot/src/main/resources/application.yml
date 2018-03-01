@@ -8,5 +8,11 @@ foo:
   roles:
     - USER
     - ADMIN
+spring:
+  devtools:
+    restart:
+      trigger-file: HelloWorldController.java
+      additional-paths: .
+
 
 
