@@ -24,4 +24,4 @@ target
 hs_err_pid*
 
 # python
-/__pycache__/
+__pycache__/
