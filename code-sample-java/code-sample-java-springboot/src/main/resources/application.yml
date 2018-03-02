@@ -9,6 +9,11 @@ foo:
     - USER
     - ADMIN
 
+logging:
+  level:
+    learn_to_code.springboot: DEBUG
+
+
 # You can use trigger file in order to reload app only when changes to this file occur. Note: You can even specify something like
 # HelloWorldController.java as a reload file.
 # See pom.xml comment for more info about reload
