@@ -5,6 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
@@ -38,6 +39,7 @@ import java.util.Arrays;
 
 /* this is used to enable properties mappers (those allow you to map your properties to classes type-safely */
 @EnableConfigurationProperties(FooProperties.class)
+@EnableCaching
 public class SpringBootRunner {
 
     public static void main(String[] args) {

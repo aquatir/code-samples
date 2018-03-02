@@ -1,13 +1,15 @@
-package learn_to_code.springboot.controllers;
+package learn_to_code.springboot.controller;
 
 import learn_to_code.springboot.props.FooProperties;
-import lombok.extern.jbosslog.JBossLog;
-import lombok.extern.log4j.Log4j;
+import learn_to_code.springboot.service.LongCalculationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.time.Instant;
 
 /*
  * Spring does not care if your {@code @Controller} is defined as controller or {@code RestController}. This annotation
@@ -24,6 +26,9 @@ public class HelloWorldController {
     @Autowired
     private FooProperties props;
 
+    @Autowired
+    private LongCalculationService longCalculationService;
+
     @GetMapping("/")
     @ResponseBody
     public String index() {
@@ -35,5 +40,20 @@ public class HelloWorldController {
     @ResponseBody
     public String getProps() {
         return "ip: " + props.getIp().toString() + " enabled: " + props.isEnabled() + " roles: " + props.getRoles();
+    }
+
+    /**
+     * See {@link LongCalculationService} comment to info about caching. You can try calling this service with big numbers
+     * 2 time in a row (e.g /math/100000000) to see that cache actually works
+     */
+    @GetMapping("/math/{numberOfRetries}")
+    @ResponseBody
+    public double calculate(@PathVariable int numberOfRetries) {
+        log.info("Math started: ");
+        log.info(" from: " + Instant.now());
+        double result = longCalculationService.compute(numberOfRetries);
+        log.info("   to: " + Instant.now());
+
+        return result;
     }
 }
