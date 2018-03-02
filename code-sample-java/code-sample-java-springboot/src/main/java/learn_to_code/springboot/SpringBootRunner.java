@@ -3,13 +3,11 @@ package learn_to_code.springboot;
 import learn_to_code.springboot.props.FooProperties;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 
 import java.util.Arrays;
 
@@ -19,11 +17,19 @@ import java.util.Arrays;
  * available on classpath and lauch an app using some servlet container.
  *
  * Spring boot excessively uses sensible default configurations for everything. For example default servlet container
- * choosen is embedded jetty. Default port is 8080. Here we override this in resources/application.yml file
+ * choosen is embedded jetty. Default port is 8080. We can use property files and/or configuration beans to override
+ * default behavior.
  *
- * Bean definitions scan is also automatically configured. Usually you would use 3 annotations
- * {@code @Configuration, @EnableAutoConfiguration, @ComponentScan} to start spring boot app. Because those 3 annotations
- * are so often to use together, you can simply use {@code @SpringBootApplication}  annotations to wire up all 3 with a single
+ * For example, here we override this in property file resources/application.yml file (application.properties are also supported)
+ *
+ * For better understanding and detailed spring boot information, please read official documentation at
+ *  https://docs.spring.io/spring-boot/docs/current/reference/ (pick format which you like best)
+ */
+
+
+/*
+ * Usually you would use 3 annotations {@code @Configuration, @EnableAutoConfiguration, @ComponentScan} to start spring boot app.
+ * Because those 3 annotations are so often to use together, you can simply use {@code @SpringBootApplication}  annotations to wire up all 3 with a single
  * annotations
  */
 @SpringBootApplication // this annotation define 3 annotations below
@@ -32,7 +38,8 @@ import java.util.Arrays;
 //@ComponentScan
 
 /* this is used to enable properties mappers (those allow you to map your properties to classes type-safely */
-@EnableConfigurationProperties(FooProperties.class)
+@EnableConfigurationProperties(FooProperties.class) /** See {@link FooProperties} for more info*/
+@EnableCaching /** See {@link learn_to_code.springboot.controller.HelloWorldController#calculate(int)} for more info */
 public class SpringBootRunner {
 
     public static void main(String[] args) {

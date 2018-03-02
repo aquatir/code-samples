@@ -1,6 +1,6 @@
 package learn_to_code.springboot.props;
 
-import learn_to_code.springboot.controllers.HelloWorldController;
+import learn_to_code.springboot.controller.HelloWorldController;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
