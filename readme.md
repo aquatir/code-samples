@@ -13,10 +13,10 @@
             <li> <b> code-sample-java-aspectj</b>. Tiny aspectJ example</li>
             <li> <b> code-sample-java-ee</b>. Tiny jmx example </li>
             <li> <b> code-sample-java-hibernate</b>. Examples for most common hibernate features</li>
-            <li> <b> code-sample-java-patterns</b>. Basic java implementation for most classical design patterns</li>
-            <li> <b> code-sample-java-se</b>. Examples of most (?) javaEE APIs </li>
+            <li> <b> code-sample-java-patterns</b>. Basic java implementation for most (all?) classical design patterns</li>
+            <li> <b> code-sample-java-se</b>. Examples of most (or should I say some?) javaEE APIs </li>
             <li> <b> code-sample-java-spring</b>. Tiny spring example. Uses only bean definition</li>
-            <li> <b> code-sample-java-springboot</b>. Consist of some (but not all) spring-boot features (including starters)</li>
+            <li> <b> code-sample-java-springboot</b>. Consist of some (but not all) spring-boot features (including starters).</li>
          </ul>
     </li>
     <li><b>code-sample-python</b>. Python code examples. Currently consist of a single Flask example </li>

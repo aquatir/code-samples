@@ -10,3 +10,12 @@ stuff. Configuration guide is not ready yet, but I'll do it anytime soon! </p>
 <p> NOTE: DO NOT TRY TO BUILD JAVADOC from this project. It will not work due to some dangling 
 javadoc comments. Those javadoc-style comments are here to allow you navigating between classes easily using IDE. 
 This is not a bug, but a feature :) Use code + comments as documentation </p>
+
+<p> Currenly have examples for: </p>
+
+<ul>
+    <li><b>Basic spring-boot</b>. Initialization with annotations, .yml config file, 
+        @EnableConfigurationProperties annotations usage, @EnableCaching example </li>
+    <li> <b>spring-boot-devtools</b>. Application autorestart features + how to do it in IDEA ide</li>
+    <li> <b>spring-boot-starter-amqp</b>. Simple RabbitMQ example </li>
+</ul>
