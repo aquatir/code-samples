@@ -1,6 +1,7 @@
 package learn_to_code.springboot.controller;
 
 import learn_to_code.springboot.props.FooProperties;
+import learn_to_code.springboot.rabbit.Sender;
 import learn_to_code.springboot.service.LongCalculationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class HelloWorldController {
 
     @Autowired
     private LongCalculationService longCalculationService;
+    @Autowired
+    private Sender rabbitSender;
 
     @GetMapping("/")
     @ResponseBody
@@ -55,5 +58,12 @@ public class HelloWorldController {
         log.info("   to: " + Instant.now());
 
         return result;
+    }
+
+    @GetMapping("/message/{content}")
+    @ResponseBody
+    public String sendMessage(@PathVariable String content) {
+        rabbitSender.sendMessage(content);
+        return "OK";
     }
 }
