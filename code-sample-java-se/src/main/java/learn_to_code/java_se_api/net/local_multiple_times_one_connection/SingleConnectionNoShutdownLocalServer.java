@@ -16,7 +16,7 @@ import java.net.Socket;
  * because a client connection cannot proceed unless the server makes a call to accept() method
  * <br>
  * The communication is defined by {@link SimpleNetworkProtocol} class
- * Client can be {@link learn_to_code.javaSE_api.net.local_one_time_one_connection.SingleConnectionLocalClient}
+ * Client can be {@link learn_to_code.java_se_api.net.local_one_time_one_connection.SingleConnectionLocalClient}
  */
 public class SingleConnectionNoShutdownLocalServer {
     public static void main(String[] args) throws IOException {

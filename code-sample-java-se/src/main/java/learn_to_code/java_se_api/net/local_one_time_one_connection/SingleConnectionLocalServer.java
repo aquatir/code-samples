@@ -11,7 +11,7 @@ import java.net.Socket;
  * This server will open port 10000 on your machine (Can be changed obviously), accept a SINGLE connection and then shutdown, when this
  * connection ends.
  * <br>
- * The communication is defined by {@link learn_to_code.javaSE_api.net.local_one_time_one_connection.SimpleNetworkProtocol} class
+ * The communication is defined by {@link learn_to_code.java_se_api.net.local_one_time_one_connection.SimpleNetworkProtocol} class
  */
 public class SingleConnectionLocalServer {
     public static void main(String[] args) throws IOException {
