@@ -17,8 +17,8 @@ import java.util.concurrent.Executors;
  * at once. When a new connection is established (When call to serverSocket.accept() returns), a thread is started
  * to work with this connection and then the server start listening to the port again.
  * <br>
- * The communication is defined by {@link learn_to_code.javaSE_api.net.local_one_time_one_connection.SimpleNetworkProtocol} class
- * Client can be {@link learn_to_code.javaSE_api.net.local_one_time_one_connection.SingleConnectionLocalClient}
+ * The communication is defined by {@link learn_to_code.java_se_api.net.local_one_time_one_connection.SimpleNetworkProtocol} class
+ * Client can be {@link learn_to_code.java_se_api.net.local_one_time_one_connection.SingleConnectionLocalClient}
  */
 public class MultipleConnectionsNoShutdownLocalServer {
 

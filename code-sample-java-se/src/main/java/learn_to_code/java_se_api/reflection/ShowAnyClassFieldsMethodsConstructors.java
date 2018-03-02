@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 
 /**
- * Simple example of what you can do with exception. You should also checkout {@link learn_to_code.javaSE_api.annotations.GettingRuntimeAnnotations}
+ * Simple example of what you can do with exception. You should also checkout {@link learn_to_code.java_se_api.annotations.GettingRuntimeAnnotations}
  * class for examples with reflection and annotations
  */
 public class ShowAnyClassFieldsMethodsConstructors {
