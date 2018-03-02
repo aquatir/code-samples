@@ -6,13 +6,13 @@
     <artifactId>learntocode</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>remember-java-api-hibernate</module>
-        <module>remember-java-api-java-se</module>
-        <module>remember-java-api-algorithms-and-data-structures</module>
-        <module>remember-java-api-patterns</module>
-        <module>remember-java-api-java-ee</module>
-        <module>remember-java-api-aspectj</module>
-        <module>remember-java-api-springboot</module>
+        <module>code-sample-java-hibernate</module>
+        <module>code-sample-java-se</module>
+        <module>code-sample-java-algorithms-and-data-structures</module>
+        <module>code-sample-java-patterns</module>
+        <module>code-sample-java-ee</module>
+        <module>code-sample-java-aspectj</module>
+        <module>code-sample-java-springboot</module>
     </modules>
     <packaging>pom</packaging>
 
