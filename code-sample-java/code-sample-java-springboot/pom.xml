@@ -76,7 +76,8 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- We use RabbitMQ here as rabbitMQ here. The simple "Hello world" example is provided here.
+        <!-- We use RabbitMQ here as AMQP implementation to implement simple "Hello world" example with messages
+        getting sent to a single queue.
         You'll need to configure rabbit in order for it to work. Please see rabbit docs to see how to do it:
             https://www.rabbitmq.com/download.html
 
