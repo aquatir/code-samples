@@ -35,6 +35,11 @@
             -> type in registry -> find and allow 'compiler.automake.allow.when.app.running'
         3. Note: Reload only happens when files on classpath change. For example me changing this pom does not trigger autoreload,
         however changes to classes (e.g. HelloWorldController) or app properties (application.yml) DO trigger reload
+
+        Also note: reloading is not the only option that is provided by spring-boot-devtools. As always read full doc at
+        https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html to see more
+        (For some reason you meet devtools reference here and there in original doc even in other chapters, so you should
+        probably simply read the whole documentation to get the idea)
         -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
