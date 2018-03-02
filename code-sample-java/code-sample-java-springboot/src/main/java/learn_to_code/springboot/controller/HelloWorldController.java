@@ -60,6 +60,10 @@ public class HelloWorldController {
         return result;
     }
 
+    /**
+     * See {@link learn_to_code.springboot.rabbit} package-info for more info about rabbit
+     * Note: you should configure rabbitMQ on your machine in order for it to work properly
+     */
     @GetMapping("/message/{content}")
     @ResponseBody
     public String sendMessage(@PathVariable String content) {

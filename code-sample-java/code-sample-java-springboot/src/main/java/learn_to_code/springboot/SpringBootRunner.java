@@ -38,8 +38,8 @@ import java.util.Arrays;
 //@ComponentScan
 
 /* this is used to enable properties mappers (those allow you to map your properties to classes type-safely */
-@EnableConfigurationProperties(FooProperties.class)
-@EnableCaching
+@EnableConfigurationProperties(FooProperties.class) /** See {@link FooProperties} for more info*/
+@EnableCaching /** See {@link learn_to_code.springboot.controller.HelloWorldController#calculate(int)} for more info */
 public class SpringBootRunner {
 
     public static void main(String[] args) {
