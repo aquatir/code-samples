@@ -16,7 +16,7 @@
     </modules>
     <packaging>pom</packaging>
 
-    <name>learntocode</name>
+    <name>code-samples</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
