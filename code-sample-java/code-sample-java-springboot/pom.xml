@@ -28,6 +28,13 @@
         it provides various ways to restart your spring-boot application. Restarting is generally faster then shutting down and booting your app again
         so you probably should stick to it. Another note: devtools is not included if you launch your app with java -jar or with
         special classloaders (Read spring-boot docs for more info).
+
+        If using idea you would need to do some more work in order for auto-restart to work
+        1. Build project automatically in Settings -> Build, Execution, Deployment -> Compiler -> Build project automatically
+        2. Allow rebuild when running. Open magic Idea every-option-indexer with ctrl-shift-a (Command-ctrl-A form macs, you get the idea)
+            -> type in registry -> find and allow 'compiler.automake.allow.when.app.running'
+        3. Note: Reload only happens when files on classpath change. For example me changing this pom does not trigger autoreload,
+        however changes to classes (e.g. HelloWorldController) or app properties (application.yml) DO trigger reload
         -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
