@@ -46,6 +46,11 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
+
+        <!-- Info about lombok project: https://projectlombok.org/
+        Note: When using Idea, you'll need to allow annotation processing in order for lombok to work properly.
+        Also in order to allow idea to identify lombok code (e.g. know that setters exist even through they are
+        not generated yet, you need to install 'Lombok plugin' for idea -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
