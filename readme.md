@@ -20,5 +20,9 @@
          </ul>
     </li>
     <li><b>code-sample-python</b>. Python code examples. Currently consist of a single Flask example </li>
-    <li><b>code-sample-docker</b>. Will contain some docker examples</li>
+    <li><b>code-sample-docker</b>. Contains some docker examples
+        <ul>
+            <li><b>docker-official-getting-started</b>. Getting started guide from https://docs.docker.com/get-started</li>
+        </ul>
+    </li>
 </ul>
