@@ -1,5 +1,6 @@
 package learn_to_code.springboot.controller;
 
+import learn_to_code.springboot.events.MyEventPublisher;
 import learn_to_code.springboot.props.FooProperties;
 import learn_to_code.springboot.rabbit.Sender;
 import learn_to_code.springboot.service.LongCalculationService;
@@ -13,8 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.Instant;
 
 /*
- * Spring does not care if your {@code @Controller} is defined as controller or {@code RestController}. This annotation
- * is there simply to make it easier to developers to understand what are they dealing with
+ * This single annotation defines both @Controller and @ResponseBody
  */
 @RestController
 
@@ -23,6 +23,9 @@ from https://projectlombok.org/features/log for respective log). Spring-boot wil
 You can then use normal spring-boot configuration for loggers, e.g. setting logging.file or logging.level */
 @Slf4j
 public class HelloWorldController {
+
+    @Autowired
+    private MyEventPublisher publisher;
 
     @Autowired
     private FooProperties props;
@@ -40,7 +43,6 @@ public class HelloWorldController {
     }
 
     @GetMapping("/props")
-    @ResponseBody
     public String getProps() {
         return "ip: " + props.getIp().toString() + " enabled: " + props.isEnabled() + " roles: " + props.getRoles();
     }
@@ -50,7 +52,6 @@ public class HelloWorldController {
      * 2 time in a row (e.g /math/100000000) to see that cache actually works
      */
     @GetMapping("/math/{numberOfRetries}")
-    @ResponseBody
     public double calculate(@PathVariable int numberOfRetries) {
         log.info("Math started: ");
         log.info(" from: " + Instant.now());
@@ -65,9 +66,15 @@ public class HelloWorldController {
      * Note: you should configure rabbitMQ on your machine in order for it to work properly
      */
     @GetMapping("/message/{content}")
-    @ResponseBody
     public String sendMessage(@PathVariable String content) {
         rabbitSender.sendMessage(content);
         return "OK";
+    }
+
+    @GetMapping("/event/{text}")
+    public String sendEvent(@PathVariable String text) {
+        log.info("Got event with text: {} from user", text);
+        publisher.publishEvent(text);
+        return text;
     }
 }
