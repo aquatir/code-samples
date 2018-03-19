@@ -1,7 +1,23 @@
 server:
   port: 8000
-application:
-  title: Mega app
+
+spring:
+  application:
+    name: myapp
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  profiles:
+    active: native  # You need to add this profile in order for config server to get configuration from local files
+  cloud:
+    config:
+      server:
+        native:
+          searchLocations: classpath:config/
+
+#Custom properties. See learn_to_code.springboot.props.FooProperties
 foo:
   enabled: false
   ip: 192.168.1.1
@@ -9,19 +25,14 @@ foo:
     - USER
     - ADMIN
 
+#Loggin level
 logging:
   level:
     learn_to_code.springboot: DEBUG
 
+# Other properties used here and there
 queue:
   name: queue
-
-spring:
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
 
 
 
@@ -33,6 +44,5 @@ spring:
 #  devtools:
 #    restart:
 #      trigger-file: .restart
-
 
 

@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cloud.config.server.EnableConfigServer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
@@ -40,6 +41,7 @@ import java.util.Arrays;
 /* this is used to enable properties mappers (those allow you to map your properties to classes type-safely */
 @EnableConfigurationProperties(FooProperties.class) /** See {@link FooProperties} for more info*/
 @EnableCaching /** See {@link learn_to_code.springboot.controller.HelloWorldController#calculate(int)} for more info */
+@EnableConfigServer /* Configure embedded configuration server, working on same host/port as this entire app */
 public class SpringBootRunner {
 
     public static void main(String[] args) {
