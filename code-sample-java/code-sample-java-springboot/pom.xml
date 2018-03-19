@@ -78,7 +78,8 @@
 
 
         <!-- Test utilities for spring-boot. Read more here:
-        https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html-->
+        https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html
+        See src/test/java for more info on how to test spring-boot apps -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
