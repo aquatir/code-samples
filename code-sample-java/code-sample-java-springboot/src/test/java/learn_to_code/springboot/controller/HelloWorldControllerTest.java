@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Spring boot provides features for simplifying spirng-boot apps testing.
+ * Spring boot provides features for simplifying spring-boot apps testing.
  */
 @RunWith(SpringRunner.class)    /* If you don't specify this annotation, MOST test annotations will be ignored. */
 @SpringBootTest                 /* This will create annotation context for your tests app */
