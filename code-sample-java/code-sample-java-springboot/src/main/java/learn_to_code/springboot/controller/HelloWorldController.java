@@ -71,6 +71,10 @@ public class HelloWorldController {
         return "OK";
     }
 
+    /**
+     * See {@link learn_to_code.springboot.events.MyEvent}, {@link MyEventPublisher}, {@link learn_to_code.springboot.events.MyEventListener}
+     * for more info.
+     */
     @GetMapping("/event/{text}")
     public String sendEvent(@PathVariable String text) {
         log.info("Got event with text: {} from user", text);
