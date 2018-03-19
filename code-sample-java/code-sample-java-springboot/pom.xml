@@ -76,6 +76,14 @@
             <optional>true</optional>
         </dependency>
 
+
+        <!-- Test utilities for spring-boot. Read more here:
+        https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+
         <!-- We use RabbitMQ here as AMQP implementation to implement simple "Hello world" example with messages
         getting sent to a single queue.
         You'll need to configure rabbit in order for it to work. Please see rabbit docs to see how to do it:
@@ -86,6 +94,8 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
+
+
 
 
 
