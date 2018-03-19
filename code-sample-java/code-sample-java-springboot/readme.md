@@ -18,4 +18,5 @@ This is not a bug, but a feature :) Use code + comments as documentation </p>
         @EnableConfigurationProperties annotations usage, @EnableCaching example </li>
     <li> <b>spring-boot-devtools</b>. Application autorestart features + how to do it in IDEA ide</li>
     <li> <b>spring-boot-starter-amqp</b>. Simple RabbitMQ example </li>
+    <li> <b>spring-cloud-config-server</b>. Example of embedded config server </li>
 </ul>

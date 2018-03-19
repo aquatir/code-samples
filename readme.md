@@ -16,7 +16,7 @@
             <li> <b> code-sample-java-patterns</b>. Basic java implementation for most (all?) classical design patterns</li>
             <li> <b> code-sample-java-se</b>. Examples of most (or should I say some?) javaEE APIs </li>
             <li> <b> code-sample-java-spring</b>. Tiny spring example. Uses only bean definition</li>
-            <li> <b> code-sample-java-springboot</b>. Consist of some (but not all) spring-boot features (including starters).</li>
+            <li> <b> code-sample-java-springboot</b>. Consist of some (but not all) spring-boot features</li>
          </ul>
     </li>
     <li><b>code-sample-python</b>. Python code examples. Currently consist of a single Flask example </li>
