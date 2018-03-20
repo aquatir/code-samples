@@ -17,7 +17,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: info, health, refresh, env
+        include: info, health, refresh, env, beans
 
 #Custom properties. See learn_to_code.springboot.props.FooProperties
 foo:
