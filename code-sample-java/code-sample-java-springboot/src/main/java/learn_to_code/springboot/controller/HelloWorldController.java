@@ -53,6 +53,9 @@ public class HelloWorldController {
         return "ip: " + props.getIp().toString() + " enabled: " + props.isEnabled() + " roles: " + props.getRoles();
     }
 
+    /**
+     * See HelloWorldControllerTest for usage example
+     */
     @GetMapping("/props/reloadable")
     public String getReloadableProperties() {
         return myReloadableProperties.getMessage("reloadable.property", null, null);
