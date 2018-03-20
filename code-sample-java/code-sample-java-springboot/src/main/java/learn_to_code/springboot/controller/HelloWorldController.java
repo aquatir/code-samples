@@ -11,12 +11,10 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
-import java.util.Locale;
 
 /*
  * This single annotation defines both @Controller and @ResponseBody
