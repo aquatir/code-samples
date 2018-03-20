@@ -9,8 +9,14 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -35,6 +41,9 @@ public class HelloWorldControllerTest {
     @Autowired
     MockMvc mockMvc;
 
+    @Autowired
+    ResourceLoader resourceLoader;
+
 
     /* good test results */
     private final String GET_PROPS_GOOD_RESULT = "ip: /192.168.1.1 enabled: false roles: [USER, ADMIN]";
@@ -55,11 +64,45 @@ public class HelloWorldControllerTest {
      * Or use mockMvc for 'real' call testing
      */
     @Test
-    @SneakyThrows /* We do not want to cover try-catch. Instead all exceptions will failt the test*/
+    @SneakyThrows /* We do not want to cover try-catch. Instead all exceptions will fail the test*/
     public void testGetPropsMvc() {
         mockMvc.perform(get("/props"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString(GET_PROPS_GOOD_RESULT)));
+    }
+
+    @Test
+    @SneakyThrows /* same */
+    public void testGetReloadableProperties() {
+
+        final String DEFAULT_VALUE = "default_value";
+        final String NEW_VALUE = "new_value";
+        Resource resource = resourceLoader.getResource("classpath:props/reloadable.properties");
+
+        /* Write default value, wait til reload, and expect it*/
+        writeValueToConfigAndSleep(resource, DEFAULT_VALUE);
+        callPropsReloadableExpectValue(DEFAULT_VALUE);
+
+        /* Write new value, wait til reload, expect new value*/
+        writeValueToConfigAndSleep(resource, NEW_VALUE);
+        callPropsReloadableExpectValue(NEW_VALUE);
+
+        /* Write default value to not break test*/
+        writeValueToConfigAndSleep(resource, DEFAULT_VALUE);
+    }
+
+    private void writeValueToConfigAndSleep(Resource resource, String value) throws IOException, InterruptedException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile()))) {
+            writer.write("reloadable.property = " + value);
+            writer.flush();
+            Thread.sleep(2500);
+        }
+    }
+
+    private void callPropsReloadableExpectValue(String expected) throws Exception {
+        mockMvc.perform(get("/props/reloadable"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString(expected)));
     }
 }

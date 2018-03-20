@@ -1,6 +1,7 @@
 package learn_to_code.springboot;
 
 import learn_to_code.springboot.props.FooProperties;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -42,6 +43,7 @@ import java.util.Arrays;
 @EnableConfigurationProperties(FooProperties.class) /** See {@link FooProperties} for more info*/
 @EnableCaching /** See {@link learn_to_code.springboot.controller.HelloWorldController#calculate(int)} for more info */
 @EnableConfigServer /* Configure embedded configuration server, working on same host/port as this entire app */
+@Slf4j
 public class SpringBootRunner {
 
     public static void main(String[] args) {
@@ -59,11 +61,11 @@ public class SpringBootRunner {
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
 
-            System.out.println("Let's inspect the beans provided by Spring Boot:");
+            log.trace("Let's inspect the beans provided by Spring Boot:");
 
             String[] beanNames = ctx.getBeanDefinitionNames();
             Arrays.sort(beanNames);
-            Arrays.stream(beanNames).forEach(System.out::println);
+            Arrays.stream(beanNames).forEach(log::trace);
         };
     }
 }

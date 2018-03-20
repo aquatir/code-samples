@@ -6,12 +6,15 @@ import learn_to_code.springboot.rabbit.Sender;
 import learn_to_code.springboot.service.LongCalculationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
+import java.util.Locale;
 
 /*
  * This single annotation defines both @Controller and @ResponseBody
@@ -35,6 +38,9 @@ public class HelloWorldController {
     @Autowired
     private Sender rabbitSender;
 
+    @Autowired
+    private ReloadableResourceBundleMessageSource myReloadableProperties;
+
     @GetMapping("/")
     @ResponseBody
     public String index() {
@@ -45,6 +51,11 @@ public class HelloWorldController {
     @GetMapping("/props")
     public String getProps() {
         return "ip: " + props.getIp().toString() + " enabled: " + props.isEnabled() + " roles: " + props.getRoles();
+    }
+
+    @GetMapping("/props/reloadable")
+    public String getReloadableProperties() {
+        return myReloadableProperties.getMessage("reloadable.property", null, null);
     }
 
     /**
@@ -81,4 +92,5 @@ public class HelloWorldController {
         publisher.publishEvent(text);
         return text;
     }
+
 }
