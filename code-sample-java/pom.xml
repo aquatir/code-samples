@@ -12,6 +12,7 @@
         <module>code-sample-java-patterns</module>
         <module>code-sample-java-ee</module>
         <module>code-sample-java-aspectj</module>
+        <module>code-sample-java-spring</module>
         <module>code-sample-java-springboot</module>
     </modules>
     <packaging>pom</packaging>
