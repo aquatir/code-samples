@@ -6,6 +6,8 @@ import learn_to_code.springboot.rabbit.Sender;
 import learn_to_code.springboot.service.LongCalculationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +27,7 @@ import java.util.Locale;
 from https://projectlombok.org/features/log for respective log). Spring-boot will autoconfigure required log.
 You can then use normal spring-boot configuration for loggers, e.g. setting logging.file or logging.level */
 @Slf4j
+@RefreshScope
 public class HelloWorldController {
 
     @Autowired
@@ -40,6 +43,9 @@ public class HelloWorldController {
 
     @Autowired
     private ReloadableResourceBundleMessageSource myReloadableProperties;
+
+    @Value("${prop.some_property:default}")
+    private String remoteProperty;
 
     @GetMapping("/")
     @ResponseBody
@@ -59,6 +65,11 @@ public class HelloWorldController {
     @GetMapping("/props/reloadable")
     public String getReloadableProperties() {
         return myReloadableProperties.getMessage("reloadable.property", null, null);
+    }
+
+    @GetMapping("/props/remote")
+    public String getRemoteProperty() {
+        return remoteProperty;
     }
 
     /**

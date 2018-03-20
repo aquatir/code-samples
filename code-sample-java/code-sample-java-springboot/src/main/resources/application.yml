@@ -9,13 +9,9 @@ spring:
     port: 5672
     username: guest
     password: guest
-  profiles:
-    active: native  # You need to add this profile in order for config server to get configuration from local files
   cloud:
     config:
-      server:
-        native:
-          searchLocations: classpath:config/
+      uri: http://localhost:8888
 
 #Custom properties. See learn_to_code.springboot.props.FooProperties
 foo:
