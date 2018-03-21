@@ -12,12 +12,14 @@ spring:
   cloud:
     config:
       uri: http://localhost:8888
+  profiles:
+    active: native
+
 
 management:
-  endpoints:
-    web:
-      exposure:
-        include: info, health, refresh, env, beans
+  security:
+    enabled: false
+
 
 #Custom properties. See learn_to_code.springboot.props.FooProperties
 foo:
