@@ -42,7 +42,7 @@ public class HelloWorldController {
     @Autowired
     private ReloadableResourceBundleMessageSource myReloadableProperties;
 
-    @Value("${prop.some_property}")
+    @Value("${prop.some_property:default}")
     private String remoteProperty;
 
     @GetMapping("/")
