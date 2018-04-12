@@ -95,6 +95,9 @@
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
 
+        <!-- Getting started implementation of https://spring.io/guides/gs/securing-web/
+            See WebSecurityConfig.java for more info -->
+        -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
