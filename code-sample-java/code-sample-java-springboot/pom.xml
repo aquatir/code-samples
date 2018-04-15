@@ -95,6 +95,14 @@
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
 
+        <!-- Getting started implementation of https://spring.io/guides/gs/securing-web/
+            See WebSecurityConfig.java for more info -->
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
         <!-- We created central configuration server with spring cloud in code-sample-java-springboot-config-server.
         In order to access it, it's url should be specified in client's (this app) properties -->
         <dependency>
@@ -111,10 +119,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-
-
-
-
     </dependencies>
 
 </project>
