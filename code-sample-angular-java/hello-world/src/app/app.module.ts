@@ -11,7 +11,7 @@ import { HeroesComponent }      from './components/heroes/heroes.component';
 import { HeroService }          from './services/hero.service';
 import { MessageService }       from './services/message.service';
 import { MessageComponent }    from './components/message/message.component';
-
+import { HttpConfig } from "./configs/http-config";
 
 
 @NgModule({
@@ -27,7 +27,7 @@ import { MessageComponent }    from './components/message/message.component';
     HeroDetailsComponent,
     MessageComponent
   ],
-  providers: [ HeroService, MessageService ],
+  providers: [ HeroService, MessageService, HttpConfig ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
