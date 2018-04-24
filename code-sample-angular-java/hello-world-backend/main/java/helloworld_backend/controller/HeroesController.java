@@ -1,7 +1,6 @@
 package helloworld_backend.controller;
 
 import helloworld_backend.dto.Hero;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,15 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@Slf4j
 public class HeroesController {
 
     @GetMapping("/heroes")
     public List<Hero> getAllHeroes() {
-        log.info("I'm being called");
         List<Hero> heroes = new ArrayList<>();
-        heroes.add(new Hero(1, "Ivan"));
-        heroes.add(new Hero(2, "Narkoman"));
+        heroes.add(new Hero(1, "Batman"));
+        heroes.add(new Hero(2, "Superman"));
+        heroes.add(new Hero(3, "Wonder woman"));
+        heroes.add(new Hero(4, "Manly man"));
+        heroes.add(new Hero(5, "Ant man"));
 
         return heroes;
     }

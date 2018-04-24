@@ -1,6 +1,7 @@
 import { NgModule }       from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent }         from './app.component';
 import { AppRoutingModule }     from './app-routing.module';
@@ -11,14 +12,16 @@ import { HeroesComponent }      from './components/heroes/heroes.component';
 import { HeroService }          from './services/hero.service';
 import { MessageService }       from './services/message.service';
 import { MessageComponent }    from './components/message/message.component';
-import { HttpConfig } from "./configs/http-config";
+import { HttpService } from "./services/http.service";
+
 
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   declarations: [
     AppComponent,
@@ -27,7 +30,13 @@ import { HttpConfig } from "./configs/http-config";
     HeroDetailsComponent,
     MessageComponent
   ],
-  providers: [ HeroService, MessageService, HttpConfig ],
-  bootstrap: [ AppComponent ]
+  providers: [
+    HttpService,
+    HeroService,
+    MessageService,
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

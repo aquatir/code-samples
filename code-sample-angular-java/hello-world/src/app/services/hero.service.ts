@@ -11,8 +11,7 @@ import {HttpService} from "./http.service";
 @Injectable()
 export class HeroService {
 
-  constructor(private httpService: HttpService,
-              private messageService: MessageService) { }
+  constructor(private httpService: HttpService, private messageService: MessageService) { }
 
   getHeroes(): Observable<any> {
 
