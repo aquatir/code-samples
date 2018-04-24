@@ -1,13 +1,9 @@
 package helloworld_backend.repository;
 
 import helloworld_backend.domain.Hero;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
-
 @Repository
-public interface HeroRepository extends CrudRepository<Hero, Long> {
-    public List<Hero> findAll();
+public interface HeroRepository extends JpaRepository<Hero, Long> {
 }
