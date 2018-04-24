@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs/Observable";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class HttpService {
 
-  url : string = "http://localhost:8000/heroes";
-
   constructor(private httpClient: HttpClient) { }
 
+  /* TODO: Refactor into const class/file (What's the correct way with angular?) */
+  API_BASE: string =  "http://localhost:8000";
+  ALL_HEROES_URL: string = this.API_BASE + "/heroes";
+
   getHeroes(): Observable<any> {
-    return this.httpClient.get(this.url);
+    return this.httpClient.get(this.ALL_HEROES_URL);
   }
 
 }

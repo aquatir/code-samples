@@ -22,6 +22,5 @@ public class HeroesController {
         return heroRepository.findAll().stream()
                 .map(HeroDto::fromDomain)
                 .collect(Collectors.toList());
-
     }
 }

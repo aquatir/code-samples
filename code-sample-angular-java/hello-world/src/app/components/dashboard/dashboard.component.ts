@@ -13,9 +13,7 @@ export class DashboardComponent implements OnInit {
   constructor(private heroService: HeroService) { }
 
   ngOnInit() {
-    console.log("Initializing dashboard");
     this.getHeroes();
-    console.log("Init sucessful");
   }
 
   getHeroes(): void {
