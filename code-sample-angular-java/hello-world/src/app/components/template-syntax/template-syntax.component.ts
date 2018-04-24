@@ -8,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class TemplateSyntaxComponent implements OnInit {
 
   displayTextAfterHeaderClicked: boolean;
+  heroImage: string;
 
   constructor() {
     this.displayTextAfterHeaderClicked = false;
+    this.heroImage = "/assets/images/hero.png";
   }
 
   ngOnInit() {
