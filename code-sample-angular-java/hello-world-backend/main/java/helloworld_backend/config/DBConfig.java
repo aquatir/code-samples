@@ -13,7 +13,7 @@ public class DBConfig {
      * Start internal H2 server so we can query the DB from IDE
      *
      * @return H2 Server instance
-     * @throws SQLException
+     * @throws SQLException if failed to start
      */
     @Bean(initMethod = "start", destroyMethod = "stop")
     public Server h2Server() throws SQLException {

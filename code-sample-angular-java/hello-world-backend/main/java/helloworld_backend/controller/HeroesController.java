@@ -1,12 +1,12 @@
 package helloworld_backend.controller;
 
-import helloworld_backend.domain.Hero;
+import helloworld_backend.dto.HeroDto;
 import helloworld_backend.repository.HeroRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class HeroesController {
@@ -18,8 +18,10 @@ public class HeroesController {
     }
 
     @GetMapping("/heroes")
-    public List<Hero> getAllHeroes() {
+    public List<HeroDto> getAllHeroes() {
+        return heroRepository.findAll().stream()
+                .map(HeroDto::fromDomain)
+                .collect(Collectors.toList());
 
-        return (List<Hero>) heroRepository.findAll();
     }
 }
