@@ -1,4 +1,10 @@
 <h1 (click)="headerClicked()">Template syntax fun <span *ngIf="displayTextAfterHeaderClicked">(was clicked)</span></h1>
 <button [disabled]="displayTextAfterHeaderClicked">Click on header to disable</button>
+
 <img [src]="heroImage">
+
+<button (click)="changeColorButtonClicked()" class="red" [class.red]="colorIsRed">Click to make red</button>
+<br>
+
+bla-bla
 

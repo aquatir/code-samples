@@ -8,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class TemplateSyntaxComponent implements OnInit {
 
   displayTextAfterHeaderClicked: boolean;
+  colorIsRed: boolean;
   heroImage: string;
 
   constructor() {
     this.displayTextAfterHeaderClicked = false;
+    this.colorIsRed = false;
     this.heroImage = "/assets/images/hero.png";
   }
 
@@ -20,5 +22,9 @@ export class TemplateSyntaxComponent implements OnInit {
 
   public headerClicked() {
     this.displayTextAfterHeaderClicked = true;
+  }
+
+  public changeColorButtonClicked() {
+    this.colorIsRed = true;
   }
 }
