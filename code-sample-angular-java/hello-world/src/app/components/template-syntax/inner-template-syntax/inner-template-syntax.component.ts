@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-inner-template-syntax',
@@ -8,6 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class InnerTemplateSyntaxComponent implements OnInit {
 
   @Input() size: number;
+  @Output() sizeEvent = new EventEmitter<number>();
 
   constructor() { }
 
@@ -15,11 +16,16 @@ export class InnerTemplateSyntaxComponent implements OnInit {
   }
 
   public increaseSize() {
-    this.size += 1;
+    this.changeSize(1);
   }
 
   public descreaseSize() {
-    this.size -=1;
+    this.changeSize(-1);
+  }
+
+  private changeSize(value) {
+    this.size += value;
+    this.sizeEvent.emit(this.size);
   }
 
 }

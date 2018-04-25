@@ -1,3 +1,4 @@
+<h2 >Outer template syntax starts here </h2>
 <h1 (click)="headerClicked()">Template syntax fun <span *ngIf="displayTextAfterHeaderClicked">(was clicked)</span></h1>
 <button [disabled]="displayTextAfterHeaderClicked">Click on header to disable</button>
 
@@ -5,7 +6,16 @@
 
 <button (click)="changeColorButtonClicked()" class="red" [class.red]="colorIsRed">Click to make red</button>
 <br>
+<br>
+<br>
 
-<app-inner-template-syntax [size]="4"></app-inner-template-syntax>
+sizeFromInnerTemplate: <span>{{size}}</span>
+<app-inner-template-syntax [size]=size (sizeEvent)="size=$event"></app-inner-template-syntax>
+
+
+
+<h2 >Outer template syntax ends here </h2>
+
+
 
 
