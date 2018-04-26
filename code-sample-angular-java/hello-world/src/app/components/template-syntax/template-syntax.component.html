@@ -9,8 +9,8 @@
 <br>
 <br>
 
-size from inner template in outer template: <span>{{size}}</span>
-<app-inner-template-syntax [size]=size (sizeEvent)="size=$event"></app-inner-template-syntax>
+size from inner template in outer template: <span>{{outerSize}}</span>
+<app-inner-template-syntax [size]="outerSize" (sizeEvent)="outerSize=$event"></app-inner-template-syntax>
 
 
 

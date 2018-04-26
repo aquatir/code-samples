@@ -10,13 +10,13 @@ export class TemplateSyntaxComponent implements OnInit {
   displayTextAfterHeaderClicked: boolean;
   colorIsRed: boolean;
   heroImage: string;
-  size: number;
+  outerSize: number;
 
   constructor() {
     this.displayTextAfterHeaderClicked = false;
     this.colorIsRed = false;
     this.heroImage = "/assets/images/hero.png";
-    this.size = 4;
+    this.outerSize = 4;
   }
 
   ngOnInit() {
