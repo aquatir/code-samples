@@ -25,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/home", "/props/**").permitAll() /* Allow this urls to be accesses w/o authentication */
+                .antMatchers("/", "/home/**", "/props/**", "/math/**", "/message/**", "/event/**").permitAll() /* Allow this urls to be accesses w/o authentication */
                 .anyRequest().authenticated() /* but to not allow any other */
                 .and()
                 .formLogin()
