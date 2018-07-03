@@ -55,7 +55,7 @@ class ClassToGetSerialized implements Serializable {
      * and don't want to even attempt to deserialize old class instances
      *
      * @param stream serializing object stream
-     * @throws java.io.InvalidObjectException always thrown to protect from demoralizing {@code ClassToGetSerialized} instead of
+     * @throws java.io.InvalidObjectException always thrown to protect from deserializing {@code ClassToGetSerialized} instead of
      *                                {@code SerializationProxy}
      */
     private void readObject(ObjectInputStream stream) throws InvalidObjectException {
