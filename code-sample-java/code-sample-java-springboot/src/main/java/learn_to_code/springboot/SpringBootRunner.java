@@ -18,7 +18,7 @@ import java.util.Arrays;
  * available on classpath and lauch an app using some servlet container.
  *
  * Spring boot excessively uses sensible default configurations for everything. For example default servlet container
- * choosen is embedded jetty. Default port is 8080. We can use property files and/or configuration beans to override
+ * chosen is embedded jetty. Default port is 8080. We can use property files and/or configuration beans to override
  * default behavior.
  *
  * For example, here we override this in property file resources/application.yml file (application.properties are also supported)

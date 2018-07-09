@@ -14,6 +14,7 @@
         <module>code-sample-java-aspectj</module>
         <module>code-sample-java-spring</module>
         <module>code-sample-java-springboot</module>
+        <module>code-sample-spring-security</module>
     </modules>
     <packaging>pom</packaging>
 

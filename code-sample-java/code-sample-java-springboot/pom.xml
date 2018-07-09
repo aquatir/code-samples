@@ -75,15 +75,6 @@
             <optional>true</optional>
         </dependency>
 
-
-        <!-- Test utilities for spring-boot. Read more here:
-        https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html
-        See src/test/java for more info on how to test spring-boot apps -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
-
         <!-- We use RabbitMQ here as AMQP implementation to implement simple "Hello world" example with messages
         getting sent to a single queue.
         You'll need to configure rabbit in order for it to work. Please see rabbit docs to see how to do it:
@@ -93,13 +84,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
-
-        <!-- Getting started implementation of https://spring.io/guides/gs/securing-web/
-            See WebSecurityConfig.java for more info -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
         <!-- We created central configuration server with spring cloud in code-sample-java-springboot-config-server.
@@ -114,10 +98,16 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
+        <!-- Thymeleaf is a powerful template engine for css/js/html/xml and some other formats which can be used as
+        MVC driver for Spring MVC applications. Here we are merely scathing it's full potential in order to show some
+        simple login forms -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
+
+
+
     </dependencies>
 
 </project>

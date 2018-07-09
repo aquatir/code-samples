@@ -13,6 +13,8 @@ import { HeroService }          from './services/hero.service';
 import { MessageService }       from './services/message.service';
 import { MessageComponent }    from './components/message/message.component';
 import { HttpService } from "./services/http.service";
+import { TemplateSyntaxComponent } from './components/template-syntax/template-syntax.component';
+import { InnerTemplateSyntaxComponent } from './components/template-syntax/inner-template-syntax/inner-template-syntax.component';
 
 
 
@@ -28,7 +30,9 @@ import { HttpService } from "./services/http.service";
     DashboardComponent,
     HeroesComponent,
     HeroDetailsComponent,
-    MessageComponent
+    MessageComponent,
+    TemplateSyntaxComponent,
+    InnerTemplateSyntaxComponent
   ],
   providers: [
     HttpService,

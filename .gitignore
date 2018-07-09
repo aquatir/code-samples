@@ -26,5 +26,6 @@ hs_err_pid*
 # python
 __pycache__/
 /out
+/venv
 
 node_modules

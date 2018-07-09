@@ -4,11 +4,13 @@ server:
 spring:
   application:
     name: myapp
+
   rabbitmq:
     host: localhost
     port: 5672
     username: guest
     password: guest
+
   cloud:
     config:
       uri: http://localhost:8888
@@ -16,9 +18,6 @@ spring:
     active: native
 
 
-management:
-  security:
-    enabled: false
 
 
 #Custom properties. See learn_to_code.springboot.props.FooProperties
