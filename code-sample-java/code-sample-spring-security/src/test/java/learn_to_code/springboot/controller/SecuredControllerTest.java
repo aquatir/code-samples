@@ -21,7 +21,7 @@ public class SecuredControllerTest {
 
     @Test /* Not authenticated user will be redirected */
     public void testSecuredIndexNotAuthenticated() throws Exception {
-        mockMvc.perform(get("/secure/"))
+        mockMvc.perform(get("/secure"))
                 .andExpect(status().is3xxRedirection());
     }
 

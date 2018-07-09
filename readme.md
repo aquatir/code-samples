@@ -17,6 +17,7 @@
             <li> <b> code-sample-java-se</b>. Examples of most (or should I say some?) java SE APIs </li>
             <li> <b> code-gsample-java-spring</b>. Tiny spring example. Uses only bean definition</li>
             <li> <b> code-sample-java-springboot</b>. Consist of some (but not all) spring-boot features</li>
+            <li> <b> code-sample-spring-security</b>. Spring security and spring testing features. </li>
          </ul>
     </li>
     <li><b>code-sample-python</b>. Python code examples. Currently consist of a single Flask example </li>
