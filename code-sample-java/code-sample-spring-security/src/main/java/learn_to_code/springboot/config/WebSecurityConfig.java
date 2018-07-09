@@ -24,16 +24,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                .antMatchers("/", "/home/**", "/props/**", "/math/**", "/message/**", "/event/**").permitAll() /* Allow this urls to be accesses w/o authentication */
-                .anyRequest().authenticated() /* but to not allow any other */
-                .and()
                 .formLogin()
-                .loginPage("/login") /* Where your login form should be. */
-                .permitAll()
+                    .loginPage("/login") /* Where your login form should be. */
+                    .permitAll()
                 .and()
-                .logout()
-                .permitAll();
+                    .logout()
+                    .permitAll()
+                .and()
+                    .authorizeRequests().anyRequest().authenticated();
     }
 
     @Bean

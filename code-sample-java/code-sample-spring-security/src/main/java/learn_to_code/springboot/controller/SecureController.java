@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/secure")
-public class SecuredController {
+public class SecureController {
 
     @GetMapping("/")
     public String helloSecurity() {
