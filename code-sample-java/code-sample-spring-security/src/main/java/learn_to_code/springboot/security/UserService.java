@@ -13,14 +13,12 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    /* By the time this check is executed, the authentication object has already been constructed
+    (including all the checks such as is user enabled / are credentials expired, etc)
+    * thus no password check or anything alike is required*/
     public User getCurrentAuthenticatedUser() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserDetails userDetails = (UserDetails) principal;
-        User user = userRepository.findByUsername(userDetails.getUsername()).orElseThrow(UserNotFoundException::new);
-        if (user.getPassword().equals(userDetails.getPassword())) {
-            return user;
-        } else {
-            throw new UserNotFoundException();
-        }
+        return userRepository.findByUsername(userDetails.getUsername()).orElseThrow(UserNotFoundException::new);
     }
 }

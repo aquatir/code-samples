@@ -43,6 +43,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
+
+    /* Set our custom userDetailsService impl to auth provider */
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider
@@ -52,7 +54,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return authProvider;
     }
 
-    @Bean
+    @Bean /* We use NoOp password for simplicity.
+    DO NOT USER NoOpPasswordEncoder IN PRODUCTION!*/
     public PasswordEncoder encoder() {
         return NoOpPasswordEncoder.getInstance();
     }
