@@ -1,19 +1,22 @@
 package learn_to_code.springboot.controller;
 
-import org.springframework.security.core.GrantedAuthority;
+import learn_to_code.springboot.security.User;
+import learn_to_code.springboot.security.UserService;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 @RestController
 public class SecureController {
+
+    private UserService userService;
+
+    public SecureController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/secure")
     public String helloSecurity() {
@@ -26,19 +29,11 @@ public class SecureController {
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        String userName = "";
-        String userPassword = "";
-        Set<GrantedAuthority> authorities = Collections.emptySet();
-        if (principal instanceof UserDetails) {
-            UserDetails userDetails = (UserDetails) principal;
-            userName = userDetails.getUsername();
-            userPassword = userDetails.getPassword();
-            authorities = new HashSet<>(userDetails.getAuthorities());
-        }
+        UserDetails userDetails = (UserDetails) principal;
+        User user = userService.findAndCheckPassword(userDetails);
 
-        mav.addObject("userName", userName);
-        mav.addObject("userPassword", userPassword);
-        mav.addObject("authorities", authorities);
+        mav.addObject("userName", user.getUsername());
+        mav.addObject("userPassword", user.getPassword());
 
         return mav;
     }
