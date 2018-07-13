@@ -2,8 +2,6 @@ package learn_to_code.springboot.controller;
 
 import learn_to_code.springboot.security.User;
 import learn_to_code.springboot.security.UserService;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,10 +25,7 @@ public class SecureController {
     public ModelAndView secureUser() {
         ModelAndView mav = new ModelAndView("hello");
 
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        UserDetails userDetails = (UserDetails) principal;
-        User user = userService.findAndCheckPassword(userDetails);
+        User user = userService.getCurrentAuthenticatedUser();
 
         mav.addObject("userName", user.getUsername());
         mav.addObject("userPassword", user.getPassword());
