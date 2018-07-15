@@ -18,6 +18,14 @@ import java.util.Collection;
 @Table(name="users") // 'user' table name is reserved by postgres, so we use users instead
 public class User implements UserDetails {
 
+    public static User createNewEnabled(String userName, String password) {
+        User user = new User();
+        user.setUsername(userName);
+        user.setPassword(password);
+        user.setEnabled(true);
+        return user;
+    }
+
     @Id
     @GeneratedValue
     private Long id;

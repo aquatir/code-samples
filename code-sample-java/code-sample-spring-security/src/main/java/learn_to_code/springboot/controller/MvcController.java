@@ -2,12 +2,14 @@ package learn_to_code.springboot.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class MvcController {
 
-    @RequestMapping("/hello")
+    @GetMapping("/hello")
     public String hello() {
         return "hello";
     }
@@ -16,19 +18,23 @@ public class MvcController {
 
     /* Login / Logout stuff */
 
+    @GetMapping("newAccount")
+    public String newAccount() {
+        return "newAccount";
+    }
 
-    @RequestMapping("/login")
+    @GetMapping("/login")
     public String login() {
         return "login";
     }
 
-    @RequestMapping("/login-error")
+    @GetMapping("/login-error")
     public String loginError(Model model) {
         model.addAttribute("loginError", true);
         return "login";
     }
 
-    @RequestMapping("/logout")
+    @PostMapping("/logout")
     public String logout() {
         return "logout";
     }
