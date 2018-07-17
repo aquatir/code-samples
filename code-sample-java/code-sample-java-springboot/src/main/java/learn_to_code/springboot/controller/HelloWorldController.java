@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
+import java.util.Date;
 
 /*
  * This single annotation defines both @Controller and @ResponseBody
@@ -103,6 +104,11 @@ public class HelloWorldController {
         log.info("Got event with text: {} from user", text);
         publisher.publishEvent(text);
         return text;
+    }
+
+    @GetMapping("/date")
+    public Date date() {
+        return new Date();
     }
 
 }

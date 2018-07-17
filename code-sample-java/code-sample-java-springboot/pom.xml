@@ -48,6 +48,12 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
         <!-- spring-boot-devtools is a powerful development tool which allow you to spend less time launching your
         application and more time coding.
 
@@ -85,6 +91,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
+
 
         <!-- We created central configuration server with spring cloud in code-sample-java-springboot-config-server.
         In order to access it, it's url should be specified in client's (this app) properties -->
