@@ -107,8 +107,8 @@ public class HelloWorldController {
     }
 
     @GetMapping("/date")
-    public Date date() {
-        return new Date();
+    public String date() {
+        return new Date().toString();
     }
 
 }
