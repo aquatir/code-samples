@@ -86,7 +86,7 @@
         You'll need to configure rabbit in order for it to work. Please see rabbit docs to see how to do it:
             https://www.rabbitmq.com/download.html
 
-        See package learn_to_code.springboot.rabbit for info -->
+        See package codesample.springboot.rabbit for info -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>

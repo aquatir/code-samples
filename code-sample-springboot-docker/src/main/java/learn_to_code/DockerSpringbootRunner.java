@@ -1,4 +1,4 @@
-package learn_to_code;
+package codesample;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
