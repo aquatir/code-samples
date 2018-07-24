@@ -1,0 +1,30 @@
+package codesample.frameworks.spring.annotation_bean_definition.config_class;
+
+import codesample.frameworks.spring.annotation_bean_definition.config_class.beans.HelloDependency;
+import codesample.frameworks.spring.annotation_bean_definition.config_class.beans.HelloWorldDependency;
+import codesample.frameworks.spring.annotation_bean_definition.config_class.beans.WorldDependency;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * Configuration is getting picked up in {@link BeanCreatorAndLauncher}
+ * Most of the time you would want Spring to scan for all classes annotated with {@code @Configuration, @Component, @Controller}, etc
+ */
+@Configuration
+public class BeanConfiguration {
+
+    @Bean
+    HelloDependency helloDependency() {
+        return new HelloDependency();
+    }
+
+    @Bean
+    WorldDependency worldDependency() {
+        return new WorldDependency();
+    }
+
+    @Bean
+    HelloWorldDependency helloWorldDependency() {
+        return new HelloWorldDependency(helloDependency(), worldDependency());
+    }
+}

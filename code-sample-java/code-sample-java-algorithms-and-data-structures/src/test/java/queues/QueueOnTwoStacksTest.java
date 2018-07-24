@@ -5,7 +5,7 @@
  */
 package queues;
 
-import learn_to_code.data_structures.queues.QueueOnTwoStacks;
+import codesample.data_structures.queues.QueueOnTwoStacks;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

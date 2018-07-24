@@ -1,6 +1,6 @@
 package algorithms;
 
-import learn_to_code.algorithms.Sorts;
+import codesample.algorithms.Sorts;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
