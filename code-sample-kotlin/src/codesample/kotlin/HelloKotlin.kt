@@ -1,7 +1,5 @@
 package codesample.kotlin
 
-import java.awt.Rectangle
-
 fun sum (a: Int, b: Int) : Int {
     return a + b
 }
