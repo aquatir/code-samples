@@ -1,6 +1,8 @@
 package codesample.kotlin
 
 fun main(args: Array<String>) {
+
+    println("******* LISTS ********")
     val mutableList : MutableList<Int> = mutableListOf(1, 2)
     mutableList.add(3)
 
@@ -21,4 +23,12 @@ fun main(args: Array<String>) {
     println(mutableList.joinToString(", "))
     println("Immutable list after add:")
     println(immutableList.joinToString(", "))
+
+
+    println("\n******* MAPS ********")
+    val map = hashMapOf("foo" to 1, "bar" to 2, "fizz" to 3, "buzz" to 4)
+    map["kek"] = 6
+
+    println("map keys and values")
+    map.entries.forEach { println("key: ${it.key} value: ${it.value}") }
 }
