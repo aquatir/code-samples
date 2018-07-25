@@ -1,4 +1,4 @@
-package codesample.kotlin
+package codesample.kotlin.sandbox.basics
 
 fun main(args: Array<String>) {
 

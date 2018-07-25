@@ -1,4 +1,4 @@
-package codesample.kotlin
+package codesample.kotlin.sandbox.basics
 
 fun sum (a: Int, b: Int) : Int {
     return a + b
@@ -18,7 +18,7 @@ fun printNotNullString(a: String) {
 
 fun main(args: Array<String>) {
     println("Hello, Kotlin!")
-    println(sum(5,1))
+    println(sum(5, 1))
 
     printText("Hello, world!")
 
@@ -76,6 +76,14 @@ fun main(args: Array<String>) {
     println(describe(323.12))
     println(describe("Str"))
 
+    val b = 3
+    when (b) {
+        1, 2 -> println("a is either 1 or 2")
+        else -> {
+            println("a in neither 1 nor 2")
+        }
+    }
+
     println("\n****** RANGES ******* ")
     for (x in 0..5)
         if (x !in 2..3)
@@ -96,4 +104,8 @@ fun main(args: Array<String>) {
             .distinctBy { it }
             .map { it.toUpperCase() }
             .forEach { println(it) }
+
+    for ((index,value) in fruits.withIndex()) {
+        println("intex: $index value: $value")
+    }
 }
