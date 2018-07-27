@@ -30,5 +30,8 @@ fun main(args: Array<String>) {
     map["kek"] = 6
 
     println("map keys and values")
-    map.entries.forEach { println("key: ${it.key} value: ${it.value}") }
+    map.entries.forEach { println("${it.key} -> ${it.value}") }
+    println("\nmap keys starts with f")
+    map.filterKeys { it.startsWith('f') }
+            .forEach { key, value ->  println ("$key -> $value")}
 }
