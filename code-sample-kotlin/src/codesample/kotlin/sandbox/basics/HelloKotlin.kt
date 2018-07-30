@@ -1,6 +1,6 @@
 package codesample.kotlin.sandbox.basics
 
-fun sum (a: Int, b: Int) : Int {
+fun sum(a: Int, b: Int): Int {
     return a + b
 }
 
@@ -8,7 +8,7 @@ fun printText(a: String) {
     println("You string is: $a")
 }
 
-fun getNullString() : String? {
+fun getNullString(): String? {
     return null
 }
 
@@ -32,9 +32,9 @@ fun main(args: Array<String>) {
     val text = "This is Kotlin"
     println("text: ${text.replace("is", "was")}")
 
-    fun maxOfTwo(a: Int, b: Int) : Int = if (a > b) a else b
+    fun maxOfTwo(a: Int, b: Int): Int = if (a > b) a else b
 
-    println("Max of 5 and 10 is: " + maxOfTwo(5,10))
+    println("Max of 5 and 10 is: " + maxOfTwo(5, 10))
 
     var nullStr = getNullString()
     println("$nullStr bla-bla-bla")
@@ -46,13 +46,14 @@ fun main(args: Array<String>) {
 
     // We can define function like this
     fun printTextt(text: String) = println(text)
+
     // Or with body
     fun printTexttWithBody(text: String) = println(text)
 
     printTextt("text")
     printTexttWithBody("textt")
 
-    fun strLength(something: Any) :Int {
+    fun strLength(something: Any): Int {
         if (something is String) {
             // We can use .length on Any argument, because is gets smart-casted to String
             return something.length
@@ -64,11 +65,11 @@ fun main(args: Array<String>) {
     println("\n****** WHEN ******* ")
     fun describe(obj: Any): String =
             when (obj) {
-                1          -> "One"
-                "Hello"    -> "Greeting"
-                is Long    -> "Long"
+                1 -> "One"
+                "Hello" -> "Greeting"
+                is Long -> "Long"
                 !is String -> "Not a string"
-                else       -> "Unknown"
+                else -> "Unknown"
             }
     println(describe(1))
     println(describe("Hello"))
@@ -105,7 +106,7 @@ fun main(args: Array<String>) {
             .map { it.toUpperCase() }
             .forEach { println(it) }
 
-    for ((index,value) in fruits.withIndex()) {
+    for ((index, value) in fruits.withIndex()) {
         println("intex: $index value: $value")
     }
 }

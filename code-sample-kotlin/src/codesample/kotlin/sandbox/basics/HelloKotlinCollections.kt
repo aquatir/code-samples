@@ -3,10 +3,10 @@ package codesample.kotlin.sandbox.basics
 fun main(args: Array<String>) {
 
     println("******* LISTS ********")
-    val mutableList : MutableList<Int> = mutableListOf(1, 2)
+    val mutableList: MutableList<Int> = mutableListOf(1, 2)
     mutableList.add(3)
 
-    val immutableList : List<Int> = mutableList
+    val immutableList: List<Int> = mutableList
 
     println("Mutable list before add:")
     println(mutableList.joinToString(", "))
@@ -33,5 +33,5 @@ fun main(args: Array<String>) {
     map.entries.forEach { println("${it.key} -> ${it.value}") }
     println("\nmap keys starts with f")
     map.filterKeys { it.startsWith('f') }
-            .forEach { key, value ->  println ("$key -> $value")}
+            .forEach { key, value -> println("$key -> $value") }
 }

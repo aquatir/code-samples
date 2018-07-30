@@ -6,7 +6,7 @@ fun printSetOfString(setOfStrings: Set<String>) {
     setOfStrings.forEach { println(it) }
 }
 
-class TheSuper (private val name: String){
+class TheSuper(private val name: String) {
 
     constructor() : this("default_name")
 
@@ -42,7 +42,7 @@ fun main(args: Array<String>) {
     val inner = TheSuper().Inner()
     inner.printInner()
 
-    val human : Runable = object:Runable {
+    val human: Runable = object : Runable {
         override fun run() {
             println("I RUN LIKE A HUMAN")
         }
