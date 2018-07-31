@@ -31,14 +31,21 @@ open class TheSuper(val name: String) {
     }
 }
 
-class TheSub : TheSuper() {
+class TheSub : TheSuper(), Runnnnable {
+    override var myVar: String = "initialized!"
+
     override fun printName() {
         println("The sub calls for you, $name")
+    }
+
+    override fun run() {
+        println("TheSub si running!")
     }
 }
 
 interface Runnnnable {
     fun run()
+    var myVar: String // Kotlin properties may also be defined and initialized in subclasses
 }
 
 fun main(args: Array<String>) {
@@ -49,6 +56,8 @@ fun main(args: Array<String>) {
     inner.printInner()
 
     val human: Runnnnable = object : Runnnnable {
+        override var myVar = "topkek"
+
         override fun run() {
             println("I RUN LIKE A HUMAN")
         }
@@ -63,6 +72,7 @@ fun main(args: Array<String>) {
     superb.printName()
 
     val sub = TheSub()
-    sub.Inner()
+    sub.printName()
+    sub.run()
 }
 
