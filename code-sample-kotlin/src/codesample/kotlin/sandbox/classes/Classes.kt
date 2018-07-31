@@ -6,11 +6,13 @@ fun printSetOfString(setOfStrings: Set<String>) {
     setOfStrings.forEach { println(it) }
 }
 
-class TheSuper(private val name: String) {
+/** Everything is Kotlin is final by default, so we have to declare class as open for inheritance */
+open class TheSuper(val name: String) {
 
     constructor() : this("default_name")
 
-    fun printName() {
+    /* The same goes for methods */
+    open fun printName() {
         println(name)
     }
 
@@ -29,9 +31,13 @@ class TheSuper(private val name: String) {
     }
 }
 
-class Sub
+class TheSub : TheSuper() {
+    override fun printName() {
+        println("The sub calls for you, $name")
+    }
+}
 
-interface Runable {
+interface Runnnnable {
     fun run()
 }
 
@@ -42,7 +48,7 @@ fun main(args: Array<String>) {
     val inner = TheSuper().Inner()
     inner.printInner()
 
-    val human: Runable = object : Runable {
+    val human: Runnnnable = object : Runnnnable {
         override fun run() {
             println("I RUN LIKE A HUMAN")
         }
@@ -55,5 +61,8 @@ fun main(args: Array<String>) {
 
     val superb = TheSuper("My name is IVAAAAAn")
     superb.printName()
+
+    val sub = TheSub()
+    sub.Inner()
 }
 
