@@ -30,6 +30,7 @@ class OneTwoImplementor: One, Two {
         fun behaveLikeStaticButItsNot() {
             println("I'm not actually static")
         }
+        const val sortOfStaticValue = "Ivaaan"
     }
 }
 
@@ -47,6 +48,7 @@ fun main(args: Array<String>) {
     println(one.yetAnotherInterfaceFunction())
     println(oneTwo.yetAnotherInterfaceFunction())
     OneTwoImplementor.behaveLikeStaticButItsNot()
+    println(OneTwoImplementor.sortOfStaticValue)
     // two.yetAnotherInterfaceFunction() DOESN'T WORK!
 
 }
