@@ -22,13 +22,39 @@ class OneTwoImplementor: One, Two {
         super<One>.doSomething()
         super<Two>.doSomething()
     }
+
+    /**
+     * Kotlin's way to static methoods is companion objects!
+     */
+    companion object {
+        fun behaveLikeStaticButItsNot() {
+            println("I'm not actually static")
+        }
+    }
 }
 
 
 fun main(args: Array<String>) {
     val one: One = OneTwoImplementor()
     val two: Two = OneTwoImplementor()
+    val oneTwo: OneTwoImplementor = OneTwoImplementor();
 
     one.doSomething()
     two.doSomething()
+    oneTwo.doSomething()
+
+
+    println(one.yetAnotherInterfaceFunction())
+    println(oneTwo.yetAnotherInterfaceFunction())
+    OneTwoImplementor.behaveLikeStaticButItsNot()
+    // two.yetAnotherInterfaceFunction() DOESN'T WORK!
+
+}
+
+/**
+ * This is called extensions. We add yet another function to interface, and all classes implementing
+ * this interface can now use this function. Note: Classes can not override this function
+ */
+fun One.yetAnotherInterfaceFunction() : String {
+    return "another interface function"
 }
