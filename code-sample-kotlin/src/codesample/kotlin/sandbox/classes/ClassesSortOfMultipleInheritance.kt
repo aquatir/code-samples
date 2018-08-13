@@ -14,7 +14,7 @@ interface Two {
 }
 
 /**
- * If both interfaces have a method with the same signature, you ccan override it once.
+ * If both interfaces have a method with the same signature, you can override it once.
  * You can also call respective super methods if required
  */
 class OneTwoImplementor: One, Two {
@@ -38,7 +38,7 @@ class OneTwoImplementor: One, Two {
 fun main(args: Array<String>) {
     val one: One = OneTwoImplementor()
     val two: Two = OneTwoImplementor()
-    val oneTwo: OneTwoImplementor = OneTwoImplementor();
+    val oneTwo = OneTwoImplementor()
 
     one.doSomething()
     two.doSomething()
