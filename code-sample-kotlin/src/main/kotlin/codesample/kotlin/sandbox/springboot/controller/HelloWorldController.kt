@@ -15,6 +15,11 @@ class HelloWorldController (
         return "Hello, world!"
     }
 
+    @GetMapping("/all")
+    fun findAll() : List<Customer> {
+        return customerRepository.findAll()
+    }
+
     @GetMapping("/lastNameBauer")
     fun getBauers() : List<Customer> {
         return customerRepository.findByLastName("Bauer")
