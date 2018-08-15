@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.h2",
+      "type": "java.lang.String",
+      "description": "Description for spring.h2."
+  }
+] }

@@ -8,8 +8,6 @@ import javax.persistence.Id
 class Customer (
         var firstName: String = "",
         var lastName: String = "",
-
-        @Id
-        @GeneratedValue
-        var id: Long = 0
+        @Id @GeneratedValue var id: Long = 0
 )
+

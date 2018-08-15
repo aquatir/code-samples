@@ -2,8 +2,7 @@ package codesample.kotlin.sandbox.springboot.controller
 
 import codesample.kotlin.sandbox.springboot.db.CustomerRepository
 import codesample.kotlin.sandbox.springboot.entity.Customer
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 class HelloWorldController (
@@ -23,5 +22,10 @@ class HelloWorldController (
     @GetMapping("/lastNameBauer")
     fun getBauers() : List<Customer> {
         return customerRepository.findByLastName("Bauer")
+    }
+
+    @PostMapping("/customer")
+    fun getCustomer(@RequestParam name: String) : List<Customer>  {
+        return customerRepository.findByFirstName(name)
     }
 }
