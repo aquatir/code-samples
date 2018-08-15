@@ -11,8 +11,8 @@ import org.springframework.context.annotation.Bean
 class SpringBootRunner {
 
     @Bean
-    /* The same can be done by placing data.sql file in resources (or defining what this name
-    * should be in config) */
+    /* The same can be done by placing data.sql file in resources (or defining where that file
+    and what it's name is in app properties */
     fun init(repository: CustomerRepository) = CommandLineRunner {
         repository.save(Customer("Jack", "Bauer"))
         repository.save(Customer("Chloe", "O'Brian"))
