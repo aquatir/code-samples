@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class HelloWorldController (val customerRepository: CustomerRepository){
+class HelloWorldController (
+        val customerRepository: CustomerRepository
+) {
 
     @GetMapping("/")
     fun helloWorld() :String {
