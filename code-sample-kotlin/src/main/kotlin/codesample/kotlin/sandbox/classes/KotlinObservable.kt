@@ -4,7 +4,7 @@ import kotlin.properties.Delegates
 
 class User {
     var name: String by Delegates.observable("Default") {
-        prop, old, new -> println("$old -> $new")
+        _, old, new -> println("$old -> $new")
     }
 }
 
