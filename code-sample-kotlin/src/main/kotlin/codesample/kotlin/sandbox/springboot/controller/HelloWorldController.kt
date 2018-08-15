@@ -10,24 +10,20 @@ class HelloWorldController (
 ) {
 
     @GetMapping("/")
-    fun helloWorld() :String {
-        return "Hello, world!"
-    }
+    fun helloWorld() :String
+            = "Hello, world!"
 
     @GetMapping("/all")
-    fun findAll() : List<Customer> {
-        return customerRepository.findAll()
-    }
+    fun findAll() : List<Customer>
+            = customerRepository.findAll()
+
 
     @GetMapping("/lastNameBauer")
-    fun getBauers() : List<Customer> {
-        return customerRepository.findByLastName("Bauer")
-    }
+    fun getBauers() : List<Customer>
+            = customerRepository.findByLastName("Bauer")
 
     @PostMapping("/customer")
-    fun getCustomer(@RequestParam name: String) : List<Customer>  {
-        return customerRepository.findByFirstName(name)
-    }
-
+    fun getCustomer(@RequestParam name: String) : List<Customer>
+            = customerRepository.findByFirstName(name)
 
 }
