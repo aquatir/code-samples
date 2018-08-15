@@ -7,8 +7,8 @@ data class SealedAge(val age: Int) : Seal()
 
 /**
  * When dealing with when expression, you generally have to add else branch.
- * When your expression is a sealed class, you don't have to do it, since it's impossible for
- * sealed class to have any value other then that of it's subclasses.
+ * When your expression is a sealed class, you don't have to do it, since all the possible types can be
+ * determined in runtime
  */
 fun eval (expression: Seal): String = when (expression) {
     is SealedName -> "Sealed name"

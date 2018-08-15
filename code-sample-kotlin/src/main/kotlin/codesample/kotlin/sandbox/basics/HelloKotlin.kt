@@ -109,4 +109,22 @@ fun main(args: Array<String>) {
     for ((index, value) in fruits.withIndex()) {
         println("intex: $index value: $value")
     }
+
+    println("\n****** DESTRUCTURING DECLARATION ******* ")
+    data class Student(val a :String, val b: Int, val c: String ){
+        var name:String = this.a
+        var age:Int = this.b
+        val subject:String = this.c
+    }
+
+    val student = Student("Ivan", 4, "Biology")
+    val (param1, param2, param3) = student
+    println("Name $param1, age: $param2, subject: $param3")
+
+    fun returnArrayOfInt() : Array<Int> {
+        return arrayOf(1,2,3)
+    }
+
+    val (value1, value2, value3) = returnArrayOfInt()
+    println("value1: $value1, value2: $value2, value3: $value3")
 }
