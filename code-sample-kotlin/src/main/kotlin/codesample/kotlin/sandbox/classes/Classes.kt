@@ -48,7 +48,8 @@ interface Runnnnable {
     var myVar: String // Kotlin properties may also be defined and initialized in subclasses
 }
 
-fun main(args: Array<String>) {
+/** Run this func in test BasicsRunner */
+fun classes() {
     val innerStatic = TheSuper.InnerStatic()
     innerStatic.printInnerStatic()
 

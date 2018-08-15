@@ -15,7 +15,8 @@ fun eval (expression: Seal): String = when (expression) {
     is SealedAge -> "Sealed age"
 }
 
-fun main(args: Array<String>) {
+/** Run this func in test BasicsRunner */
+fun kotlinSealedClasses() {
     val sealedBro = SealedName("Boris")
     val sealedAge = SealedAge(5)
     println(eval(sealedBro))
