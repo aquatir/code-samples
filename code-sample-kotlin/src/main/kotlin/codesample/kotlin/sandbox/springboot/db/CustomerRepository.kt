@@ -8,7 +8,8 @@ interface CustomerRepository : JpaRepository<Customer, Long> {
 
     fun findByLastName(lastName: String) : List<Customer>
 
-    @Query(value = "SELECT * FROM Customer c " +
-            "WHERE c.name = :name", nativeQuery = true)
+    @Query(value = "SELECT * FROM Customer " +
+            "WHERE name = :name", nativeQuery = true)
     fun findByFirstName(name: String) : List<Customer>
+
 }

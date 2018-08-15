@@ -6,10 +6,8 @@ import javax.persistence.Id
 
 @Entity
 class Customer (
-        var firstName: String = "",
+        var name: String = "",
         var lastName: String = "",
-
-        @Id
-        @GeneratedValue
-        var id: Long = 0
+        @Id @GeneratedValue var id: Long = 0
 )
+
