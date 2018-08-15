@@ -34,8 +34,8 @@ class OneTwoImplementor: One, Two {
     }
 }
 
-
-fun main(args: Array<String>) {
+/** Run this func in test BasicsRunner */
+fun classesSortOfMultipleInheritance() {
     val one: One = OneTwoImplementor()
     val two: Two = OneTwoImplementor()
     val oneTwo = OneTwoImplementor()

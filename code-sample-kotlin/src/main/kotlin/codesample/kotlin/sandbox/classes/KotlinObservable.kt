@@ -8,7 +8,8 @@ class User {
     }
 }
 
-fun main(args: Array<String>) {
+/** Run this func in test BasicsRunner */
+fun kotlinObservable() {
     val usr = User()
     usr.name = "Ivan"
     usr.name = "Narkoman"

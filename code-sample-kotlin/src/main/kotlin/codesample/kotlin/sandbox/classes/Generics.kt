@@ -53,8 +53,8 @@ fun acceptGenericValueIn(middleOrTop : GenericValue<in TheMiddleClass>) {
     middleOrTop.print()
 }
 
-
-fun main(args : Array<String>) {
+/** Run this func in test BasicsRunner */
+fun generics() {
     val genericOfString : GenericExample<String> = GenericExample("kek")
     genericOfString.printT()
 
