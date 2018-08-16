@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>XSS example </title>
+</head>
+
+<body>
+    <form th:action="@{/data}" method="post">
+        <div>
+            <label> Username :
+                <input type="text" name="username"/>
+            </label>
+        </div>
+        <div>
+            <input type="submit" value="Lets xss!"/>
+        </div>
+    </form>
+</body>
+
+</html>
