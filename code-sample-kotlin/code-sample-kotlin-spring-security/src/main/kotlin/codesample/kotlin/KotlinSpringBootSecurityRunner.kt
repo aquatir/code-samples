@@ -1,5 +1,7 @@
 package codesample.kotlin
 
+import codesample.kotlin.entity.User
+import codesample.kotlin.repository.UserRepository
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -10,11 +12,9 @@ class KotlinSpringBootSecurityRunner {
 
     @Bean
     fun init(repository: UserRepository) = CommandLineRunner {
-        repository.save(Customer("Jack", "Bauer"))
-        repository.save(Customer("Chloe", "O'Brian"))
-        repository.save(Customer("Kim", "Bauer"))
-        repository.save(Customer("David", "Palmer"))
-        repository.save(Customer("Michelle", "Dessler"))
+        repository.save(User("admin", "admin"))
+        repository.save(User("user", "password"))
+        repository.save(User("ivan", "narkoman"))
     }
 }
 

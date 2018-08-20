@@ -14,7 +14,7 @@ class User (
         private var password: String = "",
         private var enabled: Boolean = true,
         @Id @GeneratedValue
-        var id: Long = 0) : UserDetails {
+        val id: Long = 0) : UserDetails {
 
     override fun getAuthorities() : MutableCollection<out GrantedAuthority>
             = AuthorityUtils.NO_AUTHORITIES
