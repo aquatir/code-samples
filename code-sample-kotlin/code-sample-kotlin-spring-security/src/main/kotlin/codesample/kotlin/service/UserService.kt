@@ -20,9 +20,7 @@ class UserService (@Autowired private val userRepository: UserRepository,
 
     fun createNewAndSave(username: String, password: String, secondName: String): User {
         val encodedPassword = passwordEncoder.encode(password)
-        val user = User(username = username,
-                password = encodedPassword,
-                secondName = secondName)
+        val user = User(username = username, password = encodedPassword, secondName = secondName)
         return userRepository.save(user)
     }
 }
