@@ -1,6 +1,6 @@
 package codesample.kotlin.controller
 
-import codesample.kotlin.service.DbUserDetailsService
+import codesample.kotlin.exception.UserExistException
 import codesample.kotlin.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
@@ -42,12 +42,18 @@ class UserController (@Autowired private val userService: UserService){
     fun createUser(@RequestParam username: String,
                    @RequestParam password: String,
                    @RequestParam secondName: String): ModelAndView {
-        val mav = ModelAndView("hello")
-        val user = userService.createNewAndSave(username, password, secondName)
+        return try {
 
-        mav.addObject("userName", user.username)
-        mav.addObject("userPassword", user.password)
+            val mav = ModelAndView("hello")
+            val user = userService.createNewAndSave(username, password, secondName)
+            mav.addObject("userName", user.username)
+            mav.addObject("userPassword", user.password)
+            mav
 
-        return mav
+        } catch (userExist: UserExistException) {
+            val mav = ModelAndView("error")
+            mav.addObject("error", userExist.message!!)
+            mav
+        }
     }
 }
