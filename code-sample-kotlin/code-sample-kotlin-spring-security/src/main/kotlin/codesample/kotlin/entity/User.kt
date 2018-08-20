@@ -12,6 +12,7 @@ import javax.persistence.Id
 class User (
         private var username: String = "",
         private var password: String = "",
+        var secondName: String = "",
         private var enabled: Boolean = true,
         @Id @GeneratedValue
         val id: Long = 0) : UserDetails {

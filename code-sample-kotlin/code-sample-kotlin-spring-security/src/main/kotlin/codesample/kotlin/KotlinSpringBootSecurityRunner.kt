@@ -1,20 +1,21 @@
 package codesample.kotlin
 
-import codesample.kotlin.entity.User
 import codesample.kotlin.repository.UserRepository
+import codesample.kotlin.service.UserService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
 
 @SpringBootApplication
-class KotlinSpringBootSecurityRunner {
+class KotlinSpringBootSecurityRunner (@Autowired private val userService: UserService) {
 
     @Bean
     fun init(repository: UserRepository) = CommandLineRunner {
-        repository.save(User("admin", "admin"))
-        repository.save(User("user", "password"))
-        repository.save(User("ivan", "narkoman"))
+        userService.createNewAndSave("admin", "admin", "adminovich")
+        userService.createNewAndSave("user", "password", "userovich")
+        userService.createNewAndSave("ivan", "narkoman", "ivanovich")
     }
 }
 

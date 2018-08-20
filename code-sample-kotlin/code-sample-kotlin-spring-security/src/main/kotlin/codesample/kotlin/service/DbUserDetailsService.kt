@@ -8,10 +8,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
 
 @Service
-class DbUserService (@Autowired private val userRepository: UserRepository) : UserDetailsService {
+class DbUserDetailsService (@Autowired private val userRepository: UserRepository) : UserDetailsService {
 
     override fun loadUserByUsername(username: String): UserDetails
         = userRepository.findByUsername(username) ?: throw UsernameNotFoundException("user $username not found")
-
-    fun allUsers() = userRepository.findAll()
 }

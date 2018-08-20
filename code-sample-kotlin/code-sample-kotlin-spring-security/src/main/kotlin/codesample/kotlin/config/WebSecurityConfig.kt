@@ -1,6 +1,6 @@
 package codesample.kotlin.config
 
-import codesample.kotlin.service.DbUserService
+import codesample.kotlin.service.DbUserDetailsService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -15,7 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder
 
 @Configuration
 @EnableWebSecurity
-class WebSecurityConfig(@Autowired private val dbUserService: DbUserService) : WebSecurityConfigurerAdapter() {
+class WebSecurityConfig(@Autowired private val dbUserService: DbUserDetailsService) : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity) {
         http
