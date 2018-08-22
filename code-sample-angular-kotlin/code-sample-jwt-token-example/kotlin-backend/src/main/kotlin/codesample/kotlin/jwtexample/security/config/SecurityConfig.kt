@@ -26,10 +26,13 @@ class SecurityConfig (val authExceptionsEntry: AuthExceptionsEntry)
                 .authorizeRequests()
 
                 .antMatchers("/auth/**").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("/**").authenticated()
     }
 
     override fun configure(web: WebSecurity) {
+        /* This config excludes /h2-console from security filterChain, allowing everyone to access it.
+        * Note that adding this URL to HttpSecurity config will yield no result! (And a currently do not know why...
+        * Presumably it has something to do with H2 trying to identify you as user which can be authenticated) */
         web
                 .ignoring().antMatchers("/h2-console/**/**")
     }
