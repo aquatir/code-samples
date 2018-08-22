@@ -31,7 +31,7 @@ class User (
                 name = "USER_AUTHORITY",
                 joinColumns = [JoinColumn(name = "USER_ID", referencedColumnName = "ID")],
                 inverseJoinColumns = [JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")])
-        val authorities: Set<Authority> = emptySet(),
+        val authorities: List<Authority> = emptyList(),
 
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)

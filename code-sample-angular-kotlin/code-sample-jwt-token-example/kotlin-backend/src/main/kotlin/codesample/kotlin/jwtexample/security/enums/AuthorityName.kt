@@ -1,5 +1,6 @@
 package codesample.kotlin.jwtexample.security.enums
 
 enum class AuthorityName {
-    USER, ADMIN
+    ROLE_USER,
+    ROLE_ADMIN
 }

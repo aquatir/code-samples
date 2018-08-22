@@ -14,8 +14,3 @@ spring.jpa:
 spring.h2.console:
   enabled: true
   path: /h2-console
-
-logging.level:
-  org.springframework.web: DEBUG
-  org.springframework.security: DEBUG
-  org.hibernate: ERROR
