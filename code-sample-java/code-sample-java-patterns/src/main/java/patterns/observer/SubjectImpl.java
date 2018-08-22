@@ -11,7 +11,7 @@ public class SubjectImpl implements Subject {
     int someValue;
 
     public SubjectImpl() {
-        observers = new ArrayList<Observer>();
+        observers = new ArrayList<>();
         someValue = 0;
     }
 
@@ -22,8 +22,7 @@ public class SubjectImpl implements Subject {
 
     @Override
     public void removeObserver(Observer observer) {
-        int index = observers.indexOf(observer);
-        observers.remove(index);
+        observers.remove(observer);
     }
 
     @Override

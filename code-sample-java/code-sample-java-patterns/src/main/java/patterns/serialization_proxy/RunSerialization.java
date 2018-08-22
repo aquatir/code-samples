@@ -36,9 +36,7 @@ public class RunSerialization {
 
             System.out.println("Deserialize int field: " + deserialize.getIntField() + " string field: " + deserialize.getStringField());
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

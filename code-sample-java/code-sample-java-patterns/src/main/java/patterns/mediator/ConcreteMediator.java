@@ -7,7 +7,7 @@ public class ConcreteMediator implements Mediator {
     private ArrayList<Colleague> collegues;
 
     public  ConcreteMediator() {
-        collegues = new ArrayList<Colleague>();
+        collegues = new ArrayList<>();
     }
 
     @Override

@@ -16,7 +16,7 @@ public class Model implements ModelInterface {
      * Create LinkedList of view observers when created
      */
     public Model() {
-        observedViews = new LinkedList<Observer>();
+        observedViews = new LinkedList<>();
         displayedNumber = 0;
     }
 
@@ -32,9 +32,7 @@ public class Model implements ModelInterface {
 
     @Override
     public void notifyObservers() {
-        for (int i = 0; i < observedViews.size(); ++i) {
-            observedViews.get(i).update();
-        }
+        observedViews.forEach(Observer::update);
     }
 
     /**

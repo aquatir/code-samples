@@ -1,8 +1,6 @@
 package patterns.MVC_gui;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * View is GUI which can be seen by user. It can only display items with it's own methods.
@@ -60,12 +58,7 @@ public class View implements Observer{
     private class myButton extends JButton {
         public myButton(String str) {
             super(str);
-            this.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    controller.incrementDisplayedNumber();
-                }
-            });
+            this.addActionListener(e -> controller.incrementDisplayedNumber());
         }
     }
 }

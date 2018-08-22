@@ -22,9 +22,7 @@ public class IntegerArrayIterator implements Iterator<Integer> {
 
     @Override
     public boolean hasNext() {
-        if (position < array.length)
-            return true;
+        return position < array.length;
 
-        return false;
     }
 }

@@ -21,12 +21,9 @@ public class Proxy implements  EntityInterface {
         else {
             if (!running) {
                 running = true;
-                Thread retrieveActualEntity = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        /* this will take 4 second is our example */
-                        actualEntity = new ActualEntity();
-                    }
+                Thread retrieveActualEntity = new Thread(() -> {
+                    /* this will take 4 second is our example */
+                    actualEntity = new ActualEntity();
                 });
                 retrieveActualEntity.start();
             }

@@ -34,9 +34,6 @@ public class InitParameters {
             return false;
 
         InitParameters other = (InitParameters) obj;
-        if (other.getInitValue() != this.getInitValue())
-            return false;
-
-        return true;
+        return other.getInitValue() == this.getInitValue();
     }
 }
