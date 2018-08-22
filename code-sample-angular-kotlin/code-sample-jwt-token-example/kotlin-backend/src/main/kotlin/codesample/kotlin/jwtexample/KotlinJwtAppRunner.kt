@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class KotlinSpringBootSecurityRunner
+class KotlinJwtAppRunner
 
 fun main(args: Array<String>) {
-    runApplication<KotlinSpringBootSecurityRunner>(*args)
+    runApplication<KotlinJwtAppRunner>(*args)
 }
