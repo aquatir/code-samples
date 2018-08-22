@@ -1,16 +1,23 @@
 package codesample.kotlin.jwtexample.security.config
 
 import codesample.kotlin.jwtexample.security.AuthExceptionsEntry
+import codesample.kotlin.jwtexample.security.service.DbUserDetailsService
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.config.http.SessionCreationPolicy
+import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 
 @Configuration
 @EnableWebSecurity
-class SecurityConfig (val authExceptionsEntry: AuthExceptionsEntry)
+class SecurityConfig (val authExceptionsEntry: AuthExceptionsEntry,
+                      val dbUserDetailsService: DbUserDetailsService)
     : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity) {
@@ -36,4 +43,18 @@ class SecurityConfig (val authExceptionsEntry: AuthExceptionsEntry)
         web
                 .ignoring().antMatchers("/h2-console/**/**")
     }
+
+    @Bean
+    fun passwordEncoderBean() = BCryptPasswordEncoder()
+
+    @Autowired
+    fun configureGlobal(auth: AuthenticationManagerBuilder) {
+        auth
+                .userDetailsService<UserDetailsService>(dbUserDetailsService)
+                .passwordEncoder(passwordEncoderBean())
+    }
+
+
+
+
 }
