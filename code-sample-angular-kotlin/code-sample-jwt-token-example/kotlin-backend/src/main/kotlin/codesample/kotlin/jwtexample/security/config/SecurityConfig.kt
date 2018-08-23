@@ -13,6 +13,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import org.springframework.web.cors.CorsConfiguration
+import org.springframework.web.cors.CorsConfigurationSource
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource
+import java.util.*
 
 @Configuration
 @EnableWebSecurity
@@ -22,6 +26,11 @@ class SecurityConfig (val authExceptionsEntry: AuthExceptionsEntry,
 
     override fun configure(http: HttpSecurity) {
         http
+
+                // Configure CORS to allow assess from locally deployed angular app
+                .cors().configurationSource(corsConfigurationSource())
+                .and()
+
                 // Route all auth exceptions to this class. See it's comment for more info
                 .exceptionHandling().authenticationEntryPoint(authExceptionsEntry)
                 .and()
@@ -42,6 +51,18 @@ class SecurityConfig (val authExceptionsEntry: AuthExceptionsEntry,
         * Presumably it has something to do with H2 trying to identify you as user which can be authenticated) */
         web
                 .ignoring().antMatchers("/h2-console/**/**")
+    }
+
+    @Bean
+    fun corsConfigurationSource() : CorsConfigurationSource {
+        val configuration = CorsConfiguration().also {
+            it.allowedOrigins = Arrays.asList("http://localhost:8080")
+            it.allowedMethods = Arrays.asList("GET", "POST")
+        }
+
+        return UrlBasedCorsConfigurationSource().also {
+            it.registerCorsConfiguration("/**", configuration)
+        }
     }
 
     @Bean
