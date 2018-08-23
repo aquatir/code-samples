@@ -40,7 +40,7 @@ class CountDownRunnable implements Runnable {
     public void run() {
         try {
             for (int i = 0; i < numOfCountDowns; i++) {
-                System.out.println("Thread counting down latch " + i);
+                System.out.println("Thread counting down latch " + (i+1) + " out of " + numOfCountDowns);
                 latch.countDown();
                 Thread.sleep(1000);
 
