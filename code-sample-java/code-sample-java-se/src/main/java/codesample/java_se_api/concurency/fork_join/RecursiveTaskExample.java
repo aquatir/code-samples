@@ -35,8 +35,9 @@ class RecursiveTaskExample {
         protected Integer compute() {
             int sum = 0;
 
-            /* If task is small enough to be executed in a single thread - then execute. Note that threshold value here is taken from
-            * out from thin air. Usually you should study your task behavior to determine this value correctly */
+            /* If task is small enough to be executed in a single thread - then execute. Note that threshold value here
+             * is taken as magic number. Usually you should test and profile your task behavior to determine this value
+             * correctly to achieve the best performance and memory footprint */
             if ((end - start) < threshold) {
                 for (int i = start; i < end; i++) {
                     sum += array[i];

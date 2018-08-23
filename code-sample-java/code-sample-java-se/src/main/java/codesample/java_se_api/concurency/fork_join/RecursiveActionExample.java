@@ -7,7 +7,8 @@ import java.util.concurrent.RecursiveAction;
  * that classical Executor framework. One of the advantages of Fork/Join framework is RecursiveAction/RecursiveTask classes.
  * They provide a simple way to split execution of any task recursively.
  *
- * This example creates a recursive action to double each value in array and put it back
+ * This example creates a recursive action to double each value in array and put it back (which you SHOULD do with
+ * stream api since java 8, but this is an example)
  */
 class RecursiveActionExample {
     public static void main(String[] args) {
@@ -46,8 +47,9 @@ class RecursiveActionExample {
 
         @Override
         protected void compute() {
-            /* If task is small enough to be executed in a single thread - then execute. Note that threshold value here is taken from
-            * out from thin air. Usually you should study your task behavior to determine this value correctly */
+            /* If task is small enough to be executed in a single thread - then execute. Note that threshold value here
+             * is taken as magic number. Usually you should test and profile your task behavior to determine this value
+             * correctly to achieve the best performance and memory footprint */
             if ((end - start) < threshold) {
                 for (int i = start; i < end; i++) {
                     array[i] = array[i] * array[i];
