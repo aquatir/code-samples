@@ -1,5 +1,6 @@
 package codesample.kotlin.jwtexample.security
 
+import codesample.kotlin.jwtexample.KotlinJwtAppRunner
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -11,7 +12,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
 
 @RunWith(SpringJUnit4ClassRunner::class)
-@SpringBootTest
+@SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT,
+        classes = [KotlinJwtAppRunner::class])
 @AutoConfigureMockMvc
 class AuthTest {
 

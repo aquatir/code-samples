@@ -18,10 +18,10 @@ import java.util.*
 class JwtTokenService {
     private val logger = LoggerFactory.getLogger(JwtTokenService::class.java)
 
-    @Value("#{security.jwt.secret}")
+    @Value("\${security.jwt.secret}")
     private lateinit var jwtSecret: String
 
-    @Value("#{security.jwt.expirationInMs}")
+    @Value("\${security.jwt.expirationInMs}")
     private lateinit var jwtExpirationInMs: String
 
     fun generateToken(authentication: Authentication) :String {
