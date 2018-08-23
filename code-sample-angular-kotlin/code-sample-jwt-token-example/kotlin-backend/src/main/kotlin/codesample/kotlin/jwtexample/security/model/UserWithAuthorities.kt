@@ -13,7 +13,7 @@ class UserWithAuthorities (
         val id: Long
 ) : UserDetails {
 
-    constructor(user: User) : this(
+    constructor(user: User) : this (
             user.username,
             user.password,
             user.name,

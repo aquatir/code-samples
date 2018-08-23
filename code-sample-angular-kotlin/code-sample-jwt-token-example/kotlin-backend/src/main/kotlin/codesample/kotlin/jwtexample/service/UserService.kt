@@ -18,12 +18,13 @@ class UserService (
                           unhashedPassword: String,
                           name: String,
                           authorities: List<AuthorityName>) : User {
-        val user = User(
-                username,
-                passwordEncoder.encode(unhashedPassword),
-                name,
-                authorityRepository.findByNameIn(authorities)
-        )
-        return userRepository.save(user)
+        return User(
+                username = username,
+                password = passwordEncoder.encode(unhashedPassword),
+                name = name,
+                authorities = authorityRepository.findByNameIn(authorities))
+
+                .apply { userRepository.save(this)
+        }
     }
 }

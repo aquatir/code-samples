@@ -55,13 +55,13 @@ class SecurityConfig (val authExceptionsEntry: AuthExceptionsEntry,
 
     @Bean
     fun corsConfigurationSource() : CorsConfigurationSource {
-        val configuration = CorsConfiguration().also {
-            it.allowedOrigins = Arrays.asList("http://localhost:8080")
-            it.allowedMethods = Arrays.asList("GET", "POST")
+        val configuration = CorsConfiguration().apply {
+            allowedOrigins = Arrays.asList("http://localhost:8080")
+            allowedMethods = Arrays.asList("GET", "POST")
         }
 
-        return UrlBasedCorsConfigurationSource().also {
-            it.registerCorsConfiguration("/**", configuration)
+        return UrlBasedCorsConfigurationSource().apply {
+            registerCorsConfiguration("/**", configuration)
         }
     }
 
