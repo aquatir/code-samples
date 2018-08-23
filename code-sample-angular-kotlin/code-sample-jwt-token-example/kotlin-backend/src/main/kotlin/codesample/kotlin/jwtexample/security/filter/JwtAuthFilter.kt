@@ -20,12 +20,14 @@ class JwtAuthFilter(private val jwtTokenService: JwtTokenService,
         try {
             val jwtToken = getJwtFromRequest(request)
             jwtToken?.let {
-                val userId = jwtTokenService.getUserIdFromJWT(jwtToken)
-                val userDetails = dbUserDetailsService.loadUserById(userId)
-                val authentication = UsernamePasswordAuthenticationToken(userDetails, null, userDetails.authorities)
-                        .apply { details = WebAuthenticationDetailsSource().buildDetails(request) }
+                if (jwtTokenService.validateToken(jwtToken)) {
+                    val userId = jwtTokenService.getUserIdFromJWT(jwtToken)
+                    val userDetails = dbUserDetailsService.loadUserById(userId)
+                    val authentication = UsernamePasswordAuthenticationToken(userDetails, null, userDetails.authorities)
+                            .apply { details = WebAuthenticationDetailsSource().buildDetails(request) }
 
-                SecurityContextHolder.getContext().authentication = authentication
+                    SecurityContextHolder.getContext().authentication = authentication
+                }
             }
         } catch (ex: Exception ) {
             logger.error("Could not set user authentication in security context", ex)

@@ -6,6 +6,9 @@ import codesample.kotlin.jwtexample.security.service.DbUserDetailsService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
+import org.springframework.security.authentication.AuthenticationManager
+import org.springframework.security.config.BeanIds
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -60,6 +63,36 @@ class SecurityConfig (val authExceptionsEntry: AuthExceptionsEntry,
         * Presumably it has something to do with H2 trying to identify you as user which can be authenticated) */
         web
                 .ignoring().antMatchers("/h2-console/**/**")
+                .and()
+
+                /* Do not use security on token endpoint */
+                .ignoring().antMatchers(HttpMethod.POST, "/auth")
+
+                /* Do not use security on static resources */
+                .and()
+                .ignoring().antMatchers(
+                        HttpMethod.GET,
+                        "/",
+                        "/*.html",
+                        "/favicon.ico",
+                        "/**/*.html",
+                        "/**/*.css",
+                        "/**/*.js"
+                )
+    }
+
+    /* We need this in order to authenticate user after call to http endpoint
+    * in SecurityController */
+    @Bean(BeanIds.AUTHENTICATION_MANAGER)
+    override fun authenticationManagerBean(): AuthenticationManager {
+        return super.authenticationManagerBean()
+    }
+
+    @Autowired
+    fun configureGlobal(auth: AuthenticationManagerBuilder) {
+        auth
+                .userDetailsService<UserDetailsService>(dbUserDetailsService)
+                .passwordEncoder(passwordEncoderBean())
     }
 
     @Bean
@@ -74,15 +107,13 @@ class SecurityConfig (val authExceptionsEntry: AuthExceptionsEntry,
         }
     }
 
+
     @Bean
     fun passwordEncoderBean() = BCryptPasswordEncoder()
 
-    @Autowired
-    fun configureGlobal(auth: AuthenticationManagerBuilder) {
-        auth
-                .userDetailsService<UserDetailsService>(dbUserDetailsService)
-                .passwordEncoder(passwordEncoderBean())
-    }
+
+
+
 
 
 
