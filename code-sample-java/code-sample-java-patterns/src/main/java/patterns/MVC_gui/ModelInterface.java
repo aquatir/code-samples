@@ -1,6 +1,6 @@
 package patterns.MVC_gui;
 
-public interface ModelInterface {
+interface ModelInterface {
     int getDisplayedNumber();
     void setDisplayedNumber(int number);
     void registerObserver(Observer obs);

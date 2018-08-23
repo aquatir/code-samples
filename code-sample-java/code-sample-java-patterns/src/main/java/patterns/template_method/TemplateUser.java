@@ -3,7 +3,7 @@ package patterns.template_method;
 /**
  * Template User provides implementation for all abstracts in superclass TemplateHolder
  */
-public class TemplateUser extends TemplateHolder{
+class TemplateUser extends TemplateHolder{
     @Override
     void someMethodOne() {
         System.out.println("Concrete implementation of someMethodOne()");

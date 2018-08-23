@@ -8,7 +8,7 @@ import java.util.concurrent.CountDownLatch;
  * The main thread in this example will create a latch and a count down thread, which will count down this latch every second.
  * When the count down thread finish the main thread will continue on and print out last message to console
  */
-public class CountDownLatchExample {
+class CountDownLatchExample {
     public static void main(String[] args) throws InterruptedException {
 
         int numOfCountDowns = 5;
@@ -28,8 +28,8 @@ public class CountDownLatchExample {
 
 class CountDownRunnable implements Runnable {
 
-    private CountDownLatch latch;
-    private int numOfCountDowns;
+    private final CountDownLatch latch;
+    private final int numOfCountDowns;
 
     public CountDownRunnable(CountDownLatch latch, int numOfCountDowns) {
         this.latch = latch;

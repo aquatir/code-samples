@@ -9,10 +9,10 @@ import java.util.List;
  * It may still contains some bugs as of current version. BE AWARE AND TEST BEFORE USE!
  * or wait till I add up test methods.
  */
-public class Composite extends Component {
+class Composite extends Component {
 
-    private ArrayList<Component> components;
-    private String name;
+    private final ArrayList<Component> components;
+    private final String name;
 
     public Composite(String name) {
         components = new ArrayList<>();

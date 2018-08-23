@@ -10,8 +10,8 @@ package codesample.data_structures.stacks;
  */
 public class StackOnArray<GenericItemType> {
 
-    GenericItemType[] array;
-    int head; // next index for added element 
+    private GenericItemType[] array;
+    private int head; // next index for added element
 
     public StackOnArray() {
         array = (GenericItemType[]) new Object[16];

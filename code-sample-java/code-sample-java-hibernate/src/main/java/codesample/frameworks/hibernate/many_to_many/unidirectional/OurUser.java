@@ -50,8 +50,8 @@ public class OurUser {
         this.toggledOptions = options;
     }
 
-    public boolean addOption(Option option) {
-        return toggledOptions.add(option);
+    public void addOption(Option option) {
+        toggledOptions.add(option);
     }
 
     public boolean isToggled(Option option) {

@@ -3,7 +3,7 @@ package patterns.decorator;
 /**
  * Some test class. Launch and see how components are getting executed from bottom to top;
  */
-public class RunComponent {
+class RunComponent {
 
     public static void main(String[] args) {
         Component dec = new Decorator();

@@ -35,7 +35,7 @@ public class OwnerBidirectional {
         this.name = name;
     }
 
-    public DogBidirectional getDog() {
+    private DogBidirectional getDog() {
         return dog;
     }
 

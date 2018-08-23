@@ -9,7 +9,7 @@ import java.time.format.FormatStyle;
 /**
  * Shows time package examples
  */
-public class TimeExample {
+class TimeExample {
     public static void main(String[] args) {
 
         /* LocalDate, LocalTime and LocalDateTime classes all use static fabric methods to get new instances

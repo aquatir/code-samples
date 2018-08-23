@@ -3,7 +3,7 @@ package codesample.frameworks.hibernate.one_to_one_relation.bidirectional;
 import codesample.frameworks.hibernate.HibernateUtil;
 import org.hibernate.Session;
 
-public class HibernateOneToOneBidirectional {
+class HibernateOneToOneBidirectional {
     public static void main(String[] args) {
         DogBidirectional korgi = new DogBidirectional("korgi");
         DogBidirectional pug = new DogBidirectional("pug");
@@ -21,9 +21,9 @@ public class HibernateOneToOneBidirectional {
             session.save(julia);
 
             System.out.println("Owners:");
-            session.createQuery("From OwnerBidirectional").list().forEach(owner -> System.out.println(owner));
+            session.createQuery("From OwnerBidirectional").list().forEach(System.out::println);
             System.out.println("Dogs");
-            session.createQuery("From DogBidirectional").list().forEach(owner -> System.out.println(owner));
+            session.createQuery("From DogBidirectional").list().forEach(System.out::println);
 
             System.out.println();
             System.out.println("Now we delete 1 dog (korgi) and 1 owner (katya, who own a pug). After this there " +
@@ -32,9 +32,9 @@ public class HibernateOneToOneBidirectional {
             session.delete(katya);
 
             System.out.println("Owners:");
-            session.createQuery("From OwnerBidirectional").list().forEach(owner -> System.out.println(owner));
+            session.createQuery("From OwnerBidirectional").list().forEach(System.out::println);
             System.out.println("Dogs");
-            session.createQuery("From DogBidirectional").list().forEach(owner -> System.out.println(owner));
+            session.createQuery("From DogBidirectional").list().forEach(System.out::println);
 
             session.getTransaction().commit();
         }

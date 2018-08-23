@@ -7,9 +7,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
-public class ByteChannelAndByteBufferExample {
+class ByteChannelAndByteBufferExample {
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException {
         Path path = FilesCreatorNIO.createFiles()[0];
         String str = "Hello, world!";
 

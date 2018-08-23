@@ -9,7 +9,7 @@ import java.util.concurrent.CyclicBarrier;
  * When each of this threads calls await(), the barrier will be broken and all 3 threads will execute
  * their last line of code (Print out 'await finished!')
  */
-public class CyclicBarrierExample {
+class CyclicBarrierExample {
 
     public static void main(String[] args) {
         int numOfThreads = 3;
@@ -29,9 +29,9 @@ public class CyclicBarrierExample {
 
 class BarrierAwaiter implements Runnable {
 
-    private CyclicBarrier barrier;
-    private int waitTime;
-    private String threadName;
+    private final CyclicBarrier barrier;
+    private final int waitTime;
+    private final String threadName;
 
     BarrierAwaiter(CyclicBarrier barrier, int waitTime, String threadName) {
         this.barrier = barrier;
@@ -48,9 +48,7 @@ class BarrierAwaiter implements Runnable {
             barrier.await();
             System.out.println(threadName + " awaiting finished!");
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (BrokenBarrierException e) {
+        } catch (InterruptedException | BrokenBarrierException e) {
             e.printStackTrace();
         }
     }

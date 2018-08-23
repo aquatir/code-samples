@@ -43,7 +43,7 @@ public class Town {
         return townName;
     }
 
-    public void setTownName(String townName) {
+    private void setTownName(String townName) {
         this.townName = townName;
     }
 
@@ -59,7 +59,7 @@ public class Town {
         return biggestRiver;
     }
 
-    public void setBiggestRiver(String biggestRiver) {
+    private void setBiggestRiver(String biggestRiver) {
         this.biggestRiver = biggestRiver;
     }
 

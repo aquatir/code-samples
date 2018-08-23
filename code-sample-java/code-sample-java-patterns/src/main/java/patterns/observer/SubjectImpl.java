@@ -7,8 +7,8 @@ import java.util.ArrayList;
  */
 public class SubjectImpl implements Subject {
 
-    ArrayList<Observer> observers;
-    int someValue;
+    private final ArrayList<Observer> observers;
+    private int someValue;
 
     public SubjectImpl() {
         observers = new ArrayList<>();

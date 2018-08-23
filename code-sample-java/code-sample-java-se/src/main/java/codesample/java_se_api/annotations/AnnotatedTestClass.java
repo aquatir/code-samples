@@ -1,6 +1,6 @@
 package codesample.java_se_api.annotations;
 
-public class AnnotatedTestClass {
+class AnnotatedTestClass {
 
     @TestAnnotation(10)
     public void demonstrateValueAnnotationsFiledName() {

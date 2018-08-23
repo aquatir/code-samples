@@ -9,7 +9,7 @@ import java.util.concurrent.RecursiveAction;
  *
  * This example creates a recursive action to double each value in array and put it back
  */
-public class RecursiveActionExample {
+class RecursiveActionExample {
     public static void main(String[] args) {
 
         int printUntil = 41;
@@ -33,12 +33,12 @@ public class RecursiveActionExample {
 
     static class ArrayValueMultiplier extends RecursiveAction {
 
-        int threshold = 1000;
-        int start;
-        int end;
-        int[] array;
+        final int threshold = 1000;
+        final int start;
+        final int end;
+        final int[] array;
 
-        public ArrayValueMultiplier(int start, int end, int[] array) {
+        ArrayValueMultiplier(int start, int end, int[] array) {
             this.start = start;
             this.end = end;
             this.array = array;

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @RestController
 public class HeroesController {
 
-    private HeroRepository heroRepository;
+    private final HeroRepository heroRepository;
 
     public HeroesController(HeroRepository heroRepository) {
         this.heroRepository = heroRepository;

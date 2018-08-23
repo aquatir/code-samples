@@ -12,13 +12,6 @@ package patterns.builder;
  */
 public class GiantObjectToBuild {
 
-    /* required */
-    private final int value1;
-
-    /* optional */
-    private final int value2;
-    private final int value3;
-
     public static class Builder {
 
         /* required */
@@ -42,8 +35,10 @@ public class GiantObjectToBuild {
     }
 
     private GiantObjectToBuild(Builder builder) {
-        value1 = builder.value1;
-        value2 = builder.value2;
-        value3 = builder.value3;
+        /* required */
+        int value1 = builder.value1;
+        /* optional */
+        int value2 = builder.value2;
+        int value3 = builder.value3;
     }
 }

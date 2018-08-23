@@ -12,14 +12,14 @@ public abstract class Handler {
 
     private Handler nextHandler;
 
-    public void setNext(Handler nextHandler) {
+    void setNext(Handler nextHandler) {
         this.nextHandler = nextHandler;
     }
 
-    public void handle() {
+    void handle() {
     }
 
-    public Handler getNextHandler() {
+    Handler getNextHandler() {
         return nextHandler;
     }
 }

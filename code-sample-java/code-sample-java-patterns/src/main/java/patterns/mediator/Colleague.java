@@ -8,10 +8,10 @@ package patterns.mediator;
  *
  * Call to receive method should only be done by mediator.
  */
-public abstract class Colleague {
-    private Mediator mediator;
+abstract class Colleague {
+    private final Mediator mediator;
 
-    public Colleague(Mediator mediator) {
+    Colleague(Mediator mediator) {
         this.mediator = mediator;
     }
 
@@ -19,7 +19,7 @@ public abstract class Colleague {
         mediator.send(message, this);
     }
 
-    public Mediator getMediator() {
+    Mediator getMediator() {
         return  mediator;
     }
 

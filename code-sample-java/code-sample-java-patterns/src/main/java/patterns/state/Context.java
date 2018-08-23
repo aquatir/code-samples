@@ -4,12 +4,12 @@ package patterns.state;
  * Context class contains all available states + current state object.
  * When operation defined in {@link State} is called, it is getting called by currentStates class
  */
-public class Context {
+class Context {
 
-    State stateOne;
-    State stateTwo;
+    private final State stateOne;
+    private final State stateTwo;
 
-    State currentState;
+    private State currentState;
 
     public Context() {
         stateOne = new ConcreteStateOne(this);

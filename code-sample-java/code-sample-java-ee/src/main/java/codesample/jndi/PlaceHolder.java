@@ -1,4 +1,4 @@
 package codesample.jndi;
 
-public class PlaceHolder {
+class PlaceHolder {
 }

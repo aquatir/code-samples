@@ -9,7 +9,7 @@ import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;
 import java.lang.management.MemoryUsage;
 
-public class RunAttachedConnection {
+class RunAttachedConnection {
     public static void main(String args[]) throws IOException, InterruptedException {
 
 

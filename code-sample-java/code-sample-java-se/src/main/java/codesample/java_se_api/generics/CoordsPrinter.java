@@ -1,6 +1,6 @@
 package codesample.java_se_api.generics;
 
-public class CoordsPrinter {
+class CoordsPrinter {
     static void print2D(Coords<?> c) {
         System.out.println("x,y coords are:");
         for (int i = 0; i < c.coords.length; i++) {

@@ -5,7 +5,7 @@ import java.util.concurrent.RecursiveTask;
 /**
  * This example creates a recursive task to count all values in array in parallel fashion.
  */
-public class RecursiveTaskExample {
+class RecursiveTaskExample {
     public static void main(String[] args) {
         int[] sumThisValues = new int[100000];
         for (int i = 0; i < sumThisValues.length; i++) {
@@ -20,12 +20,12 @@ public class RecursiveTaskExample {
 
     static class SumThis extends RecursiveTask<Integer> {
 
-        int start;
-        int end;
-        int[] array;
-        int threshold = 1000;
+        final int start;
+        final int end;
+        final int[] array;
+        final int threshold = 1000;
 
-        public SumThis(int start, int end, int[] array) {
+        SumThis(int start, int end, int[] array) {
             this.start = start;
             this.end = end;
             this.array = array;

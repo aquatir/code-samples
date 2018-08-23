@@ -8,8 +8,8 @@ import java.util.WeakHashMap;
  *
  * See {@link FlyweightObject} and {@link InitParameters} for more info
  */
-public class FlyweightFactory {
-    private WeakHashMap<InitParameters, FlyweightObject> flyweightMap = new WeakHashMap<>();
+class FlyweightFactory {
+    private final WeakHashMap<InitParameters, FlyweightObject> flyweightMap = new WeakHashMap<>();
 
     /**
      * Make sure that {@link InitParameters} does respect hashCode/equals contract in order for map to work.

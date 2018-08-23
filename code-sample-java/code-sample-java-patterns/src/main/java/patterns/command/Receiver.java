@@ -1,6 +1,6 @@
 package patterns.command;
 
-public class Receiver {
+class Receiver {
     public void performAction() {
         System.out.println("Do something");
     }

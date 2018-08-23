@@ -1,4 +1,4 @@
 package patterns.factories.abstractFactory;
 
-public class ConcreteProductTwoFirst implements ProductTwo{
+class ConcreteProductTwoFirst implements ProductTwo{
 }

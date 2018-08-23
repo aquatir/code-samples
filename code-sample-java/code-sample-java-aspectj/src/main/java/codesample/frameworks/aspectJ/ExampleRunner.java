@@ -2,12 +2,12 @@ package codesample.frameworks.aspectJ;
 
 public class ExampleRunner {
 
-    public static void printStuff() {
+    private static void printStuff() {
         System.out.println("I'm printing stuff!");
         printMoreStuff();
     }
 
-    public static void printMoreStuff() {
+    private static void printMoreStuff() {
         System.out.println("I'm printing more stuff");
     }
 

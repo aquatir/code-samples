@@ -12,7 +12,7 @@ import java.io.IOException;
  * Usually this many_to_many bidirectional mapping consist of thing which can live without each other, thus
  * no CascadeType.ALL option is rare.
  */
-public class HibernateRunnerManyToManyBidirectional {
+class HibernateRunnerManyToManyBidirectional {
     public static void main(String[] args) {
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {

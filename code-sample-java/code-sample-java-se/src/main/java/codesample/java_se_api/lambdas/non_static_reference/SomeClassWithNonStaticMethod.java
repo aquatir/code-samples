@@ -1,7 +1,7 @@
 package codesample.java_se_api.lambdas.non_static_reference;
 
-public class SomeClassWithNonStaticMethod {
-    public int value;
+class SomeClassWithNonStaticMethod {
+    private int value;
 
     public SomeClassWithNonStaticMethod(int value) {
         this.value = value;

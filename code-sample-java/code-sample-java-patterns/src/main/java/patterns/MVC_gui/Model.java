@@ -9,7 +9,7 @@ import java.util.LinkedList;
  */
 public class Model implements ModelInterface {
 
-    private LinkedList<Observer> observedViews;
+    private final LinkedList<Observer> observedViews;
     private int displayedNumber;
 
     /**

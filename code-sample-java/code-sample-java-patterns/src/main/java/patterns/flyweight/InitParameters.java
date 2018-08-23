@@ -7,14 +7,14 @@ package patterns.flyweight;
  * Needless to say that this class is redundant. It's up to you to determine
  * how you want to find {@link FlyweightObject} in your {@link FlyweightFactory}
  */
-public class InitParameters {
-    private int initValue;
+class InitParameters {
+    private final int initValue;
 
     public InitParameters(int value) {
         initValue = value;
     }
 
-    public int getInitValue() {
+    private int getInitValue() {
         return initValue;
     }
 

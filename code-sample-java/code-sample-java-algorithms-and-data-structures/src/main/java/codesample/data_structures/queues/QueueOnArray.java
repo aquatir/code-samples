@@ -5,11 +5,11 @@ package codesample.data_structures.queues;
  *
  * @author Pavel Bukhmatov (buhmatov@gmail.com; github.com/aquatir)
  */
-public class QueueOnArray<Item> {
-    int head;
-    int tail;
-    int size;
-    Item[] array;
+class QueueOnArray<Item> {
+    private int head;
+    private int tail;
+    private int size;
+    private Item[] array;
 
     public QueueOnArray() {
         array = (Item[]) new Object[16];

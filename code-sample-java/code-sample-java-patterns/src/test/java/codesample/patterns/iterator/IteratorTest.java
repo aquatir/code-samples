@@ -10,13 +10,13 @@ import static org.junit.Assert.*;
 
 public class IteratorTest {
 
-    IteratorUser iteratorUser;
-    Iterator iterator;
+    private IteratorUser iteratorUser;
+    private Iterator iterator;
 
-    int size = 1_000_000;
-    int randomSeed = 0;
+    private final int size = 1_000_000;
+    private final int randomSeed = 0;
 
-    Random rnd;
+    private Random rnd;
 
     @Before
     public void beforeTest() {
@@ -41,7 +41,7 @@ public class IteratorTest {
         }
     }
 
-    public Integer[] generateTestData() {
+    private Integer[] generateTestData() {
         Integer[] array = new Integer[size];
         for (int i = 0; i<size; ++i) {
             array[i] = rnd.nextInt();

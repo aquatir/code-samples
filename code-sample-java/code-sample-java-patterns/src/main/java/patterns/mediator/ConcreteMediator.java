@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ConcreteMediator implements Mediator {
 
-    private ArrayList<Colleague> collegues;
+    private final ArrayList<Colleague> collegues;
 
     public  ConcreteMediator() {
         collegues = new ArrayList<>();

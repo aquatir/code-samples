@@ -19,17 +19,18 @@ public class Company {
     @MapKey(name = "id") // Use id property of CompanyWorker as a key to map
     private Map<CompanyWorker, CompanyContract> contracts;
 
-    public Company() {};
+    public Company() {}
+
     public Company (String name) {
         this.name = name;
         contracts = new HashMap<>();
     }
 
-    public int getId() {
+    private int getId() {
         return id;
     }
 
-    public String getName() {
+    private String getName() {
         return name;
     }
 
@@ -69,7 +70,7 @@ public class Company {
     public String toString() {
         String companyContracts = contracts.keySet().stream().collect(
                 StringBuilder::new, (prevValues, newValue) -> prevValues.append(newValue).append("\n"),
-                (streamOneResult, streamTwoResult) -> streamOneResult.append(streamTwoResult)).toString(); /* will never be called
+                StringBuilder::append).toString(); /* will never be called
                 is case of linear stream */
         return String.format("%3d %20s %s", getId(), getName(), companyContracts);
     }

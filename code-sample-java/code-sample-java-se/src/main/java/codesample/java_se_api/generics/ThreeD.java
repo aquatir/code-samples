@@ -1,8 +1,8 @@
 package codesample.java_se_api.generics;
 
-public class ThreeD extends TwoD {
+class ThreeD extends TwoD {
 
-    int z;
+    final int z;
     ThreeD(int x, int y, int z) {
         super(x, y);
         this.z = z;

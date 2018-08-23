@@ -1,6 +1,6 @@
 package patterns.flyweight;
 
-public class RunFlyweight {
+class RunFlyweight {
     public static void main(String[] args) {
 
         FlyweightFactory factory = new FlyweightFactory();

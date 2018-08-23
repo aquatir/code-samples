@@ -4,7 +4,7 @@ package patterns.memento;
  * Caretaker class can save {@link Memento} objects, but can not create them.
  * Only {@link Originator} can create memento object and only {@link Caretaker} can retrieve them.
  */
-public class Caretaker {
+class Caretaker {
     private Memento memento;
 
     public String getSavedState() {

@@ -2,7 +2,7 @@ package codesample.java_se_api.lambdas.object_method_reference;
 
 import codesample.java_se_api.lambdas.StringOpRunner;
 
-public class NonStaticMethodReferenceRunner {
+class NonStaticMethodReferenceRunner {
     public static void main(String[] args) {
         String hello = "hello, world!";
         StringOpRunner opRunner = new StringOpRunner();

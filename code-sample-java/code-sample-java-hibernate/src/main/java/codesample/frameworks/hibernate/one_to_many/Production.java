@@ -27,11 +27,10 @@ public class Production {
     public Production() {}
     public Production(String name) {
         this.name = name;
-        this.workers = workers;
     }
 
-    public boolean addWorker(Worker worker) {
-        return workers.add(worker);
+    public void addWorker(Worker worker) {
+        workers.add(worker);
     }
 
     public boolean removeWorker(Worker worker) {

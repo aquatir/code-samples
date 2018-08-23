@@ -8,5 +8,5 @@ package patterns.singleton;
 public enum SingletonPreInitEnum {
     INSTANCE;
 
-    public void someSingletonMethod() {};
+    public void someSingletonMethod() {}
 }

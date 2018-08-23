@@ -3,7 +3,7 @@ package codesample.java_se_api.io_and_nio.io;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
-public class ByteArrayInputStreamsExample {
+class ByteArrayInputStreamsExample {
 
     public static void main (String[] args) throws IOException {
 

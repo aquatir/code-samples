@@ -6,7 +6,7 @@ package patterns.command;
  */
 public class ConcreteReceiverCommand implements Command {
 
-    Receiver receiver;
+    private final Receiver receiver;
 
     public ConcreteReceiverCommand(Receiver receiver) {
         this.receiver = receiver;

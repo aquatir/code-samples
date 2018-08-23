@@ -1,6 +1,6 @@
 package codesample.java_se_api.lambdas.non_static_reference;
 
-public class NonStaticReferenceRunner {
+class NonStaticReferenceRunner {
     public static void main(String[] args) {
         /* there are 1 value which is equal to 5*/
         SomeClassWithNonStaticMethod[] arr = {

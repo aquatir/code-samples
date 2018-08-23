@@ -25,7 +25,7 @@ public class Hero extends Character {
         this.power = power;
     }
 
-    public Power getPower() {
+    private Power getPower() {
         return power;
     }
 

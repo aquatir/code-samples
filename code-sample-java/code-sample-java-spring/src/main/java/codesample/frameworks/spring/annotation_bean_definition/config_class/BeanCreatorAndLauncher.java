@@ -13,7 +13,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  * This example shows how to configure Spring beans in most straight-forward fashion. This was okay around spring 2-3.
  * Now you probably want to stick to bean definition using {@code @ComponentScan} now
  */
-public class BeanCreatorAndLauncher {
+class BeanCreatorAndLauncher {
 
     private static final Logger log = LogManager.getLogger(BeanCreatorAndLauncher.class);
 

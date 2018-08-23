@@ -16,7 +16,7 @@ import java.util.List;
  * NOTE3: This composition implementation is NOT thread-safe
  *
  */
-public abstract class Component {
+abstract class Component {
 
     private Component parent;
 

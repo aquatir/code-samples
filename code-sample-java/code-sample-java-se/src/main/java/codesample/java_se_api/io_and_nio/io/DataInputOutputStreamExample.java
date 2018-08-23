@@ -6,7 +6,7 @@ import java.io.*;
 /**
  * Data input/output streams are binary streams which allow you to read and write java primitive in files
  */
-public class DataInputOutputStreamExample {
+class DataInputOutputStreamExample {
     public static void main(String[] args) throws IOException {
         File f = FilesCreatorIO.createFiles()[0];
 

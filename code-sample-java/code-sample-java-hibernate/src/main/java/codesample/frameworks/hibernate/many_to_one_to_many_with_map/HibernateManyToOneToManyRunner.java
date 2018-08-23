@@ -5,7 +5,7 @@ import org.hibernate.Session;
 
 import java.io.IOException;
 
-public class HibernateManyToOneToManyRunner {
+class HibernateManyToOneToManyRunner {
     public static void main(String[] args) throws IOException {
         Company cocaCola = new Company("Coca cola");
         CompanyWorker ivan = new CompanyWorker("Ivan");

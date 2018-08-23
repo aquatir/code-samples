@@ -5,7 +5,7 @@ import org.hibernate.Session;
 
 import java.io.IOException;
 
-public class HibernateElementCollectionRunner {
+class HibernateElementCollectionRunner {
     public static void main(String[] args) throws IOException {
 
         Pizza peperoniPizza = new Pizza("Peperoni");
@@ -26,13 +26,13 @@ public class HibernateElementCollectionRunner {
             session.save(italianPizza);
 
             System.out.println("Available pizza:");
-            session.createQuery("from Pizza").list().forEach(c -> System.out.println(c));
+            session.createQuery("from Pizza").list().forEach(System.out::println);
 
             System.out.println("Deleting peperoni pizza");
             session.delete(peperoniPizza);
 
             System.out.println("Available pizza");
-            session.createQuery("from Pizza").list().forEach(c -> System.out.println(c));
+            session.createQuery("from Pizza").list().forEach(System.out::println);
 
             session.getTransaction().commit();
 

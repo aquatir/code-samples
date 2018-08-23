@@ -5,7 +5,7 @@ package patterns.chain_of_responsibility;
  * Third handler doesn't make call to setNext nor does it's handle() method pass command to other handlers
  * so it's is ends the chain.
  */
-public class RunChainOfResponsibility {
+class RunChainOfResponsibility {
     public static void main(String[] args) {
         HandlerOne handler1 = new HandlerOne();
         HandlerTwo handler2 = new HandlerTwo();

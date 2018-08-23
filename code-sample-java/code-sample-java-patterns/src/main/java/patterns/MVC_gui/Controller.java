@@ -8,7 +8,7 @@ package patterns.MVC_gui;
  */
 public class Controller implements  ControllerInterface {
 
-    Model model;
+    private final Model model;
 
     public Controller(Model model) {
         this.model = model;

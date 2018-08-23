@@ -9,7 +9,7 @@ import java.util.concurrent.Semaphore;
  *
  * We can see, that 2 threads are starting almost sensationally, but they can not acquire semaphore at the same time
  */
-public class SemaphoreExample {
+class SemaphoreExample {
     public static void main(String[] args) {
         Semaphore sem = new Semaphore(1);
         int numOfIterations = 5;
@@ -27,8 +27,8 @@ class SharedArea {
 }
 
 class Incrementer implements Runnable {
-    private Semaphore sem;
-    private int numOfIncrements;
+    private final Semaphore sem;
+    private final int numOfIncrements;
 
     Incrementer(Semaphore sem, int numOfIncrements) {
         this.sem = sem;
@@ -56,8 +56,8 @@ class Incrementer implements Runnable {
 
 class Decrementer implements Runnable{
 
-    private Semaphore sem;
-    private int numOfDecrements;
+    private final Semaphore sem;
+    private final int numOfDecrements;
 
     Decrementer(Semaphore sem, int numOfDecrements) {
         this.sem = sem;

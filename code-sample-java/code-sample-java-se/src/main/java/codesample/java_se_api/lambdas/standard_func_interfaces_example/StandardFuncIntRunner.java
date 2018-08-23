@@ -5,13 +5,13 @@ import java.util.function.*;
 /**
  * This class provide simple examples of {@link java.util.function} package functional interfaces usage
  */
-public class StandardFuncIntRunner {
+class StandardFuncIntRunner {
 
     public static void main(String[] args) {
 
         UnaryOperator<String> reverter = str -> new StringBuilder(str).reverse().toString(); // reverts a string
         BinaryOperator<String> concatinator = (str1, str2) -> str1 + str2; // concatinates 2 strings
-        Function<String, Integer> lengthCounter = str -> str.length(); // gets length of string
+        Function<String, Integer> lengthCounter = String::length; // gets length of string
 
         Consumer<String> strPrinter = str -> System.out.println("str = " + str); // prints a string in fancy way
         Supplier<String> helloWorldSupplier = () -> "hello, world"; // gives you specified string (in a pretty dumb way)
@@ -31,7 +31,7 @@ public class StandardFuncIntRunner {
         printStr(isHelloWorld.test(helloWorld));
     }
 
-    public static <T> void printStr(T str) {
+    private static <T> void printStr(T str) {
         System.out.println(str.toString());
     }
 

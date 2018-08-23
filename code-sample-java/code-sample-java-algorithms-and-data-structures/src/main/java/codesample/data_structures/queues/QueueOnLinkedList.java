@@ -8,17 +8,17 @@ import java.util.Iterator;
  *
  * @author Pavel Bukhmatov (buhmatov@gmail.com; github.com/aquatir)
  */
-public class QueueOnLinkedList<Item> implements Iterable {
+class QueueOnLinkedList<Item> implements Iterable {
 
-    Node head;
-    Node tail;
-    int size;
+    private Node head;
+    private Node tail;
+    private int size;
 
     private class Node {
-        private Item value;
+        private final Item value;
         private Node next;
 
-        public Node(Item value) {
+        Node(Item value) {
             this.value = value;
             this.next = null;
         }
@@ -91,7 +91,7 @@ public class QueueOnLinkedList<Item> implements Iterable {
 
         Node current;
 
-        public QueueIterator() {
+        QueueIterator() {
             current = head;
         }
 

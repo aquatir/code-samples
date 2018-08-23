@@ -11,11 +11,11 @@ import java.nio.file.Paths;
  * <br>
  * Change directories in this file to ones you like better
  */
-public class FilesCreatorNIO {
+class FilesCreatorNIO {
 
     private static String dirNIOFiles;
 
-    private static String fileNameTemplate = "file_";
+    private static final String fileNameTemplate = "file_";
 
     public static String getDirNIOFiles() { return dirNIOFiles; }
     public static String getFileNameTemplate() { return fileNameTemplate; }

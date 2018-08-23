@@ -1,6 +1,6 @@
 package patterns.MVC_gui;
 
-public interface ControllerInterface {
+interface ControllerInterface {
     void setDisplayedNumber(int number);
     void incrementDisplayedNumber();
 }

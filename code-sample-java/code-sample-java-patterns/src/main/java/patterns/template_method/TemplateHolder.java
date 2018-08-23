@@ -14,7 +14,7 @@ package patterns.template_method;
  * Note3: Actually even this hard-coded method can be declared as abstract and implemented in subclass.
  *
  */
-public abstract class TemplateHolder {
+abstract class TemplateHolder {
     public final void executionPath() {
         someMethodOne();
         concreteMethodOne();
@@ -25,7 +25,7 @@ public abstract class TemplateHolder {
         }
     }
 
-    private final void concreteMethodOne() {
+    private void concreteMethodOne() {
         System.out.println("Always do this step in the same way");
     }
 
@@ -43,7 +43,7 @@ public abstract class TemplateHolder {
     abstract void someMethodTwo();
 
     /* If overriden, this method would be called somewhere in executionPath(), but default behavior is: do nothing*/
-    void optionalMethod() {};
+    void optionalMethod() {}
 
     /* If this method is overriden to return true, a call to concreteMethodTwo() would accure as it's mentioned
     * int executionPath() */

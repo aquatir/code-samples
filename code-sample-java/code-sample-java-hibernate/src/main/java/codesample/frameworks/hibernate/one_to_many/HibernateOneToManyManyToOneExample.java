@@ -3,7 +3,7 @@ package codesample.frameworks.hibernate.one_to_many;
 import codesample.frameworks.hibernate.HibernateUtil;
 import org.hibernate.Session;
 
-public class HibernateOneToManyManyToOneExample {
+class HibernateOneToManyManyToOneExample {
     public static void main(String[] args) {
 
         Production eifelTower = new Production("Eifel tower");

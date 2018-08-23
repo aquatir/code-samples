@@ -20,9 +20,9 @@ import java.util.Random;
 public class SimpleNetworkProtocol {
 
     /* Next couple of strings are server responses */
-    private String[] helloResponses = {"Heeey, duuuude", "Whatzzaaaaap", "Yo, daug", "Hello"};
-    private String[] supResponses = {"I'm good, yoooo", "Fine.", "Not bad", "A little to the left", "Oh gosh, all kinds of stuff!"};
-    private String[] jokeResponses = {"I don't know if I just got hit by freezing rain, but it hurt like hail.",
+    private final String[] helloResponses = {"Heeey, duuuude", "Whatzzaaaaap", "Yo, daug", "Hello"};
+    private final String[] supResponses = {"I'm good, yoooo", "Fine.", "Not bad", "A little to the left", "Oh gosh, all kinds of stuff!"};
+    private final String[] jokeResponses = {"I don't know if I just got hit by freezing rain, but it hurt like hail.",
             "Did you hear about the guy whose whole left side was cut off? He's all right now.",
             "Yesterday I accidentally swallowed some food coloring. The doctor says I'm OK, but I feel like I've dyed a little inside.",
             "I wasn't originally going to get a brain transplant, but then I changed my mind.",
@@ -36,16 +36,15 @@ public class SimpleNetworkProtocol {
             "The roundest knight at king Arthur's round table was Sir Cumference",
             "I saw a beaver movie last night, it was the best dam movie I've ever seen.",
             "My friend was fired from his job at the road department for stealing. I have to say I saw it coming. The last time I was at his house all the signs were there."};
-    private String iCanPrintThis = " 'hey', " + " 'sup', " + " 'joke', " + " 'bye'";
-    private String iCanDoThis = "I can answer this requests:" + iCanPrintThis;
-    private String iCantDoThis = "Can't parse your input. " + iCanDoThis;
-    private String bye = "Bye!";
+    private final String iCanPrintThis = " 'hey', " + " 'sup', " + " 'joke', " + " 'bye'";
+    private final String iCanDoThis = "I can answer this requests:" + iCanPrintThis;
+    private final String iCantDoThis = "Can't parse your input. " + iCanDoThis;
 
 
-    private Random rnd = new Random();
+    private final Random rnd = new Random();
 
-    private BufferedReader fromClient;
-    private PrintWriter toClient;
+    private final BufferedReader fromClient;
+    private final PrintWriter toClient;
 
     public SimpleNetworkProtocol(BufferedReader fromClient, PrintWriter toClient) {
         this.fromClient = fromClient;
@@ -75,6 +74,7 @@ public class SimpleNetworkProtocol {
     }
 
     public void lastMessage() {
+        String bye = "Bye!";
         sendResponse(bye);
     }
 
@@ -94,14 +94,15 @@ public class SimpleNetworkProtocol {
      * @return a string representing server response
      */
     private String parseInputCreateResponse(String clientInput) {
-        if (clientInput.toLowerCase().equals("hey")) {
-            return helloResponse();
-        } else if (clientInput.toLowerCase().equals("sup")) {
-            return supResponse();
-        } else if (clientInput.toLowerCase().equals("joke")) {
-            return jokeResponse();
-        } else {
-            return dontUnderstandResponse();
+        switch (clientInput.toLowerCase()) {
+            case "hey":
+                return helloResponse();
+            case "sup":
+                return supResponse();
+            case "joke":
+                return jokeResponse();
+            default:
+                return dontUnderstandResponse();
         }
 
     }

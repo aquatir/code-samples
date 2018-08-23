@@ -1,6 +1,6 @@
 package codesample.java_se_api.generics;
 
-public class RunCoords {
+class RunCoords {
     public static void main(String[] args) {
         TwoD[] two = {
                 new TwoD(0, 5),

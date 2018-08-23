@@ -2,7 +2,7 @@ package codesample.java_se_api.annotations;
 
 import java.lang.reflect.Method;
 
-public class GettingRuntimeAnnotations {
+class GettingRuntimeAnnotations {
 
     public static void main(String args[]) throws NoSuchMethodException {
 

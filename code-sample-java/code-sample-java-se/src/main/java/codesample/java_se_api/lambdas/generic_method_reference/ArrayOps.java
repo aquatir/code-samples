@@ -1,6 +1,6 @@
 package codesample.java_se_api.lambdas.generic_method_reference;
 
-public class ArrayOps {
+class ArrayOps {
     /**
      * Return number of elements in array which are equal to given value
      * Method with same signature as {@link codesample.java_se_api.lambdas.generic_method_reference.ArrayElementFunctionalInterface}
@@ -12,9 +12,9 @@ public class ArrayOps {
     static <T> int countMatching(T[] array, T value) {
         int count = 0;
 
-        for (int i = 0; i < array.length; i++) {
-            if (array[i].equals(value))
-                    count++;
+        for (T anArray : array) {
+            if (anArray.equals(value))
+                count++;
         }
 
         return count;

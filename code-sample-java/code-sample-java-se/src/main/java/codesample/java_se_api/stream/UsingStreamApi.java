@@ -1,13 +1,15 @@
 package codesample.java_se_api.stream;
 
+import java.util.AbstractCollection;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.IntConsumer;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class UsingStreamApi {
+class UsingStreamApi {
     public static void main(String[] args) {
 
         int[] array = new int[20];
@@ -114,9 +116,9 @@ public class UsingStreamApi {
         System.out.print("\"\n");
 
         /* Or like this: */
-        namesAsSet = Arrays.stream(names).collect(() -> new HashSet(),
-                (set, element) -> set.add(element),
-                (set1, set2) -> set1.addAll(set2));
+        namesAsSet = Arrays.stream(names).collect((Supplier<HashSet>) HashSet::new,
+                HashSet::add,
+                AbstractCollection::addAll);
 
         System.out.printf("%20s", "Elements in set 3: \"");
         namesAsSet.stream().forEach((e) -> System.out.print(e + " "));

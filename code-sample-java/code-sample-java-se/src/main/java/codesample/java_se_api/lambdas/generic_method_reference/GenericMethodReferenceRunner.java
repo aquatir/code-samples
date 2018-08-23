@@ -1,6 +1,6 @@
 package codesample.java_se_api.lambdas.generic_method_reference;
 
-public class GenericMethodReferenceRunner {
+class GenericMethodReferenceRunner {
 
     public static void main(String[] args) {
         Integer[] array = {1,2,6,3,1,256,5,4,2,3,4,6,1,2,3,2};

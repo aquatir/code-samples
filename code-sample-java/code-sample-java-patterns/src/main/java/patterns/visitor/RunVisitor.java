@@ -5,7 +5,7 @@ package patterns.visitor;
  * both visitors, but those visitors actions are vastly different and they can make use of
  * clients' data field and method
  */
-public class RunVisitor {
+class RunVisitor {
 
     public static void main(String[] args) {
         Client cl1 = new ConcreteClientOne();

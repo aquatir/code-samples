@@ -13,7 +13,7 @@ import java.util.Properties;
  * In order for this to work you should add
  * tools-linux (Or other OS specific jar) to classPath. See pom.xml for details
  */
-public class AttachAgentToRemoteJvm {
+class AttachAgentToRemoteJvm {
 
     /** Magic class name for JMX connection */
     private static final String LOCAL_CONNECTOR_ADDRESS_PROP = "com.sun.management.jmxremote.localConnectorAddress";

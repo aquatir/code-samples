@@ -5,7 +5,7 @@ import org.hibernate.Session;
 
 import java.io.IOException;
 
-public class HibernateMappedSuperClassRunner {
+class HibernateMappedSuperClassRunner {
     public static void main(String[] args) throws IOException {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
@@ -23,11 +23,11 @@ public class HibernateMappedSuperClassRunner {
 
             session.beginTransaction();
             System.out.println("Grass worms:");
-            session.createQuery("from MappedSuperGrassWorm").list().forEach(c -> System.out.println(c));
+            session.createQuery("from MappedSuperGrassWorm").list().forEach(System.out::println);
 
             System.out.println();
             System.out.println("Book worms:");
-            session.createQuery("from MappedSuperBookWorm").list().forEach(c -> System.out.println(c));
+            session.createQuery("from MappedSuperBookWorm").list().forEach(System.out::println);
 
             session.getTransaction().commit();
 

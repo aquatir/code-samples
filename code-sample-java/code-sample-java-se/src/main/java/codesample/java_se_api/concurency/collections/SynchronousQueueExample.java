@@ -8,8 +8,8 @@ import java.util.concurrent.SynchronousQueue;
  * In order to take() element from queue a call to put() should be active from another thread. At the same time
  * in order to put() something in a queue, a call to take() should be pending from other thread.
  */
-public class SynchronousQueueExample {
-    public static void main(String args[]) throws IOException, InterruptedException {
+class SynchronousQueueExample {
+    public static void main(String args[]) throws InterruptedException {
 
         SynchronousQueue<String> str = new SynchronousQueue<>();
 
@@ -22,9 +22,9 @@ public class SynchronousQueueExample {
 
     private static class MyRunnable implements Runnable {
 
-        SynchronousQueue<String> queue;
+        final SynchronousQueue<String> queue;
 
-        public MyRunnable(SynchronousQueue<String> queue) {
+        MyRunnable(SynchronousQueue<String> queue) {
             this.queue = queue;
         }
 

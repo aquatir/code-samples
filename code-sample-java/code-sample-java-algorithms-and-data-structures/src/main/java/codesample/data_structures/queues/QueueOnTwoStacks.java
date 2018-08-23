@@ -8,12 +8,12 @@ import codesample.data_structures.stacks.StackOnArray;
  */
 public class QueueOnTwoStacks<Item> {
 
-    private StackOnArray<Item> inputStack;
-    private StackOnArray<Item> outputStack;
+    private final StackOnArray<Item> inputStack;
+    private final StackOnArray<Item> outputStack;
 
     public QueueOnTwoStacks() {
-        inputStack = new StackOnArray<Item>();
-        outputStack = new StackOnArray<Item>();
+        inputStack = new StackOnArray<>();
+        outputStack = new StackOnArray<>();
     }
 
     public void enqueue(Item item) {

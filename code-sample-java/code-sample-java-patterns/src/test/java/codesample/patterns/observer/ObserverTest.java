@@ -11,7 +11,6 @@ import static org.junit.Assert.*;
 
 public class ObserverTest {
 
-    private final int randomSeed = 0;
     private Random rnd;
     private ObserverBar obs1;
     private ObserverBar obs2;
@@ -19,6 +18,7 @@ public class ObserverTest {
 
     @Before
     public void init() {
+        int randomSeed = 0;
         rnd = new Random(randomSeed);
         subj = new SubjectImpl();
         obs1 = new ObserverBar();

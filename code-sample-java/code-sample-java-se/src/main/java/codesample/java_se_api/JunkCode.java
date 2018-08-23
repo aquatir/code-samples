@@ -1,8 +1,8 @@
 package codesample.java_se_api;
 
 /** */
-public class JunkCode {
-    public static void main(String[] args) throws Exception {
+class JunkCode {
+    public static void main(String[] args) {
         String str = "особый-русский-数据应用-текст";
 
         StringBuilder builder = new StringBuilder();

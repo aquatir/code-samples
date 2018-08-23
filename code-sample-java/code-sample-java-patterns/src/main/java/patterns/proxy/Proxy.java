@@ -11,7 +11,7 @@ package patterns.proxy;
 public class Proxy implements  EntityInterface {
 
     private ActualEntity actualEntity;
-    boolean running = false;
+    private boolean running = false;
 
     @Override
     public void someMethod() {

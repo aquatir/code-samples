@@ -1,5 +1,5 @@
 package patterns.factories.simpleFactory;
 
-public class ProductOne implements Product {
+class ProductOne implements Product {
 
 }

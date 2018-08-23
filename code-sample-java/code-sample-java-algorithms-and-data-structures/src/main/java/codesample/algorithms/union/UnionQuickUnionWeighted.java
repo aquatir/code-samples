@@ -14,9 +14,9 @@ import java.util.ArrayList;
  *
  * @author Pavel Bukhmatov (buhmatov@gmail.com; github.com/aquatir)
  */
-public class UnionQuickUnionWeighted {
-    ArrayList<Integer> elements;
-    ArrayList<Integer> size;
+class UnionQuickUnionWeighted {
+    private final ArrayList<Integer> elements;
+    private final ArrayList<Integer> size;
 
     /**
      * Creates new union with none elements being connected.
@@ -25,8 +25,8 @@ public class UnionQuickUnionWeighted {
      * @param n - number of elements in union
      */
     UnionQuickUnionWeighted(int n) {
-        this.elements = new ArrayList<Integer>(n);
-        this.size = new ArrayList<Integer>(n);
+        this.elements = new ArrayList<>(n);
+        this.size = new ArrayList<>(n);
         initiateElements(n);
     }
 
@@ -49,7 +49,7 @@ public class UnionQuickUnionWeighted {
      * @param a - index of current element
      * @return index of root
      */
-    int root(int a) {
+    private int root(int a) {
         while (elements.get(a) != a) {
             a = elements.get(a);
         }

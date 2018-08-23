@@ -9,7 +9,7 @@ import java.util.Arrays;
  * Simple example of what you can do with exception. You should also checkout {@link codesample.java_se_api.annotations.GettingRuntimeAnnotations}
  * class for examples with reflection and annotations
  */
-public class ShowAnyClassFieldsMethodsConstructors {
+class ShowAnyClassFieldsMethodsConstructors {
     public static void main(String[] args) {
         try {
             Class<?> clazz = Class.forName("java.lang.String");

@@ -25,7 +25,7 @@ import java.time.LocalDate;
  * in detached objects will not lead to this objects being changed, until you update their references by call to
  * session.saveOrUpdate(SomeEntity entity).
  */
-public class HibernateRunnerForeignKey {
+class HibernateRunnerForeignKey {
     public static void main(String[] args) {
 
         Item onion = new Item("Onion");

@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class SecureController {
 
-    private UserService userService;
+    private final UserService userService;
 
     public SecureController(UserService userService) {
         this.userService = userService;

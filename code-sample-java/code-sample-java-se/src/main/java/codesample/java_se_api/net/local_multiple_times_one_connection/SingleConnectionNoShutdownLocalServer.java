@@ -18,7 +18,7 @@ import java.net.Socket;
  * The communication is defined by {@link SimpleNetworkProtocol} class
  * Client can be {@link codesample.java_se_api.net.local_one_time_one_connection.SingleConnectionLocalClient}
  */
-public class SingleConnectionNoShutdownLocalServer {
+class SingleConnectionNoShutdownLocalServer {
     public static void main(String[] args) throws IOException {
 
         try (ServerSocket serverSocket = new ServerSocket(10000)) {
@@ -42,7 +42,7 @@ public class SingleConnectionNoShutdownLocalServer {
                 PrintWriter toClient =
                         new PrintWriter(clientSocket.getOutputStream(), true);
                 BufferedReader fromClient = new BufferedReader(
-                        new InputStreamReader(clientSocket.getInputStream()));
+                        new InputStreamReader(clientSocket.getInputStream()))
         ) {
             SimpleNetworkProtocol protocol = new SimpleNetworkProtocol(fromClient, toClient);
 

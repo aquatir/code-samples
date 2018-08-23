@@ -12,8 +12,8 @@ import java.util.ArrayList;
  *
  * @author Pavel Bukhmatov (buhmatov@gmail.com; github.com/aquatir)
  */
-public class UnionQuickUnion {
-    ArrayList<Integer> elements;
+class UnionQuickUnion {
+    private final ArrayList<Integer> elements;
 
     /**
      * Test method to fill array with integers
@@ -32,7 +32,7 @@ public class UnionQuickUnion {
      * @param a - index of current elements
      * @return index of root
      */
-    int root(int a) {
+    private int root(int a) {
         while (elements.get(a) != a) {
             a = elements.get(a);
         }
@@ -70,7 +70,7 @@ public class UnionQuickUnion {
      * @param n
      */
     UnionQuickUnion(int n) {
-        this.elements = new ArrayList<Integer>(n);
+        this.elements = new ArrayList<>(n);
         initiateElements(n);
     }
 }

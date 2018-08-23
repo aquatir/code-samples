@@ -20,9 +20,9 @@ import java.util.concurrent.Executors;
  * The communication is defined by {@link codesample.java_se_api.net.local_one_time_one_connection.SimpleNetworkProtocol} class
  * Client can be {@link codesample.java_se_api.net.local_one_time_one_connection.SingleConnectionLocalClient}
  */
-public class MultipleConnectionsNoShutdownLocalServer {
+class MultipleConnectionsNoShutdownLocalServer {
 
-    private static ExecutorService executor = Executors.newCachedThreadPool();
+    private static final ExecutorService executor = Executors.newCachedThreadPool();
 
     public static void main(String[] args) throws IOException {
 
@@ -51,22 +51,20 @@ public class MultipleConnectionsNoShutdownLocalServer {
 
     private static class ClientConnectionTask implements Runnable {
 
-        ServerSocket serverSocket;
+        final ServerSocket serverSocket;
         Socket clientSocket;
         PrintWriter toClient;
         BufferedReader fromClient;
 
-        public ClientConnectionTask(ServerSocket serverSocket) {
+        ClientConnectionTask(ServerSocket serverSocket) {
             this.serverSocket = serverSocket;
         }
 
-        private Socket acceptConnection() throws IOException {
-            Socket acceptedSocket = serverSocket.accept();
-            this.clientSocket = acceptedSocket;
+        private void acceptConnection() throws IOException {
+            this.clientSocket = serverSocket.accept();
             this.toClient = new PrintWriter(clientSocket.getOutputStream(), true);
             this.fromClient = new BufferedReader(
                     new InputStreamReader(clientSocket.getInputStream()));
-            return acceptedSocket;
         }
 
         private void createAndKeepConnection(ServerSocket serverSocket) throws IOException {

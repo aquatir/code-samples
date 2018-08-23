@@ -33,7 +33,7 @@ public class DogBidirectional {
         this.name = name;
     }
 
-    public OwnerBidirectional getOwner() {
+    private OwnerBidirectional getOwner() {
         return owner;
     }
 

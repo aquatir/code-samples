@@ -6,8 +6,8 @@ package patterns.iterator;
  */
 public class IntegerArrayIterator implements Iterator<Integer> {
 
-    Integer[] array;
-    int position;
+    private final Integer[] array;
+    private int position;
 
     public IntegerArrayIterator(Integer[] array) {
         this.array = array;
