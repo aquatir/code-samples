@@ -28,7 +28,7 @@ class JwtTokenService {
         val userPrincipal = authentication.principal as UserWithAuthorities
 
         val now = Date()
-        val expiryDate = Date(now.getTime() + jwtExpirationInMs.toLong())
+        val expiryDate = Date(now.time + jwtExpirationInMs.toLong())
 
         return Jwts.builder()
                 .setSubject(java.lang.Long.toString(userPrincipal.id))
