@@ -1,6 +1,8 @@
 package codesample.kotlin.jwtexample.security
 
 import codesample.kotlin.jwtexample.security.service.JwtTokenService
+import codesample.kotlin.jwtexample.util.TestUtils
+import codesample.kotlin.jwtexample.util.TestUtils.Companion.getUrlWithToken
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -13,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 
 @RunWith(SpringRunner::class)
 @SpringBootTest
@@ -25,8 +28,11 @@ class AuthTest {
     @Autowired
     lateinit var tokenService: JwtTokenService
 
+    @Autowired
+    lateinit var testUtils: TestUtils
+
     /**
-     * Test that auth with good credentials returns a valid token
+     * Test auth with good credentials returns a valid token
      */
     @Test
     fun authTestGood() {
@@ -46,7 +52,7 @@ class AuthTest {
     }
 
     /**
-     * Test that bad auth is handler with 401 response
+     * Test bad auth is handler with 401 response
      */
     @Test
     fun authTestBad() {
@@ -55,5 +61,17 @@ class AuthTest {
                 .param("password", "not-a-password"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError)
+    }
+
+    /**
+     * Test expired token does not work
+     */
+    @Test
+    fun getDataTestWithToken() {
+        val goodToken = testUtils.generateTokenForSeconds(1, -10)
+        mockMvc.perform(
+                getUrlWithToken("/data", goodToken))
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.status().is4xxClientError)
     }
 }
