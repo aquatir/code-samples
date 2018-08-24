@@ -29,5 +29,5 @@
     </li>
     <li><b>code-sample-angular-java</b>. Angular app based on https://angular.io/tutorial .
     Uses real backend (with in-memory DB) </li>
-    <li><b>code-sample-angular-kotlin</b>. Kotlin JWT authentication example
+    <li><b>code-sample-angular-kotlin</b>. Kotlin + Angular app with JWT authentication and spring security roles management
 </ul>
