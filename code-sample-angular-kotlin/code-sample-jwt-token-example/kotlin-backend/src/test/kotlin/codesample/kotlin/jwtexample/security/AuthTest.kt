@@ -1,28 +1,61 @@
 package codesample.kotlin.jwtexample.security
 
-import codesample.kotlin.jwtexample.KotlinJwtAppRunner
+import codesample.kotlin.jwtexample.security.service.JwtTokenService
+import org.hamcrest.CoreMatchers.containsString
+import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
+import org.springframework.security.authentication.BadCredentialsException
+import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
 
-@RunWith(SpringJUnit4ClassRunner::class)
-@SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT,
-        classes = [KotlinJwtAppRunner::class])
+@RunWith(SpringRunner::class)
+@SpringBootTest
 @AutoConfigureMockMvc
 class AuthTest {
 
     @Autowired
     lateinit var mockMvc: MockMvc
 
+    @Autowired
+    lateinit var tokenService: JwtTokenService
+
+    /**
+     * Test that auth with good credentials returns a valid token
+     */
     @Test
-    fun authTest() {
-        mockMvc.perform(get("/auth"))
+    fun authTestGood() {
+        val result = mockMvc.perform(post("/auth")
+                .param("username", "admin")
+                .param("password", "admin"))
+                //.andDo(print())
+                .andExpect(status().is2xxSuccessful)
+                .andReturn()
+
+        val token = result.response.contentAsString
+        Assert.assertTrue("Token header generated incorrectly",
+                token.contains("eyJhbGciOiJIUzUxMiJ9"))
+
+        Assert.assertTrue("Token is invalid",
+                tokenService.validateToken(token))
+    }
+
+    /**
+     * Test that bad auth is handler with 401 response
+     */
+    @Test
+    fun authTestBad() {
+        mockMvc.perform(post("/auth")
+                .param("username", "not-a-user")
+                .param("password", "not-a-password"))
                 .andDo(print())
+                .andExpect(status().is4xxClientError)
     }
 }

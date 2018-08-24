@@ -24,7 +24,7 @@ class UserWithAuthorities (
     override fun getUsername(): String = username
     override fun getPassword(): String = password
     override fun getAuthorities() = authorities
-    override fun isEnabled(): Boolean = enabled
+    override fun isEnabled(): Boolean = true
 
     override fun isCredentialsNonExpired(): Boolean  = true
     override fun isAccountNonExpired(): Boolean = true
