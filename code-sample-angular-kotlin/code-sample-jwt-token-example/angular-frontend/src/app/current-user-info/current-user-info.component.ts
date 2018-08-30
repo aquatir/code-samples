@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {TokenService} from "../services/token.service";
 
 @Component({
   selector: 'app-current-user-info',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CurrentUserInfoComponent implements OnInit {
 
-  constructor() { }
+  token: string;
+
+  constructor(private tokenService: TokenService) {
+
+  }
 
   ngOnInit() {
+    this.token = this.tokenService.currentToken;
   }
 
 }

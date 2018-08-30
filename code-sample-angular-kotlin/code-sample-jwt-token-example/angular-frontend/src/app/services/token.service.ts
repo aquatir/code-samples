@@ -12,8 +12,8 @@ export class TokenService {
     return this.currentToken;
   }
 
-  refreshToken() {
-    this.httpService.auth().subscribe(token =>
+  refreshToken(username: string, password: string) {
+    this.httpService.auth(username, password).subscribe(token =>
       this.currentToken = token);
   }
 

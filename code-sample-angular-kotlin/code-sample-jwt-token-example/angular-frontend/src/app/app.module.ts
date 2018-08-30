@@ -5,18 +5,22 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { CurrentUserInfoComponent } from './current-user-info/current-user-info.component';
 import { UserManupulationButtonsComponent } from './user-manupulation-buttons/user-manupulation-buttons.component';
+import { TokenService } from "./services/token.service";
+import {HttpClientModule} from "@angular/common/http";
+import {HttpService} from "./services/http.service";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CurrentUserInfoComponent,
-    UserManupulationButtonsComponent
+    UserManupulationButtonsComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [TokenService, HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
