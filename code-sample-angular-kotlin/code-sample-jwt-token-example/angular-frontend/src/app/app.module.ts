@@ -8,6 +8,7 @@ import { UserManupulationButtonsComponent } from './user-manupulation-buttons/us
 import { TokenService } from "./services/token.service";
 import {HttpClientModule} from "@angular/common/http";
 import {HttpService} from "./services/http.service";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {HttpService} from "./services/http.service";
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [TokenService, HttpService],
   bootstrap: [AppComponent]

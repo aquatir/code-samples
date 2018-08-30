@@ -1,3 +1,15 @@
 <h3>user-manupulation-buttons works!</h3>
-<button>login</button>
+
+
+<div>
+<label> Username :
+  <input [(ngModel)] = "username" placeholder="username"/>
+</label>
+</div>
+<div>
+  <label> Password:
+    <input [(ngModel)] = "password" placeholder="password"/>
+  </label>
+</div>
+<button (click)="login();">Log me in</button>
 

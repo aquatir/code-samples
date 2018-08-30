@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {TokenService} from "../services/token.service";
 
 @Component({
   selector: 'app-user-manupulation-buttons',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserManupulationButtonsComponent implements OnInit {
 
-  constructor() { }
+  username: string;
+  password: string;
+
+  constructor(private tokenService: TokenService) { }
 
   ngOnInit() {
   }
 
+  login() {
+    this.tokenService.refreshToken(this.username, this.password);
+    this.username = "";
+    this.password = "";
+  }
 }
