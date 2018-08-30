@@ -21,7 +21,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.CorsConfigurationSource
+import org.springframework.web.cors.CorsUtils
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
+import org.springframework.web.servlet.config.annotation.CorsRegistration
+import org.springframework.web.servlet.config.annotation.CorsRegistry
 import java.util.*
 
 @Configuration
@@ -49,13 +52,17 @@ class SecurityConfig (val authExceptionsEntry: AuthExceptionsEntry,
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
 
+                // Add custom JWT auth filter (this is the part which actually checks and authenticate user base on JWT
+                // token passed
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter::class.java)
 
-                .authorizeRequests()
 
-                .antMatchers("/auth/**").permitAll()
+                .authorizeRequests()
+                .antMatchers(HttpMethod.OPTIONS,"/auth/**").permitAll()
+                .antMatchers(HttpMethod.POST,"/auth/**").permitAll()
                 .antMatchers("/**").authenticated()
     }
+
 
     override fun configure(web: WebSecurity) {
         /* This config excludes /h2-console from security filterChain, allowing everyone to access it.
@@ -65,9 +72,12 @@ class SecurityConfig (val authExceptionsEntry: AuthExceptionsEntry,
                 .ignoring().antMatchers("/h2-console/**/**")
                 .and()
 
-                /* Do not use security on token endpoint */
+                /* Do not use security on token endpoint. Note that this will also exclude CORS configuration
+                 * for /auth, so we have to configure CORS for this mapping specifically
+                 * which we do in WebConfig class */
                 .ignoring().antMatchers(HttpMethod.POST, "/auth")
-
+                .and()
+                .ignoring().antMatchers(HttpMethod.OPTIONS, "/auth")
                 /* Do not use security on static resources */
                 .and()
                 .ignoring().antMatchers(
@@ -81,13 +91,6 @@ class SecurityConfig (val authExceptionsEntry: AuthExceptionsEntry,
                 )
     }
 
-    /* We need this in order to authenticate user after call to http endpoint
-    * in SecurityController */
-    @Bean(BeanIds.AUTHENTICATION_MANAGER)
-    override fun authenticationManagerBean(): AuthenticationManager {
-        return super.authenticationManagerBean()
-    }
-
     @Autowired
     fun configureGlobal(auth: AuthenticationManagerBuilder) {
         auth
@@ -95,11 +98,20 @@ class SecurityConfig (val authExceptionsEntry: AuthExceptionsEntry,
                 .passwordEncoder(passwordEncoderBean())
     }
 
+
+    /* We need this in order to authenticate user after call to http endpoint
+    * in SecurityController */
+    @Bean(BeanIds.AUTHENTICATION_MANAGER)
+    override fun authenticationManagerBean(): AuthenticationManager {
+        return super.authenticationManagerBean()
+    }
+
+
     @Bean
     fun corsConfigurationSource() : CorsConfigurationSource {
         val configuration = CorsConfiguration().apply {
-            allowedOrigins = Arrays.asList("http://localhost:8080")
-            allowedMethods = Arrays.asList("GET", "POST")
+            allowedOrigins = Arrays.asList("http://localhost:4200", "http://evil.com:9000")
+            allowedMethods = Arrays.asList("GET", "POST", "OPTIONS")
         }
 
         return UrlBasedCorsConfigurationSource().apply {
