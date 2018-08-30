@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {TokenService} from "../services/token.service";
 
 @Component({
-  selector: 'app-user-manupulation-buttons',
-  templateUrl: './user-manupulation-buttons.component.html',
-  styleUrls: ['./user-manupulation-buttons.component.css']
+  selector: 'app-user-manipulation-buttons',
+  templateUrl: './user-manipulation-buttons.component.html',
+  styleUrls: ['./user-manipulation-buttons.component.css']
 })
-export class UserManupulationButtonsComponent implements OnInit {
+export class UserManipulationButtonsComponent implements OnInit {
 
   username: string;
   password: string;
