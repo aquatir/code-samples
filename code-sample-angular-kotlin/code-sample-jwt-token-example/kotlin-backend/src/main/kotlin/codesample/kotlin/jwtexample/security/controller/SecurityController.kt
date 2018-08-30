@@ -1,11 +1,14 @@
 package codesample.kotlin.jwtexample.security.controller
 
+import codesample.kotlin.jwtexample.dto.LoginDto
 import codesample.kotlin.jwtexample.security.service.JwtTokenService
 import org.springframework.http.ResponseEntity
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 
@@ -16,11 +19,11 @@ class SecurityController (val authenticationManager: AuthenticationManager,
 
     /* This request will not be protected by security */
     @PostMapping("/auth")
-    fun auth(username: String, password: String) : ResponseEntity<String> {
+    fun auth(@RequestBody loginDto: LoginDto) : ResponseEntity<String> {
         val authentication = authenticationManager.authenticate(
                 UsernamePasswordAuthenticationToken(
-                        username,
-                        password
+                        loginDto.username,
+                        loginDto.password
                 )
         )
 
