@@ -4,7 +4,7 @@ import { HttpService } from "./http.service";
 @Injectable()
 export class TokenService {
 
-  currentToken: string = "";
+  private currentToken: string = "";
 
   constructor(private httpService: HttpService) { }
 
@@ -13,8 +13,9 @@ export class TokenService {
   }
 
   refreshToken(username: string, password: string) {
-    this.httpService.auth(username, password).subscribe(token =>
-      this.currentToken = token);
+    this.httpService.auth(username, password).subscribe(
+      successTokenDto => this.currentToken = successTokenDto.token,
+        failure => this.currentToken = "");
   }
 
 }

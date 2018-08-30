@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { BACKEND_URLS } from "../configs/BACKEND_URLS";
 import {Observable} from "rxjs/Observable";
+import {TokenDto} from "../dto/tokenDto";
 
 @Injectable()
 export class HttpService {
@@ -10,15 +11,12 @@ export class HttpService {
 
   }
 
-  auth(username: string, password: string): Observable<string> {
-    console.log("Requiest params: " + username + " password: " + password);
+  auth(username: string, password: string): Observable<TokenDto> {
     let request = {
       username: username,
       password: password
     };
 
-    console.log("Request body is going to be: " + JSON.stringify(request));
-
-    return this.httpClient.post<string>(BACKEND_URLS.AUTH, request);
+    return this.httpClient.post<any>(BACKEND_URLS.AUTH, request)
   }
 }
