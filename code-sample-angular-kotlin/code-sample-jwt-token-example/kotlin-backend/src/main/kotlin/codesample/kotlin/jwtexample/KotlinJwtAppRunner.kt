@@ -12,9 +12,8 @@ class KotlinJwtAppRunner {
 
     @Bean
     fun init(userService: UserService) = CommandLineRunner {
-        userService.createAndSaveUser("admin", "admin", "ADMINCHIK", listOf(AuthorityName.ROLE_USER))
-        userService.createAndSaveUser("user", "password", "USERCHICK", listOf(AuthorityName.ROLE_USER))
-        userService.createAndSaveUser("ivan", "narkoman", "IVANCHICK", listOf(AuthorityName.ROLE_ADMIN))
+        userService.createAndSaveUser("user", "user", "USER", listOf(AuthorityName.ROLE_USER))
+        userService.createAndSaveUser("admin", "admin", "ADMIN", listOf(AuthorityName.ROLE_ADMIN))
     }
 }
 

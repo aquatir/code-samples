@@ -18,37 +18,76 @@ import java.util.*
 class JwtTokenService {
     private val logger = LoggerFactory.getLogger(JwtTokenService::class.java)
 
-    @Value("\${security.jwt.secret}")
-    private lateinit var jwtSecret: String
+    @Value("\${security.jwt.secret.access}")
+    private lateinit var jwtAccessSecret: String
+
+    @Value("\${security.jwt.secret.refresh}")
+    private lateinit var jwtRefreshSecret: String
 
     @Value("\${security.jwt.expirationInMs}")
-    private lateinit var jwtExpirationInMs: String
+    private lateinit var jwtAccessExpirationInMs: String
 
-    fun generateToken(authentication: Authentication) :String {
+    @Value("\${security.jwt.refreshInMs}")
+    private lateinit var jwtRefreshExpirationInMs: String
+
+    fun generateAccessToken(authentication: Authentication) : String {
         val userPrincipal = authentication.principal as UserWithAuthorities
+        return generateToken(userPrincipal.id.toString(), jwtAccessExpirationInMs.toLong(), jwtAccessSecret)
+    }
 
+    fun generateAccessToken(userId: String) : String {
+        return generateToken(userId, jwtAccessExpirationInMs.toLong(), jwtAccessSecret)
+    }
+
+    fun generateRefreshToken(authentication: Authentication): String {
+        val userPrincipal = authentication.principal as UserWithAuthorities
+        return generateToken(userPrincipal.id.toString(), jwtRefreshExpirationInMs.toLong(), jwtRefreshSecret)
+    }
+
+    fun generateRefreshToken(userId: String) : String {
+        return generateToken(userId, jwtRefreshExpirationInMs.toLong(), jwtRefreshSecret)
+    }
+
+    fun generateToken(userId: String, expiresInMs: Long, secret: String) : String {
         val now = Date()
-        val expiryDate = Date(now.time + jwtExpirationInMs.toLong())
+        val expiryDate = Date(now.time + expiresInMs)
 
         return Jwts.builder()
-                .setSubject(userPrincipal.id.toString())
-                .setIssuedAt(Date())
+                .setSubject(userId)
+                .setIssuedAt(now)
                 .setExpiration(expiryDate)
-                .signWith(SignatureAlgorithm.HS512, jwtSecret)
+                .signWith(SignatureAlgorithm.HS512, secret)
                 .compact()
     }
 
-    fun getUserIdFromJWT(token: String): Long =
+
+    fun getUserIdFromAccessJWT(token: String): Long =
+            getUserIdFromToken(token, jwtAccessSecret)
+
+
+    fun getUserIdFromRefreshJWT(token: String): Long =
+            getUserIdFromToken(token, jwtRefreshSecret)
+
+    private fun getUserIdFromToken(token: String, secret: String) : Long =
         Jwts.parser()
-                .setSigningKey(jwtSecret)
+                .setSigningKey(secret)
                 .parseClaimsJws(token)
                 .body
                 .subject
                 .toLong()
 
-    fun validateToken(token: String): Boolean {
+
+    fun validateAccessToken(token: String): Boolean {
+        return validateToken(token, jwtAccessSecret)
+    }
+
+    fun validateRefreshToken(token: String): Boolean {
+        return validateToken(token, jwtRefreshSecret)
+    }
+
+    private fun validateToken(token: String, secret: String) : Boolean {
         try {
-            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token)
+            Jwts.parser().setSigningKey(secret).parseClaimsJws(token)
             return true
         } catch (ex: SignatureException) {
             logger.error("Invalid JWT signature")

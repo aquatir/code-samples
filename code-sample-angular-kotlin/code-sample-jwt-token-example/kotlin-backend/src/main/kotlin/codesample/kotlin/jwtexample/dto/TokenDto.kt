@@ -1,5 +1,9 @@
 package codesample.kotlin.jwtexample.dto
 
 data class TokenDto (
-        val token: String
-)
+        var accessToken: String,
+        var refreshToken: String
+) {
+    /* User to create TokenDto in tests */
+    constructor() : this("", "")
+}

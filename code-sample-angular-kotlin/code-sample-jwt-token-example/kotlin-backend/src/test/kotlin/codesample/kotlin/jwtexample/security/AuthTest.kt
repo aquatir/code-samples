@@ -1,15 +1,19 @@
 package codesample.kotlin.jwtexample.security
 
+import codesample.kotlin.jwtexample.dto.LoginDto
+import codesample.kotlin.jwtexample.dto.TokenDto
 import codesample.kotlin.jwtexample.security.service.JwtTokenService
 import codesample.kotlin.jwtexample.util.TestUtils
+import codesample.kotlin.jwtexample.util.TestUtils.Companion.asJsonString
 import codesample.kotlin.jwtexample.util.TestUtils.Companion.getUrlWithToken
+import codesample.kotlin.jwtexample.util.TestUtils.Companion.toObject
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.context.annotation.Profile
+import org.springframework.http.MediaType
 import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
@@ -36,19 +40,27 @@ class AuthTest {
      */
     @Test
     fun authTestGood() {
-        val result = mockMvc.perform(post("/auth")
-                .param("username", "admin")
-                .param("password", "admin"))
+        val result = mockMvc.perform(
+                post("/auth")
+                    .content(asJsonString(LoginDto("admin", "admin")))
+                    .contentType(MediaType.APPLICATION_JSON)
+                )
                 //.andDo(print())
                 .andExpect(status().is2xxSuccessful)
                 .andReturn()
 
-        val token = result.response.contentAsString
-        Assert.assertTrue("Token header generated incorrectly",
-                token.contains("eyJhbGciOiJIUzUxMiJ9"))
+        val tokenDto = toObject(result.response.contentAsString, TokenDto::class.java)
+        Assert.assertTrue("Access token header generated incorrectly",
+                tokenDto.accessToken.contains("eyJhbGciOiJIUzUxMiJ9"))
 
-        Assert.assertTrue("Token is invalid",
-                tokenService.validateToken(token))
+        Assert.assertTrue("Refresh token header generated incorrectly",
+                tokenDto.refreshToken.contains("eyJhbGciOiJIUzUxMiJ9"))
+
+        Assert.assertTrue("Access token is invalid",
+                tokenService.validateAccessToken(tokenDto.accessToken))
+
+        Assert.assertTrue("Refresh token is invalid",
+                tokenService.validateRefreshToken(tokenDto.refreshToken))
     }
 
     /**
@@ -56,9 +68,11 @@ class AuthTest {
      */
     @Test
     fun authTestBad() {
-        mockMvc.perform(post("/auth")
-                .param("username", "not-a-user")
-                .param("password", "not-a-password"))
+        mockMvc.perform(
+                post("/auth")
+                        .content(asJsonString(LoginDto("not-a-user", "not-a-password")))
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
                 .andDo(print())
                 .andExpect(status().is4xxClientError)
     }
@@ -67,8 +81,8 @@ class AuthTest {
      * Test expired token does not work
      */
     @Test
-    fun getDataTestWithToken() {
-        val goodToken = testUtils.generateTokenForSeconds(1, -10)
+    fun getDataTestWithExpiredAccessToken() {
+        val goodToken = testUtils.generateAccessTokenForSeconds(1, -10)
         mockMvc.perform(
                 getUrlWithToken("/data", goodToken))
                 .andDo(print())

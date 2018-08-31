@@ -7,10 +7,10 @@ import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.security.test.context.support.WithAnonymousUser
 import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 
 @RunWith(SpringRunner::class)
@@ -24,14 +24,16 @@ class ImportantDataControllerTest {
     @Autowired
     lateinit var testUtils : TestUtils
 
+    private val tokenTimeoutMs = 10000L
+
     /**
      * Test GET on /data endpoint without token does not work
      */
     @Test
     fun getDataTestNoToken() {
         mockMvc.perform(get("/data"))
-                //.andDo(print())
-                .andExpect(MockMvcResultMatchers.status().is4xxClientError)
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.status().isUnauthorized)
     }
 
     /**
@@ -39,7 +41,7 @@ class ImportantDataControllerTest {
      */
     @Test
     fun getDataTestWithToken() {
-        val goodToken = testUtils.generateTokenForSeconds(1, 10)
+        val goodToken = testUtils.generateAccessTokenForSeconds(1, tokenTimeoutMs)
         mockMvc.perform(
                 getUrlWithToken("/data", goodToken))
                 //.andDo(print())
@@ -47,11 +49,11 @@ class ImportantDataControllerTest {
     }
 
     /**
-     * Test GET on /userData works for user with role USER (id 1 or 2)
+     * Test GET on /userData works for user with role USER (id 1)
      */
     @Test
     fun getUserDataWithUserTest() {
-        val goodToken = testUtils.generateTokenForSeconds(1, 10)
+        val goodToken = testUtils.generateAccessTokenForSeconds(1, tokenTimeoutMs)
         mockMvc.perform(
                 getUrlWithToken("/userData", goodToken))
                 //.andDo(print())
@@ -63,7 +65,7 @@ class ImportantDataControllerTest {
      */
     @Test
     fun getUserDataWithAdminTest() {
-        val goodToken = testUtils.generateTokenForSeconds(3, 10)
+        val goodToken = testUtils.generateAccessTokenForSeconds(3, tokenTimeoutMs)
         mockMvc.perform(
                 getUrlWithToken("/userData", goodToken))
                 //.andDo(print())
@@ -71,11 +73,11 @@ class ImportantDataControllerTest {
     }
 
     /**
-     * Test GET on /adminData works for user with role ADMIN (id 3)
+     * Test GET on /adminData works for user with role ADMIN (id 2)
      */
     @Test
     fun getAdminDataWithAdminTest() {
-        val goodToken = testUtils.generateTokenForSeconds(3, 10)
+        val goodToken = testUtils.generateAccessTokenForSeconds(2, tokenTimeoutMs)
         mockMvc.perform(
                 getUrlWithToken("/adminData", goodToken))
                 //.andDo(print())
@@ -83,11 +85,11 @@ class ImportantDataControllerTest {
     }
 
     /**
-     * Test GET on /adminData DOES NOT work for user with role ADMIN (id 1 or 2)
+     * Test GET on /adminData DOES NOT work for user with role USER (id 1)
      */
     @Test
     fun getAdminDataWithUserTest() {
-        val goodToken = testUtils.generateTokenForSeconds(1, 10)
+        val goodToken = testUtils.generateAccessTokenForSeconds(1, tokenTimeoutMs)
         mockMvc.perform(
                 getUrlWithToken("/adminData", goodToken))
                 //.andDo(print())
@@ -99,13 +101,13 @@ class ImportantDataControllerTest {
      */
     @Test
     fun getUserAdminDataWithBothUserAndAdminTest() {
-        val goodTokenAdmin = testUtils.generateTokenForSeconds(3, 10)
+        val goodTokenAdmin = testUtils.generateAccessTokenForSeconds(2, tokenTimeoutMs)
         mockMvc.perform(
                 getUrlWithToken("/userOrAdminData", goodTokenAdmin))
                 //.andDo(print())
                 .andExpect(MockMvcResultMatchers.status().is2xxSuccessful)
 
-        val goodTokenUser = testUtils.generateTokenForSeconds(1, 10)
+        val goodTokenUser = testUtils.generateAccessTokenForSeconds(1, tokenTimeoutMs)
         mockMvc.perform(
                 getUrlWithToken("/userOrAdminData", goodTokenUser))
                 //.andDo(print())

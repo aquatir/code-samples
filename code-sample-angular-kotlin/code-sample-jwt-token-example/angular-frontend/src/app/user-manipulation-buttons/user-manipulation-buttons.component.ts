@@ -17,7 +17,7 @@ export class UserManipulationButtonsComponent implements OnInit {
   }
 
   login() {
-    this.tokenService.refreshToken(this.username, this.password);
+    this.tokenService.authGetToken(this.username, this.password);
     this.username = "";
     this.password = "";
   }

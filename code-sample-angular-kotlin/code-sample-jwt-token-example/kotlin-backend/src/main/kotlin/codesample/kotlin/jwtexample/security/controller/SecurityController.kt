@@ -26,6 +26,8 @@ class SecurityController (val authenticationManager: AuthenticationManager,
         )
 
         SecurityContextHolder.getContext().authentication = authentication
-        return TokenDto(jwtTokenService.generateToken(authentication))
+        val accessToken = jwtTokenService.generateAccessToken(authentication)
+        val refreshToken = jwtTokenService.generateRefreshToken(authentication)
+        return TokenDto(accessToken, refreshToken)
     }
 }
