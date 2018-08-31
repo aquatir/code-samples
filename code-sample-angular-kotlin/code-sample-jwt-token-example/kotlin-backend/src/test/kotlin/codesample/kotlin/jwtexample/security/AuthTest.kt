@@ -1,7 +1,8 @@
 package codesample.kotlin.jwtexample.security
 
 import codesample.kotlin.jwtexample.dto.LoginDto
-import codesample.kotlin.jwtexample.dto.TokenDto
+import codesample.kotlin.jwtexample.dto.RefreshTokenDto
+import codesample.kotlin.jwtexample.dto.TokenDtoResponse
 import codesample.kotlin.jwtexample.security.service.JwtTokenService
 import codesample.kotlin.jwtexample.util.TestUtils
 import codesample.kotlin.jwtexample.util.TestUtils.Companion.asJsonString
@@ -49,7 +50,7 @@ class AuthTest {
                 .andExpect(status().is2xxSuccessful)
                 .andReturn()
 
-        val tokenDto = toObject(result.response.contentAsString, TokenDto::class.java)
+        val tokenDto = toObject(result.response.contentAsString, TokenDtoResponse::class.java)
         Assert.assertTrue("Access token header generated incorrectly",
                 tokenDto.accessToken.contains("eyJhbGciOiJIUzUxMiJ9"))
 
@@ -73,7 +74,7 @@ class AuthTest {
                         .content(asJsonString(LoginDto("not-a-user", "not-a-password")))
                         .contentType(MediaType.APPLICATION_JSON)
                 )
-                .andDo(print())
+                //.andDo(print())
                 .andExpect(status().is4xxClientError)
     }
 
@@ -82,10 +83,46 @@ class AuthTest {
      */
     @Test
     fun getDataTestWithExpiredAccessToken() {
-        val goodToken = testUtils.generateAccessTokenForSeconds(1, -10)
+        val goodToken = testUtils.generateAccessTokenForMills(1, -10)
         mockMvc.perform(
                 getUrlWithToken("/data", goodToken))
-                .andDo(print())
+                //.andDo(print())
                 .andExpect(MockMvcResultMatchers.status().is4xxClientError)
+    }
+
+    /**
+     * Can get access token using valid refresh token
+     */
+    @Test
+    fun getAccessTokenUsingRefreshToken() {
+        val goodRefreshToken = testUtils.generateRefreshTokenForMills(1, 10000)
+
+        val result = mockMvc.perform(
+                post("/auth/refresh")
+                        .content(asJsonString(RefreshTokenDto(goodRefreshToken)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
+                //.andDo(print())
+                .andReturn()
+
+        val goodAccessToken = result.response.contentAsString
+
+        Assert.assertTrue(tokenService.validateAccessToken(goodAccessToken))
+    }
+
+    /**
+     * Can NOT get access token using invalid refresh token
+     */
+    @Test
+    fun getAccessTokenUsingInvalidRefreshToken() {
+        val goodRefreshToken = testUtils.generateRefreshTokenForMills(1, -10)
+
+        mockMvc.perform(
+                post("/auth/refresh")
+                        .content(asJsonString(RefreshTokenDto(goodRefreshToken)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
+                //.andDo(print())
+                .andExpect(status().isUnauthorized)
     }
 }

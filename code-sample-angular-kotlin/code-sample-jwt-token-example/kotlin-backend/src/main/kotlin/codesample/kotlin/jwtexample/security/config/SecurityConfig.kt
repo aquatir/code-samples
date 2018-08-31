@@ -58,8 +58,8 @@ class SecurityConfig (val authExceptionsEntry: AuthExceptionsEntry,
 
 
                 .authorizeRequests()
-                .antMatchers(HttpMethod.OPTIONS,"/auth/**").permitAll()
-                .antMatchers(HttpMethod.POST,"/auth/**").permitAll()
+                .antMatchers(HttpMethod.OPTIONS,"/auth/**/**").permitAll()
+                .antMatchers(HttpMethod.POST,"/auth/**/**").permitAll()
                 .antMatchers("/**").authenticated()
     }
 
@@ -75,9 +75,9 @@ class SecurityConfig (val authExceptionsEntry: AuthExceptionsEntry,
                 /* Do not use security on token endpoint. Note that this will also exclude CORS configuration
                  * for /auth, so we have to configure CORS for this mapping specifically
                  * which we do in WebConfig class */
-                .ignoring().antMatchers(HttpMethod.POST, "/auth")
+                .ignoring().antMatchers(HttpMethod.POST, "/auth/**/**")
                 .and()
-                .ignoring().antMatchers(HttpMethod.OPTIONS, "/auth")
+                .ignoring().antMatchers(HttpMethod.OPTIONS, "/auth/**/**")
                 /* Do not use security on static resources */
                 .and()
                 .ignoring().antMatchers(

@@ -17,11 +17,11 @@ class TestUtils (private val jwtTokenService: JwtTokenService) {
     @Value("\${security.jwt.secret.refresh}")
     private lateinit var jwtRefreshSecret: String
 
-    fun generateAccessTokenForSeconds(userId: Long, mills: Long): String {
+    fun generateAccessTokenForMills(userId: Long, mills: Long): String {
         return jwtTokenService.generateToken(userId.toString(), mills, jwtAccessSecret)
     }
 
-    fun generateRefreshTokenForSeconds(userId: Long, mills: Long): String {
+    fun generateRefreshTokenForMills(userId: Long, mills: Long): String {
         return jwtTokenService.generateToken(userId.toString(), mills, jwtRefreshSecret)
     }
 

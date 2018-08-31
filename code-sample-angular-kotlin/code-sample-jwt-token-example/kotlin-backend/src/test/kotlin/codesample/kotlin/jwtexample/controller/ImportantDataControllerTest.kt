@@ -41,7 +41,7 @@ class ImportantDataControllerTest {
      */
     @Test
     fun getDataTestWithToken() {
-        val goodToken = testUtils.generateAccessTokenForSeconds(1, tokenTimeoutMs)
+        val goodToken = testUtils.generateAccessTokenForMills(1, tokenTimeoutMs)
         mockMvc.perform(
                 getUrlWithToken("/data", goodToken))
                 //.andDo(print())
@@ -53,7 +53,7 @@ class ImportantDataControllerTest {
      */
     @Test
     fun getUserDataWithUserTest() {
-        val goodToken = testUtils.generateAccessTokenForSeconds(1, tokenTimeoutMs)
+        val goodToken = testUtils.generateAccessTokenForMills(1, tokenTimeoutMs)
         mockMvc.perform(
                 getUrlWithToken("/userData", goodToken))
                 //.andDo(print())
@@ -65,7 +65,7 @@ class ImportantDataControllerTest {
      */
     @Test
     fun getUserDataWithAdminTest() {
-        val goodToken = testUtils.generateAccessTokenForSeconds(3, tokenTimeoutMs)
+        val goodToken = testUtils.generateAccessTokenForMills(3, tokenTimeoutMs)
         mockMvc.perform(
                 getUrlWithToken("/userData", goodToken))
                 //.andDo(print())
@@ -77,7 +77,7 @@ class ImportantDataControllerTest {
      */
     @Test
     fun getAdminDataWithAdminTest() {
-        val goodToken = testUtils.generateAccessTokenForSeconds(2, tokenTimeoutMs)
+        val goodToken = testUtils.generateAccessTokenForMills(2, tokenTimeoutMs)
         mockMvc.perform(
                 getUrlWithToken("/adminData", goodToken))
                 //.andDo(print())
@@ -89,7 +89,7 @@ class ImportantDataControllerTest {
      */
     @Test
     fun getAdminDataWithUserTest() {
-        val goodToken = testUtils.generateAccessTokenForSeconds(1, tokenTimeoutMs)
+        val goodToken = testUtils.generateAccessTokenForMills(1, tokenTimeoutMs)
         mockMvc.perform(
                 getUrlWithToken("/adminData", goodToken))
                 //.andDo(print())
@@ -101,13 +101,13 @@ class ImportantDataControllerTest {
      */
     @Test
     fun getUserAdminDataWithBothUserAndAdminTest() {
-        val goodTokenAdmin = testUtils.generateAccessTokenForSeconds(2, tokenTimeoutMs)
+        val goodTokenAdmin = testUtils.generateAccessTokenForMills(2, tokenTimeoutMs)
         mockMvc.perform(
                 getUrlWithToken("/userOrAdminData", goodTokenAdmin))
                 //.andDo(print())
                 .andExpect(MockMvcResultMatchers.status().is2xxSuccessful)
 
-        val goodTokenUser = testUtils.generateAccessTokenForSeconds(1, tokenTimeoutMs)
+        val goodTokenUser = testUtils.generateAccessTokenForMills(1, tokenTimeoutMs)
         mockMvc.perform(
                 getUrlWithToken("/userOrAdminData", goodTokenUser))
                 //.andDo(print())
