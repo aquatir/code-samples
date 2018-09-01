@@ -123,11 +123,4 @@ class SecurityConfig (val authExceptionsEntry: AuthExceptionsEntry,
     @Bean
     fun passwordEncoderBean() = BCryptPasswordEncoder()
 
-
-
-
-
-
-
-
 }
