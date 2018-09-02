@@ -1,6 +1,13 @@
 <h3>
   Current user info
 </h3>
-<label> Current user token:
-  <textarea class="tokenTextArea">{{ this.tokenService.getCurrentToken() ? this.tokenService.getCurrentToken() : "none" }}</textarea>
+<div>
+<label> Current user access token:
+  <textarea class="tokenTextArea">{{ this.tokenService.getCurrentAccessToken() ? this.tokenService.getCurrentAccessToken() : "none" }}</textarea>
 </label>
+</div>
+<div>
+<label> Current user refresh token:
+  <textarea class="tokenTextArea">{{ this.tokenService.getCurrentRefreshToken() ? this.tokenService.getCurrentRefreshToken() : "none" }}</textarea>
+</label>
+</div>

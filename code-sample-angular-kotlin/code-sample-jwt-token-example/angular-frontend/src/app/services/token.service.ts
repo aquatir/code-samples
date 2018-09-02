@@ -9,8 +9,12 @@ export class TokenService {
 
   constructor(private httpService: HttpService) { }
 
-  getCurrentToken() {
+  getCurrentAccessToken() {
     return this.accessToken;
+  }
+
+  getCurrentRefreshToken() {
+    return this.refreshToken;
   }
 
   authGetToken(username: string, password: string) {
@@ -19,8 +23,11 @@ export class TokenService {
         this.accessToken = successTokenDto.accessToken;
         this.refreshToken = successTokenDto.refreshToken;
       },
-        failure => this.accessToken = ""
-      );
+        failure => {
+          this.accessToken = "";
+          this.refreshToken = "";
+        }
+      )
   }
 
 }

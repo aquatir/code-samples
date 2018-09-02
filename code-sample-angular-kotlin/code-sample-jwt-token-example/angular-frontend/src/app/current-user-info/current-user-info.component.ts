@@ -15,7 +15,7 @@ export class CurrentUserInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.token = this.tokenService.getCurrentToken();
+    this.token = this.tokenService.getCurrentAccessToken();
   }
 
 }
