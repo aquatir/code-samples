@@ -19,4 +19,21 @@ export class HttpService {
 
     return this.httpClient.post<any>(BACKEND_URLS.AUTH, request)
   }
+
+  getNoAuthData(): Observable<string> {
+    return this.httpClient.get<string>(BACKEND_URLS.NO_AUTH_DATA)
+  }
+
+  getUserAuthDate() {
+    return this.httpClient.get<string>(BACKEND_URLS.USER_AUTH_DATA)
+  }
+
+  getAdminAuthDate() {
+    return this.httpClient.get<string>(BACKEND_URLS.ADMIN_AUTH_DATA)
+  }
+
+  getUserOrAdminAuthDate() {
+    return this.httpClient.get<string>(BACKEND_URLS.USER_OR_ADMIN_AUTH_DATA)
+  }
+
 }
