@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { BACKEND_URLS } from "../configs/BACKEND_URLS";
 import {Observable} from "rxjs/Observable";
 import {TokenDto} from "../dto/tokenDto";
+import {TokenService} from "./token.service";
 
 @Injectable()
 export class HttpService {
@@ -20,6 +21,10 @@ export class HttpService {
     return this.httpClient.post<any>(BACKEND_URLS.AUTH, request)
   }
 
+
+  /**
+   *  Auth header is added to request by AuthInterceptor (Interceptor)
+   */
   getNoAuthData(): Observable<string> {
     return this.httpClient.get<string>(BACKEND_URLS.NO_AUTH_DATA)
   }
@@ -35,5 +40,4 @@ export class HttpService {
   getUserOrAdminAuthDate() {
     return this.httpClient.get<string>(BACKEND_URLS.USER_OR_ADMIN_AUTH_DATA)
   }
-
 }

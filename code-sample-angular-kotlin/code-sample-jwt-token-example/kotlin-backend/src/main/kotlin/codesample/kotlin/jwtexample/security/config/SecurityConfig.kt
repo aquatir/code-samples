@@ -112,6 +112,7 @@ class SecurityConfig (val authExceptionsEntry: AuthExceptionsEntry,
         val configuration = CorsConfiguration().apply {
             allowedOrigins = Arrays.asList("http://localhost:4200", "http://evil.com:9000")
             allowedMethods = Arrays.asList("GET", "POST", "OPTIONS")
+            exposedHeaders
         }
 
         return UrlBasedCorsConfigurationSource().apply {

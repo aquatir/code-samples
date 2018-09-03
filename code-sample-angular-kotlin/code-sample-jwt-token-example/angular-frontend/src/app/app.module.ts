@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 
 import { AppComponent } from './app.component';
@@ -9,6 +9,7 @@ import { UserManipulationButtonsComponent } from "./user-manipulation-buttons/us
 
 import { TokenService } from "./services/token.service";
 import { HttpService } from "./services/http.service";
+import { AuthInterceptor } from "./interceptors/auth-interceptor.service";
 
 
 
@@ -23,7 +24,10 @@ import { HttpService } from "./services/http.service";
     HttpClientModule,
     FormsModule
   ],
-  providers: [TokenService, HttpService],
+  providers: [TokenService, HttpService,
+    {provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
