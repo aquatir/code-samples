@@ -4,6 +4,7 @@ import { BACKEND_URLS } from "../configs/BACKEND_URLS";
 import {Observable} from "rxjs/Observable";
 import {TokenDto} from "../dto/tokenDto";
 import {TokenService} from "./token.service";
+import {StringReqResp} from "../dto/stringReqResp";
 
 @Injectable()
 export class HttpService {
@@ -25,19 +26,19 @@ export class HttpService {
   /**
    *  Auth header is added to request by AuthInterceptor (Interceptor)
    */
-  getNoAuthData(): Observable<string> {
-    return this.httpClient.get<string>(BACKEND_URLS.NO_AUTH_DATA)
+  getNoAuthData(): Observable<StringReqResp> {
+    return this.httpClient.get<StringReqResp>(BACKEND_URLS.NO_AUTH_DATA)
   }
 
-  getUserAuthDate() {
-    return this.httpClient.get<string>(BACKEND_URLS.USER_AUTH_DATA)
+  getUserAuthDate(): Observable<StringReqResp> {
+    return this.httpClient.get<StringReqResp>(BACKEND_URLS.USER_AUTH_DATA)
   }
 
-  getAdminAuthDate() {
-    return this.httpClient.get<string>(BACKEND_URLS.ADMIN_AUTH_DATA)
+  getAdminAuthDate(): Observable<StringReqResp> {
+    return this.httpClient.get<StringReqResp>(BACKEND_URLS.ADMIN_AUTH_DATA)
   }
 
-  getUserOrAdminAuthDate() {
-    return this.httpClient.get<string>(BACKEND_URLS.USER_OR_ADMIN_AUTH_DATA)
+  getUserOrAdminAuthDate(): Observable<StringReqResp> {
+    return this.httpClient.get<StringReqResp>(BACKEND_URLS.USER_OR_ADMIN_AUTH_DATA)
   }
 }

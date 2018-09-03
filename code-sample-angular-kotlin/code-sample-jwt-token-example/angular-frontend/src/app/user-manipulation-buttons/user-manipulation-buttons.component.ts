@@ -30,29 +30,29 @@ export class UserManipulationButtonsComponent implements OnInit {
 
   getNoAuthData() {
     this.httpService.getNoAuthData().subscribe(
-      successData => {this.noAuthDate = successData},
-      failure => {this.noAuthDate = "noAuthDate request failed"}
+      successResponse => {this.noAuthDate = successResponse.data},
+      failureResponse => {this.noAuthDate = "noAuthDate request failed"}
     )
   }
 
   getUserAuthDate() {
     this.httpService.getUserAuthDate().subscribe(
-      successData => {this.userAuthDate = successData},
-      failure => {this.userAuthDate = "userAuthDate request failed"}
+      successResponse => {this.userAuthDate = successResponse.data},
+      failureResponse => {this.userAuthDate = "userAuthDate request failed"}
     )
   }
 
   getAdminAuthDate() {
     this.httpService.getAdminAuthDate().subscribe(
-      successData => {this.adminAuthDate = successData},
-      failure => {this.adminAuthDate = "adminAuthDate request failed"}
+      successResponse => {this.adminAuthDate = successResponse.data},
+      failureResponse => {this.adminAuthDate = "adminAuthDate request failed"}
     )
   }
 
   getUserOrAdminAuthDate() {
     this.httpService.getUserOrAdminAuthDate().subscribe(
-      successData => {this.userOrAdminAuthDate = successData},
-      failure => {this.userOrAdminAuthDate = "userOrAdminAuthDate request failed"}
+      successResponse => {this.userOrAdminAuthDate = successResponse.data},
+      failureResponse => {this.userOrAdminAuthDate = "userOrAdminAuthDate request failed"}
     )
   }
 

@@ -6,6 +6,7 @@ import codesample.kotlin.jwtexample.security.service.DbUserDetailsService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpMethod
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.config.BeanIds
@@ -112,7 +113,7 @@ class SecurityConfig (val authExceptionsEntry: AuthExceptionsEntry,
         val configuration = CorsConfiguration().apply {
             allowedOrigins = Arrays.asList("http://localhost:4200", "http://evil.com:9000")
             allowedMethods = Arrays.asList("GET", "POST", "OPTIONS")
-            exposedHeaders
+            addAllowedHeader(HttpHeaders.AUTHORIZATION)
         }
 
         return UrlBasedCorsConfigurationSource().apply {

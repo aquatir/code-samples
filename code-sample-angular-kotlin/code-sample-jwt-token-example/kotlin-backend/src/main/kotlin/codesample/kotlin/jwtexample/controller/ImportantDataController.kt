@@ -1,5 +1,6 @@
 package codesample.kotlin.jwtexample.controller
 
+import codesample.kotlin.jwtexample.dto.StringReqResp
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
@@ -8,17 +9,17 @@ import org.springframework.web.bind.annotation.RestController
 class ImportantDataController {
 
     @GetMapping("/data")
-    fun getData() = "data"
+    fun getData() = StringReqResp("data")
 
     @GetMapping("/userData")
     @PreAuthorize("hasRole('USER')")
-    fun getUserDate() = "userData"
+    fun getUserDate() = StringReqResp("userData")
 
     @GetMapping("/adminData")
     @PreAuthorize("hasRole('ADMIN')")
-    fun getAdminDate() = "adminData"
+    fun getAdminDate() = StringReqResp("adminData")
 
     @GetMapping("/userOrAdminData")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    fun getUserOrAdminData() = "userOrAdminData"
+    fun getUserOrAdminData() = StringReqResp("userOrAdminData")
 }
