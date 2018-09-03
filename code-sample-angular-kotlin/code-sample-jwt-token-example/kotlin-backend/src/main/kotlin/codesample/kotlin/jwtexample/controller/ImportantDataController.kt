@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.RestController
 class ImportantDataController {
 
     @GetMapping("/data")
-    fun getData() = StringReqResp("data")
+    fun getData() = StringReqResp("data success!")
 
     @GetMapping("/userData")
     @PreAuthorize("hasRole('USER')")
-    fun getUserDate() = StringReqResp("userData")
+    fun getUserDate() = StringReqResp("userData success!")
 
     @GetMapping("/adminData")
     @PreAuthorize("hasRole('ADMIN')")
-    fun getAdminDate() = StringReqResp("adminData")
+    fun getAdminDate() = StringReqResp("adminData success!")
 
     @GetMapping("/userOrAdminData")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    fun getUserOrAdminData() = StringReqResp("userOrAdminData")
+    fun getUserOrAdminData() = StringReqResp("userOrAdminData success!")
 }

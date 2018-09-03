@@ -28,6 +28,10 @@ export class UserManipulationButtonsComponent implements OnInit {
     this.password = "";
   }
 
+  refreshAccessToken() {
+    this.tokenService.authRefreshToken();
+  }
+
   getNoAuthData() {
     this.httpService.getNoAuthData().subscribe(
       successResponse => {this.noAuthDate = successResponse.data},

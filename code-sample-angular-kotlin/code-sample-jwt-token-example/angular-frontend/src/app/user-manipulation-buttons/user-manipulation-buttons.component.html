@@ -1,6 +1,6 @@
 <h3>User manipulation buttons</h3>
 
-
+<h5>Login </h5>
 <div>
   <label> Username :
     <input [(ngModel)]="username" placeholder="username"/>
@@ -12,6 +12,9 @@
   </label>
 </div>
 <button (click)="login();">Log me in</button>
+
+<h5> Refresh access token </h5>
+<button (click)="refreshAccessToken();">Refresh Access Token</button>
 
 <h5>Important data buttons </h5>
 

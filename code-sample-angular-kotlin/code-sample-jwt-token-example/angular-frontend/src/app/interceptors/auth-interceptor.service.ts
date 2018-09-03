@@ -9,9 +9,6 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private tokenService: TokenService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log("Interceptor called");
-    console.log("Handling request: " + JSON.stringify(req));
-
     // No need to add token to auth request
     if (req.url.endsWith("/auth")) {
         return next.handle(req);

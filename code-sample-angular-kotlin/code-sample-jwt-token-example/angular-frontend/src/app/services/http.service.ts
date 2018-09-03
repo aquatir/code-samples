@@ -3,8 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { BACKEND_URLS } from "../configs/BACKEND_URLS";
 import {Observable} from "rxjs/Observable";
 import {AccessAndRefreshTokenResponse} from "../dto/responses/accessAndRefreshTokenResponse";
-import {StringReqResp} from "../dto/both/stringReqResp";
-import {AccessTokenByRefreshTokenRequest} from "../dto/requests/accessTokenByRefreshTokenRequest";
+import {StringReqResp} from "../dto/responses/stringReqResp";
 import {AccessTokenResponse} from "../dto/responses/accessTokenResponse";
 
 @Injectable()
@@ -24,7 +23,9 @@ export class HttpService {
   }
 
   refresh(token: string) : Observable<AccessTokenResponse> {
-    let request = new AccessTokenByRefreshTokenRequest(token);
+    let request = {
+      refreshToken: token
+    };
 
     return this.httpClient.post<AccessTokenResponse>(BACKEND_URLS.AUTH_REFRESH, request)
   }
