@@ -17,14 +17,13 @@ class TestUtils (private val jwtTokenService: JwtTokenService) {
     @Value("\${security.jwt.secret.refresh}")
     private lateinit var jwtRefreshSecret: String
 
-    fun generateAccessTokenForMills(userId: Long, mills: Long): String {
-        return jwtTokenService.generateToken(userId.toString(), mills, jwtAccessSecret)
+    fun generateAccessTokenForMills(username: String, mills: Long): String {
+        return jwtTokenService.generateToken(username, mills, jwtAccessSecret)
     }
 
-    fun generateRefreshTokenForMills(userId: Long, mills: Long): String {
-        return jwtTokenService.generateToken(userId.toString(), mills, jwtRefreshSecret)
+    fun generateRefreshTokenForMills(username: String, mills: Long): String {
+        return jwtTokenService.generateToken(username, mills, jwtRefreshSecret)
     }
-
 
     companion object {
         fun getUrlWithToken( url: String, token: String) : MockHttpServletRequestBuilder {

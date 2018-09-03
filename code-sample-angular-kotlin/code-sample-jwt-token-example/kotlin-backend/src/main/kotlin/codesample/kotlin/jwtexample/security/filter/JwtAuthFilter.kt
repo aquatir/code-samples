@@ -20,8 +20,8 @@ class JwtAuthFilter(private val jwtTokenService: JwtTokenService,
         try {
             val jwtToken = getJwtFromRequest(request)
             if (jwtToken != null && jwtTokenService.validateAccessToken(jwtToken)) {
-                val userId = jwtTokenService.getUserIdFromAccessJWT(jwtToken)
-                val userDetails = dbUserDetailsService.loadUserById(userId)
+                val username = jwtTokenService.getUsernameFromAccessJWT(jwtToken)
+                val userDetails = dbUserDetailsService.loadUserByUsername(username)
 
                 val authentication = UsernamePasswordAuthenticationToken(userDetails, null, userDetails.authorities)
                         .apply { details = WebAuthenticationDetailsSource().buildDetails(request) }

@@ -31,28 +31,28 @@ class JwtTokenService {
 
     fun generateAccessToken(authentication: Authentication) : String {
         val userPrincipal = authentication.principal as UserWithAuthorities
-        return generateToken(userPrincipal.id.toString(), jwtAccessExpirationInMs.toLong(), jwtAccessSecret)
+        return generateToken(userPrincipal.username, jwtAccessExpirationInMs.toLong(), jwtAccessSecret)
     }
 
-    fun generateAccessToken(userId: String) : String {
-        return generateToken(userId, jwtAccessExpirationInMs.toLong(), jwtAccessSecret)
+    fun generateAccessToken(username: String) : String {
+        return generateToken(username, jwtAccessExpirationInMs.toLong(), jwtAccessSecret)
     }
 
     fun generateRefreshToken(authentication: Authentication): String {
         val userPrincipal = authentication.principal as UserWithAuthorities
-        return generateToken(userPrincipal.id.toString(), jwtRefreshExpirationInMs.toLong(), jwtRefreshSecret)
+        return generateToken(userPrincipal.username, jwtRefreshExpirationInMs.toLong(), jwtRefreshSecret)
     }
 
-    fun generateRefreshToken(userId: String) : String {
-        return generateToken(userId, jwtRefreshExpirationInMs.toLong(), jwtRefreshSecret)
+    fun generateRefreshToken(username: String) : String {
+        return generateToken(username, jwtRefreshExpirationInMs.toLong(), jwtRefreshSecret)
     }
 
-    fun generateToken(userId: String, expiresInMs: Long, secret: String) : String {
+    fun generateToken(username: String, expiresInMs: Long, secret: String) : String {
         val now = Date()
         val expiryDate = Date(now.time + expiresInMs)
 
         return Jwts.builder()
-                .setSubject(userId)
+                .setSubject(username)
                 .setIssuedAt(now)
                 .setExpiration(expiryDate)
                 .signWith(SignatureAlgorithm.HS512, secret)
@@ -60,20 +60,19 @@ class JwtTokenService {
     }
 
 
-    fun getUserIdFromAccessJWT(token: String): Long =
-            getUserIdFromToken(token, jwtAccessSecret)
+    fun getUsernameFromAccessJWT(token: String): String =
+            getUsernameFromToken(token, jwtAccessSecret)
 
 
-    fun getUserIdFromRefreshJWT(token: String): Long =
-            getUserIdFromToken(token, jwtRefreshSecret)
+    fun getUsernameFromRefreshJWT(token: String): String =
+            getUsernameFromToken(token, jwtRefreshSecret)
 
-    private fun getUserIdFromToken(token: String, secret: String) : Long =
+    private fun getUsernameFromToken(token: String, secret: String) : String =
         Jwts.parser()
                 .setSigningKey(secret)
                 .parseClaimsJws(token)
                 .body
                 .subject
-                .toLong()
 
 
     fun validateAccessToken(token: String): Boolean {

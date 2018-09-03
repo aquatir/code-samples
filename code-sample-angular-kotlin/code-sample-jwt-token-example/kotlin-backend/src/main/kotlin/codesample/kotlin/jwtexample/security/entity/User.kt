@@ -36,7 +36,10 @@ class User (
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         @Column(name = "ID")
-        var id: Long = 0
+        var id: Long = 0,
+
+        @Column(name="REFRESH_TOKEN", length = 200)
+        var refreshToken: String = ""
 ) {
 
 

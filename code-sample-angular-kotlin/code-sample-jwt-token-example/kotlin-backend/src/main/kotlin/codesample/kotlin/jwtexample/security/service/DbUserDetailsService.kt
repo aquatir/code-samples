@@ -14,9 +14,4 @@ class DbUserDetailsService (@Autowired private val userRepository: UserRepositor
         val user = userRepository.findByUsername(username) ?: throw UsernameNotFoundException("user $username not found")
         return UserWithAuthorities(user)
     }
-
-    fun loadUserById(id: Long) : UserDetails {
-        val user = userRepository.findById(id).orElseThrow { UsernameNotFoundException("id $id not found") }
-        return UserWithAuthorities(user)
-    }
 }

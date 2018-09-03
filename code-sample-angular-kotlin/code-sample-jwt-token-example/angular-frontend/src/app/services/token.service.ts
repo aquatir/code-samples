@@ -37,10 +37,16 @@ export class TokenService {
       )
   }
 
-  authRefreshToken() {
+  authRefreshTokens() {
     this.httpService.refresh(this.refreshToken).subscribe(
-      successResponse => this.accessToken = successResponse.accessToken,
-      failureReponse => this.accessToken = "null"
+      successResponse => {
+        this.accessToken = successResponse.accessToken;
+        this.refreshToken = successResponse.refreshToken;
+        },
+      failureReponse => {
+        this.accessToken = "";
+        this.refreshToken = ""
+      }
     )
   }
 

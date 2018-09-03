@@ -5,8 +5,7 @@ with access and refresh tokens.
 
 <h4> IMPORTANT NOTES <h4>
 
-This project implements refresh tokens the same way it implements access token (No storing refresh token in DB).
-This is not how you should do it in real app!
+Read up on access/refresh tokens and how they work before using this code!
 
 Refresh tokens are mean to be 
 1) Revocable

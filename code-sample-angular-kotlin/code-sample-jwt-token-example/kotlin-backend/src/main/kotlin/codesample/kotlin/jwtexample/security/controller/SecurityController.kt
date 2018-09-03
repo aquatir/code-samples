@@ -3,8 +3,8 @@ package codesample.kotlin.jwtexample.security.controller
 import codesample.kotlin.jwtexample.dto.request.LoginRequest
 import codesample.kotlin.jwtexample.dto.request.AccessTokenByRefreshTokenRequest
 import codesample.kotlin.jwtexample.dto.response.AccessAndRefreshTokenResponse
-import codesample.kotlin.jwtexample.dto.response.AccessTokenResponse
 import codesample.kotlin.jwtexample.security.service.JwtTokenService
+import codesample.kotlin.jwtexample.service.UserService
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class SecurityController (val authenticationManager: AuthenticationManager,
-                          val jwtTokenService: JwtTokenService){
+                          val jwtTokenService: JwtTokenService,
+                          val userService: UserService){
 
     /* This request will not be protected by security */
     @PostMapping("/auth")
@@ -40,10 +41,15 @@ class SecurityController (val authenticationManager: AuthenticationManager,
      * token from backend if needed.
      */
     @PostMapping("/auth/refresh")
-    fun authRefresh(@RequestBody accessTokenRequest: AccessTokenByRefreshTokenRequest) : AccessTokenResponse {
+    fun authRefresh(@RequestBody accessTokenRequest: AccessTokenByRefreshTokenRequest) : AccessAndRefreshTokenResponse {
         jwtTokenService.validateRefreshToken(accessTokenRequest.refreshToken)
-        val userId = jwtTokenService.getUserIdFromRefreshJWT(accessTokenRequest.refreshToken)
+        val username = jwtTokenService.getUsernameFromRefreshJWT(accessTokenRequest.refreshToken)
 
-        return AccessTokenResponse(jwtTokenService.generateAccessToken(userId.toString()))
+        val newAccessToken = jwtTokenService.generateAccessToken(username = username)
+        val newRefreshToken = userService.updateAndReturnRefreshToken(username)
+        return AccessAndRefreshTokenResponse(
+                accessToken = newAccessToken,
+                refreshToken = newRefreshToken
+        )
     }
 }
