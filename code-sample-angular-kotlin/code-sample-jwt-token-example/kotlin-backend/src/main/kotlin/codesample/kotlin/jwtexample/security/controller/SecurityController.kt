@@ -1,8 +1,9 @@
 package codesample.kotlin.jwtexample.security.controller
 
-import codesample.kotlin.jwtexample.dto.LoginDto
-import codesample.kotlin.jwtexample.dto.RefreshTokenDto
-import codesample.kotlin.jwtexample.dto.TokenDtoResponse
+import codesample.kotlin.jwtexample.dto.request.LoginRequest
+import codesample.kotlin.jwtexample.dto.request.AccessTokenByRefreshTokenRequest
+import codesample.kotlin.jwtexample.dto.response.AccessAndRefreshTokenResponse
+import codesample.kotlin.jwtexample.dto.response.AccessTokenResponse
 import codesample.kotlin.jwtexample.security.service.JwtTokenService
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
@@ -18,7 +19,7 @@ class SecurityController (val authenticationManager: AuthenticationManager,
 
     /* This request will not be protected by security */
     @PostMapping("/auth")
-    fun auth(@RequestBody loginDto: LoginDto) : TokenDtoResponse {
+    fun auth(@RequestBody loginDto: LoginRequest) : AccessAndRefreshTokenResponse {
         val authentication = authenticationManager.authenticate(
                 UsernamePasswordAuthenticationToken(
                         loginDto.username,
@@ -29,13 +30,13 @@ class SecurityController (val authenticationManager: AuthenticationManager,
         SecurityContextHolder.getContext().authentication = authentication
         val accessToken = jwtTokenService.generateAccessToken(authentication)
         val refreshToken = jwtTokenService.generateRefreshToken(authentication)
-        return TokenDtoResponse(accessToken, refreshToken)
+        return AccessAndRefreshTokenResponse(accessToken, refreshToken)
     }
 
     @PostMapping("/auth/refresh")
-    fun authRefresh(@RequestBody refreshTokenDto: RefreshTokenDto) : String {
-        jwtTokenService.validateRefreshToken(refreshTokenDto.refreshToken)
-        val userId = jwtTokenService.getUserIdFromRefreshJWT(refreshTokenDto.refreshToken)
-        return jwtTokenService.generateAccessToken(userId.toString())
+    fun authRefresh(@RequestBody accessTokenRequest: AccessTokenByRefreshTokenRequest) : AccessTokenResponse {
+        jwtTokenService.validateRefreshToken(accessTokenRequest.refreshToken)
+        val userId = jwtTokenService.getUserIdFromRefreshJWT(accessTokenRequest.refreshToken)
+        return AccessTokenResponse(jwtTokenService.generateAccessToken(userId.toString()))
     }
 }

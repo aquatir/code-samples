@@ -26,15 +26,22 @@ export class TokenService {
 
   authGetToken(username: string, password: string) {
     this.httpService.auth(username, password).subscribe(
-      successTokenDto => {
-        this.accessToken = successTokenDto.accessToken;
-        this.refreshToken = successTokenDto.refreshToken;
+      successResponse => {
+        this.accessToken = successResponse.accessToken;
+        this.refreshToken = successResponse.refreshToken;
       },
-        failure => {
+        failureResponse => {
           this.accessToken = "";
           this.refreshToken = "";
         }
       )
+  }
+
+  authRefreshToken() {
+    this.httpService.refresh(this.refreshToken).subscribe(
+      successResponse => this.accessToken = successResponse.accessToken,
+      failureReponse => this.accessToken = "null"
+    )
   }
 
 }

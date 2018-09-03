@@ -1,4 +1,4 @@
-package codesample.kotlin.jwtexample.dto
+package codesample.kotlin.jwtexample.dto.response
 
 import org.springframework.http.HttpStatus
 

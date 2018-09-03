@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { BACKEND_URLS } from "../configs/BACKEND_URLS";
 import {Observable} from "rxjs/Observable";
-import {TokenDto} from "../dto/tokenDto";
-import {TokenService} from "./token.service";
-import {StringReqResp} from "../dto/stringReqResp";
+import {AccessAndRefreshTokenResponse} from "../dto/responses/accessAndRefreshTokenResponse";
+import {StringReqResp} from "../dto/both/stringReqResp";
+import {AccessTokenByRefreshTokenRequest} from "../dto/requests/accessTokenByRefreshTokenRequest";
+import {AccessTokenResponse} from "../dto/responses/accessTokenResponse";
 
 @Injectable()
 export class HttpService {
@@ -13,13 +14,19 @@ export class HttpService {
 
   }
 
-  auth(username: string, password: string): Observable<TokenDto> {
+  auth(username: string, password: string): Observable<AccessAndRefreshTokenResponse> {
     let request = {
       username: username,
       password: password
     };
 
     return this.httpClient.post<any>(BACKEND_URLS.AUTH, request)
+  }
+
+  refresh(token: string) : Observable<AccessTokenResponse> {
+    let request = new AccessTokenByRefreshTokenRequest(token);
+
+    return this.httpClient.post<AccessTokenResponse>(BACKEND_URLS.AUTH_REFRESH, request)
   }
 
 

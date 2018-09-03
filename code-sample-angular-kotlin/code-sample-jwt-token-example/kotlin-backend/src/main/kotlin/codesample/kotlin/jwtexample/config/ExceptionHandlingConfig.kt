@@ -1,6 +1,6 @@
 package codesample.kotlin.jwtexample.config
 
-import codesample.kotlin.jwtexample.dto.ExceptionResponse
+import codesample.kotlin.jwtexample.dto.response.ExceptionResponse
 import io.jsonwebtoken.JwtException
 import org.springframework.http.HttpStatus
 import org.springframework.security.authentication.BadCredentialsException
