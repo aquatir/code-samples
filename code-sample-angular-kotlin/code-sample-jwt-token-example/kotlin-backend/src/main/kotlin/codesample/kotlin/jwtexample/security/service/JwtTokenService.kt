@@ -13,7 +13,6 @@ import org.springframework.security.core.Authentication
 import org.springframework.stereotype.Service
 import java.util.*
 
-
 @Service
 class JwtTokenService {
     private val logger = LoggerFactory.getLogger(JwtTokenService::class.java)

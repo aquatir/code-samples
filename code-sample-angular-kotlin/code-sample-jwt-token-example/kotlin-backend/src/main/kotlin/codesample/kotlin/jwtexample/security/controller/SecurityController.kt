@@ -33,6 +33,12 @@ class SecurityController (val authenticationManager: AuthenticationManager,
         return AccessAndRefreshTokenResponse(accessToken, refreshToken)
     }
 
+    /**
+     * Get new access token using refresh token.
+     *
+     * Generally speaking refresh token should be stored somewhere (in DB for example?) so that you can invalidate this
+     * token from backend if needed.
+     */
     @PostMapping("/auth/refresh")
     fun authRefresh(@RequestBody accessTokenRequest: AccessTokenByRefreshTokenRequest) : AccessTokenResponse {
         jwtTokenService.validateRefreshToken(accessTokenRequest.refreshToken)

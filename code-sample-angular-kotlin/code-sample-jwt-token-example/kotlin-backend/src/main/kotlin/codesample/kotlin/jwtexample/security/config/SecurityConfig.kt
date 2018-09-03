@@ -111,8 +111,10 @@ class SecurityConfig (val authExceptionsEntry: AuthExceptionsEntry,
     @Bean
     fun corsConfigurationSource() : CorsConfigurationSource {
         val configuration = CorsConfiguration().apply {
-            allowedOrigins = Arrays.asList("http://localhost:4200", "http://evil.com:9000")
+            allowedOrigins = Arrays.asList("http://localhost:4200")
             allowedMethods = Arrays.asList("GET", "POST", "OPTIONS")
+
+            /* We are going to pass token in AUTHORIZATION header */
             addAllowedHeader(HttpHeaders.AUTHORIZATION)
         }
 

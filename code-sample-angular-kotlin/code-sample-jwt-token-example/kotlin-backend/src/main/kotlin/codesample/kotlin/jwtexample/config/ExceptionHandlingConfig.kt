@@ -20,6 +20,7 @@ class ExceptionHandlingConfig {
         return ExceptionResponse(HttpStatus.UNAUTHORIZED, "UNAUTHORIZED")
     }
 
+    /* Thrown when token parsing fails */
     @ExceptionHandler(JwtException::class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ResponseBody
