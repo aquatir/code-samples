@@ -5,7 +5,7 @@
 
 <p> Currently consists of: </p>
 <ul>
-    <li><b>code-sample-angular-kotlin</b>. Kotlin + Angular app with JWT authentication and spring security roles management
+    <li><b>code-sample-angular-kotlin</b>. Kotlin + Angular app with JWT access/refresh token authentication and spring security roles management
     <li>
         <b>code-sample-java</b>. Java code examples
         <ul>
