@@ -43,6 +43,7 @@ class SecurityController (val authenticationManager: AuthenticationManager,
     fun authRefresh(@RequestBody accessTokenRequest: AccessTokenByRefreshTokenRequest) : AccessTokenResponse {
         jwtTokenService.validateRefreshToken(accessTokenRequest.refreshToken)
         val userId = jwtTokenService.getUserIdFromRefreshJWT(accessTokenRequest.refreshToken)
+
         return AccessTokenResponse(jwtTokenService.generateAccessToken(userId.toString()))
     }
 }
