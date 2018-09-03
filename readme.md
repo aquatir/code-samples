@@ -9,6 +9,7 @@
     <li>
         <b>code-sample-java</b>. Java code examples
         <ul>
+            <li> <b>code-sample-java-springboot-ldap-login</b></li>. LDAP login with spring security example
             <li> <b> code-sample-java-algorithms-and-data-structures</b> 
             Some basic algorithms and data structures implemented on java (not a lot though)</li>
             <li> <b> code-sample-java-aspectj</b>. Tiny aspectJ example</li>
@@ -19,9 +20,9 @@
             <li> <b> code-sample-java-spring</b>. Tiny spring example. Uses only bean definition</li>
             <li> <b> code-sample-java-springboot</b>. Consist of some (but not all) springboot features</li>
             <li> <b> code-sample-spring-security</b>. Spring security features. </li>
-            <li> <b> code-sample-kotlin</b>. Kotlin examples </li>
          </ul>
     </li>
+    <li> <b> code-sample-kotlin</b>. Kotlin examples </li>
     <li><b>code-sample-python</b>. Python code examples. Currently consist of a single Flask example </li>
     <li><b>code-sample-docker</b>. Contains some docker examples
         <ul>
