@@ -27,7 +27,7 @@ public class OwnerUni {
         return id;
     }
 
-    public DogUni getDog() {
+    private DogUni getDog() {
         return dog;
     }
 

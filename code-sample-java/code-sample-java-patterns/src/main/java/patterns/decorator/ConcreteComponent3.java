@@ -6,7 +6,7 @@ package patterns.decorator;
  */
 public class ConcreteComponent3 implements Component {
 
-    Component parrent;
+    private final Component parrent;
 
     public ConcreteComponent3(Component parent) {
         this.parrent = parent;

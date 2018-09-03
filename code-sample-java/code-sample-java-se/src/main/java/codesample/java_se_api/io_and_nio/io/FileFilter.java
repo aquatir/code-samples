@@ -6,7 +6,7 @@ import java.util.Arrays;
 /**
  * Class assumes that test files were already created with {@link FilesCreatorIO}
  */
-public class FileFilter {
+class FileFilter {
     public static void main(String[] args) {
 
         FilesCreatorIO.createFiles();
@@ -24,6 +24,6 @@ public class FileFilter {
         });
 
         Arrays.sort(listOfDirs);
-        Arrays.stream(listOfDirs).forEach(c -> System.out.println(c));
+        Arrays.stream(listOfDirs).forEach(System.out::println);
     }
 }

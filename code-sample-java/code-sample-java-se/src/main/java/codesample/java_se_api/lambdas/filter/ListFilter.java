@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Basic utility classes for List
  */
-public class ListFilter {
+class ListFilter {
     /**
      * Count number of elements in list which pass the filter
      * @param list list of elements to twoElementsFilter

@@ -8,7 +8,7 @@ import java.util.concurrent.Exchanger;
  * We create 2 threads which will exchange their string via Exchanger. First thread will start with 'Hello' string, another
  * will start with 'World' string. After 1 second, threads will exchange their strings and print out the result.
  */
-public class ExchangerExample {
+class ExchangerExample {
     public static void main(String[] args) {
         Exchanger<String> exchanger = new Exchanger<>();
 
@@ -22,9 +22,9 @@ public class ExchangerExample {
 
 class ExchangerUser implements Runnable {
 
-    Exchanger<String> exchanger;
-    String exchangedString;
-    String exchangerName;
+    private final Exchanger<String> exchanger;
+    private final String exchangedString;
+    private final String exchangerName;
     ExchangerUser(Exchanger<String> exchanger, String exchangedString, String exchangerName) {
         this.exchanger = exchanger;
         this.exchangedString = exchangedString;

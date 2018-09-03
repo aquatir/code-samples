@@ -1,13 +1,13 @@
 package patterns.strategy;
 
-public class RunStrategy {
+class RunStrategy {
     private IStrategyBehavior strategy;
 
-    public void setStrategy(IStrategyBehavior strategy) {
+    private void setStrategy(IStrategyBehavior strategy) {
         this.strategy = strategy;
     }
 
-    public void executeStrategy() {
+    private void executeStrategy() {
         strategy.executeStrategy();
     }
 

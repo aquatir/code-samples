@@ -10,12 +10,12 @@ import java.util.Random;
 
 public class SortsTest {
 
-    final int size = 50000;
-    final int randomSeed = 0;
-    Random rnd;
+    private final int size = 50000;
+    private final int randomSeed = 0;
+    private Random rnd;
 
-    Comparable<Integer>[] arrTest;
-    Comparable<Integer>[] arrExp;
+    private Comparable<Integer>[] arrTest;
+    private Comparable<Integer>[] arrExp;
 
     @Before
     public void setRandomSeed() {

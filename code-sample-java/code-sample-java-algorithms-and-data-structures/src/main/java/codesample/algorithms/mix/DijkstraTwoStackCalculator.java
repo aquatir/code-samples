@@ -5,10 +5,10 @@ import codesample.data_structures.stacks.StackOnLinkedList;
 /**
  * @author pavel
  */
-public class DijkstraTwoStackCalculator {
+class DijkstraTwoStackCalculator {
 
-    StackOnLinkedList<Character> ops = new StackOnLinkedList<Character>();
-    StackOnLinkedList<Double> values = new StackOnLinkedList<Double>();
+    private final StackOnLinkedList<Character> ops = new StackOnLinkedList<>();
+    private final StackOnLinkedList<Double> values = new StackOnLinkedList<>();
 
     public Double calculate(String str) {
 

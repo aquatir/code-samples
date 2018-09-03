@@ -13,16 +13,13 @@ package patterns.flyweight;
  */
 public class FlyweightObject {
 
-    private final String someStringValue;
-    private final int someIntegerValue;
-
     /**
      * Actual object initialize a lot of different parts
      * @param inputParameters
      */
     public FlyweightObject(InitParameters inputParameters) {
-        someIntegerValue = 5;
-        someStringValue = "bob";
+        int someIntegerValue = 5;
+        String someStringValue = "bob";
 
         /* some crazy computation may or may not take place here.*/
     }

@@ -6,7 +6,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class URLExample {
+class URLExample {
     public static void main(String[] args) throws IOException {
         URL url = new URL("http://google.com");
         System.out.println(url.getHost());

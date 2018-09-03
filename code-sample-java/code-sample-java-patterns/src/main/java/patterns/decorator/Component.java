@@ -5,6 +5,6 @@ package patterns.decorator;
  * While getting invoked, each component can do some useful work and then pass control
  * to underlying components.
  */
-public interface Component {
-    public void componentFunction();
+interface Component {
+    void componentFunction();
 }

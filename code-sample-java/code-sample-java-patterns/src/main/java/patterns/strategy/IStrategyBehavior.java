@@ -1,5 +1,5 @@
 package patterns.strategy;
 
-public interface IStrategyBehavior {
-    public void executeStrategy();
+interface IStrategyBehavior {
+    void executeStrategy();
 }

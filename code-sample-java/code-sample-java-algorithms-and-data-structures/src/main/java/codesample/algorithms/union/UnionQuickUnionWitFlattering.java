@@ -16,9 +16,9 @@ import java.util.ArrayList;
  *
  * @author Pavel Bukhmatov (buhmatov@gmail.com; github.com/aquatir)
  */
-public class UnionQuickUnionWitFlattering {
-    ArrayList<Integer> elements;
-    ArrayList<Integer> size;
+class UnionQuickUnionWitFlattering {
+    private final ArrayList<Integer> elements;
+    private final ArrayList<Integer> size;
 
 
     /**
@@ -28,8 +28,8 @@ public class UnionQuickUnionWitFlattering {
      * @param n - number of elements in union
      */
     UnionQuickUnionWitFlattering(int n) {
-        this.elements = new ArrayList<Integer>(n);
-        this.size = new ArrayList<Integer>(n);
+        this.elements = new ArrayList<>(n);
+        this.size = new ArrayList<>(n);
         initiateElements(n);
     }
 
@@ -52,7 +52,7 @@ public class UnionQuickUnionWitFlattering {
      * @param a - index of current element
      * @return index of root
      */
-    int root(int a) {
+    private int root(int a) {
         while (a != elements.get(a)) {
             elements.set(a, elements.get(elements.get(a)));
             a = elements.get(a);

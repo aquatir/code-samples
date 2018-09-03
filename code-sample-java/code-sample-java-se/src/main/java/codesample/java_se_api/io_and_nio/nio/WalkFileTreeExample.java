@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 
-public class WalkFileTreeExample {
+class WalkFileTreeExample {
     public static void main(String[] args) {
 
         FilesCreatorNIO.createFiles();
@@ -22,10 +22,10 @@ public class WalkFileTreeExample {
     /**
      * You can override methods in this class to determine how directory should be walked
      */
-    public static class MyFileVisitor extends SimpleFileVisitor<Path> {
+    static class MyFileVisitor extends SimpleFileVisitor<Path> {
 
         @Override
-        public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+        public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
             System.out.println(file);
             return FileVisitResult.CONTINUE;
         }

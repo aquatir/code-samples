@@ -22,7 +22,7 @@ public class Concert {
         this.visitors = new HashSet<>();
     }
 
-    public int getId() {
+    private int getId() {
         return id;
     }
 
@@ -42,12 +42,12 @@ public class Concert {
         this.visitors = visitors;
     }
 
-    public boolean addVisitor(Visitor visitor) {
-        return visitors.add(visitor);
+    public void addVisitor(Visitor visitor) {
+        visitors.add(visitor);
     }
 
-    public boolean deleteVisitor (Visitor visitor) {
-        return visitors.remove(visitor);
+    public void deleteVisitor (Visitor visitor) {
+        visitors.remove(visitor);
     }
 
     @Override

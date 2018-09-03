@@ -1,6 +1,6 @@
 package patterns.bridge;
 
-public class RunBridge {
+class RunBridge {
     public static void main(String[] args) {
 
         System.out.println("Creating 2 abstractions with different implementations-specific methods");

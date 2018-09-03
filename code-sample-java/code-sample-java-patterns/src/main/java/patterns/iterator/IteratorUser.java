@@ -2,7 +2,7 @@ package patterns.iterator;
 
 public class IteratorUser {
 
-    Integer[] superUsefullData;
+    private Integer[] superUsefullData;
 
     public IteratorUser(Integer[] array) {
 

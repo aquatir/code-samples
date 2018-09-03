@@ -9,7 +9,7 @@ import org.hibernate.Session;
  * postgres) and Option. Each user can have one or more special options turned on in his profile and we have to store
  * this setting somewhere. In this example we will use an auxiliary table to store options which are turned on.
  */
-public class HibernateRunnerManyToManyUnidirectional {
+class HibernateRunnerManyToManyUnidirectional {
     public static void main(String[] args) {
 
         try {

@@ -1,0 +1,15 @@
+.inline-block {
+  display: inline-block;
+  width: 45%;
+  vertical-align: top;
+  border: 1px solid black;
+  border-radius: 2px;
+}
+
+.background-container {
+  margin: 0 10%;
+  text-align: center;
+  background-color: #fafafa;
+  min-height: 800px;
+}
+

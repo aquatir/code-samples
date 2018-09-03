@@ -10,8 +10,7 @@ public class MyActualClass extends MyBaseClass {
     }
 
     @Override
-    public int getRandomInteger() {
+    public void getRandomInteger() {
         // picked by fair and random dice roll
-        return 4;
     }
 }

@@ -9,7 +9,7 @@ import java.io.SequenceInputStream;
 *
 * The output would also be sequential. The first stream added would be printed first.
 * After printing, individual streams will close automatically */
-public class SequenceInputStreamExample {
+class SequenceInputStreamExample {
     public static void main(String[] args) throws IOException {
 
         byte[] inp1 = "abcd".getBytes();

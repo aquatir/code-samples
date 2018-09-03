@@ -7,9 +7,10 @@ import java.util.concurrent.Semaphore;
  * We create a semaphore with a single permit. Then launch 2 threads. One should increment a shared area value by 5
  * (by 1 on each iteration), another should decrement this value by 5 (by 1 with each iteration).
  *
- * We can see, that 2 threads are starting almost sensationally, but they can not acquire semaphore at the same time
+ * We can see, that 2 threads are starting simultaneously, but they can not acquire semaphore at the same time
+ * Also note, that if you increase number of semaphore permits, both threads will work at the same time
  */
-public class SemaphoreExample {
+class SemaphoreExample {
     public static void main(String[] args) {
         Semaphore sem = new Semaphore(1);
         int numOfIterations = 5;
@@ -23,12 +24,12 @@ public class SemaphoreExample {
 }
 
 class SharedArea {
-    public static int value = 0;
+    public static volatile int value = 0;
 }
 
 class Incrementer implements Runnable {
-    private Semaphore sem;
-    private int numOfIncrements;
+    private final Semaphore sem;
+    private final int numOfIncrements;
 
     Incrementer(Semaphore sem, int numOfIncrements) {
         this.sem = sem;
@@ -56,8 +57,8 @@ class Incrementer implements Runnable {
 
 class Decrementer implements Runnable{
 
-    private Semaphore sem;
-    private int numOfDecrements;
+    private final Semaphore sem;
+    private final int numOfDecrements;
 
     Decrementer(Semaphore sem, int numOfDecrements) {
         this.sem = sem;

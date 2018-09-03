@@ -5,7 +5,7 @@ import org.hibernate.Session;
 
 import java.io.IOException;
 
-public class HibernateOneToOneUnidirectional {
+class HibernateOneToOneUnidirectional {
     public static void main(String[] args) throws IOException {
         DogUni korgi = new DogUni("Korgi");
         DogUni pug = new DogUni("Pug");
@@ -20,18 +20,18 @@ public class HibernateOneToOneUnidirectional {
             session.save(vladimir);
 
             System.out.println("Owners:");
-            session.createQuery("From OwnerUni").list().forEach(owner -> System.out.println(owner));
+            session.createQuery("From OwnerUni").list().forEach(System.out::println);
             System.out.println("Dogs:");
-            session.createQuery("From DogUni").list().forEach(dog -> System.out.println(dog));
+            session.createQuery("From DogUni").list().forEach(System.out::println);
 
             System.out.println();
             System.out.println("Deleting Ivan");
             session.delete(ivan);
 
             System.out.println("Owners:");
-            session.createQuery("From OwnerUni").list().forEach(owner -> System.out.println(owner));
+            session.createQuery("From OwnerUni").list().forEach(System.out::println);
             System.out.println("Dogs:");
-            session.createQuery("From DogUni").list().forEach(dog -> System.out.println(dog));
+            session.createQuery("From DogUni").list().forEach(System.out::println);
             System.out.println("Note that Ivan's dog (korgi) was also deleted");
 
             session.getTransaction().commit();

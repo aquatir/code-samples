@@ -9,7 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class DirectoryStreamExample {
+class DirectoryStreamExample {
     public static void main (String[] args) {
 
         /* This 2 calls will create directories for both nio and io files.

@@ -12,6 +12,7 @@ public class Option {
     private int id;
 
     @Column(name="option_name")
+    private
     String optionName;
     
     public Option() {}

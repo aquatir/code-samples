@@ -10,20 +10,20 @@ package codesample.data_structures.stacks;
  * @author pavel
  */
 public class StackOnLinkedList<GenericItemType> {
-    Node head;
-    int size;
+    private Node head;
+    private int size;
     
     private class Node {
-        private GenericItemType value;
+        private final GenericItemType value;
         private Node next;
         
-        public Node(GenericItemType value) {
+        Node(GenericItemType value) {
             this.value = value;
             this.next = null;
         }
     }
     
-    public boolean isEmpty() {
+    boolean isEmpty() {
         return size == 0;
     }
     

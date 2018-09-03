@@ -8,17 +8,17 @@ package patterns.bridge;
  * See {@link RefinedAbstraction} which is a subclass of this class for some more details and usage comments.
  * See {@link RunBridge} for bridge pattern examples.
  */
-public abstract class Abstraction {
+abstract class Abstraction {
 
-    private Implementation implementation;
+    private final Implementation implementation;
 
-    public  Abstraction(Implementation impl) {
+    Abstraction(Implementation impl) {
         implementation = impl;
     }
 
-    public Implementation getImplementation() {
+    Implementation getImplementation() {
         return implementation;
     }
 
-    public void implementationSpecificMethod() {};
+    public void implementationSpecificMethod() {}
 }

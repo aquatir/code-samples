@@ -9,14 +9,14 @@ import java.util.LinkedList;
  */
 public class Model implements ModelInterface {
 
-    private LinkedList<Observer> observedViews;
+    private final LinkedList<Observer> observedViews;
     private int displayedNumber;
 
     /**
      * Create LinkedList of view observers when created
      */
     public Model() {
-        observedViews = new LinkedList<Observer>();
+        observedViews = new LinkedList<>();
         displayedNumber = 0;
     }
 
@@ -32,9 +32,7 @@ public class Model implements ModelInterface {
 
     @Override
     public void notifyObservers() {
-        for (int i = 0; i < observedViews.size(); ++i) {
-            observedViews.get(i).update();
-        }
+        observedViews.forEach(Observer::update);
     }
 
     /**

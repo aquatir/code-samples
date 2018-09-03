@@ -16,7 +16,7 @@ import java.net.Socket;
  * <br>
  * Every client request and user response are written to console.
  */
-public class SingleConnectionLocalClient {
+class SingleConnectionLocalClient {
     public static void main(String[] args) throws IOException {
         try (Socket socket = new Socket(InetAddress.getLocalHost(), 10000);
 
@@ -25,7 +25,7 @@ public class SingleConnectionLocalClient {
              BufferedReader fromServer = new BufferedReader(
                      new InputStreamReader(socket.getInputStream()));
 
-             BufferedReader clientConsole = new BufferedReader(new InputStreamReader(System.in));
+             BufferedReader clientConsole = new BufferedReader(new InputStreamReader(System.in))
         ) {
 
             while (true) {

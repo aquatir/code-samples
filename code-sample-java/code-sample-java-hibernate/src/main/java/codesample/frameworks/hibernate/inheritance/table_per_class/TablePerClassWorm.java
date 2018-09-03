@@ -29,11 +29,11 @@ public class TablePerClassWorm {
         this.name = name;
     }
 
-    public int getId() {
+    int getId() {
         return id;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 

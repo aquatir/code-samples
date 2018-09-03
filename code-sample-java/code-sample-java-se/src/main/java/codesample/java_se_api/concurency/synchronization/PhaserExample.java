@@ -9,7 +9,7 @@ import java.util.concurrent.Phaser;
  * when the main thread calls arriveAdnAwaitAdvanced() method. This will happen 3 times. After that
  * both threads and main thread will be deregistered.
  */
-public class PhaserExample {
+class PhaserExample {
     public static void main(String[] args) throws InterruptedException {
 
         Phaser phaser = new Phaser(1);
@@ -39,8 +39,8 @@ public class PhaserExample {
 
 class phaserMember implements Runnable {
 
-    private Phaser phaser;
-    private String name;
+    private final Phaser phaser;
+    private final String name;
 
     public phaserMember(Phaser phaser, String threadName) {
         this.phaser = phaser;

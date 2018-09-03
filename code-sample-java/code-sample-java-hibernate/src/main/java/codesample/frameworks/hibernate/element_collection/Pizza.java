@@ -61,7 +61,7 @@ public class Pizza {
     public String toString() {
         String ingredientsString = ingredients.stream().collect(StringBuilder::new,
                 (ready, additional) -> ready.append(additional.getName()).append("\n"),
-                (streamOneOutput, streamTwoOutput) -> streamOneOutput.append(streamTwoOutput)).toString();
+                StringBuilder::append).toString();
         return name + " ingredients: " + ingredientsString;
     }
 

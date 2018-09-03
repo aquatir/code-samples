@@ -1,6 +1,6 @@
 package patterns.mediator;
 
-public class RunMediatorExample {
+class RunMediatorExample {
 
     public static void main(String[] args) {
 

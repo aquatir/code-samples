@@ -5,7 +5,7 @@ import java.io.*;
 /**
  * PrintStream class is like System.out but can output into files!
  */
-public class PrintStreamExample {
+class PrintStreamExample {
     public static void main(String[] args) throws IOException {
         File f = FilesCreatorIO.createFiles()[0];
         try (PrintStream prs = new PrintStream(f)) {

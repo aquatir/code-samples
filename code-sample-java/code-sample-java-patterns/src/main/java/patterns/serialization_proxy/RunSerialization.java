@@ -2,7 +2,7 @@ package patterns.serialization_proxy;
 
 import java.io.*;
 
-public class RunSerialization {
+class RunSerialization {
 
     public static void main(String[] args) {
 
@@ -36,9 +36,7 @@ public class RunSerialization {
 
             System.out.println("Deserialize int field: " + deserialize.getIntField() + " string field: " + deserialize.getStringField());
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

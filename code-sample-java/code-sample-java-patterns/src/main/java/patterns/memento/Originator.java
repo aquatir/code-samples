@@ -8,7 +8,7 @@ package patterns.memento;
  * {@link Caretaker} can not change {@link Memento}'s field neither can {@link Originator}, so by using
  * this mechanism you ensure, that inner state of {@link Memento} would be unchanged
  */
-public class Originator {
+class Originator {
     private String state;
 
     public void setState(String state) {

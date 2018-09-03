@@ -26,7 +26,7 @@ public class Visitor {
         this.concerts = new HashSet<>();
     }
 
-    public int getId() {
+    private int getId() {
         return id;
     }
 
@@ -46,9 +46,9 @@ public class Visitor {
         this.concerts = concerts;
     }
 
-    public boolean addConcert(Concert concert) {
+    public void addConcert(Concert concert) {
         concert.addVisitor(this);
-        return concerts.add(concert);
+        concerts.add(concert);
     }
 
     public boolean deleteConcert (Concert concert) {

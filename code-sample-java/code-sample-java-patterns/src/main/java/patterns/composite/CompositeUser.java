@@ -1,6 +1,6 @@
 package patterns.composite;
 
-public class CompositeUser {
+class CompositeUser {
     public static void main(String[] args) {
         Composite SuperComposite = new Composite("SuperComposite");
         Composite SubCompositeOne = new Composite("SubCompositeOne");

@@ -15,14 +15,14 @@ import static org.junit.Assert.assertEquals;
  */
 public class QueueOnTwoStacksTest {
 
-    QueueOnTwoStacks<Integer> queue;
+    private QueueOnTwoStacks<Integer> queue;
 
     /**
      * Test of enqueue method, of class QueueOnTwoStacks.
      */
     @Test
     public void testEnqueueAndDequeue() {
-        queue = new QueueOnTwoStacks<Integer>();
+        queue = new QueueOnTwoStacks<>();
         queue.enqueue(1);
         queue.enqueue(2);
         assertEquals(queue.dequeue(), new Integer(1));
@@ -34,7 +34,7 @@ public class QueueOnTwoStacksTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public void testDequeueEmpty() {
-        queue = new QueueOnTwoStacks<Integer>(); /* queue is empty when just created */
+        queue = new QueueOnTwoStacks<>(); /* queue is empty when just created */
         queue.dequeue();
     }
 

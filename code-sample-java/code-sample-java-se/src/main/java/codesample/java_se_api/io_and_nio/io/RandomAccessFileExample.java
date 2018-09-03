@@ -7,7 +7,7 @@ import java.io.RandomAccessFile;
 /**
  * RandomAccessFile allows you to jump with file pointer anywhere in file.
  */
-public class RandomAccessFileExample {
+class RandomAccessFileExample {
     public static void main(String[] args) throws IOException {
         File f = FilesCreatorIO.createFiles()[0];
 

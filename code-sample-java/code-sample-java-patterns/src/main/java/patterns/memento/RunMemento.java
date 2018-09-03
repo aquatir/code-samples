@@ -1,6 +1,6 @@
 package patterns.memento;
 
-public class RunMemento {
+class RunMemento {
 
     public static void main (String[] args) {
         Originator orig = new Originator();

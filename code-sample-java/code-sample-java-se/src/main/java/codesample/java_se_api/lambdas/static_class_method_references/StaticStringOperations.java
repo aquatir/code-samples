@@ -5,9 +5,9 @@ package codesample.java_se_api.lambdas.static_class_method_references;
  * Take note that methods in this class have the save signature as {@link codesample.java_se_api.lambdas.StringFunc} functional interface.
  * This is required in order to make :: notation references
  */
-public class StaticStringOperations {
+class StaticStringOperations {
     static String reverse (String str) {
-        StringBuffer sb = new StringBuffer(str);
+        StringBuilder sb = new StringBuilder(str);
         return sb.reverse().toString();
     }
 

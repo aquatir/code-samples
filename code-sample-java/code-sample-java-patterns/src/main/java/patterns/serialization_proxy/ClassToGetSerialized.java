@@ -22,8 +22,8 @@ class ClassToGetSerialized implements Serializable {
         this.stringField = stringField;
     }
 
-    private int intField;
-    private String stringField;
+    private final int intField;
+    private final String stringField;
 
     String getStringField() {
         return stringField;
@@ -64,8 +64,8 @@ class ClassToGetSerialized implements Serializable {
 
 
     private static class SerializationProxy implements Serializable {
-        private int intField;
-        private String stringField;
+        private final int intField;
+        private final String stringField;
 
         /**
          * This constructor is called when you serialize {@code ClassToGetSerialized} <br>

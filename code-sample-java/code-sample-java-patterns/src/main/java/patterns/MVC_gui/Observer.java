@@ -1,5 +1,5 @@
 package patterns.MVC_gui;
 
-public interface Observer {
+interface Observer {
     void update();
 }

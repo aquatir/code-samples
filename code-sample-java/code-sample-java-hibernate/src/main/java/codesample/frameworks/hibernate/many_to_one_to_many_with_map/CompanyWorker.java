@@ -14,7 +14,8 @@ public class CompanyWorker {
     private int id;
     private String name;
 
-    public CompanyWorker(){};
+    public CompanyWorker(){}
+
     public CompanyWorker(String name) {
         this.name = name;
     }

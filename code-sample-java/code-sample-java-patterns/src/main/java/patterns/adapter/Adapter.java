@@ -5,7 +5,7 @@ package patterns.adapter;
  */
 public class Adapter implements AdapterInterface {
 
-    private SomeClass clazz;
+    private final SomeClass clazz;
 
     public Adapter(SomeClass clazz){
         this.clazz = clazz;

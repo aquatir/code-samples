@@ -6,9 +6,9 @@ import java.util.List;
 /**
  * Leaf class extends component but does not implement all of the operations
  */
-public class Leaf extends Component {
+class Leaf extends Component {
 
-    private String name;
+    private final String name;
 
     public Leaf(String name) {
         this.name = name;

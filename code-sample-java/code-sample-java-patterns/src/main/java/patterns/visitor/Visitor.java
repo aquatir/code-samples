@@ -13,7 +13,7 @@ package patterns.visitor;
  * for each concrete Client subclass. This method not only reduce number of visit(? extends Client) methods you should
  * implement but also provide compile-time class-type safety.
  */
-public interface Visitor {
-    public void visit(ConcreteClientOne clientOne);
-    public void visit(ConcreteClientTwo clientTwo);
+interface Visitor {
+    void visit(ConcreteClientOne clientOne);
+    void visit(ConcreteClientTwo clientTwo);
 }

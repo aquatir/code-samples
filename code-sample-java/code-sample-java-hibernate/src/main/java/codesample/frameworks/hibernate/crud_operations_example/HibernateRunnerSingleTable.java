@@ -13,7 +13,7 @@ import java.util.UUID;
  * <p/>
  * Note that session object implements auto-closable, so using try-with-resources is encouraged.
  */
-public class HibernateRunnerSingleTable {
+class HibernateRunnerSingleTable {
     public static void main(String[] args) throws IOException {
 
         Town chertanovo = new Town("Chertanovo", 50, "Big awesome river");

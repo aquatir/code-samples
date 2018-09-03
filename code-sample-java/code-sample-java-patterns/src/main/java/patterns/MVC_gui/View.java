@@ -1,8 +1,6 @@
 package patterns.MVC_gui;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * View is GUI which can be seen by user. It can only display items with it's own methods.
@@ -10,12 +8,12 @@ import java.awt.event.ActionListener;
  * To change parameters use {@link Controller} bounded to model upon which view is based on.
  */
 public class View implements Observer{
-    private Model model;
-    private Controller controller;
+    private final Model model;
+    private final Controller controller;
 
-    JFrame viewFrame;
-    JPanel viewPanel;
-    JLabel viewLabel;
+    private JFrame viewFrame;
+    private JPanel viewPanel;
+    private JLabel viewLabel;
 
     /** Bind model to this view and bind  controller to model.
      * Register this view as observer to model.
@@ -58,14 +56,9 @@ public class View implements Observer{
      * Thit button increments number when pressed.
      */
     private class myButton extends JButton {
-        public myButton(String str) {
+        myButton(String str) {
             super(str);
-            this.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    controller.incrementDisplayedNumber();
-                }
-            });
+            this.addActionListener(e -> controller.incrementDisplayedNumber());
         }
     }
 }

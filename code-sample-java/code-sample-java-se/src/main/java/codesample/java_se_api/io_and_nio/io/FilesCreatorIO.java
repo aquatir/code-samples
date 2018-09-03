@@ -13,7 +13,7 @@ public class FilesCreatorIO {
 
     private static String dirIOFiles;
 
-    private static String fileNameTemplate = "file_";
+    private static final String fileNameTemplate = "file_";
 
     public static String getDirIOFiles() { return dirIOFiles; }
     public static String getFileNameTemplate() { return fileNameTemplate; }

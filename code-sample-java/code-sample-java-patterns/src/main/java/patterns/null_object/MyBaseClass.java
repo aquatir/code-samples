@@ -14,13 +14,13 @@ package patterns.null_object;
  */
 public abstract class MyBaseClass {
 
-    static MyBaseClass NULL_BASE_CLASS_INSTANCE = new MyNullClass();
+    static final MyBaseClass NULL_BASE_CLASS_INSTANCE = new MyNullClass();
 
 
-    int value;
+    private int value;
 
     public abstract void printStuff();
-    public abstract int getRandomInteger();
+    public abstract void getRandomInteger();
 
     public void setValue(int value) {
         this.value = value;
@@ -45,8 +45,7 @@ public abstract class MyBaseClass {
         }
 
         @Override
-        public int getRandomInteger() {
-            return 0;
+        public void getRandomInteger() {
         }
 
         @Override

@@ -4,7 +4,7 @@ package patterns.factories.simpleFactory;
  * Simple factory will straightforwardly give you a desired object based on some given value.
  * This value can actually be anything you wish.
  */
-public class Factory {
+class Factory {
 
     public Factory() {
         /* some init */

@@ -5,7 +5,7 @@ import org.hibernate.Session;
 
 import java.io.IOException;
 
-public class HibernateSingleTableRunner {
+class HibernateSingleTableRunner {
     public static void main(String[] args) throws IOException {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
@@ -23,15 +23,15 @@ public class HibernateSingleTableRunner {
 
             session.beginTransaction();
             System.out.println("Grass worms:");
-            session.createQuery("from SingleTableGrassWorm").list().forEach(c -> System.out.println(c));
+            session.createQuery("from SingleTableGrassWorm").list().forEach(System.out::println);
 
             System.out.println();
             System.out.println("Book worms:");
-            session.createQuery("from SingleTableBookWorm").list().forEach(c -> System.out.println(c));
+            session.createQuery("from SingleTableBookWorm").list().forEach(System.out::println);
 
             System.out.println();
             System.out.println("All worms");
-            session.createQuery("from SingleTableWorm").list().forEach(c -> System.out.println(c));
+            session.createQuery("from SingleTableWorm").list().forEach(System.out::println);
 
             session.getTransaction().commit();
 

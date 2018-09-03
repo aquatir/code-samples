@@ -5,7 +5,7 @@ package patterns.singleton;
  */
 public class SingletonLazyInitHolder  {
     private static class InstanceHolder {
-        public static SingletonLazyInitHolder holder = new SingletonLazyInitHolder();
+        static final SingletonLazyInitHolder holder = new SingletonLazyInitHolder();
     }
 
     public static SingletonLazyInitHolder getInstance() {

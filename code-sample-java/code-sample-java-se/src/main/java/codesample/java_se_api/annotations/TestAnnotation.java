@@ -33,7 +33,7 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.FIELD, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME) // RetentionPolicy.CLASS RetentionPolicy.SOURCE
-public @interface TestAnnotation {
+@interface TestAnnotation {
     String str() default "Hello";
     int value();
 }

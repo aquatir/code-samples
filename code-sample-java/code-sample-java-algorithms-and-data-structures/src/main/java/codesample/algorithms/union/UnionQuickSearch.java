@@ -10,8 +10,8 @@ import java.util.ArrayList;
  *
  * @author Pavel Bukhmatov (buhmatov@gmail.com; github.com/aquatir)
  */
-public class UnionQuickSearch {
-    ArrayList<Integer> arrList;
+class UnionQuickSearch {
+    private final ArrayList<Integer> arrList;
 
     /**
      * Test method to fill array with integers
@@ -60,7 +60,7 @@ public class UnionQuickSearch {
      * @param n
      */
     UnionQuickSearch(int n) {
-        this.arrList = new ArrayList<Integer>(n);
+        this.arrList = new ArrayList<>(n);
         fillArrayList(n);
     }
 }

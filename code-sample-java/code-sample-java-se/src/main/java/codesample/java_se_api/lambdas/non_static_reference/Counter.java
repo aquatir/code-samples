@@ -8,11 +8,11 @@ package codesample.java_se_api.lambdas.non_static_reference;
  * The method should not necessarily be static, but you should provide an adequate type-safe signature
  * so that non-static reference to methods would work correctly
  */
-public class Counter {
+class Counter {
     public static <T> int count(T[] array, SomeFunctionalInterface<T> func, T valueToMatchAgainst) {
         int counter = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (func.func(array[i], valueToMatchAgainst))
+        for (T anArray : array) {
+            if (func.func(anArray, valueToMatchAgainst))
                 counter++;
         }
 

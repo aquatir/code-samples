@@ -5,7 +5,7 @@ import org.hibernate.Session;
 
 import java.io.IOException;
 
-public class HibernateJoinedTablesInheritanceRunner {
+class HibernateJoinedTablesInheritanceRunner {
     public static void main(String[] args) throws IOException {
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -22,15 +22,15 @@ public class HibernateJoinedTablesInheritanceRunner {
             session.save(joraWorm);
 
             System.out.println("Grass worms:");
-            session.createQuery("from JoinedGrassWorm").list().forEach(c -> System.out.println(c));
+            session.createQuery("from JoinedGrassWorm").list().forEach(System.out::println);
 
             System.out.println();
             System.out.println("Book worms:");
-            session.createQuery("from JoinedBookWorm").list().forEach(c -> System.out.println(c));
+            session.createQuery("from JoinedBookWorm").list().forEach(System.out::println);
 
             System.out.println();
             System.out.println("All worms");
-            session.createQuery("from JoinedWorm").list().forEach(c -> System.out.println(c));
+            session.createQuery("from JoinedWorm").list().forEach(System.out::println);
 
             session.getTransaction().commit();
 

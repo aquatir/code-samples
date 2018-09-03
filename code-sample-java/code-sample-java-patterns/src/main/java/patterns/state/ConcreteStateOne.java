@@ -6,7 +6,7 @@ package patterns.state;
  */
 public class ConcreteStateOne implements State {
 
-    Context obj;
+    private final Context obj;
 
     public ConcreteStateOne(Context obj) {
         this.obj = obj;

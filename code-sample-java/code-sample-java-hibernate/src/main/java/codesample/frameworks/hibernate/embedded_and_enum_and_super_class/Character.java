@@ -11,7 +11,7 @@ import javax.persistence.MappedSuperclass;
  * All fields defined in this class will be present in subclasses.
  */
 @MappedSuperclass
-public abstract class Character {
+abstract class Character {
 
     @Id
     @GeneratedValue
@@ -20,16 +20,16 @@ public abstract class Character {
     @Column(nullable = false, updatable = false)
     private String name;
 
-    public Character() {}
-    public Character(String name) {
+    Character() {}
+    Character(String name) {
         this.name = name;
     }
 
-    public int getId() {
+    int getId() {
         return id;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 

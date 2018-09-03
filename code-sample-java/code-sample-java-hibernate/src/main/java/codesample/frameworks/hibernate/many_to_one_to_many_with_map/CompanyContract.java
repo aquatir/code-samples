@@ -13,7 +13,8 @@ public class CompanyContract {
     private int id;
     private String name;
 
-    public CompanyContract(){};
+    public CompanyContract(){}
+
     public CompanyContract(String name) {
         this.name = name;
     }

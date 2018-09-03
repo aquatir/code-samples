@@ -6,8 +6,8 @@ package patterns.iterator;
  */
 public class IntegerArrayIterator implements Iterator<Integer> {
 
-    Integer[] array;
-    int position;
+    private final Integer[] array;
+    private int position;
 
     public IntegerArrayIterator(Integer[] array) {
         this.array = array;
@@ -22,9 +22,7 @@ public class IntegerArrayIterator implements Iterator<Integer> {
 
     @Override
     public boolean hasNext() {
-        if (position < array.length)
-            return true;
+        return position < array.length;
 
-        return false;
     }
 }
