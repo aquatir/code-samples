@@ -38,11 +38,6 @@ class JwtTokenService {
         return generateToken(username, jwtAccessExpirationInMs.toLong(), jwtAccessSecret)
     }
 
-    fun generateRefreshToken(authentication: Authentication): String {
-        val userPrincipal = authentication.principal as UserWithAuthorities
-        return generateToken(userPrincipal.username, jwtRefreshExpirationInMs.toLong(), jwtRefreshSecret)
-    }
-
     fun generateRefreshToken(username: String) : String {
         return generateToken(username, jwtRefreshExpirationInMs.toLong(), jwtRefreshSecret)
     }

@@ -1,5 +1,6 @@
 package codesample.kotlin.jwtexample.service
 
+import codesample.kotlin.jwtexample.exceptions.UserRefreshTokenInvalid
 import codesample.kotlin.jwtexample.security.entity.User
 import codesample.kotlin.jwtexample.security.enums.AuthorityName
 import codesample.kotlin.jwtexample.security.repository.AuthorityRepository
@@ -11,10 +12,10 @@ import org.springframework.stereotype.Service
 
 @Service
 class UserService (
-        val userRepository: UserRepository,
-        val authorityRepository: AuthorityRepository,
-        val passwordEncoder: BCryptPasswordEncoder,
-        val jwtTokenService: JwtTokenService
+        private val userRepository: UserRepository,
+        private val authorityRepository: AuthorityRepository,
+        private val passwordEncoder: BCryptPasswordEncoder,
+        private val jwtTokenService: JwtTokenService
 ) {
 
     fun createAndSaveUser(username: String,
@@ -31,11 +32,30 @@ class UserService (
                 .apply { userRepository.save(this) }
     }
 
-    fun updateAndReturnRefreshToken(username: String): String {
+    fun updateRefreshTokenAndReturnUpdated(username: String): String {
         val user = userRepository.findByUsername(username) ?: throw UsernameNotFoundException("user $username not found")
         return user
                 .also { it.refreshToken = jwtTokenService.generateRefreshToken(it.username) }
                 .also { userRepository.save(it) }
                 .refreshToken
+    }
+
+    fun getRefreshTokenByUsername(username: String): String {
+        val user = userRepository.findByUsername(username) ?: throw UsernameNotFoundException("user $username not found")
+        return user.refreshToken
+    }
+
+    fun getUsernameAndCheckRefreshToken(refreshToken: String) : String {
+        /* Check refresh token signature */
+        jwtTokenService.validateRefreshToken(refreshToken)
+
+        /* Than check that this exact refresh token is stored in DB. If not, this may mean that
+        * the refresh token was stolen */
+        val username = jwtTokenService.getUsernameFromRefreshJWT(refreshToken)
+        val user = userRepository.findByUsername(username) ?: throw UsernameNotFoundException("user $username not found")
+        if (user.refreshToken != refreshToken){
+            throw UserRefreshTokenInvalid("Refresh Token does not match for user $username!")
+        }
+        return user.username
     }
 }

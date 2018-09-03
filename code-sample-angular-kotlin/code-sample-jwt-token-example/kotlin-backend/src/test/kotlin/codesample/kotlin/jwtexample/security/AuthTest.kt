@@ -3,6 +3,7 @@ package codesample.kotlin.jwtexample.security
 import codesample.kotlin.jwtexample.dto.request.LoginRequest
 import codesample.kotlin.jwtexample.dto.request.AccessTokenByRefreshTokenRequest
 import codesample.kotlin.jwtexample.dto.response.AccessAndRefreshTokenResponse
+import codesample.kotlin.jwtexample.security.repository.UserRepository
 import codesample.kotlin.jwtexample.security.service.JwtTokenService
 import codesample.kotlin.jwtexample.util.TestUtils
 import codesample.kotlin.jwtexample.util.TestUtils.Companion.asJsonString
@@ -31,6 +32,9 @@ class AuthTest {
 
     @Autowired
     lateinit var tokenService: JwtTokenService
+
+    @Autowired
+    lateinit var userRepository: UserRepository
 
     @Autowired
     lateinit var testUtils: TestUtils
@@ -88,7 +92,7 @@ class AuthTest {
     /** Can refresh tokens using valid refresh token on refresh tokens endpoint*/
     @Test
     fun refreshTokens() {
-        val oldGoodRefreshToken = testUtils.generateRefreshTokenForMills("admin", 10000)
+        val oldGoodRefreshToken = userRepository.findByUsername("admin")!!.refreshToken
 
         val result = mockMvc.perform(
                 post("/auth/refresh")
