@@ -9,7 +9,7 @@
     <li>
         <b>code-sample-java</b>. Java code examples
         <ul>
-            <li> <b>code-sample-java-springboot-ldap-login</b></li>. LDAP login with spring security example
+            <li> <b>code-sample-java-springboot-ldap-login</b>. LDAP login with spring security example</li> 
             <li> <b> code-sample-java-algorithms-and-data-structures</b> 
             Some basic algorithms and data structures implemented on java (not a lot though)</li>
             <li> <b> code-sample-java-aspectj</b>. Tiny aspectJ example</li>
