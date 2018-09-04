@@ -39,9 +39,8 @@ class AuthTest {
     @Autowired
     lateinit var testUtils: TestUtils
 
-    /** Test auth with good credentials returns a valid token */
     @Test
-    fun authTestGood() {
+    fun authWithGoodAccessToken_ExceptSuccessAndTokensAreValid() {
         val result = mockMvc.perform(
                 post("/auth")
                     .content(asJsonString(LoginRequest("admin", "admin")))
@@ -65,11 +64,8 @@ class AuthTest {
                 tokenService.validateRefreshToken(tokenDto.refreshToken))
     }
 
-    /**
-     * Test expired token does not work
-     */
     @Test
-    fun getDataTestWithExpiredAccessToken() {
+    fun authWithExpiredAccessToken_ExpectUnauthorized() {
         val goodToken = testUtils.generateAccessTokenForMills("admin", -10)
         mockMvc.perform(
                 getUrlWithToken("/data", goodToken))
@@ -77,9 +73,8 @@ class AuthTest {
                 .andExpect(MockMvcResultMatchers.status().is4xxClientError)
     }
 
-    /** Test bad auth is handler with 401 response */
     @Test
-    fun authTestBad() {
+    fun authWithWrongCredentials_ExpectUnauthorized() {
         mockMvc.perform(
                 post("/auth")
                         .content(asJsonString(LoginRequest("not-a-user", "not-a-password")))
@@ -91,7 +86,7 @@ class AuthTest {
 
     /** Can refresh tokens using valid refresh token on refresh tokens endpoint*/
     @Test
-    fun refreshTokens() {
+    fun refreshTokensCallWithCorrectRefreshToken_ExpectTokensRefreshedBothValid() {
         val oldGoodRefreshToken = userRepository.findByUsername("admin")!!.refreshToken
 
         val result = mockMvc.perform(
@@ -110,9 +105,8 @@ class AuthTest {
         Assert.assertNotEquals(oldGoodRefreshToken, goodTokens.refreshToken)
     }
 
-    /** Can NOT get access token using invalid refresh token */
     @Test
-    fun getAccessTokenUsingInvalidRefreshToken() {
+    fun refreshTokensCallWithExpiredRefreshToken_ExpectUnauthorized() {
         val goodRefreshToken = testUtils.generateRefreshTokenForMills("admin", -10)
 
         mockMvc.perform(
