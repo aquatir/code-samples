@@ -11,12 +11,12 @@
         <ul>
             <li> <b>code-sample-java-springboot-ldap-login</b></li>. LDAP login with spring security example
             <li> <b> code-sample-java-algorithms-and-data-structures</b> 
-            Some basic algorithms and data structures implemented on java (not a lot though)</li>
+            Basic algorithms and data structures implemented on java </li>
             <li> <b> code-sample-java-aspectj</b>. Tiny aspectJ example</li>
             <li> <b> code-sample-java-ee</b>. Tiny jmx example </li>
             <li> <b> code-sample-java-hibernate</b>. Examples for most common hibernate features</li>
-            <li> <b> code-sample-java-patterns</b>. Basic java implementation for most (all?) classical design patterns</li>
-            <li> <b> code-sample-java-se</b>. Examples of most (some?) java SE APIs </li>
+            <li> <b> code-sample-java-patterns</b>. Basic java implementation for most classical design patterns</li>
+            <li> <b> code-sample-java-se</b>. Examples of some java SE APIs </li>
             <li> <b> code-sample-java-spring</b>. Tiny spring example. Uses only bean definition</li>
             <li> <b> code-sample-java-springboot</b>. Consist of some (but not all) springboot features</li>
             <li> <b> code-sample-spring-security</b>. Spring security features. </li>
