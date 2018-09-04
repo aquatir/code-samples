@@ -49,8 +49,7 @@ class UserService (
         /* Check refresh token signature */
         jwtTokenService.validateRefreshToken(refreshToken)
 
-        /* Than check that this exact refresh token is stored in DB. If not, this may mean that
-        * the refresh token was stolen */
+        /* Than check that this exact refresh token is stored in DB */
         val username = jwtTokenService.getUsernameFromRefreshJWT(refreshToken)
         val user = userRepository.findByUsername(username) ?: throw UsernameNotFoundException("user $username not found")
         if (user.refreshToken != refreshToken){

@@ -40,8 +40,6 @@ class SecurityConfig (val authExceptionsEntry: AuthExceptionsEntry,
 
     override fun configure(http: HttpSecurity) {
         http
-
-                // Configure CORS to allow assess from locally deployed angular app
                 .cors().configurationSource(corsConfigurationSource())
                 .and()
 
@@ -79,7 +77,6 @@ class SecurityConfig (val authExceptionsEntry: AuthExceptionsEntry,
                 .ignoring().antMatchers(HttpMethod.POST, "/auth/**/**")
                 .and()
                 .ignoring().antMatchers(HttpMethod.OPTIONS, "/auth/**/**")
-                /* Do not use security on static resources */
                 .and()
                 .ignoring().antMatchers(
                         HttpMethod.GET,
@@ -108,6 +105,7 @@ class SecurityConfig (val authExceptionsEntry: AuthExceptionsEntry,
     }
 
 
+    /* CORS config for locally deployed angular app */
     @Bean
     fun corsConfigurationSource() : CorsConfigurationSource {
         val configuration = CorsConfiguration().apply {
