@@ -17,6 +17,7 @@
         <module>code-sample-spring-security</module>
         <module>code-sample-java-springboot-ldap-login</module>
         <module>code-sample-java-9</module>
+        <module>code-sample-java-10</module>
     </modules>
     <packaging>pom</packaging>
 
