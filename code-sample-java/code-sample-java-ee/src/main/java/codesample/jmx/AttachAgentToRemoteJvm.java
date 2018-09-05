@@ -11,7 +11,7 @@ import java.util.Properties;
 
 /**
  * In order for this to work you should add
- * tools-linux (Or other OS specific jar) to classPath. See pom.xml for details
+ * tools-linux (Or somepackage OS specific jar) to classPath. See pom.xml for details
  */
 class AttachAgentToRemoteJvm {
 

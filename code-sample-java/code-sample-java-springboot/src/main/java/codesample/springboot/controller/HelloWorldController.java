@@ -22,7 +22,7 @@ import java.util.Date;
  */
 @RestController
 
-/* Loggin with spring-boot and Lombok is trivial. Simply annotate your class with @Slf4j (or any other logging annotation
+/* Loggin with spring-boot and Lombok is trivial. Simply annotate your class with @Slf4j (or any somepackage logging annotation
 from https://projectlombok.org/features/log for respective log). Spring-boot will autoconfigure required log.
 You can then use normal spring-boot configuration for loggers, e.g. setting logging.file or logging.level */
 @Slf4j

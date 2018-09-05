@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.SequenceInputStream;
 
 /** This class takes exactly 2 input streams and forms a single input streams.
-* Note that you can combine sequence and other input streams into a new, longer sequence.
+* Note that you can combine sequence and somepackage input streams into a new, longer sequence.
 *
 * The output would also be sequential. The first stream added would be printed first.
 * After printing, individual streams will close automatically */

@@ -36,7 +36,7 @@ class ClassToGetSerialized implements Serializable {
     /**
      * This method basically say: When you want to serialize this class
      * you should actually serialize another class instead. All the serialization logic
-     * can go to that other proxy class.
+     * can go to that somepackage proxy class.
      * <p>
      * When deserialization will occur (By calling readResolve method of Serialization proxy)
      * This proxy would return an object which can easily be cast to {@code ClassToGetSerialized}

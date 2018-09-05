@@ -18,7 +18,7 @@ class FileMappingWithFileChannel {
             /* Mapping file channel to buffer. Note that size of buffer (last parameter) should be sufficient */
             ByteBuffer buffer = fileChannel.map(FileChannel.MapMode.READ_WRITE, 0, str.length());
 
-            /* by putting data into buffer we are now putting data into file, because they are mapped on each other */
+            /* by putting data into buffer we are now putting data into file, because they are mapped on each somepackage */
             buffer.put(str.getBytes());
 
             System.out.println("'Hello, world!' should now be written to file");

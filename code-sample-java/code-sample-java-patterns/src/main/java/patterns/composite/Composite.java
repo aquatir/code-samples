@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Composite class can store other Components. It implements all Component methods.
+ * Composite class can store somepackage Components. It implements all Component methods.
  * It may still contains some bugs as of current version. BE AWARE AND TEST BEFORE USE!
  * or wait till I add up test methods.
  */

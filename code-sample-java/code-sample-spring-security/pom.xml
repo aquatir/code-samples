@@ -38,7 +38,7 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- Thymeleaf is a powerful template engine for css/js/html/xml and some other formats which can be used as
+        <!-- Thymeleaf is a powerful template engine for css/js/html/xml and some somepackage formats which can be used as
         MVC driver for Spring MVC applications. Here we are merely scathing it's full potential in order to show some
         simple login forms -->
         <dependency>

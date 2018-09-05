@@ -72,7 +72,7 @@
 
         Also note: reloading is not the only option that is provided by spring-boot-devtools. As always read full doc
         at https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html to see more
-        (For some reason you meet devtools reference here and there in original doc even in other chapters, so you
+        (For some reason you meet devtools reference here and there in original doc even in somepackage chapters, so you
         should probably simply read the whole documentation to get the idea)
         -->
         <dependency>
@@ -105,7 +105,7 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-        <!-- Thymeleaf is a powerful template engine for css/js/html/xml and some other formats which can be used as
+        <!-- Thymeleaf is a powerful template engine for css/js/html/xml and some somepackage formats which can be used as
         MVC driver for Spring MVC applications. Here we are merely scathing it's full potential in order to show some
         simple login forms -->
         <dependency>

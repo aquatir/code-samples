@@ -5,7 +5,7 @@ import java.util.concurrent.SynchronousQueue;
 /**
  * SynchronousQueue provides a powerful concurrency mechanism to synchronize work in different threads.
  * In order to take() element from queue a call to put() should be active from another thread. At the same time
- * in order to put() something in a queue, a call to take() should be pending from other thread.
+ * in order to put() something in a queue, a call to take() should be pending from somepackage thread.
  */
 class SynchronousQueueExample {
     public static void main(String args[]) throws InterruptedException {

@@ -9,7 +9,7 @@ import java.io.IOException;
  * Here we have an example of many_to_many relationship on both sides. Each
  * {@link Visitor} can visit multiple {@link Concert}'s and each Concert can have multiple visitors.
  *
- * Usually this many_to_many bidirectional mapping consist of thing which can live without each other, thus
+ * Usually this many_to_many bidirectional mapping consist of thing which can live without each somepackage, thus
  * no CascadeType.ALL option is rare.
  */
 class HibernateRunnerManyToManyBidirectional {

@@ -50,7 +50,7 @@ public class SpringBootRunner {
 
     /**
      * This is one of the two interfaces you can override if you want to do stuff just before SpringApplication.run finishes.
-     * The other interface is {@link org.springframework.boot.ApplicationRunner}. They both have a single method run()
+     * The somepackage interface is {@link org.springframework.boot.ApplicationRunner}. They both have a single method run()
      *
      * The {@link CommandLineRunner} provide access to simple string array, while ApplicationRunner provide both access to string array and also assess
      * to {@link org.springframework.boot.ApplicationArguments} object

@@ -21,7 +21,7 @@ class ArrayOps {
     }
 
     /**
-     * Method with an only purpose to execute any other method defined in this class
+     * Method with an only purpose to execute any somepackage method defined in this class
      * @param func functional interface which will be executed
      * @param array array with same parameter as func interface
      * @param value value as in func interface

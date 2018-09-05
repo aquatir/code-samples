@@ -36,7 +36,7 @@ abstract class TemplateHolder {
 
     /** Note: next 4 methods are package-private. Usually you would want to put TemplateHolder and
     * it's subclasses into a separate package. This way, when you instantiate TemplateUser in some
-     * other package, you could only make a call to executionPath() */
+     * somepackage package, you could only make a call to executionPath() */
 
     /* this too methods should always be overriden */
     abstract void someMethodOne();

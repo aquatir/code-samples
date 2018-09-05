@@ -18,7 +18,7 @@ import java.time.LocalDate;
  * 1) Create some entity object (Item in this case)
  * 2) Open session, store them, close session
  * 3) CHANGE some fields of entity objects (Not id/natural id as you can not change them anyway)
- * 4) Create some other entity objects using the ones created in first place (Shipping in this case)
+ * 4) Create some somepackage entity objects using the ones created in first place (Shipping in this case)
  * 5) Open session, store them, close session
  *
  * This scenario will work, because the link between two entities is done by id field. So changing any fields

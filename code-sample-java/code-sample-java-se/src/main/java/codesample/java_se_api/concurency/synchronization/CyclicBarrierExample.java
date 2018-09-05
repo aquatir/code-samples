@@ -44,7 +44,7 @@ class BarrierAwaiter implements Runnable {
         System.out.println(threadName + " started");
         try {
             Thread.sleep(waitTime);
-            System.out.println(threadName + " awaiting other thread to reach the barrier");
+            System.out.println(threadName + " awaiting somepackage thread to reach the barrier");
             barrier.await();
             System.out.println(threadName + " awaiting finished!");
 

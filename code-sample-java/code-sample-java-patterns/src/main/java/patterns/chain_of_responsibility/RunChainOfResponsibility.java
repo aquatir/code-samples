@@ -2,7 +2,7 @@ package patterns.chain_of_responsibility;
 
 /**
  * Create a chain of 3 handlers.
- * Third handler doesn't make call to setNext nor does it's handle() method pass command to other handlers
+ * Third handler doesn't make call to setNext nor does it's handle() method pass command to somepackage handlers
  * so it's is ends the chain.
  */
 class RunChainOfResponsibility {

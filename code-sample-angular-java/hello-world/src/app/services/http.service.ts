@@ -14,7 +14,7 @@ export class HttpService {
   }
 
   getHero(id: number) : Observable<any> {
-    return this.httpClient.get<Hero>(BACKEND_URLS.SINGLE_HERO_URL + "/" + id); /* TODO: refactor to interpolate? There must be other way! */
+    return this.httpClient.get<Hero>(BACKEND_URLS.SINGLE_HERO_URL + "/" + id); /* TODO: refactor to interpolate? There must be somepackage way! */
   }
 
 }

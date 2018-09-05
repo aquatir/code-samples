@@ -1,7 +1,7 @@
 package patterns.mediator;
 
 /**
- * The purpose of Mediator pattern is to allow many object to communicate between each other.
+ * The purpose of Mediator pattern is to allow many object to communicate between each somepackage.
  * Mediator provides an interface which limit all communications that could happen between objects.
  *
  * Mediator subclasses ({@link ConcreteMediator}) should know about all possible subclasses of {@link Colleague}
