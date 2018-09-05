@@ -16,6 +16,7 @@
     <modules>
         <module>code-sample-java-9-module-one</module>
         <module>code-sample-java-9-module-two</module>
+        <module>code-sample-java-9-new-stuff</module>
     </modules>
     <packaging>pom</packaging>
 
