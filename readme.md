@@ -9,7 +9,8 @@
     <li>
         <b>code-sample-java</b>. Java code examples
         <ul>
-            <li> <b>code-sample-java-9</b>. Contains new stuff added in java 9 (including multi-module maven project)</li>
+            <li> <b>code-sample-java-9</b>. Contains new stuff added in java 9 (including multi-module maven project, but excluding reactive API)</li>
+            <li> <b>code-sample-java-10</b>. Contains new stuff added in java 10 </li>
             <li> <b>code-sample-java-springboot-ldap-login</b>. LDAP login with spring security example</li> 
             <li> <b> code-sample-java-algorithms-and-data-structures</b> 
             Basic algorithms and data structures implemented on java </li>
