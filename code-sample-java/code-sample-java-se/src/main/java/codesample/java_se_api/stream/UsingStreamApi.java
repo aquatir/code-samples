@@ -106,7 +106,7 @@ class UsingStreamApi {
         namesAsSet.stream().forEach((e) -> System.out.print(e + " "));
         System.out.print("\"\n");
 
-        /* Instead of calling toSet you can actually do something like this:*/
+        /* Instead of calling toSet you can actually do something like this: (don't do it...)*/
         namesAsSet = Arrays.stream(names).collect(HashSet::new,
                 HashSet::add,
                 HashSet::addAll);
@@ -115,7 +115,7 @@ class UsingStreamApi {
         namesAsSet.stream().forEach((e) -> System.out.print(e + " "));
         System.out.print("\"\n");
 
-        /* Or like this: */
+        /* Or like this: (obviously don't do it) */
         namesAsSet = Arrays.stream(names).collect((Supplier<HashSet>) HashSet::new,
                 HashSet::add,
                 AbstractCollection::addAll);
