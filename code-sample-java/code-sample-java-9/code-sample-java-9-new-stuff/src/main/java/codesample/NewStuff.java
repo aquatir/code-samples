@@ -33,9 +33,6 @@ public class NewStuff {
 
         /* Diamond operator on anonymous classes (Would not compile on java8*/
         List<String> list = new ArrayList<>(){};
-
-        /* Reactive streams */
-        
     }
 
     private static class CustromAutoclosable implements AutoCloseable {
