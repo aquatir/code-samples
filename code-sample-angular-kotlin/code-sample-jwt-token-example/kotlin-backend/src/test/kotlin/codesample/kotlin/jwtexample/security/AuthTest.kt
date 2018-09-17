@@ -40,7 +40,7 @@ class AuthTest {
     lateinit var testUtils: TestUtils
 
     @Test
-    fun authWithGoodAccessToken_ExceptSuccessAndTokensAreValid() {
+    fun authWithGoodAccessToken_ExpectSuccessAndTokensAreValid() {
         val result = mockMvc.perform(
                 post("/auth")
                     .content(asJsonString(LoginRequest("admin", "admin")))

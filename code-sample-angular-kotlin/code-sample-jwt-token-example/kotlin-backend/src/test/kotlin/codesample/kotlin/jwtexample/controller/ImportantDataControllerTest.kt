@@ -36,7 +36,7 @@ class ImportantDataControllerTest {
     }
 
     @Test
-    fun getDataWithTokenAuthentication_ExceptSuccess() {
+    fun getDataWithTokenAuthentication_ExpectSuccess() {
         val goodToken = testUtils.generateAccessTokenForMills(USER_WITH_ROLE_USER, TOKEN_TIMEOUT_MS)
         mockMvc.perform(
                 getUrlWithToken("/data", goodToken))
