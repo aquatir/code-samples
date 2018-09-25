@@ -129,7 +129,8 @@ fun helloKotlin() {
     val (value1, value2, value3) = returnArrayOfInt()
     println("value1: $value1, value2: $value2, value3: $value3")
 
-    val anotherString = """
+    // Kotlin provides multi-line strings with 3 " characters
+    """
     |Tell me and I forget.
     |Teach me and I remember.
     |Involve me and I learn.
@@ -138,6 +139,7 @@ fun helloKotlin() {
         println(it)
     }
 
+    // We can use labels!
     label@ for (i in 0..100) {
         for (j in 3..100) {
             println("value: $j")
