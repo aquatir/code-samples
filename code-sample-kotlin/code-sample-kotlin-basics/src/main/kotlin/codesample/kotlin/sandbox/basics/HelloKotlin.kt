@@ -128,4 +128,26 @@ fun helloKotlin() {
 
     val (value1, value2, value3) = returnArrayOfInt()
     println("value1: $value1, value2: $value2, value3: $value3")
+
+    val anotherString = """
+    |Tell me and I forget.
+    |Teach me and I remember.
+    |Involve me and I learn.
+    |(Benjamin Franklin)
+    """.trimMargin("|").also {
+        println(it)
+    }
+
+    label@ for (i in 0..100) {
+        for (j in 3..100) {
+            println("value: $j")
+            if (j == 5) {
+                println("breaking inner AND outer loops together")
+                break@label
+            }
+        }
+    }
+
+
+
 }
