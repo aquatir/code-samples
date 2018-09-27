@@ -1,0 +1,1 @@
+graph example with speaker with hand-written schema

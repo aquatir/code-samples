@@ -26,8 +26,10 @@ class GraphQLJavaConfig(
     }
 
     /**
-     * We are allowing a custom property to be queried from CardItem. This property does not exist in CardItem class,
-     * but a method to query it DOES exist
+     * We are allowing a custom property to be queried from CardItem. Note that neither the property nor any other
+     * method to query DomainObject does not exists in CardItem class.
+     *
+     * Also note: You can have arbitrary code here. For example you can query other microservice with this method
      */
     @Bean
     fun cartItemResolver() = object : GraphQLResolver<CartItem> {
