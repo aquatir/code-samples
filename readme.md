@@ -1,13 +1,12 @@
 <h4> About </h4>
-<p> Java/Kotlin/Python/angular code samples </p>
+<p> Java/Kotlin/Python/TypeScript/Angular code samples </p>
 <p> Some code may be quite outdated considering modern best practises. </p>
 <p> Some parts way even not compile / not have test / be generally very junior because they were written an age ago</p>
 
 <p> Currently consists of: </p>
 <ul>
     <li><b>code-sample-angular-kotlin</b>. Kotlin + Angular app with JWT access/refresh token authentication and spring security roles management
-    <li>
-        <b>code-sample-java</b>. Java code examples
+    <li><b>code-sample-java</b>. Java code examples
         <ul>
             <li> <b>code-sample-java-9</b>. Contains new stuff added in java 9 (including multi-module maven project, but excluding reactive API)</li>
             <li> <b>code-sample-java-10</b>. Contains new stuff added in java 10 </li>
