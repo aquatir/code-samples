@@ -8,12 +8,26 @@ type EntryPoint {
 
 type Cart {
     id: Long!
-    products: [Product]!
-    subTotal: BigDecimal!
+    cartItems: [CartItem]!
+    total: BigDecimal!
+}
+
+type CartItem {
+    id: Long!
+    quantity: Int!
+    cart: Cart!
+    product: Product!
 }
 
 type Product {
     id: Long!
-    quantity: Int!
+    name: String!
+    totalQuantity: Int!
     price: BigDecimal!
+    picture: Picture!
+}
+
+type Picture {
+    pictureDescription: String!
+    pictureUrl: String!
 }

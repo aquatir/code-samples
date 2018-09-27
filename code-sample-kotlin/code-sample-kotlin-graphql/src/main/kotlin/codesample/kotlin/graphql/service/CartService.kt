@@ -6,5 +6,5 @@ import org.springframework.stereotype.Service
 @Service
 class CartService(val cartRepository: CartRepository) {
 
-    fun getById(id: Long) = cartRepository.getOne(id)
+    fun getCartById(id: Long) = cartRepository.getOne(id)
 }

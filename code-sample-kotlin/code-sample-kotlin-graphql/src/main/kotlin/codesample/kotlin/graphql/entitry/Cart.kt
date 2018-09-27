@@ -5,25 +5,20 @@ import javax.persistence.Entity
 import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
-import javax.persistence.JoinColumn
-import javax.persistence.JoinTable
-import javax.persistence.ManyToMany
+import javax.persistence.OneToMany
 
 @Entity
 class Cart (
         @Id @GeneratedValue
         var id: Long = 0,
 
-        @ManyToMany(fetch = FetchType.EAGER)
-        @JoinTable(name = "CART_PRODUCTS",
-                joinColumns = [JoinColumn(name = "CART_ID")],
-                inverseJoinColumns = [JoinColumn(name = "PRODUCT_ID")])
-        var products: List<Product> = mutableListOf()
+        @OneToMany(fetch = FetchType.EAGER, mappedBy = "cart")
+        var cartItems: List<CartItem> = mutableListOf()
 ) {
 
-    fun getSubTotal(): BigDecimal {
-        return products.stream()
-                .map(Product::price)
+    fun getTotal(): BigDecimal {
+        return cartItems.stream()
+                .map(CartItem::getItemPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add)
     }
 }

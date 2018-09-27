@@ -15,6 +15,6 @@ class GraphQLJavaConfig(
 
     @Bean
     fun queryResolver() = object: GraphQLQueryResolver {
-            fun cart(id: Long): Cart = cartService.getById(id)
+            fun cart(id: Long): Cart = cartService.getCartById(id)
     }
 }
