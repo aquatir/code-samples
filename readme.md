@@ -24,7 +24,13 @@
             <li> <b> code-sample-spring-security</b>. Spring security features. </li>
          </ul>
     </li>
-    <li> <b> code-sample-kotlin</b>. Kotlin examples </li>
+    <li><b>code-sample-kotlin</b>. Kotlin examples 
+        <ul> 
+            <li><b>code-sample-kotlin-basics</b>. Boring basic kotlin API stuff</li>
+            <li><b>code-sample-kotlin-graphql</b>. GraphQL exampe with Kotlin </li>
+            <li><b>code-sample-kotlin-spring-security</b>. Simple username-password authentication example </li>
+        </ul> 
+    </li>
     <li><b>code-sample-python</b>. Python code examples. Currently consist of a single Flask example </li>
     <li><b>code-sample-docker</b>. Contains some docker examples
         <ul>
