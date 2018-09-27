@@ -8,7 +8,7 @@ type EntryPoint {
 
 type Cart {
     id: Long!
-    product: [Product]!
+    products: [Product]!
     subTotal: BigDecimal!
 }
 

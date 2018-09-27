@@ -48,9 +48,9 @@ dependencies {
 
 
     // GraphQL
-//    compile("com.graphql-java:graphiql-spring-boot-starter:5.0.2")
-//    compile("com.graphql-java:graphql-spring-boot-starter:5.0.2")
-//    compile("com.graphql-java:graphql-java-tools:5.2.4")
+    compile("com.graphql-java:graphiql-spring-boot-starter:5.0.2")
+    compile("com.graphql-java:graphql-spring-boot-starter:5.0.2")
+    compile("com.graphql-java:graphql-java-tools:5.2.4")
 
     // Kotlin stuff
     compile('com.fasterxml.jackson.module:jackson-module-kotlin')
