@@ -3,24 +3,30 @@ package codesample;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class NewStuff {
     public static void main(String[] args) {
 
         /* New constructors for immutable collections */
-        Map<String, String> immutableMap = Map.of("ivan", "narkoman");
+        Map<String, String> immutableMap = Map.of("foo", "bar", "bar", "baz");
         Set<Integer> immutableSet = Set.of(1,2,3);
         List<Integer> immutableList = List.of(1,2,3);
 
-        /* New simplified ProcessHandle */
+        /* get current JVM pid */
         System.out.println("Current process pid " + ProcessHandle.current().pid());
 
+        // List all processes
         String allProcesses = ProcessHandle.allProcesses()
                 .map(processHandle -> String.valueOf(processHandle.pid()))
                 .collect(Collectors.joining(", "));
         System.out.println("All processes pids: " + allProcesses);
+
+        // kill every process!
+        //ProcessHandle.allProcesses().forEach(ProcessHandle::destroyForcibly);
 
         /* Try-with-resources without fresh resource requirement */
         CustromAutoclosable autoclosable = new CustromAutoclosable();
@@ -31,8 +37,30 @@ public class NewStuff {
             e.printStackTrace();
         }
 
-        /* Diamond operator on anonymous classes (Would not compile on java8*/
-        List<String> list = new ArrayList<>(){};
+
+        Map<String, String> map = Map.of("foo", "foo-value");
+        List<String> keys = List.of("foo", "bar");
+
+        List<String> values1 = keys.stream()
+                .flatMap(key -> {
+                    String temp = map.get(key);
+                    return temp != null ? Stream.of(temp) : Stream.empty();
+                })
+                .collect(Collectors.toList());
+
+        // or
+        List<String> values2 = keys.stream()
+                .filter(map::containsKey)
+                .map(map::get)
+                .collect(Collectors.toList());
+
+        // now
+        List<String> values3 = keys.stream()
+                .flatMap(key -> Stream.ofNullable(map.get(key)))
+                .collect(Collectors.toList());
+
+
+
     }
 
     private static class CustromAutoclosable implements AutoCloseable {
@@ -42,4 +70,10 @@ public class NewStuff {
         }
     }
 
+    private static Optional<String> try_get_one() {
+        return Optional.ofNullable("possible_null");
+    }
+    private static Optional<String> try_get_two() {
+        return Optional.of("possible_null_againt");
+    }
 }
