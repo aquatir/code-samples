@@ -60,7 +60,25 @@ public class NewStuff {
                 .collect(Collectors.toList());
 
 
+        // Считаем от 3 до 7
+        Stream.iterate(0, x -> x < 10, x -> x +1)
+                .dropWhile(x -> x < 3)
+                .takeWhile(x -> x < 8)
+                .collect(Collectors.toList());
 
+
+        List<Optional<Integer>> optional = List.of(Optional.of(1), Optional.empty(), Optional.of(2));
+        // java 8
+        List<Integer> result = optional.stream()
+                .filter(Optional::isPresent)
+                .map(x -> x.get() * 2)
+                .collect(Collectors.toList());
+
+        // java 9
+        List<Integer> result2 = optional.stream()
+                .flatMap(Optional::stream)
+                .map(x -> x * 2)
+                .collect(Collectors.toList());
     }
 
     private static class CustromAutoclosable implements AutoCloseable {
