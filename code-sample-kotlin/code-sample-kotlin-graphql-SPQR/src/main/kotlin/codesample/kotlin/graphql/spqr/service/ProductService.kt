@@ -1,6 +1,6 @@
-package codesample.kotlin.graphql.service
+package codesample.kotlin.graphql.spqr.service
 
-import codesample.kotlin.graphql.repository.ProductRepository
+import codesample.kotlin.graphql.spqr.repository.ProductRepository
 import org.springframework.stereotype.Service
 
 @Service

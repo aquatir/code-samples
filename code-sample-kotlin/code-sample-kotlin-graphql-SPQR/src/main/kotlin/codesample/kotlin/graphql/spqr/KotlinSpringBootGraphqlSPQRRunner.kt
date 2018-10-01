@@ -1,13 +1,13 @@
-package codesample.kotlin.graphql
+package codesample.kotlin.graphql.spqr
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class KotlinSpringBootGraphqlRunner
+class KotlinSpringBootGraphqlSPQRRunner
 
 fun main(args: Array<String>) {
 
-    runApplication<KotlinSpringBootGraphqlRunner>(*args)
+    runApplication<KotlinSpringBootGraphqlSPQRRunner>(*args)
 
 }

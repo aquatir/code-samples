@@ -1,4 +1,4 @@
-package codesample.kotlin.graphql.entitry
+package codesample.kotlin.graphql.spqr.entitry
 
 import java.math.BigDecimal
 import javax.persistence.Entity

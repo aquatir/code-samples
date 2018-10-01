@@ -1,6 +1,6 @@
-package codesample.kotlin.graphql.repository
+package codesample.kotlin.graphql.spqr.repository
 
-import codesample.kotlin.graphql.entitry.Product
+import codesample.kotlin.graphql.spqr.entitry.Product
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 

@@ -1,10 +1,10 @@
-package codesample.kotlin.graphql.config
+package codesample.kotlin.graphql.spqr.config
 
-import codesample.kotlin.graphql.domain.DomainObject
-import codesample.kotlin.graphql.entitry.Cart
-import codesample.kotlin.graphql.entitry.CartItem
-import codesample.kotlin.graphql.repository.DomainObjectRepository
-import codesample.kotlin.graphql.service.CartService
+import codesample.kotlin.graphql.spqr.domain.DomainObject
+import codesample.kotlin.graphql.spqr.entitry.Cart
+import codesample.kotlin.graphql.spqr.entitry.CartItem
+import codesample.kotlin.graphql.spqr.repository.DomainObjectRepository
+import codesample.kotlin.graphql.spqr.service.CartService
 import graphql.execution.batched.Batched
 import io.leangen.graphql.annotations.GraphQLArgument
 import io.leangen.graphql.annotations.GraphQLContext

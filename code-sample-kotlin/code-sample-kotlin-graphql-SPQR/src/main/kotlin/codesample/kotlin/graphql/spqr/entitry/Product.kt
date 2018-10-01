@@ -1,6 +1,6 @@
-package codesample.kotlin.graphql.entitry
+package codesample.kotlin.graphql.spqr.entitry
 
-import codesample.kotlin.graphql.embeddable.Picture
+import codesample.kotlin.graphql.spqr.embeddable.Picture
 import java.math.BigDecimal
 import javax.persistence.Column
 import javax.persistence.Embedded

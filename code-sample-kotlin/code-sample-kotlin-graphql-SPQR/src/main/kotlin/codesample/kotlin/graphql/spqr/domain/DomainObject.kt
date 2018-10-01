@@ -1,4 +1,4 @@
-package codesample.kotlin.graphql.domain
+package codesample.kotlin.graphql.spqr.domain
 
 /**
  * Image that this is an object which you can get over http connection

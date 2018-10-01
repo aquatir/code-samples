@@ -1,4 +1,4 @@
-package codesample.kotlin.graphql.embeddable
+package codesample.kotlin.graphql.spqr.embeddable
 
 import javax.persistence.Embeddable
 

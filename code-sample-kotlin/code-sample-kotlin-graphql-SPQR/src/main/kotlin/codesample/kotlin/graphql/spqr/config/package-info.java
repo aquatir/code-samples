@@ -1,7 +1,3 @@
-package codesample.kotlin.graphql.config
-
-import org.springframework.context.annotation.Configuration
-
 /**
  * There are some things you should/may set when working with graphql:
  * 1. Limit query depth if at least one circular dependency exists in your domain
@@ -9,5 +5,4 @@ import org.springframework.context.annotation.Configuration
  * 3. Query timeouts
  * 4. Throttling / Rate limits
  */
-@Configuration
-class GraphQLConfig
+package codesample.kotlin.graphql.spqr.config;
