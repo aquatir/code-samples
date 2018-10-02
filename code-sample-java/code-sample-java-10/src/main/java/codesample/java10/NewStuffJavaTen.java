@@ -1,6 +1,7 @@
 package codesample.java10;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,8 +46,6 @@ public class NewStuffJavaTen {
         /* var is a "special" reserved word */
         var var = Var.var();
         var.var().var().var().var();
-
-
     }
 
 
