@@ -1,8 +1,10 @@
 package codesample.java10;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class NewStuffJavaTen {
     public static void main(String[] args) {
@@ -10,6 +12,10 @@ public class NewStuffJavaTen {
         /* Type-inference (Note: does not work for non-local variables, array initializers,
         lambdas (when you create lambda. Returning result into var is OK) */
         var message = "Hello, world!";
+
+
+        var кукареку = new Кукареку<Кукарек>();
+
         System.out.println(message);
 
         // Note: This will be array list of Objects
@@ -30,5 +36,39 @@ public class NewStuffJavaTen {
                 .filter(value -> value > 3)
                 .findFirst()
                 .orElseThrow();
+
+        var var = Var.var();
+        var.var().var().var().var();
+
+        var listOfInt = new ArrayList<Integer>(List.of(1,2,3));
+        var copyy = Collections.unmodifiableList(listOfInt);
+        System.out.println(copyy);
+        listOfInt.add(4);
+        System.out.println(copyy);
+    }
+
+
+    public interface Animal {}
+    public interface Cat extends Animal { void meow(); }
+    public interface Dog extends Animal { void woof(); }
+
+    void makeSound(Animal animal) {
+        var catDog = (Cat & Dog) animal;
+        catDog.meow();
+        catDog.woof();
+    }
+
+    static class Кукареку<T> {
+
+    }
+
+    static class Кукарек {
+
+    }
+
+    public static class Var {
+        public static Var var() {
+            return new Var();
+        }
     }
 }
