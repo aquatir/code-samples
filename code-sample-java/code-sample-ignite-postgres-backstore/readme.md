@@ -1,5 +1,9 @@
 ### Ignite and Postgres example
 
+#### About
+Demonstrate usage of postgres DB with ignite as middle in-memory cache. Ignite should load all data from postgres
+on startup and then allow using this in-memory data for computation (not yet implemented).
+
 #### Launching
 
 1. Launch Ignite as server specifying configuration file resources/ignite/server-ignite.xml using normal
