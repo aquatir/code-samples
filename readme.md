@@ -12,6 +12,9 @@
             <li> <b>code-sample-java-10</b>. Contains new stuff added in java 10 </li>
             <li> <b>code-sample-java-11</b>. Contains new stuff added in java 11 </li>
             <li> <b>code-sample-java-springboot-ldap-login</b>. LDAP login with spring security example</li> 
+            <li> <b>code-sample-ignite-postgres-backstore</b>. Contain example of Ignite being deployed over postgres DB 
+            in cache mode. All data from postgres is loaded into ignite on startup and then used for in-memory computing. 
+            Request for data creating/modification are propagated by Ignite to Postgres</li> 
             <li> <b> code-sample-java-algorithms-and-data-structures</b> 
             Basic algorithms and data structures implemented on java </li>
             <li> <b> code-sample-java-aspectj</b>. Tiny aspectJ example</li>
