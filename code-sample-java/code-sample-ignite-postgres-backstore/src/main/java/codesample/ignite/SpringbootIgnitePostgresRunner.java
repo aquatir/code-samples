@@ -14,16 +14,25 @@ public class SpringbootIgnitePostgresRunner {
     }
 
     @Bean
-    public CommandLineRunner runIgnite() {
+    public CommandLineRunner runAtStart() {
         return new CommandLineRunner() {
 
             @Autowired
             private Ignite igniteClient;
 
             public void run(String... args)  {
-                igniteClient.compute().broadcast(() -> System.out.println("Hello World!"));
-                igniteClient.close();
+                runSql();
+                runIgnite(igniteClient);
             }
         };
+    }
+
+    private void runSql() {
+
+    }
+
+    private void runIgnite(Ignite igniteClient) {
+        igniteClient.compute().broadcast(() -> System.out.println("Hello World!"));
+        igniteClient.close();
     }
 }
