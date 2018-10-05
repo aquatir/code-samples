@@ -27,6 +27,7 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.1.4</version>
+
         </dependency>
 
         <!-- Ignite -->
@@ -35,17 +36,26 @@
             <artifactId>ignite-core</artifactId>
             <version>${ignite.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.ignite</groupId>
             <artifactId>ignite-spring</artifactId>
             <version>${ignite.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.ignite</groupId>
             <artifactId>ignite-indexing</artifactId>
             <version>${ignite.version}</version>
+        </dependency>
+
+        <!--
+        H2 has remove NESTED_JOINS support in older versions off database (https://github.com/h2database/h2database/issues/901),
+        which was not yet worked out in ignite (as of 05.10.2018).
+        Ignite does not USE h2 as database but it DOES use h2 internals heavily, so we have to use an older version instead of a newer one.
+        -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.195</version>
         </dependency>
 
         <!--<dependency>-->
