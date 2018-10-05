@@ -11,7 +11,7 @@
     <artifactId>code-sample-ignite-postgres-backstore</artifactId>
 
     <properties>
-        <ignite.version>2.5.0</ignite.version>
+        <ignite.version>2.6.0</ignite.version>
     </properties>
 
     <dependencies>
@@ -48,11 +48,11 @@
             <version>${ignite.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.ignite</groupId>
-            <artifactId>ignite-slf4j</artifactId>
-            <version>${ignite.version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.ignite</groupId>-->
+            <!--<artifactId>ignite-slf4j</artifactId>-->
+            <!--<version>${ignite.version}</version>-->
+        <!--</dependency>-->
 
         <!-- lombok -->
         <dependency>
