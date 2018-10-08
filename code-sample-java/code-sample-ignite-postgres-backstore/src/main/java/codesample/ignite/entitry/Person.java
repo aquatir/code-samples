@@ -1,7 +1,10 @@
 package codesample.ignite.entitry;
 
-import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,13 +13,12 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-@SequenceGenerator(name = "person_seq", sequenceName = "person_seq")
-@NoArgsConstructor
-public class Person {
+@SequenceGenerator(name = "person_seq", sequenceName = "person_seq", allocationSize = 1)
 
-    public Person(String name) {
-        this.name = name;
-    }
+@NoArgsConstructor
+@Getter @Setter
+@EqualsAndHashCode(of = "name")
+public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_seq")

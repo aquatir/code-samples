@@ -1,8 +1,8 @@
 package codesample.ignite;
 
 import codesample.ignite.entitry.Person;
-import codesample.ignite.repository.PersonRepository;
 import org.apache.ignite.Ignite;
+import org.apache.ignite.IgniteCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,22 +21,17 @@ public class SpringbootIgnitePostgresRunner {
 
             @Autowired
             private Ignite igniteClient;
-            @Autowired
-            private PersonRepository personRepository;
 
             public void run(String... args)  {
-                runSql(personRepository);
                 runIgnite(igniteClient);
             }
         };
     }
 
-    private void runSql(PersonRepository personRepository) {
-        personRepository.save(new Person("Ivan"));
-        personRepository.save(new Person("Narkoman"));
-    }
-
     private void runIgnite(Ignite igniteClient) {
-        igniteClient.compute().broadcast(() -> System.out.println("Hello World!"));
+        IgniteCache<Long, Person> cache = igniteClient.getOrCreateCache("person");
+        cache.loadCache(null);
+        Person p = cache.get(1L);
+        System.out.println("got person: " + p.getId() + " name: " + p.getName());
     }
 }
