@@ -4,3 +4,6 @@ spring.datasource:
   username: pavel
   password: pavel
   driver-class-name: org.postgresql.Driver
+
+spring.jpa:
+  hibernate.ddl-auto: create-drop

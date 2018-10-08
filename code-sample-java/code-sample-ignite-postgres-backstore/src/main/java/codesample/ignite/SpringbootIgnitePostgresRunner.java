@@ -1,5 +1,7 @@
 package codesample.ignite;
 
+import codesample.ignite.entitry.Person;
+import codesample.ignite.repository.PersonRepository;
 import org.apache.ignite.Ignite;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -19,20 +21,22 @@ public class SpringbootIgnitePostgresRunner {
 
             @Autowired
             private Ignite igniteClient;
+            @Autowired
+            private PersonRepository personRepository;
 
             public void run(String... args)  {
-                runSql();
+                runSql(personRepository);
                 runIgnite(igniteClient);
             }
         };
     }
 
-    private void runSql() {
-
+    private void runSql(PersonRepository personRepository) {
+        personRepository.save(new Person("Ivan"));
+        personRepository.save(new Person("Narkoman"));
     }
 
     private void runIgnite(Ignite igniteClient) {
         igniteClient.compute().broadcast(() -> System.out.println("Hello World!"));
-        igniteClient.close();
     }
 }

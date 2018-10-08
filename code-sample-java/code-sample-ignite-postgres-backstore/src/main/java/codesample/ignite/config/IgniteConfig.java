@@ -27,7 +27,7 @@ public class IgniteConfig {
     public IgniteConfiguration igniteConfiguration() {
         IgniteConfiguration cfg = new IgniteConfiguration();
         cfg.setPeerClassLoadingEnabled(true);
-        cfg.setClientMode(true);
+        //cfg.setClientMode(true);  //
         cfg.setDiscoverySpi(discoverySpi());
         cfg.setCommunicationSpi(communicationSpi());
         return cfg;
