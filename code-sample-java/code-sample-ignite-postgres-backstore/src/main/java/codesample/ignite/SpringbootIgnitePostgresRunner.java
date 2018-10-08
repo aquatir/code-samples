@@ -1,6 +1,8 @@
 package codesample.ignite;
 
+import codesample.ignite.cache.PersonCacheStore;
 import codesample.ignite.entitry.Person;
+import codesample.ignite.repository.PersonRepository;
 import org.apache.ignite.Ignite;
 import org.apache.ignite.IgniteCache;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +23,12 @@ public class SpringbootIgnitePostgresRunner {
 
             @Autowired
             private Ignite igniteClient;
+            @Autowired
+            private PersonRepository personRepository;
+
 
             public void run(String... args)  {
+                PersonCacheStore.personRepository = personRepository;
                 runIgnite(igniteClient);
             }
         };
