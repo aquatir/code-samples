@@ -22,7 +22,6 @@ public class SpringbootIgnitePostgresRunner {
             @Autowired
             private Ignite igniteClient;
 
-
             public void run(String... args)  {
                 runIgnite(igniteClient);
             }
