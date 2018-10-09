@@ -1,0 +1,10 @@
+create SEQUENCE person_seq INCREMENT by 1;
+
+CREATE TABLE PERSON(
+  ID BIGINT PRIMARY KEY     NOT NULL,
+  NAME TEXT NOT NULL
+);
+
+INSERT into PERSON(ID, NAME) VALUES
+(1, 'ivan'),
+(2, 'narkoman');

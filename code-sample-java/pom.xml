@@ -18,6 +18,7 @@
         <module>code-sample-java-springboot-ldap-login</module>
         <module>code-sample-java-9</module>
         <module>code-sample-java-10</module>
+        <module>code-sample-ignite-postgres-backstore</module>
     </modules>
     <packaging>pom</packaging>
 
