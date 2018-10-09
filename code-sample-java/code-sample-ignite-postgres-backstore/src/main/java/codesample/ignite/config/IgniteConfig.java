@@ -25,9 +25,6 @@ import java.util.LinkedHashMap;
 @Configuration
 public class IgniteConfig {
 
-    @Autowired
-    PersonCacheStore personCacheStore;
-
     @Bean
     Ignite igniteClient() throws IgniteException {
         return Ignition.start(igniteConfiguration());
@@ -37,7 +34,6 @@ public class IgniteConfig {
     public IgniteConfiguration igniteConfiguration() {
         IgniteConfiguration cfg = new IgniteConfiguration();
         cfg.setPeerClassLoadingEnabled(true);
-        //cfg.setClientMode(true);  //
         cfg.setDiscoverySpi(discoverySpi());
         cfg.setCommunicationSpi(communicationSpi());
         cfg.setCacheConfiguration(personCacheConfiguration());

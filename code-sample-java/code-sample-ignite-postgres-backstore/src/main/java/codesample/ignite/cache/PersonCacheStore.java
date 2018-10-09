@@ -2,17 +2,15 @@ package codesample.ignite.cache;
 
 import codesample.ignite.entitry.Person;
 import codesample.ignite.repository.PersonRepository;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.apache.ignite.cache.store.CacheStore;
 import org.apache.ignite.lang.IgniteBiInClosure;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import javax.cache.Cache;
 import javax.cache.integration.CacheLoaderException;
@@ -23,9 +21,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Component
-public class PersonCacheStore implements CacheStore<Long, Person> {
+public class PersonCacheStore implements CacheStore<Long, Person>, BeanFactoryAware {
 
-    public static PersonRepository personRepository;
+    private static PersonRepository personRepository;
 
     @Override
     public void loadCache(IgniteBiInClosure<Long, Person> igniteBiInClosure, @Nullable Object... objects) throws CacheLoaderException {
@@ -76,5 +74,10 @@ public class PersonCacheStore implements CacheStore<Long, Person> {
     @Override
     public void sessionEnd(boolean b) throws CacheWriterException {
         // deprecated
+    }
+
+    @Override
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+        PersonCacheStore.personRepository = beanFactory.getBean(PersonRepository.class);
     }
 }
