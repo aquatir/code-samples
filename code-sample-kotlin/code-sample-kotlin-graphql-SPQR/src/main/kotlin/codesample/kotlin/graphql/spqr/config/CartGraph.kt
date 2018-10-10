@@ -51,6 +51,7 @@ class CartGraph(val cartService: CartService,
      * other the "network" (Note: graphql will never show all fields to client, HOWEVER they will still go other the network
      * if this function was going over the net)
      */
+    //@Batched
     @GraphQLQuery(name = "domainObjects")
     fun domainObjects(@GraphQLContext cartItems: List<CartItem>): List<DomainObject>
             = domainObjectRepository.getByCartItemsList(cartItems)
