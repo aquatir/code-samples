@@ -10,10 +10,10 @@ import javax.persistence.OneToMany
 @Entity
 class Cart (
         @Id @GeneratedValue
-        var id: Long = 0,
+        val id: Long = 0,
 
         @OneToMany(fetch = FetchType.EAGER, mappedBy = "cart")
-        var cartItems: List<CartItem> = mutableListOf()
+        val cartItems: List<CartItem> = mutableListOf()
 ) {
 
     fun getTotal(): BigDecimal {

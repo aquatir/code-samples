@@ -46,9 +46,9 @@ dependencies {
     compile("org.springframework:spring-web")
     compile("javax.xml.bind:jaxb-api")
 
-    // GraphQL 
-    compile("io.leangen.graphql:spqr:0.9.8")
+    // GraphQL + spqr
     compile("com.graphql-java:graphiql-spring-boot-starter:5.0.2")
+    compile("io.leangen.graphql:spqr:0.9.8")
     compile("io.leangen.graphql:graphql-spqr-spring-boot-starter:0.0.2")
 
 
