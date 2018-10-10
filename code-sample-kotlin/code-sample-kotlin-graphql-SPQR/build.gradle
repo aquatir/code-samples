@@ -1,7 +1,7 @@
 buildscript {
     ext {
         kotlinVersion = '1.2.71'
-        springBootVersion = '2.0.4.RELEASE'
+        springBootVersion = '2.0.0.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -34,6 +34,7 @@ compileTestKotlin {
 }
 
 repositories {
+    jcenter()
     mavenCentral()
 }
 
@@ -45,12 +46,10 @@ dependencies {
     compile("org.springframework:spring-web")
     compile("javax.xml.bind:jaxb-api")
 
-
-    // GraphQL
-    compile("com.graphql-java:graphiql-spring-boot-starter:5.0.2")
-    compile("com.graphql-java:graphql-spring-boot-starter:5.0.2")
-    compile("com.graphql-java:graphql-java-tools:5.2.4")
+    // GraphQL 
     compile("io.leangen.graphql:spqr:0.9.8")
+    compile("com.graphql-java:graphiql-spring-boot-starter:5.0.2")
+    compile("io.leangen.graphql:graphql-spqr-spring-boot-starter:0.0.2")
 
 
     // Kotlin stuff

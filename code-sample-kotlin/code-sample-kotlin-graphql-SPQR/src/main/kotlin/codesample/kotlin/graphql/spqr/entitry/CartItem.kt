@@ -1,5 +1,6 @@
 package codesample.kotlin.graphql.spqr.entitry
 
+import codesample.kotlin.graphql.spqr.domain.DomainObject
 import java.math.BigDecimal
 import javax.persistence.Column
 import javax.persistence.Entity

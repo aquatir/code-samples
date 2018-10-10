@@ -14,8 +14,3 @@ spring.jpa:
 spring.h2.console:
   enabled: true
   path: /h2-console
-
-graphql:
-  servlet:
-    mapping: /graphql
-    enabled: true

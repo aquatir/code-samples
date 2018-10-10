@@ -10,9 +10,11 @@ import io.leangen.graphql.annotations.GraphQLArgument
 import io.leangen.graphql.annotations.GraphQLContext
 import io.leangen.graphql.annotations.GraphQLEnvironment
 import io.leangen.graphql.annotations.GraphQLQuery
-import org.springframework.context.annotation.Configuration
+import io.leangen.graphql.spqr.spring.annotation.GraphQLApi
+import org.springframework.stereotype.Service
 
-@Configuration
+@GraphQLApi
+@Service
 class CartGraph(val cartService: CartService,
                 val domainObjectRepository: DomainObjectRepository) {
 
@@ -28,7 +30,7 @@ class CartGraph(val cartService: CartService,
      * So we specify Cart as our GraphQLContext and also apply limit to it with default value
      * the save way we did when we were configuring graphql with schema file
      */
-    @GraphQLQuery(name = "cart")
+    @GraphQLQuery
     fun cartItems(@GraphQLContext cart: Cart,
                   @GraphQLArgument(name = "limit", defaultValue = "0") limit: Int) : List<CartItem>
             = cart.cartItems.subList(0, if (limit > 0) limit else cart.cartItems.size)
@@ -43,7 +45,7 @@ class CartGraph(val cartService: CartService,
      * other the "network" (Note: graphql will never show all fields to client, HOWEVER they will still go other the network
      * if this function was going over the net)
      */
-    @GraphQLQuery(name = "cartItem")
+    @GraphQLQuery
     @Batched
     fun domainObjects(@GraphQLContext cartItems: List<CartItem>,
                       @GraphQLEnvironment fields: Set<String>): List<DomainObject>
