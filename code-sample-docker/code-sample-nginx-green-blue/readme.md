@@ -1,3 +1,21 @@
-```docker build -f docker/springboot/Dockerfile . -t spring-boot-manual```
+### About
+Creating green-blue deploy with docker and nginx.
 
-```docker run -p 8080:8080 spring-boot-manual```
+We will mount local files to nginx container to be able to realod them for
+green-blue deploy. This is not the only way to implement green-blue deploy with nginx and docker.
+Refer to other sources (such as this: https://blog.docker.com/2015/04/tips-for-deploying-nginx-official-image-with-docker/) 
+for more info.
+
+### Launching
+1. Build spring-boot application image.
+    1. Go to project directory
+    2. use ```mvn clean package``` to create jar file
+    3. use ```docker build -f docker/springboot/Dockerfile . -t spring-boot-manual``` to create an image
+
+2. Run spring-boot container with  ```docker run -p 8080:8080 spring-boot-manual```
+
+3. Run nginx container mounting nginx configuration from local directory
+
+docker run --name mynginx2 -v /var/www:/usr/share/nginx/html:ro \
+
+-v /var/nginx/conf:/etc/nginx:ro -P -d nginx
