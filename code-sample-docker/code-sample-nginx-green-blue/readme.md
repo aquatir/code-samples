@@ -16,6 +16,7 @@ for more info.
 
 3. Run nginx container mounting nginx configuration from local directory
 
-docker run --name mynginx2 -v /var/www:/usr/share/nginx/html:ro \
+```docker build -f docker/nginx/Dockerfile . -t nginx1```
+```docker run -p 80:80  nginx1 --```
 
--v /var/nginx/conf:/etc/nginx:ro -P -d nginx
+```docker network create net```
