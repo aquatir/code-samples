@@ -12,8 +12,13 @@ public class SpringBootNginxGreenBlueRunner {
         SpringApplication.run(SpringBootNginxGreenBlueRunner.class, args);
     }
 
-    @GetMapping
+    @GetMapping("/hello")
     public String hello() {
         return "Hello!";
+    }
+
+    @GetMapping("/")
+    public String root() {
+        return "root!";
     }
 }

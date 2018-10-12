@@ -1,0 +1,17 @@
+version: '3'
+services:
+  nginx:
+    build: ./nginx/
+    ports:
+      - 80:80
+
+    # Linking spring-boot and nginx container together. This will allow us to use 'spring-boot-hello'
+    # as host name in nginx config
+    links:
+      - spring-boot-hello
+    depends_on:
+      - spring-boot-hello
+  spring-boot-hello:
+    image: spring-boot-hello
+    ports:
+    - "8080"
