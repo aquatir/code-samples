@@ -9,14 +9,6 @@ for more info.
 ### Launching
 1. Build spring-boot application image.
     1. Go to project directory
-    2. use ```mvn clean package``` to create jar file
-    3. use ```docker build -f docker/springboot/Dockerfile . -t spring-boot-manual``` to create an image
-
-2. Run spring-boot container with  ```docker run -p 8080:8080 spring-boot-manual```
-
-3. Run nginx container mounting nginx configuration from local directory
-
-```docker build -f docker/nginx/Dockerfile . -t nginx1```
-```docker run -p 80:80  nginx1 --```
-
-```docker network create net```
+    2. run ```mvn clean package``` to create jar file
+    3. run ```docker build -f docker/springboot/Dockerfile . -t spring-boot-hello``` to spring-boot app image
+    4. run ```docker-compose -f docker/docker-compose.yml up``` to run nginx and docker
