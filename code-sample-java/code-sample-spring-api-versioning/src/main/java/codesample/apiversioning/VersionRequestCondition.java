@@ -8,16 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 public class VersionRequestCondition implements RequestCondition<VersionRequestCondition> {
 
     private String version;
-
     public String getVersion() {
         return version;
     }
-
-    public VersionRequestCondition setVersionAndReturn(String version) {
-        this.version = version;
-        return this;
-    }
-
     public VersionRequestCondition(String version) {
         this.version = version;
     }
@@ -27,17 +20,13 @@ public class VersionRequestCondition implements RequestCondition<VersionRequestC
         return null;
     }
 
-    @Override
-    public VersionRequestCondition getMatchingCondition(HttpServletRequest httpServletRequest) {
-        String version = httpServletRequest.getHeader("version");
-        if (!StringUtils.isEmpty(version)) {
-            if (version.equals("1.6"))
-                return this;
-            else if (version.equals("1.7"))
-                return this.setVersionAndReturn("1.7");
-        }
-
-        return null;
+    @Override /* This method will try to check THIS condition suffice for incoming http request */
+    public VersionRequestCondition getMatchingCondition(HttpServletRequest other) {
+        String otherVersion = other.getHeader("version");
+        if (!StringUtils.isEmpty(otherVersion) && otherVersion.equals(version)) {
+            return this;
+        } else
+            return null;
     }
 
     @Override
@@ -45,9 +34,9 @@ public class VersionRequestCondition implements RequestCondition<VersionRequestC
         String otherVer = other.getVersion();
         String currentVer = request.getHeader("version");
 
-        if (otherVer.equals("1.6") && currentVer.equals("1.7"))
+        if (currentVer.equals("1.7") && otherVer.equals("1.6"))
             return 1;
-        else if (otherVer.equals("1.7") && currentVer.equals("1.6"))
+        else if (currentVer.equals("1.6") && otherVer.equals("1.7"))
             return -1;
         else
             return 0;

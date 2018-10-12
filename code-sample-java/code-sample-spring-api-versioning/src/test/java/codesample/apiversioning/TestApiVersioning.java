@@ -25,7 +25,8 @@ public class TestApiVersioning {
     @Test
     public void testVersion16() throws Exception {
         mockMvc.perform(get("/")
-            .header("version", "1.6"))
+                    .header("version", "1.6")
+                )
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Hello 1.6!")));
@@ -34,7 +35,8 @@ public class TestApiVersioning {
     @Test
     public void testVersion17() throws Exception {
         mockMvc.perform(get("/")
-                .header("version", "1.7"))
+                    .header("version", "1.7")
+                )
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Hello 1.7!")));

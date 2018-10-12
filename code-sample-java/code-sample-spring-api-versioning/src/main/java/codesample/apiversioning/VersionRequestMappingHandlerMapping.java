@@ -9,13 +9,6 @@ import java.lang.reflect.Method;
 public class VersionRequestMappingHandlerMapping extends RequestMappingHandlerMapping {
 
     @Override
-    protected RequestCondition<?> getCustomTypeCondition(Class<?> handlerType) {
-        VersionRange typeAnnotation = AnnotationUtils.findAnnotation(
-                handlerType, VersionRange.class);
-        return createCondition(typeAnnotation);
-    }
-
-    @Override
     protected RequestCondition<?> getCustomMethodCondition(Method method) {
         VersionRange methodAnnotation = AnnotationUtils.findAnnotation(
                 method, VersionRange.class);
