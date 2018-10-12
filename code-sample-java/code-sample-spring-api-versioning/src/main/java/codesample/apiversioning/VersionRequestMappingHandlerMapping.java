@@ -10,14 +10,11 @@ public class VersionRequestMappingHandlerMapping extends RequestMappingHandlerMa
 
     @Override
     protected RequestCondition<?> getCustomMethodCondition(Method method) {
-        VersionRange methodAnnotation = AnnotationUtils.findAnnotation(
-                method, VersionRange.class);
-        return createCondition(methodAnnotation);
-    }
+        VersionRange versionRangeAnnotation = AnnotationUtils.findAnnotation(method, VersionRange.class);
 
-    private RequestCondition<?> createCondition(VersionRange accessMapping) {
-        return (accessMapping != null) ?
-                new VersionRequestCondition(accessMapping.value()) :
-                null;
+        if (versionRangeAnnotation != null)
+            return new VersionRequestCondition(versionRangeAnnotation.value());
+        else
+            return null;
     }
 }

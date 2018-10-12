@@ -23,7 +23,7 @@ public class TestApiVersioning {
     private MockMvc mockMvc;
 
     @Test
-    public void testVersion16() throws Exception {
+    public void callWithHeader16version_Expect16versionMethodCalled() throws Exception {
         mockMvc.perform(get("/")
                     .header("version", "1.6")
                 )
@@ -33,12 +33,19 @@ public class TestApiVersioning {
     }
 
     @Test
-    public void testVersion17() throws Exception {
+    public void callWithHeader17version_Expect17versionMethodCalled() throws Exception {
         mockMvc.perform(get("/")
                     .header("version", "1.7")
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Hello 1.7!")));
+    }
+
+    @Test
+    public void callWithoutHeader_ExpectNotFound() throws Exception {
+        mockMvc.perform(get("/"))
+                .andDo(print())
+                .andExpect(status().isNotFound());
     }
 }

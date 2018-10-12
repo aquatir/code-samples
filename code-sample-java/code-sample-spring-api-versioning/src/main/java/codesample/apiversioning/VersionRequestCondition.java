@@ -8,12 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 public class VersionRequestCondition implements RequestCondition<VersionRequestCondition> {
 
     private String version;
-    public String getVersion() {
-        return version;
-    }
+
     public VersionRequestCondition(String version) {
         this.version = version;
     }
+
+    public String getVersion() {
+        return version;
+    }
+
 
     @Override
     public VersionRequestCondition combine(VersionRequestCondition other) {
