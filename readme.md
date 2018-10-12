@@ -40,7 +40,7 @@
     <li><b>code-sample-docker</b>. Contains some docker examples
         <ul>
             <li><b>docker-official-getting-started</b>. Getting started guide from https://docs.docker.com/get-started</li>
-            <li><b>code-sample-nginx-green-blue</b>. Example of green-blue deployment with docker, nginx and spring-boot 
+            <li><b>code-sample-nginx-spring-boot-docker</b>. Spring-boot with nginx inside docker deployed with docker-compose
         </ul>
     </li>
     <li><b>code-sample-angular-java</b>. Angular app based on https://angular.io/tutorial .
