@@ -1,7 +1,8 @@
-package codesample.apiversioning;
+package codesample.apiversioning.versionmapping;
 
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.mvc.condition.RequestCondition;
+import static codesample.apiversioning.Constants.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,7 +26,7 @@ public class VersionRequestCondition implements RequestCondition<VersionRequestC
 
     @Override /* This method will try to check THIS condition suffice for incoming http request */
     public VersionRequestCondition getMatchingCondition(HttpServletRequest other) {
-        String otherVersion = other.getHeader("version");
+        String otherVersion = other.getHeader(VERSION_HEADER);
         if (!StringUtils.isEmpty(otherVersion) && otherVersion.equals(version)) {
             return this;
         } else
@@ -35,11 +36,11 @@ public class VersionRequestCondition implements RequestCondition<VersionRequestC
     @Override
     public int compareTo(VersionRequestCondition other, HttpServletRequest request) {
         String otherVer = other.getVersion();
-        String currentVer = request.getHeader("version");
+        String currentVer = request.getHeader(VERSION_HEADER);
 
-        if (currentVer.equals("1.7") && otherVer.equals("1.6"))
+        if (currentVer.equals(V_1_7) && otherVer.equals(V_1_6))
             return 1;
-        else if (currentVer.equals("1.6") && otherVer.equals("1.7"))
+        else if (currentVer.equals(V_1_6) && otherVer.equals(V_1_7))
             return -1;
         else
             return 0;

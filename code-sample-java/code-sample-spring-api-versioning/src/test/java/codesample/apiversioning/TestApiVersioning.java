@@ -25,7 +25,7 @@ public class TestApiVersioning {
     @Test
     public void callWithHeader16version_Expect16versionMethodCalled() throws Exception {
         mockMvc.perform(get("/")
-                    .header("version", "1.6")
+                    .header("version", Constants.V_1_6)
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -35,7 +35,7 @@ public class TestApiVersioning {
     @Test
     public void callWithHeader17version_Expect17versionMethodCalled() throws Exception {
         mockMvc.perform(get("/")
-                    .header("version", "1.7")
+                    .header("version", Constants.V_1_7)
                 )
                 .andDo(print())
                 .andExpect(status().isOk())

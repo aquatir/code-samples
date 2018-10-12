@@ -1,4 +1,4 @@
-package codesample.apiversioning;
+package codesample.apiversioning.versionmapping;
 
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.servlet.mvc.condition.RequestCondition;

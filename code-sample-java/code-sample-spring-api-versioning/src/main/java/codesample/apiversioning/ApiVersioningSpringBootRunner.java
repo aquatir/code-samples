@@ -1,5 +1,6 @@
 package codesample.apiversioning;
 
+import codesample.apiversioning.versionmapping.VersionRange;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,13 +13,13 @@ public class ApiVersioningSpringBootRunner {
         SpringApplication.run(ApiVersioningSpringBootRunner.class, args);
     }
 
-    @VersionRange("1.6")
+    @VersionRange(Constants.V_1_6)
     @GetMapping("/")
     public String helloOld() {
         return "Hello 1.6!";
     }
 
-    @VersionRange("1.7")
+    @VersionRange(Constants.V_1_7)
     @GetMapping("/")
     public String helloNew() {
         return "Hello 1.7!";

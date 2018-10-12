@@ -1,4 +1,4 @@
-package codesample.apiversioning;
+package codesample.apiversioning.versionmapping;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
