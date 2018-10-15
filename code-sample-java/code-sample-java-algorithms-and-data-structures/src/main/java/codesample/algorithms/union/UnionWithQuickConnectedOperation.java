@@ -8,38 +8,19 @@ import java.util.ArrayList;
  * Union (node1, node2). Takes O(n)
  * Connected (node1, node2). Takes 0(1)
  */
-class UnionWithQuickConnectedOperation {
-    private final ArrayList<Integer> arrList;
+class UnionWithQuickConnectedOperation<T> extends UnionBackedByArray<T> {
 
-    /**
-     * Test method to fill array with integers
-     *
-     * @param maxNumber - number of integer in array
-     */
-    private void fillArrayList(int maxNumber) {
-        for (int i = 0; i < maxNumber; ++i) {
-            arrList.add(i);
-        }
+
+    @Override
+    public boolean connected(T valueOne, T valueTwo) {
+        return get(valueOne).equals(get(valueTwo));
     }
 
-    /**
-     * Return true if nodes are connected
-     *
-     * @param a - first index
-     * @param b - second index
-     * @return true if nodes are connected, false otherwise
-     */
-    boolean connected(int a, int b) {
-        return (arrList.get(a).equals(arrList.get(b)));
+    @Override
+    public void union(T valueOne, T valueTwo) {
+        int indexOne =
     }
 
-    /**
-     * Makes a union between two nodes
-     *
-     * @param a - first index
-     * @param b - second index
-     * @return true is union was created and false otherwise
-     */
     void union(int a, int b) {
         int oldSetValue = arrList.get(a);
         int newSetValue = arrList.get(b);
@@ -61,4 +42,7 @@ class UnionWithQuickConnectedOperation {
         this.arrList = new ArrayList<>(n);
         fillArrayList(n);
     }
+
+
+
 }
