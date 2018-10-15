@@ -3,23 +3,29 @@ package codesample.java_se_api.concurency.synchronization;
 import java.util.concurrent.Phaser;
 
 /**
- * An example of Phaser usage.
+ * Phaser example.
  *
- * We will create 2 threads each with 3 phases. This thread will only proceed with their work
+ * We will create 3 threads each with 3 phases. This thread will only proceed with their work
  * when the main thread calls arriveAdnAwaitAdvanced() method. This will happen 3 times. After that
  * both threads and main thread will be deregistered.
  */
 class PhaserExample {
     public static void main(String[] args) throws InterruptedException {
 
+        // Create a phazer with a party-size = 1
         Phaser phaser = new Phaser(1);
 
+        // We create 3 thread. Each one registers in Phaser. Party size is not 4
         Thread member1 = new Thread(new phaserMember(phaser, "Thread_1"));
         Thread member2 = new Thread(new phaserMember(phaser, "Thread_2"));
+        Thread member3 = new Thread(new phaserMember(phaser, "Thread_3"));
 
+        // Each thread will call arriveAndAwaitAdvance() which will reduce the number of unarrived threads to 1 (main thread)
         member1.start();
         member2.start();
+        member3.start();
 
+        // Now the main thread will arrive to barrier and barrier thus will be broken, starting the next phase
         System.out.println("Starting phase 1 from main thread");
         phaser.arriveAndAwaitAdvance();
         Thread.sleep(1000);
