@@ -41,7 +41,7 @@ public class ConcurrentHashMapExample {
 
         ConcurrentHashMap<Integer, Integer> map;
 
-        public PutterTask(ConcurrentHashMap map) {
+        public PutterTask(ConcurrentHashMap<Integer, Integer> map) {
             this.map = map;
         }
 
