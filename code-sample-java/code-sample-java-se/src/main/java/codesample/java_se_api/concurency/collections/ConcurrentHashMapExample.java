@@ -20,9 +20,9 @@ public class ConcurrentHashMapExample {
         var putter_2 = new Thread(new PutterTask(map));
         var putter_3 = new Thread(new PutterTask(map));
 
-        putter_1.run();
-        putter_2.run();
-        putter_3.run();
+        putter_1.start();
+        putter_2.start();
+        putter_3.start();
 
         putter_1.join();
         putter_2.join();

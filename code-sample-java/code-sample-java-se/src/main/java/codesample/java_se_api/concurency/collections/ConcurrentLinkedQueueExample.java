@@ -37,7 +37,6 @@ public class ConcurrentLinkedQueueExample {
     private static class PutterTask implements Runnable {
 
         ConcurrentLinkedQueue<LocalDateTime> queue;
-        Random rnd = new Random(0);
 
         public PutterTask(ConcurrentLinkedQueue<LocalDateTime> queue) {
             this.queue = queue;
