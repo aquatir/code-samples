@@ -1,4 +1,4 @@
-package codesample.java_se_api.concurency.collections;
+package codesample.java_se_api.concurency.collections.map;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;

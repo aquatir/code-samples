@@ -1,4 +1,4 @@
-package codesample.java_se_api.concurency.collections;
+package codesample.java_se_api.concurency.collections.queue;
 
 import java.time.LocalDateTime;
 import java.util.Random;
