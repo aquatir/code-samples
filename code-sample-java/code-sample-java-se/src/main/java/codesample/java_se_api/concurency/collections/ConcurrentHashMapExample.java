@@ -16,7 +16,6 @@ public class ConcurrentHashMapExample {
     public static void main(String[] args) throws InterruptedException {
         var map = new ConcurrentHashMap<Integer, Integer>();
 
-
         var putter_1 = new Thread(new PutterTask(map));
         var putter_2 = new Thread(new PutterTask(map));
         var putter_3 = new Thread(new PutterTask(map));
