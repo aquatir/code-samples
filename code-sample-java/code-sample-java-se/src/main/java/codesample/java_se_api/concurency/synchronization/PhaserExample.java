@@ -35,32 +35,34 @@ class PhaserExample {
         System.out.println("Deregistering phaser");
         phaser.arriveAndAwaitAdvance();
     }
-}
 
-class phaserMember implements Runnable {
+    private static class phaserMember implements Runnable {
 
-    private final Phaser phaser;
-    private final String name;
+        private final Phaser phaser;
+        private final String name;
 
-    public phaserMember(Phaser phaser, String threadName) {
-        this.phaser = phaser;
-        this.name = threadName;
-        this.phaser.register();
+        public phaserMember(Phaser phaser, String threadName) {
+            this.phaser = phaser;
+            this.name = threadName;
+            this.phaser.register();
+        }
+
+        @Override
+        public void run() {
+
+            phaser.arriveAndAwaitAdvance();
+            System.out.println(name + " arrived to first phase ");
+
+            phaser.arriveAndAwaitAdvance();
+            System.out.println(name + " arrived to second phase ");
+
+            phaser.arriveAndAwaitAdvance();
+            System.out.println(name + " arrived to third phase ");
+
+            phaser.arriveAndDeregister();
+            System.out.println(name + " arrived and deregistered ");
+        }
     }
 
-    @Override
-    public void run() {
-
-        phaser.arriveAndAwaitAdvance();
-        System.out.println(name + " arrived to first phase ");
-
-        phaser.arriveAndAwaitAdvance();
-        System.out.println(name + " arrived to second phase ");
-
-        phaser.arriveAndAwaitAdvance();
-        System.out.println(name + " arrived to third phase ");
-
-        phaser.arriveAndDeregister();
-        System.out.println(name + " arrived and deregistered ");
-    }
 }
+

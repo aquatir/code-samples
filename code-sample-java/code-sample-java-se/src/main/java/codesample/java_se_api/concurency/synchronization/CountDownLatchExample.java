@@ -24,29 +24,31 @@ class CountDownLatchExample {
         System.out.println("Waiting complete. Proceeding!");
 
     }
-}
 
-class CountDownRunnable implements Runnable {
+    private static class CountDownRunnable implements Runnable {
 
-    private final CountDownLatch latch;
-    private final int numOfCountDowns;
+        private final CountDownLatch latch;
+        private final int numOfCountDowns;
 
-    public CountDownRunnable(CountDownLatch latch, int numOfCountDowns) {
-        this.latch = latch;
-        this.numOfCountDowns = numOfCountDowns;
-    }
+        public CountDownRunnable(CountDownLatch latch, int numOfCountDowns) {
+            this.latch = latch;
+            this.numOfCountDowns = numOfCountDowns;
+        }
 
-    @Override
-    public void run() {
-        try {
-            for (int i = 0; i < numOfCountDowns; i++) {
-                System.out.println("Thread counting down latch " + (i+1) + " out of " + numOfCountDowns);
-                latch.countDown();
-                Thread.sleep(1000);
+        @Override
+        public void run() {
+            try {
+                for (int i = 0; i < numOfCountDowns; i++) {
+                    System.out.println("Thread counting down latch " + (i+1) + " out of " + numOfCountDowns);
+                    latch.countDown();
+                    Thread.sleep(1000);
 
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
     }
 }
+
+

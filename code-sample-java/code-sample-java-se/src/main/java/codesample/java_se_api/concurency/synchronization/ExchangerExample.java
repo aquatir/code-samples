@@ -18,27 +18,28 @@ class ExchangerExample {
         exchangerHello.start();
         exchangerWorld.start();
     }
-}
 
-class ExchangerUser implements Runnable {
+    private static class ExchangerUser implements Runnable {
 
-    private final Exchanger<String> exchanger;
-    private final String exchangedString;
-    private final String exchangerName;
-    ExchangerUser(Exchanger<String> exchanger, String exchangedString, String exchangerName) {
-        this.exchanger = exchanger;
-        this.exchangedString = exchangedString;
-        this.exchangerName = exchangerName;
-    }
-    @Override
-    public void run() {
-        try {
-            System.out.println(exchangerName + " has string: " + exchangedString);
-            Thread.sleep(2000);
-            String strFromAnotherExchanger = exchanger.exchange(exchangedString);
-            System.out.println(exchangerName + " got string from another exchanger: " + strFromAnotherExchanger);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        private final Exchanger<String> exchanger;
+        private final String exchangedString;
+        private final String exchangerName;
+        ExchangerUser(Exchanger<String> exchanger, String exchangedString, String exchangerName) {
+            this.exchanger = exchanger;
+            this.exchangedString = exchangedString;
+            this.exchangerName = exchangerName;
+        }
+        @Override
+        public void run() {
+            try {
+                System.out.println(exchangerName + " has string: " + exchangedString);
+                Thread.sleep(2000);
+                String strFromAnotherExchanger = exchanger.exchange(exchangedString);
+                System.out.println(exchangerName + " got string from another exchanger: " + strFromAnotherExchanger);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
+
