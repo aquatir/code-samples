@@ -1,15 +1,14 @@
 package codesample.algorithms.union;
 
-public interface Union<T> {
+public interface Union<T extends Comparable<T>> {
 
     /**
      * @return true if nodes are connected, false otherwise
      */
-    boolean connected(Node<T> nodeOne, Node<T> nodeTwo);
-
+    boolean connected(T nodeOne, T nodeTwo);
 
     /**
      * Creates a union between two nodes
      */
-    void union(Node<T> nodeOne, Node<T> nodeTwo);
+    void union(T nodeOne, T nodeTwo);
 }
