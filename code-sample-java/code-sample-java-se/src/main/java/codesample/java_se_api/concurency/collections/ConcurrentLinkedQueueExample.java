@@ -10,6 +10,9 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  * ConcurrentLinkedQueue is a concurrent version of classical Queue.
  * This example puts 100000 LocalDateTime.now() object into queue in 3 threads simultaneously expecting them to be placed
  * in order (Order is not checked though)
+ *
+ * note: there also exists ConcurrentLinkedDeque, which is a DEQUE supporting both FIFO and LIFO at the same time.
+ * Notice however that supporting both may have a significant performance penalty.
  */
 public class ConcurrentLinkedQueueExample {
     public static void main(String[] args) throws InterruptedException {
