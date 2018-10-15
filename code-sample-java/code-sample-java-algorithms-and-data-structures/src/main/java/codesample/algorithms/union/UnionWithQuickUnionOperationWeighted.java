@@ -4,30 +4,23 @@ package codesample.algorithms.union;
 import java.util.ArrayList;
 
 /**
- * This is a Union implementation with quick 'union' operation.
- * Union (node1, node2). Takes uo to log(n)
- * Connected (node1, node2). Takes up to log(n)
- * This implementation watch for tree size when adding elements
- * making sure that when connectiong 2 trees the bigger
- * one would get connected to smaller one which descrees total maximum tree
- * size and improve overal working time.
- * At the same time when finding the root of a tree this implementation
- * sets all traversed nodes to point closer to tree
+ * This is a Union implementation with quick 'union' operation. Union (node1, node2). Takes up to log(n)
+ * Connected (node1, node2). Takes up to log(n). This implementation watch for tree size when adding elements making
+ * sure that when connectiong 2 trees the bigger one would get connected to smaller one which decrees tree size and
+ * improve overall working time
  *
- * @author Pavel Bukhmatov (buhmatov@gmail.com; github.com/aquatir)
- */
-class UnionQuickUnionWitFlattering {
+ * */
+class UnionWithQuickUnionOperationWeighted {
     private final ArrayList<Integer> elements;
     private final ArrayList<Integer> size;
 
-
     /**
      * Creates new union with none elements being connected.
-     * Should be updated to work with any kind of arrayList...?
+     * Should be updated to work with generic arrayList...?
      *
      * @param n - number of elements in union
      */
-    UnionQuickUnionWitFlattering(int n) {
+    UnionWithQuickUnionOperationWeighted(int n) {
         this.elements = new ArrayList<>(n);
         this.size = new ArrayList<>(n);
         initiateElements(n);
@@ -53,8 +46,7 @@ class UnionQuickUnionWitFlattering {
      * @return index of root
      */
     private int root(int a) {
-        while (a != elements.get(a)) {
-            elements.set(a, elements.get(elements.get(a)));
+        while (elements.get(a) != a) {
             a = elements.get(a);
         }
         return a;

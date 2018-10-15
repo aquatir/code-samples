@@ -9,10 +9,8 @@ import java.util.ArrayList;
  * Connected (node1, node2). Takes up to n
  * This is not the implementation you should be using a lot. Should only
  * be used as a test subject when learning algorithms
- *
- * @author Pavel Bukhmatov (buhmatov@gmail.com; github.com/aquatir)
  */
-class UnionQuickUnion {
+class UnionWithQuickUnionOperation {
     private final ArrayList<Integer> elements;
 
     /**
@@ -69,7 +67,7 @@ class UnionQuickUnion {
      *
      * @param n
      */
-    UnionQuickUnion(int n) {
+    UnionWithQuickUnionOperation(int n) {
         this.elements = new ArrayList<>(n);
         initiateElements(n);
     }

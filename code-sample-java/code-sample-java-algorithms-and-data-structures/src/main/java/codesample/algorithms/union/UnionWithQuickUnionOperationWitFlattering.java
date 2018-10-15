@@ -10,21 +10,22 @@ import java.util.ArrayList;
  * This implementation watch for tree size when adding elements
  * making sure that when connectiong 2 trees the bigger
  * one would get connected to smaller one which descrees total maximum tree
- * size and improve overal working time
- *
- * @author Pavel Bukhmatov (buhmatov@gmail.com; github.com/aquatir)
+ * size and improve overal working time.
+ * At the same time when finding the root of a tree this implementation
+ * sets all traversed nodes to point closer to tree
  */
-class UnionQuickUnionWeighted {
+class UnionWithQuickUnionOperationWitFlattering {
     private final ArrayList<Integer> elements;
     private final ArrayList<Integer> size;
 
+
     /**
      * Creates new union with none elements being connected.
-     * Should be updated to work with generic arrayList...?
+     * Should be updated to work with any kind of arrayList...?
      *
      * @param n - number of elements in union
      */
-    UnionQuickUnionWeighted(int n) {
+    UnionWithQuickUnionOperationWitFlattering(int n) {
         this.elements = new ArrayList<>(n);
         this.size = new ArrayList<>(n);
         initiateElements(n);
@@ -50,7 +51,8 @@ class UnionQuickUnionWeighted {
      * @return index of root
      */
     private int root(int a) {
-        while (elements.get(a) != a) {
+        while (a != elements.get(a)) {
+            elements.set(a, elements.get(elements.get(a)));
             a = elements.get(a);
         }
         return a;

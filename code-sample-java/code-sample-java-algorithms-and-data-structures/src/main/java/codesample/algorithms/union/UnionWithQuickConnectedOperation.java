@@ -7,10 +7,8 @@ import java.util.ArrayList;
  * This is a Union implementation with quick 'connected' operation.
  * Union (node1, node2). Takes O(n)
  * Connected (node1, node2). Takes 0(1)
- *
- * @author Pavel Bukhmatov (buhmatov@gmail.com; github.com/aquatir)
  */
-class UnionQuickSearch {
+class UnionWithQuickConnectedOperation {
     private final ArrayList<Integer> arrList;
 
     /**
@@ -59,7 +57,7 @@ class UnionQuickSearch {
      *
      * @param n
      */
-    UnionQuickSearch(int n) {
+    UnionWithQuickConnectedOperation(int n) {
         this.arrList = new ArrayList<>(n);
         fillArrayList(n);
     }
