@@ -5,11 +5,11 @@ public interface Union<T> {
     /**
      * @return true if nodes are connected, false otherwise
      */
-    boolean connected(T nodeOne, T nodeTwo);
+    boolean connected(Node<T> nodeOne, Node<T> nodeTwo);
 
 
     /**
      * Creates a union between two nodes
      */
-    void union(T nodeOne, T nodeTwo);
+    void union(Node<T> nodeOne, Node<T> nodeTwo);
 }
