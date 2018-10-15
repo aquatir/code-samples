@@ -21,66 +21,75 @@ class SemaphoreExample {
         inc.start();
         dec.start();
     }
-}
 
-class SharedArea {
-    public static volatile int value = 0;
-}
-
-class Incrementer implements Runnable {
-    private final Semaphore sem;
-    private final int numOfIncrements;
-
-    Incrementer(Semaphore sem, int numOfIncrements) {
-        this.sem = sem;
-        this.numOfIncrements = numOfIncrements;
+    private static class SharedArea {
+        public static volatile int value = 0;
     }
 
-    @Override
-    public void run() {
-        System.out.println("Incrementer thread launched");
-        try {
-            sem.acquire();
-            System.out.println("Incrementer acquired semaphore");
-            for (int i = 0; i < numOfIncrements; i++) {
-                SharedArea.value++;
-                System.out.println("New value: " + SharedArea.value);
-                Thread.sleep(1000);
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    private static class Incrementer implements Runnable {
+        private final Semaphore sem;
+        private final int numOfIncrements;
+
+        Incrementer(Semaphore sem, int numOfIncrements) {
+            this.sem = sem;
+            this.numOfIncrements = numOfIncrements;
         }
-        System.out.println("Incrementer releasing semaphore");
-        sem.release();
-    }
-}
 
-class Decrementer implements Runnable{
-
-    private final Semaphore sem;
-    private final int numOfDecrements;
-
-    Decrementer(Semaphore sem, int numOfDecrements) {
-        this.sem = sem;
-        this.numOfDecrements = numOfDecrements;
-    }
-
-    @Override
-    public void run() {
-        System.out.println("Decrementer thread launched");
-        try {
-            sem.acquire();
-            System.out.println("Decrementer acquired semaphore");
-            for (int i = 0; i < numOfDecrements; i++) {
-                SharedArea.value--;
-                System.out.println("New value: " + SharedArea.value);
-                Thread.sleep(1000);
+        @Override
+        public void run() {
+            System.out.println("Incrementer thread launched");
+            try {
+                sem.acquire();
+                System.out.println("Incrementer acquired semaphore");
+                for (int i = 0; i < numOfIncrements; i++) {
+                    SharedArea.value++;
+                    System.out.println("New value: " + SharedArea.value);
+                    Thread.sleep(1000);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                System.out.println("Incrementer releasing semaphore");
+                sem.release();
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
-        System.out.println("Decrementer releasing semaphore");
-        sem.release();
     }
+
+    private static class Decrementer implements Runnable{
+
+        private final Semaphore sem;
+        private final int numOfDecrements;
+
+        Decrementer(Semaphore sem, int numOfDecrements) {
+            this.sem = sem;
+            this.numOfDecrements = numOfDecrements;
+        }
+
+        @Override
+        public void run() {
+            System.out.println("Decrementer thread launched");
+            try {
+                sem.acquire();
+                System.out.println("Decrementer acquired semaphore");
+                for (int i = 0; i < numOfDecrements; i++) {
+                    SharedArea.value--;
+                    System.out.println("New value: " + SharedArea.value);
+                    Thread.sleep(1000);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                System.out.println("Decrementer releasing semaphore");
+                sem.release();
+            }
+
+        }
+    }
+
 }
+
+
+
+
+
 

@@ -25,31 +25,33 @@ class CyclicBarrierExample {
         thread2.start();
         thread3.start();
     }
-}
 
-class BarrierAwaiter implements Runnable {
+    private static class BarrierAwaiter implements Runnable {
 
-    private final CyclicBarrier barrier;
-    private final int waitTime;
-    private final String threadName;
+        private final CyclicBarrier barrier;
+        private final int waitTime;
+        private final String threadName;
 
-    BarrierAwaiter(CyclicBarrier barrier, int waitTime, String threadName) {
-        this.barrier = barrier;
-        this.waitTime = waitTime;
-        this.threadName = threadName;
-    }
+        BarrierAwaiter(CyclicBarrier barrier, int waitTime, String threadName) {
+            this.barrier = barrier;
+            this.waitTime = waitTime;
+            this.threadName = threadName;
+        }
 
-    @Override
-    public void run() {
-        System.out.println(threadName + " started");
-        try {
-            Thread.sleep(waitTime);
-            System.out.println(threadName + " awaiting somepackage thread to reach the barrier");
-            barrier.await();
-            System.out.println(threadName + " awaiting finished!");
+        @Override
+        public void run() {
+            System.out.println(threadName + " started");
+            try {
+                Thread.sleep(waitTime);
+                System.out.println(threadName + " awaiting somepackage thread to reach the barrier");
+                barrier.await();
+                System.out.println(threadName + " awaiting finished!");
 
-        } catch (InterruptedException | BrokenBarrierException e) {
-            e.printStackTrace();
+            } catch (InterruptedException | BrokenBarrierException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
+
+

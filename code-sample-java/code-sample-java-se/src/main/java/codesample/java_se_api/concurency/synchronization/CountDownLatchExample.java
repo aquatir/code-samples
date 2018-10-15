@@ -5,48 +5,55 @@ import java.util.concurrent.CountDownLatch;
 
 /**
  * An example of CountDownLatch usage.
- * The main thread in this example will create a latch and a count down thread, which will count down this latch every second.
+ * The main thread in this example will create a latch and a 2 count down threads, which will count down this latch every second.
  * When the count down thread finish the main thread will continue on and print out last message to console
+ *
+ * Note that getCount and countDown methods of latch are synchronized internally, so we don't have to worry about calling
+ * them
  */
 class CountDownLatchExample {
     public static void main(String[] args) throws InterruptedException {
 
-        int numOfCountDowns = 5;
+        int numOfCountDowns = 6;
         CountDownLatch latch = new CountDownLatch(numOfCountDowns);
 
         System.out.println("Main thread is waiting for countdown latch");
-        Thread countDowner = new Thread(new CountDownRunnable(latch, numOfCountDowns));
-        countDowner.start();
+        Thread countDowner1 = new Thread(new CountDownRunnable(latch));
+        Thread countDowner2 = new Thread(new CountDownRunnable(latch));
+        countDowner1.start();
+        countDowner2.start();
 
         /* main thread will wait on this line of code until count down thread will
-        * count to 5 */
+        * count to 6 */
         latch.await();
         System.out.println("Waiting complete. Proceeding!");
 
     }
-}
 
-class CountDownRunnable implements Runnable {
+    private static class CountDownRunnable implements Runnable {
 
-    private final CountDownLatch latch;
-    private final int numOfCountDowns;
+        private final CountDownLatch latch;
 
-    public CountDownRunnable(CountDownLatch latch, int numOfCountDowns) {
-        this.latch = latch;
-        this.numOfCountDowns = numOfCountDowns;
-    }
+        public CountDownRunnable(CountDownLatch latch) {
+            this.latch = latch;
+        }
 
-    @Override
-    public void run() {
-        try {
-            for (int i = 0; i < numOfCountDowns; i++) {
-                System.out.println("Thread counting down latch " + (i+1) + " out of " + numOfCountDowns);
-                latch.countDown();
-                Thread.sleep(1000);
+        @Override
+        public void run() {
+            int i = 0;
 
+            try {
+                while (latch.getCount() != 0) {
+                    System.out.println("Thread counting down latch " + (i + 1));
+                    latch.countDown();
+                    i++;
+                    Thread.sleep(1000);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
     }
 }
+
+
