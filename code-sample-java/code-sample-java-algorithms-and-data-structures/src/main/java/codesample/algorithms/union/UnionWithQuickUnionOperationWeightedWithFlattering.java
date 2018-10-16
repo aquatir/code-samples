@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  * This is a Union implementation with quick 'connect' operation.
  *
  * connect (node1, node2). Takes up to 0(log(n))
- * areConnected (node1, node2). Takes up to 0(log(n)) (but in practice its close to 0(1))
+ * areConnected (node1, node2). Takes up to 0(log(n)) (In practice its close to 0(1) due to flattering)
  * removeNode(node). Takes up to 0(n)
  *
  * This implementation watch for tree sizesMap when adding elements making
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  * The tree size will not get increased unless two trees with the same size are getting connected. If that's the case
  *
  * This algorithms also implements flattering. When traversing to root, we remap values in trees directly to root to make
- * tree size even smaller. This is good for areConnected operation but a bad for removeNode operation.
+ * tree size even smaller. This is good for areConnected() and connect() operations but a bad for removeNode() operation.
  *
  * If you are not planning to remove nodes this implementations should be better for use, otherwise you
  * implementation without flattering
