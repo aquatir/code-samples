@@ -8,10 +8,10 @@ import java.util.stream.Collectors;
 
 /**
  * This is a Union implementation with quick 'connect' operation.
- * Union (node1, node2). Takes uo to n
- * Connected (node1, node2). Takes up to n
- * This is not the implementation you should be using a lot. Should only
- * be used as a test subject when learning algorithms
+ * connect (node1, node2). Takes uo to n
+ * areConnected (node1, node2). Takes up to n
+ *
+ * This is a naive implementation. A lot of improvement can be applied to it.
  */
 public class UnionWithQuickUnionOperation<T extends Comparable<T>> implements Union<T>{
 
@@ -81,7 +81,7 @@ public class UnionWithQuickUnionOperation<T extends Comparable<T>> implements Un
         *   A -> B
         *   C -> B
         *   D -> B
-        *REMOVE (B)
+        * REMOVE (B)
         *  A -> A
         *  C -> A
         *  D -> A */
@@ -89,6 +89,7 @@ public class UnionWithQuickUnionOperation<T extends Comparable<T>> implements Un
             var singleCommonNode = toBeRemapped.get(0);
             map.put(singleCommonNode, singleCommonNode);
             toBeRemapped.forEach(value -> map.put(value, singleCommonNode));
+            map.remove(node);
 
         /* If node-to-be-removed is not root, all nodes beneath it should be remapped to the node which node-to-be-removed
         * is mapped to
@@ -101,9 +102,10 @@ public class UnionWithQuickUnionOperation<T extends Comparable<T>> implements Un
         } else {
             var upperNode = map.get(node);
             toBeRemapped.forEach(value -> map.put(value, upperNode));
+            map.remove(node);
         }
 
-        map.remove(node);
+
     }
 }
    
