@@ -8,8 +8,9 @@ import java.util.stream.Collectors;
 
 /**
  * This is a Union implementation with quick 'connect' operation.
- * connect (node1, node2). Takes uo to n
- * areConnected (node1, node2). Takes up to n
+ * connect (node1, node2). Takes uo to 0(n)
+ * areConnected (node1, node2). Takes up 0(n)
+ * removeNode(node). Takes up to 0(n)
  *
  * This is a naive implementation. A lot of improvement can be applied to it.
  * See test in test/java/algorithms/union/UnionWithQuickUnionOperationTest
@@ -41,8 +42,14 @@ public class UnionWithQuickUnionOperation<T extends Comparable<T>> implements Un
 
     @Override
     public boolean areConnected(T nodeOne, T nodeTwo) {
-        return root(map.get(nodeOne)).equals(
-                root(map.get(nodeTwo)));
+        var rootLeft =  root(nodeOne);
+        var rootRight = root(nodeTwo);
+
+        if (rootLeft == null || rootRight == null)
+            return false;
+        else {
+            return rootLeft.equals(rootRight);
+        }
     }
 
     @Override

@@ -25,6 +25,9 @@ public class GenericUnionTests {
         Assert.assertTrue(union.areConnected("bbb", "aaa"));
         Assert.assertTrue(union.areConnected("fff", "aaa"));
         Assert.assertTrue(union.areConnected("ggg", "aaa"));
+
+        Assert.assertTrue(union.areConnected("hhh", "ggg"));
+        Assert.assertTrue(union.areConnected("ggg", "hhh"));
     }
 
     public static void createUnlinkedNode_TestNotConnectedToAnything(Union<String> union) {
