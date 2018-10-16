@@ -2,47 +2,70 @@
 package codesample.algorithms.union;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.IntStream;
 
 /**
- * This is a Union implementation with quick 'connected' operation.
- * Union (node1, node2). Takes O(n)
- * Connected (node1, node2). Takes 0(1)
+ * This is a Union implementation with quick 'areConnected' operation.
+ * connect (node1, node2). Takes O(n)
+ * areConnected (node1, node2). Takes 0(1)
  */
-class UnionWithQuickConnectedOperation<T> extends UnionBackedByArray<T> {
+public class UnionWithQuickConnectedOperation<T extends Comparable<T>> implements Union<T> {
 
+    private Map<T, Integer> map;
+    private Integer nextSetIndex;
 
-    @Override
-    public boolean connected(T valueOne, T valueTwo) {
-        return get(valueOne).equals(get(valueTwo));
+    public UnionWithQuickConnectedOperation() {
+        map = new HashMap<>();
+        nextSetIndex = 0;
+    }
+
+    public UnionWithQuickConnectedOperation(Set<T> set) {
+        var list = new ArrayList<>(set);
+        this.map = new HashMap<>(list.size());
+        IntStream.range(0, list.size())
+                .forEach(i -> map.put(list.get(i), i));
+
+        this.nextSetIndex = list.size();
     }
 
     @Override
-    public void union(T valueOne, T valueTwo) {
-        int indexOne =
+    public boolean areConnected(T valueOne, T valueTwo) {
+        return getIndexByValue(valueOne).equals(getIndexByValue(valueTwo));
     }
 
-    void union(int a, int b) {
-        int oldSetValue = arrList.get(a);
-        int newSetValue = arrList.get(b);
+    @Override
+    public void connect(T valueOne, T valueTwo) {
+        addUnlinkedNode(valueOne);
+        addUnlinkedNode(valueTwo);
+        Integer oldIndex = getIndexByValue(valueOne);
+        Integer newIndex = getIndexByValue(valueTwo);
 
-        for (int i = 0; i < arrList.size(); ++i) {
-            if (arrList.get(i) == oldSetValue) {
-                arrList.set(i, newSetValue);
-            }
+        remapOldIndexToNewIndex(oldIndex, newIndex);
+    }
+
+    @Override
+    public void addUnlinkedNode(T node) {
+        if (!map.containsKey(node)) {
+            map.put(node, nextSetIndex);
+            nextSetIndex++;
         }
     }
 
-    /**
-     * Creates new union with none elements being connected.
-     * Should be updated to work with any kind of arrayList...?
-     *
-     * @param n
-     */
-    UnionWithQuickConnectedOperation(int n) {
-        this.arrList = new ArrayList<>(n);
-        fillArrayList(n);
+    @Override
+    public void removeNode(T node) {
+        map.remove(node);
     }
 
+    private Integer getIndexByValue(T value) {
+        return map.get(value);
+    }
 
-
+    private void remapOldIndexToNewIndex(Integer oldIndex, Integer newIndex) {
+        map.entrySet().stream()
+                .filter(entry -> entry.getValue().equals(oldIndex))
+                .forEach(entry -> map.put(entry.getKey(), newIndex));
+    }
 }

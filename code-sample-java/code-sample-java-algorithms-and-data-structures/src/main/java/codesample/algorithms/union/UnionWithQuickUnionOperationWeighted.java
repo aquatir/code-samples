@@ -4,9 +4,9 @@ package codesample.algorithms.union;
 import java.util.ArrayList;
 
 /**
- * This is a Union implementation with quick 'union' operation. Union (node1, node2). Takes up to log(n)
+ * This is a Union implementation with quick 'connect' operation. Union (node1, node2). Takes up to log(n)
  * Connected (node1, node2). Takes up to log(n). This implementation watch for tree size when adding elements making
- * sure that when connectiong 2 trees the bigger one would get connected to smaller one which decrees tree size and
+ * sure that when connectiong 2 trees the bigger one would get areConnected to smaller one which decrees tree size and
  * improve overall working time
  *
  * */
@@ -15,10 +15,10 @@ class UnionWithQuickUnionOperationWeighted {
     private final ArrayList<Integer> size;
 
     /**
-     * Creates new union with none elements being connected.
+     * Creates new connect with none elements being areConnected.
      * Should be updated to work with generic arrayList...?
      *
-     * @param n - number of elements in union
+     * @param n - number of elements in connect
      */
     UnionWithQuickUnionOperationWeighted(int n) {
         this.elements = new ArrayList<>(n);
@@ -53,22 +53,22 @@ class UnionWithQuickUnionOperationWeighted {
     }
 
     /**
-     * Return true if nodes are connected
+     * Return true if nodes are areConnected
      *
      * @param a - first index
      * @param b - second index
-     * @return true if nodes are connected, false otherwise
+     * @return true if nodes are areConnected, false otherwise
      */
     boolean connected(int a, int b) {
         return root(elements.get(a)) == root(elements.get(b));
     }
 
     /**
-     * Makes a union between two nodes
+     * Makes a connect between two nodes
      *
      * @param a - first index
      * @param b - second index
-     * @return true is union was created and false otherwise
+     * @return true is connect was created and false otherwise
      */
     void union(int a, int b) {
         int rootA = root(a);

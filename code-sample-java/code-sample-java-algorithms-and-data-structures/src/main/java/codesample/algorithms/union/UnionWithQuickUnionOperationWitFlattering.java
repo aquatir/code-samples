@@ -4,12 +4,12 @@ package codesample.algorithms.union;
 import java.util.ArrayList;
 
 /**
- * This is a Union implementation with quick 'union' operation.
+ * This is a Union implementation with quick 'connect' operation.
  * Union (node1, node2). Takes uo to log(n)
  * Connected (node1, node2). Takes up to log(n)
  * This implementation watch for tree size when adding elements
  * making sure that when connectiong 2 trees the bigger
- * one would get connected to smaller one which descrees total maximum tree
+ * one would get areConnected to smaller one which descrees total maximum tree
  * size and improve overal working time.
  * At the same time when finding the root of a tree this implementation
  * sets all traversed nodes to point closer to tree
@@ -20,10 +20,10 @@ class UnionWithQuickUnionOperationWitFlattering {
 
 
     /**
-     * Creates new union with none elements being connected.
+     * Creates new connect with none elements being areConnected.
      * Should be updated to work with any kind of arrayList...?
      *
-     * @param n - number of elements in union
+     * @param n - number of elements in connect
      */
     UnionWithQuickUnionOperationWitFlattering(int n) {
         this.elements = new ArrayList<>(n);
@@ -59,22 +59,22 @@ class UnionWithQuickUnionOperationWitFlattering {
     }
 
     /**
-     * Return true if nodes are connected
+     * Return true if nodes are areConnected
      *
      * @param a - first index
      * @param b - second index
-     * @return true if nodes are connected, false otherwise
+     * @return true if nodes are areConnected, false otherwise
      */
     boolean connected(int a, int b) {
         return root(elements.get(a)) == root(elements.get(b));
     }
 
     /**
-     * Makes a union between two nodes
+     * Makes a connect between two nodes
      *
      * @param a - first index
      * @param b - second index
-     * @return true is union was created and false otherwise
+     * @return true is connect was created and false otherwise
      */
     void union(int a, int b) {
         int rootA = root(a);
