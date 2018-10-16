@@ -3,24 +3,24 @@ package codesample.data_structures.queues;
 import codesample.data_structures.stacks.StackOnArray;
 
 /**
- * @param <Item> - Generic item type for this queue
+ * @param <T> - Generic item type for this queue
  * @author Pavel Bukhmatov (buhmatov@gmail.com; github.com/aquatir)
  */
-public class QueueOnTwoStacks<Item> {
+public class QueueOnTwoStacks<T> {
 
-    private final StackOnArray<Item> inputStack;
-    private final StackOnArray<Item> outputStack;
+    private final StackOnArray<T> inputStack;
+    private final StackOnArray<T> outputStack;
 
     public QueueOnTwoStacks() {
         inputStack = new StackOnArray<>();
         outputStack = new StackOnArray<>();
     }
 
-    public void enqueue(Item item) {
+    public void enqueue(T item) {
         inputStack.push(item);
     }
 
-    public Item dequeue() {
+    public T dequeue() {
         if (outputStack.isEmpty() && inputStack.isEmpty())
             throw new IllegalArgumentException("Attempting to dequeue from empty queue");
 

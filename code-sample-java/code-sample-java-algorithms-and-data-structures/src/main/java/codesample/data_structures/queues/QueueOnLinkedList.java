@@ -8,17 +8,17 @@ import java.util.Iterator;
  *
  * @author Pavel Bukhmatov (buhmatov@gmail.com; github.com/aquatir)
  */
-class QueueOnLinkedList<Item> implements Iterable {
+class QueueOnLinkedList<T> implements Iterable {
 
     private Node head;
     private Node tail;
     private int size;
 
     private class Node {
-        private final Item value;
+        private final T value;
         private Node next;
 
-        Node(Item value) {
+        Node(T value) {
             this.value = value;
             this.next = null;
         }
@@ -33,7 +33,7 @@ class QueueOnLinkedList<Item> implements Iterable {
      *
      * @param value of element to put into queue
      */
-    public void enqueue(Item value) {
+    public void enqueue(T value) {
         Node inserted = new Node(value);
 
         if (this.isEmpty()) {
@@ -54,14 +54,14 @@ class QueueOnLinkedList<Item> implements Iterable {
      * @throws IllegalArgumentException when attempting to dequeue
      *                                  from empty queue
      */
-    public Item dequeue() {
+    public T dequeue() {
         /* see if queue is empty */
         if (this.isEmpty()) {
             throw new IllegalArgumentException("Attempting to dequeue from empty queue");
         }
 
         /* Of not empty proceed with exctracting value */
-        Item value = head.value;
+        T value = head.value;
 
         if (size == 1) {
             tail = null;
@@ -80,14 +80,14 @@ class QueueOnLinkedList<Item> implements Iterable {
      *
      * @return
      */
-    public Iterator<Item> iterator() {
+    public Iterator<T> iterator() {
         return new QueueIterator();
     }
 
     /**
      * Iterator implementation
      */
-    private class QueueIterator implements Iterator<Item> {
+    private class QueueIterator implements Iterator<T> {
 
         Node current;
 
@@ -101,8 +101,8 @@ class QueueOnLinkedList<Item> implements Iterable {
         }
 
         @Override
-        public Item next() {
-            Item value = current.value;
+        public T next() {
+            T value = current.value;
             current = current.next;
             return value;
         }

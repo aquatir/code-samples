@@ -5,14 +5,14 @@ package codesample.data_structures.queues;
  *
  * @author Pavel Bukhmatov (buhmatov@gmail.com; github.com/aquatir)
  */
-class QueueOnArray<Item> {
+class QueueOnArray<T> {
     private int head;
     private int tail;
     private int size;
-    private Item[] array;
+    private T[] array;
 
     public QueueOnArray() {
-        array = (Item[]) new Object[16];
+        array = (T[]) new Object[16];
         head = 0;
     }
 
@@ -20,7 +20,7 @@ class QueueOnArray<Item> {
         if (initialSize <= 0) {
             throw new IllegalArgumentException("Initial stack size should be greater then 0");
         }
-        array = (Item[]) new Object[initialSize];
+        array = (T[]) new Object[initialSize];
         head = 0;
     }
 
@@ -79,7 +79,7 @@ class QueueOnArray<Item> {
      * @param newSize new size of array
      */
     private void resize(int newSize) {
-        Item[] newArray = (Item[]) new Object[newSize];
+        T[] newArray = (T[]) new Object[newSize];
         for (int i = 0; i < size; ++i) {
             newArray[i] = array[head];
             nextHead();
@@ -93,7 +93,7 @@ class QueueOnArray<Item> {
      *
      * @param element new element to put into queue
      */
-    public void enqueue(Item element) {
+    public void enqueue(T element) {
         if (this.isEmpty()) {
             head = tail = 0;
         } else {
@@ -108,14 +108,14 @@ class QueueOnArray<Item> {
      *
      * @return element for queue's tail
      */
-    public Item dequeue() {
+    public T dequeue() {
         /* see if queue is empty */
         if (this.isEmpty()) {
             throw new IllegalArgumentException("Attempting to dequeue from empty queue");
         }
 
         /* If not empty proceed with exctracting value */
-        Item value = array[head];
+        T value = array[head];
 
         array[head] = null;
         nextHead();
