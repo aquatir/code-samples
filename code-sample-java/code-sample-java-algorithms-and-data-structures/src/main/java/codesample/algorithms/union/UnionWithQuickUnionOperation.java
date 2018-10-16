@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
  * areConnected (node1, node2). Takes up to n
  *
  * This is a naive implementation. A lot of improvement can be applied to it.
+ * See test in test/java/algorithms/union/UnionWithQuickUnionOperationTest
  */
 public class UnionWithQuickUnionOperation<T extends Comparable<T>> implements Union<T>{
 

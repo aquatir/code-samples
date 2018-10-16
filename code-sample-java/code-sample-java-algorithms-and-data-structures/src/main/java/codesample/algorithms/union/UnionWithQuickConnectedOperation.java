@@ -11,6 +11,8 @@ import java.util.stream.IntStream;
  * This is a Union implementation with quick 'areConnected' operation.
  * connect (node1, node2). Takes O(n)
  * areConnected (node1, node2). Takes 0(1)
+ *
+ *  * See test in test/java/algorithms/union/UnionWithQuickConnectedOperationTest
  */
 public class UnionWithQuickConnectedOperation<T extends Comparable<T>> implements Union<T> {
 
