@@ -1,7 +1,10 @@
 
 package codesample.algorithms.union;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * This is a Union implementation with quick 'connect' operation.
@@ -10,66 +13,97 @@ import java.util.ArrayList;
  * This is not the implementation you should be using a lot. Should only
  * be used as a test subject when learning algorithms
  */
-class UnionWithQuickUnionOperation {
-    private final ArrayList<Integer> elements;
+public class UnionWithQuickUnionOperation<T extends Comparable<T>> implements Union<T>{
+
+    private Map<T, T> map;
+
+    public UnionWithQuickUnionOperation() {
+        map = new HashMap<>();
+    }
+
+    public UnionWithQuickUnionOperation(Set<T> set) {
+        /* Entires refer to themselfs */
+        this.map = set.stream()
+                .collect(Collectors.toMap(value -> value, value -> value));
+    }
 
     /**
-     * Test method to fill array with integers
-     *
-     * @param maxNumber - number of integer in array
+     * Find the root of hierarchy. Root element has a mapping to itself in map
      */
-    private void initiateElements(int maxNumber) {
-        for (int i = 0; i < maxNumber; ++i) {
-            elements.add(i);
+    private T root(T value) {
+        var currentValue = value;
+        while (map.get(currentValue) != currentValue) {
+            currentValue = map.get(currentValue);
         }
+        return currentValue;
     }
 
-    /**
-     * Get index of root for current tree
-     *
-     * @param a - index of current elements
-     * @return index of root
-     */
-    private int root(int a) {
-        while (elements.get(a) != a) {
-            a = elements.get(a);
+    @Override
+    public boolean areConnected(T nodeOne, T nodeTwo) {
+        return root(map.get(nodeOne)).equals(
+                root(map.get(nodeTwo)));
+    }
+
+    @Override
+    public void connect(T nodeOne, T nodeTwo) {
+        addUnlinkedNode(nodeOne);
+        addUnlinkedNode(nodeTwo);
+
+        T rootLeft = root(nodeOne);
+        T rootRight = root(nodeTwo);
+        map.put(rootLeft, rootRight);
+    }
+
+    @Override
+    public void addUnlinkedNode(T node) {
+        if (!map.containsKey(node))
+            map.put(node, node);
+    }
+
+    @Override
+    public void removeNode(T node) {
+
+        if (!map.containsKey(node))
+            return;
+
+        /* Nodes which should be remapped to other nodes when current node is removed */
+        var toBeRemapped = map.keySet().stream()
+                .filter(key -> map.get(key).equals(node))
+                .collect(Collectors.toList());
+
+        /* If nothing to remap, simply remove the node */
+        if (toBeRemapped.isEmpty())
+            map.remove(node);
+
+        /* If this node is a root node, all node beneath it should be remapped to a single common node (it can be any
+        * node of the list but we simply pick the first one here). This node also become a root node.
+        * e.g. for:
+        *   A -> B
+        *   C -> B
+        *   D -> B
+        *REMOVE (B)
+        *  A -> A
+        *  C -> A
+        *  D -> A */
+        if (map.get(node).equals(node)) {
+            var singleCommonNode = toBeRemapped.get(0);
+            map.put(singleCommonNode, singleCommonNode);
+            toBeRemapped.forEach(value -> map.put(value, singleCommonNode));
+
+        /* If node-to-be-removed is not root, all nodes beneath it should be remapped to the node which node-to-be-removed
+        * is mapped to
+        * eg for:
+        *   A -> B -> C
+        *   D -> B -> C
+        * REMOVE(B)
+        *   A -> C
+        *   D -> C */
+        } else {
+            var upperNode = map.get(node);
+            toBeRemapped.forEach(value -> map.put(value, upperNode));
         }
-        return a;
-    }
 
-    /**
-     * Return true if nodes are areConnected
-     *
-     * @param a - first index
-     * @param b - second index
-     * @return true if nodes are areConnected, false otherwise
-     */
-    boolean connected(int a, int b) {
-        return root(elements.get(a)) == root(elements.get(b));
-    }
-
-    /**
-     * Makes a connect between two nodes
-     *
-     * @param a - first index
-     * @param b - second index
-     * @return true is connect was created and false otherwise
-     */
-    void union(int a, int b) {
-        int rootA = root(a);
-        int rootB = root(b);
-        elements.set(rootA, rootB);
-    }
-
-    /**
-     * Creates new connect with none elements being areConnected.
-     * Should be updated to work with any kind of arrayList...?
-     *
-     * @param n
-     */
-    UnionWithQuickUnionOperation(int n) {
-        this.elements = new ArrayList<>(n);
-        initiateElements(n);
+        map.remove(node);
     }
 }
    

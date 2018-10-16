@@ -1,16 +1,16 @@
 package algorithms.union;
 
-import codesample.algorithms.union.UnionWithQuickConnectedOperation;
+import codesample.algorithms.union.UnionWithQuickUnionOperation;
 import org.junit.Before;
 import org.junit.Test;
 
-public class UnionWithQuickConnectedOperationTest {
+public class UnionWithQuickUnionOperationTest {
 
-    private UnionWithQuickConnectedOperation<String> union;
+    private UnionWithQuickUnionOperation<String> union;
 
     @Before
     public void unitUnion() {
-        union = new UnionWithQuickConnectedOperation<>();
+        union = new UnionWithQuickUnionOperation<>();
     }
 
     @Test
