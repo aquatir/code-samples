@@ -10,13 +10,21 @@ public class GenericUnionTests {
         union.connect("aaa", "bbb");
         union.connect("bbb", "ccc");
         union.connect("ccc", "ddd");
+        union.connect("fff", "ggg");
+        union.connect("ggg", "hhh");
+        union.connect("aaa", "hhh");
 
         Assert.assertTrue(union.areConnected("aaa", "bbb"));
         Assert.assertTrue(union.areConnected("aaa", "ccc"));
         Assert.assertTrue(union.areConnected("aaa", "ddd"));
+        Assert.assertTrue(union.areConnected("aaa", "fff"));
+        Assert.assertTrue(union.areConnected("aaa", "ggg"));
+
         Assert.assertTrue(union.areConnected("ddd", "aaa"));
         Assert.assertTrue(union.areConnected("ccc", "aaa"));
         Assert.assertTrue(union.areConnected("bbb", "aaa"));
+        Assert.assertTrue(union.areConnected("fff", "aaa"));
+        Assert.assertTrue(union.areConnected("ggg", "aaa"));
     }
 
     public static void createUnlinkedNode_TestNotConnectedToAnything(Union<String> union) {

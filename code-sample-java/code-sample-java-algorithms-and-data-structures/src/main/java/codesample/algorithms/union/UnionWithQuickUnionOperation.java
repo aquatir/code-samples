@@ -52,6 +52,10 @@ public class UnionWithQuickUnionOperation<T extends Comparable<T>> implements Un
 
         T rootLeft = root(nodeOne);
         T rootRight = root(nodeTwo);
+
+        if (rootLeft.equals(rootRight))
+            return;
+
         map.put(rootLeft, rootRight);
     }
 
@@ -73,8 +77,10 @@ public class UnionWithQuickUnionOperation<T extends Comparable<T>> implements Un
                 .collect(Collectors.toList());
 
         /* If nothing to remap, simply remove the node */
-        if (toBeRemapped.isEmpty())
+        if (toBeRemapped.isEmpty()) {
             map.remove(node);
+            return;
+        }
 
         /* If this node is a root node, all node beneath it should be remapped to a single common node (it can be any
         * node of the list but we simply pick the first one here). This node also become a root node.
@@ -105,8 +111,6 @@ public class UnionWithQuickUnionOperation<T extends Comparable<T>> implements Un
             toBeRemapped.forEach(value -> map.put(value, upperNode));
             map.remove(node);
         }
-
-
     }
 }
    
