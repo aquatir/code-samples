@@ -13,9 +13,9 @@ import java.util.stream.Collectors;
  * areConnected (node1, node2). Takes up to log(n).
  *
  * This implementation watch for tree sizesMap when adding elements making
- * sure that when connectiong 2 trees the bigger one would get connected to smaller one which decrees tree sizesMap and
- * improve overall working time
+ * sure that when connecting 2 trees the smaller one would get connected to bigger one which decrees overall tree size.
  *
+ * The tree size will not get increased unless two trees with the same size are getting connected. If that's the case
  * */
 public class UnionWithQuickUnionOperationWeighted<T extends Comparable<T>> implements Union<T>{
 
