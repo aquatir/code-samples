@@ -1,8 +1,5 @@
 package codesample.ignite;
 
-import codesample.ignite.entitry.Person;
-import org.apache.ignite.Ignite;
-import org.apache.ignite.IgniteCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,18 +17,11 @@ public class SpringbootIgnitePostgresRunner {
         return new CommandLineRunner() {
 
             @Autowired
-            private Ignite igniteClient;
+            ExampleRunner runner;
 
             public void run(String... args)  {
-                runIgnite(igniteClient);
+                runner.runIgnite();
             }
         };
-    }
-
-    private void runIgnite(Ignite igniteClient) {
-        IgniteCache<Long, Person> cache = igniteClient.getOrCreateCache("person");
-        cache.loadCache(null);
-        Person p = cache.get(1L);
-        System.out.println("got person: " + p.getId() + " name: " + p.getName());
     }
 }

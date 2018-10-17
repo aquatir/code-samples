@@ -16,8 +16,7 @@
             in cache mode. All data from postgres is loaded into ignite on startup and then used for in-memory computing. 
             Request for data creating/modification are propagated by Ignite to Postgres</li> 
             <li> <b> code-sample-spring-api-versioning</b>. Custom endpoint mapped based on request header "version"
-            <li> <b> code-sample-java-algorithms-and-data-structures</b> 
-            Basic algorithms and data structures implemented on java </li>
+            <li> <b> code-sample-java-algorithms-and-data-structures</b> Basic algorithms and data structures implemented on java. Data structures: Union, Queue, Stack. Algorithms: Binary Search </li>
             <li> <b> code-sample-java-aspectj</b>. Tiny aspectJ example</li>
             <li> <b> code-sample-java-ee</b>. Tiny jmx example </li>
             <li> <b> code-sample-java-hibernate</b>. Examples for most common hibernate features</li>

@@ -1,28 +1,26 @@
 package codesample.ignite.entitry;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 
 @Entity
-@SequenceGenerator(name = "person_seq", sequenceName = "person_seq", allocationSize = 1)
-
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter @Setter
 @EqualsAndHashCode(of = "name")
 public class Person {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_seq")
+    @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
 }
