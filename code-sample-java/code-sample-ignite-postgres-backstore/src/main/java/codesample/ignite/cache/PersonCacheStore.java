@@ -64,7 +64,11 @@ public class PersonCacheStore implements CacheStore<Long, Person>, BeanFactoryAw
 
     @Override
     public void delete(Object person) throws CacheWriterException {
-        personRepository.delete((Person) person);
+        if (person instanceof Long) {
+            personRepository.deleteById((Long) person);
+        } else {
+            personRepository.delete((Person) person);
+        }
     }
 
     @Override
