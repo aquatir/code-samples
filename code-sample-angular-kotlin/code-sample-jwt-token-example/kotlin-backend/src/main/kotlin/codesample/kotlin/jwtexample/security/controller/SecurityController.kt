@@ -58,6 +58,9 @@ class SecurityController (private val authenticationManager: AuthenticationManag
      * - If the next refresh is issued by Alice, Bob's refresh request will fail (so we raise an exception again).
      *
      * In both cases we can at least know that something fishy is going on.
+     *
+     * Also note that this exact schema would also work with a single token ('Same' in terms of security), but it may
+     * be less convenient for automatic refreshes / session prolongation.
      */
     @PostMapping("/auth/refresh")
     fun authRefresh(@RequestBody accessTokenRequest: AccessTokenByRefreshTokenRequest) : AccessAndRefreshTokenResponse {
