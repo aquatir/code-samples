@@ -35,10 +35,10 @@
             <li><b>code-sample-kotlin-spring-security</b>. Simple username-password authentication example </li>
         </ul> 
     </li>
-    <li><b>code-sample-scala</b>. Scala code example 
-	<ul>
-            <li><b>hello-world</b></li>. Hello world example on scala with SBT
-        </ul>
+    <li><b>code-sample-scala</b>. Scala examples 
+        <ul> 
+            <li><b>hello-world</b>.First hello-world scala example ever!</li>
+        </ul> 
     </li>
     <li><b>code-sample-python</b>. Python code examples. Currently consist of a single Flask example </li>
     <li><b>code-sample-docker</b>. Contains some docker examples
