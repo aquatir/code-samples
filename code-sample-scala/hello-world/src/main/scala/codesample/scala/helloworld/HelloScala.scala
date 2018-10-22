@@ -33,10 +33,23 @@ object HelloScala extends App {
     newtonItr(1.0)
   }
 
+  // Tail-recursive factorial
+  def factorial(x: Integer) : Integer = {
+    def factorialRunning(x: Integer, runningFactorialValue: Integer) : Integer = {
+      if (x == 0)
+        runningFactorialValue
+      else
+        factorialRunning(x-1, runningFactorialValue * x)
+    }
+
+    factorialRunning(x, 1)
+  }
+
   println("Hello, Scala!")
   println(fib(3)) // 1 1 2 3 5 8 13
   println(newtonSqrt(2))
   println(newtonSqrt(4))
   println(newtonSqrt(5e-10))
   println(newtonSqrt(1e50))
+  println(factorial(5)) // 1 * 2 * 3 * 4 * 5 = 120
 }
