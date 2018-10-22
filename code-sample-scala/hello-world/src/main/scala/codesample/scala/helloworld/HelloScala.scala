@@ -19,14 +19,14 @@ object HelloScala extends App {
   def newtonSqrt(x: Double) : Double = {
 
     def newtonItr(x: Double, guess: Double): Double = {
-      if (isGoodEnough(x, guess)) guess
-      else newtonItr(x, improve(x, guess))
+      if (isGuessGoodEnough(x, guess)) guess
+      else newtonItr(x, improveGuess(x, guess))
     }
 
     def abs(x: Double) = {if (x < 0) -x else x}
-    def isGoodEnough(x: Double, guess: Double): Boolean = {
+    def isGuessGoodEnough(x: Double, guess: Double): Boolean = {
       abs(x - guess*guess) < 0.001 }
-    def improve(x: Double, guess: Double) : Double = {
+    def improveGuess(x: Double, guess: Double) : Double = {
       (guess + x/guess) / 2
     }
 
