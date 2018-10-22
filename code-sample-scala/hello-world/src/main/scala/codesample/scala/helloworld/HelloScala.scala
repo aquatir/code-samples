@@ -1,10 +1,13 @@
 package codesample.scala.helloworld
 
+import scala.annotation.tailrec
+
 object HelloScala extends App {
 
   // fibonacci sequence calculator
   def fib(fibNumberPosition: Int): Int = {
 
+    @tailrec
     def fibIterator(iter: Int, currentLesser: Int, currentHigher: Int) : Int = {
       if (fibNumberPosition == iter)
         currentHigher
@@ -18,6 +21,7 @@ object HelloScala extends App {
   // Newton's square root func
   def newtonSqrt(x: Double) : Double = {
 
+    @tailrec
     def newtonItr(guess: Double): Double = {
       if (isGuessGoodEnough(guess)) guess
       else newtonItr(improveGuess(guess))
@@ -35,6 +39,8 @@ object HelloScala extends App {
 
   // Tail-recursive factorial
   def factorial(x: Integer) : Integer = {
+
+    @tailrec
     def factorialRunning(x: Integer, runningFactorialValue: Integer) : Integer = {
       if (x == 0)
         runningFactorialValue
