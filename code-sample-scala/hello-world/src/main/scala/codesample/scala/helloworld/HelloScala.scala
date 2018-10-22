@@ -51,6 +51,29 @@ object HelloScala extends App {
     accumulatingFactorial(x, 1)
   }
 
+  // Check if parentheses in string are balanced
+  def balance(char: List[Char]) : Boolean = {
+
+    @tailrec
+    def balanceIter(chars: List[Char], openedBracers: Int) : Boolean = {
+      if (chars.isEmpty)
+        return openedBracers == 0
+
+      val head = chars.head
+
+      // Closing parentheses without opened mean not balanced
+      if (head == ')' && openedBracers == 0)
+        false
+      else if (head == '(')
+        balanceIter(chars.tail, openedBracers + 1)
+      else if (head == ')')
+        balanceIter(chars.tail, openedBracers - 1)
+      else balanceIter(chars.tail, openedBracers)
+    }
+
+    balanceIter(char, 0)
+  }
+
   def factorialNonTailRecursive(x: Integer) : Integer = {
     if (x == 0) 1
     else x * factorialNonTailRecursive(x - 1)
@@ -64,4 +87,9 @@ object HelloScala extends App {
   println(newtonSqrt(1e50))
   println(factorial(5)) // 1 * 2 * 3 * 4 * 5 = 120
   println(factorialNonTailRecursive(5))
+
+  println("balance:  I(())()  " +
+    s"${balance("(  ( ) ) ( )".toList)}")
+
+  println(s"balance: ())( ${balance("())()".toList)}")
 }
