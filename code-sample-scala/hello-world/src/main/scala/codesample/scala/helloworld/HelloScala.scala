@@ -51,6 +51,11 @@ object HelloScala extends App {
     factorialRunning(x, 1)
   }
 
+  def factorialNonTailRecursive(x: Integer) : Integer = {
+    if (x == 0) 1
+    else x * factorialNonTailRecursive(x - 1)
+  }
+
   println("Hello, Scala!")
   println(fib(3)) // 1 1 2 3 5 8 13
   println(newtonSqrt(2))
@@ -58,4 +63,5 @@ object HelloScala extends App {
   println(newtonSqrt(5e-10))
   println(newtonSqrt(1e50))
   println(factorial(5)) // 1 * 2 * 3 * 4 * 5 = 120
+  println(factorialNonTailRecursive(5))
 }
