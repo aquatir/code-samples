@@ -41,14 +41,14 @@ object HelloScala extends App {
   def factorial(x: Integer) : Integer = {
 
     @tailrec
-    def factorialRunning(x: Integer, runningFactorialValue: Integer) : Integer = {
+    def accumulatingFactorial(x: Integer, accumulator: Integer) : Integer = {
       if (x == 0)
-        runningFactorialValue
+        accumulator
       else
-        factorialRunning(x-1, runningFactorialValue * x)
+        accumulatingFactorial(x-1, accumulator * x)
     }
 
-    factorialRunning(x, 1)
+    accumulatingFactorial(x, 1)
   }
 
   def factorialNonTailRecursive(x: Integer) : Integer = {
