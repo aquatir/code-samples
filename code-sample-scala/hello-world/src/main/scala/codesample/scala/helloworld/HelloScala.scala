@@ -18,23 +18,25 @@ object HelloScala extends App {
   // Newton's square root func
   def newtonSqrt(x: Double) : Double = {
 
-    def newtonItr(x: Double, guess: Double): Double = {
-      if (isGoodEnough(x, guess)) guess
-      else newtonItr(x, improve(x, guess))
+    def newtonItr(guess: Double): Double = {
+      if (isGuessGoodEnough(guess)) guess
+      else newtonItr(improveGuess(guess))
     }
 
     def abs(x: Double) = {if (x < 0) -x else x}
-    def isGoodEnough(x: Double, guess: Double): Boolean = {
-      abs(x - guess*guess) < 0.001 }
-    def improve(x: Double, guess: Double) : Double = {
+    def isGuessGoodEnough(guess: Double): Boolean = {
+      abs(x - guess*guess) / x < 0.001 }
+    def improveGuess(guess: Double) : Double = {
       (guess + x/guess) / 2
     }
 
-    newtonItr(x, 1)
-
+    newtonItr(1.0)
   }
 
   println("Hello, Scala!")
   println(fib(3)) // 1 1 2 3 5 8 13
   println(newtonSqrt(2))
+  println(newtonSqrt(4))
+  println(newtonSqrt(5e-10))
+  println(newtonSqrt(1e50))
 }
