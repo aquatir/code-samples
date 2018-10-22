@@ -56,15 +56,13 @@ object HelloScala extends App {
 
     @tailrec
     def balanceIter(chars: List[Char], openedBracers: Int) : Boolean = {
-      if (chars.isEmpty)
+      if (chars.isEmpty || openedBracers < 0)
         return openedBracers == 0
 
       val head = chars.head
 
       // Closing parentheses without opened mean not balanced
-      if (head == ')' && openedBracers == 0)
-        false
-      else if (head == '(')
+      if (head == '(')
         balanceIter(chars.tail, openedBracers + 1)
       else if (head == ')')
         balanceIter(chars.tail, openedBracers - 1)
