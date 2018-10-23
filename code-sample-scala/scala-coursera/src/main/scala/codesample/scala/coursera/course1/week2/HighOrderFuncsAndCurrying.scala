@@ -48,7 +48,7 @@ object HighOrderFuncsAndCurrying {
     def loop(left: Int, accum: Int) : Int = {
       if (left > right) accum
       else {
-        loop(left + 1, combine(accum, left))
+        loop(left + 1, combine(accum, intFunc(left)))
       }
     }
     loop(left, identity)
@@ -59,6 +59,9 @@ object HighOrderFuncsAndCurrying {
   }
   def sumWithMapReduceTailed(intFunc: Int => Int)(left: Int, right: Int): Int = {
     mapAndReduceTailed(intFunc, (x, y) => x+y, 0)(left, right)
+  }
+  def productOfSquaredWithMapReduceTailed(left: Int, right: Int): Int = {
+    mapAndReduceTailed(x => x * x, (x, y) => x*y, 1)(left, right)
   }
 
 
@@ -94,8 +97,7 @@ object HighOrderFuncsAndCurrying {
     println(s"mapAndReduceTailed: sum from 0 to 10 is: ${mapAndReduceTailed(x => x, (x, y) => x+y, 0) (0,10)}")
 
     println(s"sumWithMapReduce: sum from 0 to 10 is: ${sumWithMapReduce(x => x) (0,10)}")
-    println(s"sumWithMapReduce: sum from 0 to 10 is: ${sumWithMapReduceTailed(x => x) (0,10)}")
-
+    println(s"productOfSquaredWithMapReduceTailed: sum from 0 to 10 is: ${productOfSquaredWithMapReduceTailed(1,3)}")
   }
 
 
