@@ -28,9 +28,24 @@ object HighOrderFuncsAndCurrying {
     sumCurryingF
   }
 
+  def mapAndReduce(intFunc: Int => Int)(left: Int, right: Int)(identity: Int, collect: (Int, Int) => Int) : Int = {
+    if (left > right) identity
+    else collect(intFunc(left), mapAndReduce(intFunc)(left + 1, right)(identity, collect))
+  }
+
+  def easierMapAndReduce(intFunc: Int => Int, combine: (Int, Int) => Int, identity: Int)(left: Int, right: Int): Int = {
+    if (left > right) identity
+    else combine(intFunc(left), easierMapAndReduce(intFunc, combine, identity)(left+1, right))
+  }
+
   def sumScalaCurrying(intFunc: Int => Int)(left: Int, right: Int): Int = {
     if (left > right) 0
     else intFunc(left) + sumScalaCurrying(intFunc)(left + 1, right)
+  }
+
+  def product(intFunc: Int => Int)(left: Int, right: Int): Int = {
+    if (left > right) 1
+    else intFunc(left) * product(intFunc)(left + 1, right)
   }
 
 
@@ -54,6 +69,12 @@ object HighOrderFuncsAndCurrying {
     println(s"sumScalaCurrying: sum from 0 to 10 is: ${sumScalaCurrying(id) (0, 10)}")
     println(s"sumScalaCurrying: sum of squares from 0 to 10 is ${sumScalaCurrying(square) (0, 10)}")
     println(s"sumScalaCurrying: sum of cubes from 0 to 10 is ${sumScalaCurrying(x => x * x * x) (0, 10)}")
+
+    println(s"mappedAndCollected: sum from 0 to 10 is: ${mapAndReduce(x => x) (0,10) (0, (x, y) => x+y) }")
+    println(s"mappedAndCollected: sum from 0 to 10 is: ${easierMapAndReduce(x => x, (x,y) => x+y, 0) (0,10)}")
+    //println(s"mappedAndCollected: sum from 0 to 10 is: ${mapAndCollect(0, (x, y) => x+y)  (0, 10)}")
+    //println(s"mappedAndCollected: product of squares from 0 to 10 is ${mapAndCollect(1, (x,y) => x*y) (x => x * x) (1, 10)}")
+
   }
 
 
