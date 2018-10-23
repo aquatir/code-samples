@@ -37,7 +37,7 @@
     </li>
     <li><b>code-sample-scala</b>. Scala examples 
         <ul> 
-            <li><b>hello-world</b>.First hello-world scala example ever!</li>
+            <li><b>hello-world</b> Scala specialization course materials from coursera: https://www.coursera.org/specializations/scala </li>
         </ul> 
     </li>
     <li><b>code-sample-python</b>. Python code examples. Currently consist of a single Flask example </li>
