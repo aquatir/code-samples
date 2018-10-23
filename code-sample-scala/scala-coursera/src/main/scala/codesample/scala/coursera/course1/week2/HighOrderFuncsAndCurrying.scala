@@ -5,10 +5,8 @@ import scala.annotation.tailrec
 object HighOrderFuncsAndCurrying {
 
   def sum(intFunc: Int => Int, left: Int, right: Int) : Int = {
-    if (left > right)
-      0
-    else
-      intFunc(left) + sum(intFunc, left + 1, right)
+    if (left > right) 0
+    else intFunc(left) + sum(intFunc, left + 1, right)
   }
 
   def sumTail(f: Int => Int, left: Int, right: Int): Int = {
@@ -23,20 +21,16 @@ object HighOrderFuncsAndCurrying {
 
   def sumCurrying(intFunc: Int => Int) : (Int, Int) => Int = {
     def sumCurryingF(left: Int, right: Int): Int = {
-      if (left > right)
-        0
-      else
-        intFunc(left) + sumCurryingF(left + 1, right)
+      if (left > right) 0
+      else intFunc(left) + sumCurryingF(left + 1, right)
     }
 
     sumCurryingF
   }
 
   def sumScalaCurrying(intFunc: Int => Int)(left: Int, right: Int): Int = {
-    if (left > right)
-      0
-    else
-      intFunc(left) + sumScalaCurrying(intFunc)(left + 1, right)
+    if (left > right) 0
+    else intFunc(left) + sumScalaCurrying(intFunc)(left + 1, right)
   }
 
 
