@@ -59,14 +59,12 @@ object HelloScala extends App {
       if (chars.isEmpty || openedBracers < 0)
         return openedBracers == 0
 
-      val head = chars.head
-
-      // Closing parentheses without opened mean not balanced
-      if (head == '(')
+      if (chars.head == '(')
         balanceIter(chars.tail, openedBracers + 1)
-      else if (head == ')')
+      else if (chars.head == ')')
         balanceIter(chars.tail, openedBracers - 1)
-      else balanceIter(chars.tail, openedBracers)
+      else
+        balanceIter(chars.tail, openedBracers)
     }
 
     balanceIter(char, 0)
