@@ -1,5 +1,5 @@
 <h4> About </h4>
-<p> Java/Kotlin/Python/TypeScript/Angular code samples </p>
+<p> Java/Kotlin/Scala/Python/TypeScript/Angular code samples </p>
 <p> Some code may be quite outdated considering modern best practises. </p>
 <p> Some parts way even not compile / not have test / be generally very junior because they were written an age ago</p>
 
