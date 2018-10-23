@@ -1,4 +1,4 @@
-name := "hello-world"
+name := "scala-coursera"
 
 version := "0.1"
 

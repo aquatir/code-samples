@@ -1,4 +1,4 @@
-package codesample.scala.helloworld.course1.week1
+package codesample.scala.coursera.course1.week1
 
 import scala.annotation.tailrec
 

@@ -1,4 +1,4 @@
-package codesample.scala.helloworld.course1.week2
+package codesample.scala.coursera.course1.week2
 
 object HelloScala2 {
 
