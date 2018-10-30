@@ -2,9 +2,6 @@ package codesample.algorithms.mix;
 
 import codesample.data_structures.stacks.StackOnLinkedList;
 
-/**
- * @author pavel
- */
 class DijkstraTwoStackCalculator {
 
     private final StackOnLinkedList<Character> ops = new StackOnLinkedList<>();

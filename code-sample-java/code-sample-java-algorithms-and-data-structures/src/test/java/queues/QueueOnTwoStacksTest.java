@@ -10,9 +10,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * @author pavel
- */
 public class QueueOnTwoStacksTest {
 
     private QueueOnTwoStacks<Integer> queue;

@@ -4,17 +4,16 @@ package codesample.data_structures.stacks;
  * Stack implementation with array.
  * stack size get doubled when max array size is reached.
  * stack size get halfed when 2/3 of array is empty.
- * This leeds to better perfomance on resize operations and also 
- * works aroud thrashing problem
- * @author Pavel Bukhmatov (buhmatov@gmail.com; github.com/aquatir)
+ * This leeds to better performance on resize operations and also
+ * works around thrashing problem
  */
-public class StackOnArray<GenericItemType> {
+public class StackOnArray<T> {
 
-    private GenericItemType[] array;
+    private T[] array;
     private int head; // next index for added element
 
     public StackOnArray() {
-        array = (GenericItemType[]) new Object[16];
+        array = (T[]) new Object[16];
         head = 0;
     }
 
@@ -22,7 +21,7 @@ public class StackOnArray<GenericItemType> {
         if (initialSize <= 0) {
             throw new IllegalArgumentException("Initial stack size should be greater then 0");
         }
-        array = (GenericItemType[]) new Object[initialSize];
+        array = (T[]) new Object[initialSize];
         head = 0;
     }
 
@@ -38,7 +37,7 @@ public class StackOnArray<GenericItemType> {
      * @param newSize new array size
      */
     private void resize(int newSize) {
-        GenericItemType[] newArray = (GenericItemType[]) new Object[newSize];
+        T[] newArray = (T[]) new Object[newSize];
         System.arraycopy(array, 0, newArray, 0, head);
         array = newArray;
     }
@@ -61,7 +60,7 @@ public class StackOnArray<GenericItemType> {
      * push element into stack
      * @param item new element to put into stack
      */
-    public void push(GenericItemType item) {
+    public void push(T item) {
         if (head == array.length) {
             resize( array.length << 2 );
         }
@@ -78,12 +77,12 @@ public class StackOnArray<GenericItemType> {
      * pops element from stack removing it from array
      * @return popped element
      */
-    public GenericItemType pop() {
+    public T pop() {
         if (isEmpty()) {
             throw new IllegalArgumentException("Attempting to pop from empty stack");
         }
 
-        GenericItemType element = array[head - 1];
+        T element = array[head - 1];
         head--;
 
         /* If 2/3 of array is empty, resize array and lower it's size in half*/

@@ -2,8 +2,6 @@ package codesample.data_structures.queues;
 
 /**
  * Basic queue implementation using arrays
- *
- * @author Pavel Bukhmatov (buhmatov@gmail.com; github.com/aquatir)
  */
 class QueueOnArray<T> {
     private int head;

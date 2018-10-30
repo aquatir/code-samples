@@ -4,7 +4,6 @@ import codesample.data_structures.stacks.StackOnArray;
 
 /**
  * @param <T> - Generic item type for this queue
- * @author Pavel Bukhmatov (buhmatov@gmail.com; github.com/aquatir)
  */
 public class QueueOnTwoStacks<T> {
 

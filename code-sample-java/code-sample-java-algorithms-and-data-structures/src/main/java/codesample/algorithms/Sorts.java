@@ -1,9 +1,6 @@
 package codesample.algorithms;
 
-/**
- *
- * @author Pavel Bukhmatov (buhmatov@gmail.com; github.com/aquatir)
- */
+
 public class Sorts {
     
     /** Sort array using selection sort

@@ -5,8 +5,6 @@ import java.util.Iterator;
 
 /**
  * Basic queue implementation using linked list
- *
- * @author Pavel Bukhmatov (buhmatov@gmail.com; github.com/aquatir)
  */
 class QueueOnLinkedList<T> implements Iterable {
 

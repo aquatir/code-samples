@@ -5,10 +5,7 @@
  */
 package codesample.data_structures.stacks;
 
-/**
- *
- * @author pavel
- */
+
 public class StackOnLinkedList<GenericItemType> {
     private Node head;
     private int size;
