@@ -15,8 +15,8 @@ public class Sorts {
     public static void selectionSort(Comparable[] array, int left, int right) {
         for (int i = left; i < right; ++i) {
             int minIndex = i;
-            int j;
-            for (j = i; j < right; ++j) {
+
+            for (int j = i; j < right; ++j) {
                 if (less( array[j],array[minIndex]) )
                     minIndex = j;
             }
@@ -80,8 +80,7 @@ public class Sorts {
     }
 
 
-    private static boolean less (Comparable a, Comparable b)
-    {
+    private static <T> boolean less (Comparable a, Comparable b) {
         if (a.compareTo(b) < 0)
             return true;
         else

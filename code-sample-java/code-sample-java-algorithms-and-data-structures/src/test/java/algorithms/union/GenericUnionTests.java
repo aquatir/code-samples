@@ -5,7 +5,7 @@ import org.junit.Assert;
 
 public class GenericUnionTests {
 
-    /* Check connect and union operation works. Also check that areConnected has reflection property */
+    /* Check connect and union operation works. Also check that areConnected has reflectivity property */
     public static void unionThreeNodes_CheckTransitiveAreConnectedTrue(Union<String> union) {
         union.connect("aaa", "bbb");
         union.connect("bbb", "ccc");
