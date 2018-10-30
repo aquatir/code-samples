@@ -5,17 +5,20 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class SortsTest {
 
-    private final int size = 50000;
+    private final int size = 10;
     private final int randomSeed = 0;
     private Random rnd;
 
-    private Comparable<Integer>[] arrTest;
-    private Comparable<Integer>[] arrExp;
+    private List<Integer> arrTest = new ArrayList<>();
+    private List<Integer> arrExp = new ArrayList<>();
 
     @Before
     public void setRandomSeed() {
@@ -23,42 +26,43 @@ public class SortsTest {
     }
 
     @Before
-    public void initiateArrays() {
+    public void initiateList() {
         arrTest = generateRandomIntegerArray(size);
-        arrExp = arrTest.clone();
+        arrExp = new ArrayList<>();
+        arrExp.addAll(arrTest);
     }
 
     @Test
     public void insertionSortTest() {
 
         Sorts.insertionSort(arrTest, 0, size);
-        Arrays.sort(arrExp);
+        arrExp.sort(Integer::compareTo);
 
-        Assert.assertArrayEquals(arrTest, arrExp);
+        Assert.assertEquals(arrExp, arrTest);
     }
 
     @Test
     public void selectionSortTest() {
         int bob = 1;
         Sorts.selectionSort(arrTest, 0, size);
-        Arrays.sort(arrExp);
+        arrExp.sort(Integer::compareTo);
 
-        Assert.assertArrayEquals(arrTest, arrExp);
+        Assert.assertEquals(arrExp, arrTest);
     }
 
     @Test
     public void shellSortTest() {
         Sorts.shellSort(arrTest, 0, size);
-        Arrays.sort(arrExp);
+        arrExp.sort(Integer::compareTo);
 
-        Assert.assertArrayEquals(arrTest, arrExp);
+        Assert.assertEquals(arrExp, arrTest);
     }
 
-    private Integer[] generateRandomIntegerArray(int size) {
-        Integer[] array = new Integer[size];
+    private List<Integer> generateRandomIntegerArray(int size) {
+        var array = new ArrayList<Integer>(size);
         for (int i = 0; i<size; ++i) {
-            array[i] = rnd.nextInt();
+            array.add(rnd.nextInt());
         }
-        return array.clone();
+        return array;
     }
 }

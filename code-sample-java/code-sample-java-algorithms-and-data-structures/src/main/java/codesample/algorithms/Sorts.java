@@ -1,6 +1,8 @@
 package codesample.algorithms;
 
 
+import java.util.List;
+
 public class Sorts {
     
     /** Sort array using selection sort
@@ -9,12 +11,12 @@ public class Sorts {
      * @param left left index of array. Included in sort
      * @param right right index of array. NOT INCLUDED in sort
      */
-    public static void selectionSort(Comparable[] array, int left, int right) {
+    public static <T extends Comparable<T>> void selectionSort(List<T> array, int left, int right) {
         for (int i = left; i < right; ++i) {
             int minIndex = i;
 
             for (int j = i; j < right; ++j) {
-                if (less( array[j],array[minIndex]) )
+                if (less( array.get(j),array.get(minIndex)) )
                     minIndex = j;
             }
             swap (array, minIndex, i);
@@ -27,10 +29,10 @@ public class Sorts {
      * @param left left index of array. Included in sort
      * @param right right index of array. NOT INCLUDED in sort 
      */
-    public static void insertionSort(Comparable[] array, int left, int right) {
+    public static <T extends Comparable<T>> void insertionSort(List<T> array, int left, int right) {
         for (int i = left; i < right; ++i) {
             for (int j = left + 1; j < right - i; ++j) {
-                if (less( array[j], array[j-1] ) )
+                if (less( array.get(j), array.get(j-1) ) )
                     swap(array, j - 1 , j);
             }
         }
@@ -38,11 +40,11 @@ public class Sorts {
 
     /** Sort array using shell sort based on 3x+1 sequence
      *
-     * @param array input array.
+     * @param list input array.
      * @param left left index of array. Included in sort
      * @param right right index of array. NOT INCLUDED in sort
      */
-    public static void shellSort(Comparable[] array, int left, int right) {
+    public static <T extends Comparable<T>> void shellSort(List<T> list, int left, int right) {
         int N = right - left;
 
         /* generate maximum h value */
@@ -53,34 +55,31 @@ public class Sorts {
         /* start sorting */
         while (h >= 1) {
             for (int i = h; i < N; i += h) {
-                for (int j = i; j >= h && less(array[j], array[j-h]); j -= h)
-                    swap(array, j, j-h);
+                for (int j = i; j >= h && less(list.get(j), list.get(j-h)); j -= h)
+                    swap(list, j, j-h);
             }
             h = h/3;
         }
     }
 
-    static void mergeSort (Comparable[] array, int left, int right) {
+    public static <T extends Comparable<T>> void mergeSort (List<T> list, int left, int right) {
         
     }
     
     
-    static void quickSort (Comparable[] array, int left, int right) {
+    public static <T extends Comparable<T>> void quickSort (List<T> list, int left, int right) {
         
     }
 
     
-    private static void swap(Comparable[] array, int i, int j) {
-        Comparable tmp = array[i];
-        array[i] = array[j];
-        array[j] = tmp;
+    private static <T extends Comparable<T>> void swap(List<T> list, int i, int j) {
+        var tmp = list.get(i);
+        list.set(i, list.get(j));
+        list.set(j, tmp);
     }
 
 
-    private static <T> boolean less (Comparable a, Comparable b) {
-        if (a.compareTo(b) < 0)
-            return true;
-        else
-            return false;
+    private static <T extends Comparable<T>> boolean less (T a, T b) {
+        return a.compareTo(b) < 0;
     }
 }
