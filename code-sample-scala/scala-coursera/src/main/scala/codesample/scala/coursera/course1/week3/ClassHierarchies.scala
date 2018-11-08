@@ -1,38 +1,39 @@
 package codesample.scala.coursera.course1.week3
 
 
-abstract class IntSet {
-  def contains(x: Int): Boolean
-  def incl(x: Int): IntSet
-  def union(other: IntSet): IntSet
-}
-
-object EmptySet extends IntSet {
-  override def contains(x: Int): Boolean = false
-  override def incl(x: Int): IntSet = new NonEmptySet(x, EmptySet, EmptySet)
-  override def union(other: IntSet): IntSet = other
-
-  override def toString: String = "."
-}
-
-class NonEmptySet(element: Int, left: IntSet, right: IntSet) extends IntSet {
-
-  override def contains(x: Int): Boolean =
-    if (x < element) left contains x
-    else if (x > element) right contains x
-    else true
-
-  override def incl(x: Int): IntSet =
-    if (x < element) new NonEmptySet(element, left incl x, right)
-    else if (x > element) new NonEmptySet(element, left, right incl x)
-    else this
-
-  override def union(other: IntSet): IntSet = (left union right union other) incl element
-
-  override def toString: String = "{" + left  + element + right + "}"
-}
-
 object ClassHierarchies {
+
+
+  abstract class IntSet {
+    def contains(x: Int): Boolean
+    def incl(x: Int): IntSet
+    def union(other: IntSet): IntSet
+  }
+
+  object EmptySet extends IntSet {
+    override def contains(x: Int): Boolean = false
+    override def incl(x: Int): IntSet = new NonEmptySet(x, EmptySet, EmptySet)
+    override def union(other: IntSet): IntSet = other
+
+    override def toString: String = "."
+  }
+
+  class NonEmptySet(element: Int, left: IntSet, right: IntSet) extends IntSet {
+
+    override def contains(x: Int): Boolean =
+      if (x < element) left contains x
+      else if (x > element) right contains x
+      else true
+
+    override def incl(x: Int): IntSet =
+      if (x < element) new NonEmptySet(element, left incl x, right)
+      else if (x > element) new NonEmptySet(element, left, right incl x)
+      else this
+
+    override def union(other: IntSet): IntSet = (left union right union other) incl element
+
+    override def toString: String = "{" + left  + element + right + "}"
+  }
 
   def main(args: Array[String]): Unit = {
 
@@ -43,6 +44,7 @@ object ClassHierarchies {
 
     println("Set include 11: " + anotherSet.contains(11))
     println(unionOfSets.toString)
+
   }
 
 
