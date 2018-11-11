@@ -2,39 +2,33 @@ package codesample.scala.coursera.course1.week4
 
 object GenericsAgain {
 
-  class Upper {
-    override def toString: String = "Upper called"
-  }
-  class Middle extends Upper {
-    override def toString: String = "Middle called"
-  }
-  class Lower extends Middle {
-    override def toString: String = "Lower called"
-  }
+  /*
+UPPER
+^
+|
+MIDDLE
+^
+|
+LOWER
+ */
+
+  class Upper { override def toString: String = "Upper called" }
+  class Middle extends Upper { override def toString: String = "Middle called" }
+  class Lower extends Middle { override def toString: String = "Lower called" }
 
   class GenericValue[T](val value: T) {
     def print() = println(value.toString)
   }
 
   // This says T should be a subtype of Middle
-  def middleAndSubClassesAcceptor[T <: Middle](instance: GenericValue[T]): Unit = {
-    instance.print()
-  }
+  def middleAndSubClassesAcceptor[T <: Middle](instance: GenericValue[T]): Unit = instance.print()
+
 
   // This says either T should be a supertype of Middle. Or speaking the other way Middle should be a subtype of T
-  def middleAndSuperClassesAcceptor[T >: Middle](instance: GenericValue[T]): Unit = {
-    instance.print()
-  }
+  def middleAndSuperClassesAcceptor[T >: Middle](instance: GenericValue[T]): Unit = instance.print()
 
-  /*
-  UPPER
-  ^
-  |
-  MIDDLE
-  ^
-  |
-  LOWER
-   */
+
+
   def main(args: Array[String]): Unit = {
 
     val lower = new Lower
