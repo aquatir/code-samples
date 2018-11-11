@@ -49,6 +49,7 @@
     </li>
     <li><b>code-sample-angular-java</b>. Angular app based on https://angular.io/tutorial .
     Uses real backend (with in-memory DB) </li>
+    <li><b>code-sample-react/react-tic-tac-toe</b>. React example from official documentation </li>
 </ul>
 
 Some project have a dedicated README inside them.
