@@ -25,6 +25,7 @@
             <li> <b> code-sample-java-spring</b>. Tiny spring example. Uses only bean definition</li>
             <li> <b> code-sample-java-springboot</b>. Consist of some (but not all) springboot features</li>
             <li> <b> code-sample-spring-security</b>. Spring security features. </li>
+	    <li> <b> code-sample-java-useful-implementations</b>. Contains implementstions for some fun stuff. Currently contains Boolean Expression Resolver (a thing simular to what spring data specification API do when resolving your custom-written expression) </li>
          </ul>
     </li>
     <li><b>code-sample-kotlin</b>. Kotlin examples 

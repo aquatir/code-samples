@@ -19,7 +19,6 @@
         <module>code-sample-java-9</module>
         <module>code-sample-java-10</module>
         <module>code-sample-ignite-postgres-backstore</module>
-        <module>../code-sample-docker/code-sample-nginx-green-blue</module>
         <module>code-sample-spring-api-versioning</module>
     </modules>
     <packaging>pom</packaging>
