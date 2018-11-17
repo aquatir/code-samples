@@ -5,11 +5,11 @@ object ScalaListsPartOne {
 
   def insSort(xs: List[Int]): List[Int] = xs match {
     case Nil => List()
-    case y :: ys => insert(y, insSort(ys))
+    case head :: tail => insert(head, insSort(tail))
   }
-  def insert(x: Int, xs: List[Int]): List[Int] = xs match {
-    case Nil => List(x)
-    case y :: ys => if (x <= y) x :: xs else y :: insert(x, ys)
+  def insert(head: Int, tail: List[Int]): List[Int] = tail match {
+    case Nil => List(head)
+    case headOfTail :: tailOfTail => if (head <= headOfTail) head :: tail else headOfTail :: insert(head, tailOfTail)
   }
 
   def main(args: Array[String]): Unit = {
