@@ -1,4 +1,4 @@
-package codesample.scala.coursera.course1.week4
+package codesample.scala.coursera.course1.week5
 
 object ScalaListsPartOne {
 
@@ -39,6 +39,8 @@ object ScalaListsPartOne {
     val someList = List(9,5,3,2,1,6,3,2)
     println("Insertion sorted list: " + someList + " => " + insSort(someList))
     println("Bubble sorted list: " + someList + " => " + bubbleSort(someList))
+    println("All elements but last: " + someList.init)
+
 
   }
 
