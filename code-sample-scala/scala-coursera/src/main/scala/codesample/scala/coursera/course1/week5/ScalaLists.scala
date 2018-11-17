@@ -1,6 +1,6 @@
 package codesample.scala.coursera.course1.week5
 
-object ScalaListsPartOne {
+object ScalaLists {
 
 
   def insSort(xs: List[Int]): List[Int] = xs match {
