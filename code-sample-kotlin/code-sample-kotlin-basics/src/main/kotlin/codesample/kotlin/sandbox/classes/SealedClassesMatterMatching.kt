@@ -21,5 +21,4 @@ fun kotlinSealedClasses() {
     val sealedAge = SealedAge(5)
     println(eval(sealedBro))
     println(eval(sealedAge))
-
 }
