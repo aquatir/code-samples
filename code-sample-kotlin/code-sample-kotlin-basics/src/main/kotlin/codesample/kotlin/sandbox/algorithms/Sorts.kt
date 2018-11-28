@@ -19,9 +19,10 @@ class Sorts {
         var leftIter = 0
         var rightIter = 0
 
-        val size = left.size
+        val leftSize = left.size
+        val rightSize = right.size
 
-        while (leftIter < size && rightIter < size) {
+        while (leftIter < leftSize && rightIter < rightSize) {
             if (left[leftIter] <= right[rightIter]) {
                 mergedList.add(left[leftIter])
                 leftIter++
@@ -32,10 +33,10 @@ class Sorts {
         }
 
 
-        if (leftIter == size)
-            mergedList.addAll(right.subList(rightIter, size))
-        else if (rightIter == size)
-            mergedList.addAll(left.subList(leftIter, size))
+        if (leftIter == leftSize)
+            mergedList.addAll(right.subList(rightIter, rightSize))
+        else if (rightIter == rightSize)
+            mergedList.addAll(left.subList(leftIter, leftSize))
 
         return mergedList
     }
