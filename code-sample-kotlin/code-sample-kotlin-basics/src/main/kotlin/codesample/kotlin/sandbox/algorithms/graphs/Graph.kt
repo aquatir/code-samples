@@ -114,6 +114,11 @@ class BFSPaths(private val graph: Graph, private val initialVertex: Int) {
     }
 }
 
+// Find out connected components with DFS
+class ConnectedComponents(private val graph: Graph, private val initialVertex: Int) {
+
+}
+
 
 fun getDefaultGraph(): Graph {
     val graph = Graph(10)
