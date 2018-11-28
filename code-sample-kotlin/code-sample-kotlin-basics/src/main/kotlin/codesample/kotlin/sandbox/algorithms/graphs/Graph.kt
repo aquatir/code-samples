@@ -20,6 +20,7 @@ class Graph(val size: Int) {
     }
 }
 
+// DFS example
 class DFSPaths(private val graph: Graph, private val initialVertex: Int) {
     private val marked: Array<Boolean> = Array(graph.size) { false }
     private val edgeTo: Array<Int> = Array(graph.size) { 999 }
@@ -48,13 +49,64 @@ class DFSPaths(private val graph: Graph, private val initialVertex: Int) {
                 return listOf(0, 0)
 
             val dec = ArrayDeque<Int>()
+            dec.push(ver)
 
             var closestToTarget = edgeTo[ver]
             while (closestToTarget != initialVertex) {
                 dec.push(closestToTarget)
                 closestToTarget = edgeTo[closestToTarget]
             }
+            dec.push(initialVertex)
+            dec.toList()
+        }
+
+    }
+}
+
+// BFS example
+class BFSPaths(private val graph: Graph, private val initialVertex: Int) {
+    private val marked: Array<Boolean> = Array(graph.size) { false }
+    private val edgeTo: Array<Int> = Array(graph.size) { 999 }
+
+    init {
+        bfs(graph, initialVertex)
+    }
+
+    private fun bfs(graph: Graph, curVertex: Int) {
+        val queue = ArrayDeque<Int>()
+        queue.add(curVertex)
+        marked[curVertex] = true
+
+        while (!queue.isEmpty()) {
+            val next = queue.remove()
+            for (adjV in graph.adj(next)) {
+                if (!marked[adjV]) {
+                    queue.add(adjV)
+                    marked[adjV] = true
+                    edgeTo[adjV] = next
+                }
+            }
+        }
+    }
+
+    fun hasPathTo(ver: Int) = marked[ver]
+
+    fun pathFromInitialTo(ver: Int): List<Int> {
+        return if (!hasPathTo(ver))
+            emptyList()
+        else {
+
+            if (ver == initialVertex)
+                return listOf(0, 0)
+
+            val dec = ArrayDeque<Int>()
             dec.push(ver)
+
+            var closestToTarget = edgeTo[ver]
+            while (closestToTarget != initialVertex) {
+                dec.push(closestToTarget)
+                closestToTarget = edgeTo[closestToTarget]
+            }
             dec.push(initialVertex)
             dec.toList()
         }
@@ -84,8 +136,15 @@ fun getDefaultGraph(): Graph {
 fun main(args: Array<String>) {
     val graph = getDefaultGraph()
 
+    // Vertexes 0 and 3 are connected with no nodes between. We expect BFS to show this right away
+    // while DFS may not show it, connection 0 and 3 some other way
     println(graph)
-    var dfs = DFSPaths(graph, 0)
-    println(dfs.hasPathTo(1))
-    print(dfs.pathFromInitialTo(1))
+    val dfs = DFSPaths(graph, 0)
+    print(dfs.pathFromInitialTo(3))
+
+    println()
+
+    val bfs = BFSPaths(graph, 0)
+    print(bfs.pathFromInitialTo(3))
+
 }
