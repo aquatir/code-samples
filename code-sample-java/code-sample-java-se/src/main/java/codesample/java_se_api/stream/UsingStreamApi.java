@@ -3,11 +3,16 @@ package codesample.java_se_api.stream;
 import java.util.AbstractCollection;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.function.IntConsumer;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.groupingBy;
 
 class UsingStreamApi {
     public static void main(String[] args) {
@@ -103,7 +108,7 @@ class UsingStreamApi {
         * predefined static methods in Collectors class such as toSet() toList(), toMap(), toConcurrentMap()*/
         Set<String> namesAsSet = Arrays.stream(names).collect(Collectors.toSet());
         System.out.printf("%20s", "Elements in set 1: \"");
-        namesAsSet.stream().forEach((e) -> System.out.print(e + " "));
+        namesAsSet.forEach((e) -> System.out.print(e + " "));
         System.out.print("\"\n");
 
         /* Instead of calling toSet you can actually do something like this: (don't do it...)*/
@@ -123,5 +128,16 @@ class UsingStreamApi {
         System.out.printf("%20s", "Elements in set 3: \"");
         namesAsSet.stream().forEach((e) -> System.out.print(e + " "));
         System.out.print("\"\n");
+
+        // You can use different collectors from Collect. There are many of them. Here is an example of groupby collector.
+        String value = "abcddfseca";
+        Map<Character, Long> collection = value.chars()
+                .mapToObj(charAsInt -> (char) charAsInt)
+                .collect(Collectors.groupingBy(
+                        Function.identity(), Collectors.counting())
+                );
+
+        System.out.println(collection);
+
     }
 }
