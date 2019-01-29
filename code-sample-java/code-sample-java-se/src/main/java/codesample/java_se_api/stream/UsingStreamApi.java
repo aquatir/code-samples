@@ -3,11 +3,15 @@ package codesample.java_se_api.stream;
 import java.util.AbstractCollection;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.function.IntConsumer;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 class UsingStreamApi {
     public static void main(String[] args) {
@@ -123,5 +127,36 @@ class UsingStreamApi {
         System.out.printf("%20s", "Elements in set 3: \"");
         namesAsSet.stream().forEach((e) -> System.out.print(e + " "));
         System.out.print("\"\n");
+
+
+        var someString = "aaab";
+        var streamOfChars = someString.chars().mapToObj(character -> (char) character);
+
+        // Let's create a map of char -> number of entries.
+        Map<Character, Long> charToNumberMap = streamOfChars.collect(
+                Collectors.groupingBy(Function.identity(), Collectors.counting())
+        );
+
+        // That was easy. But what if you want to count each letter twice?
+        // We have to go bananas and use reducer like this:
+        streamOfChars = someString.chars().mapToObj(character -> (char) character);
+        Map<Character, Long> result = streamOfChars.collect(
+                Collectors.groupingBy(
+                        Function.identity(),
+                        Collectors.reducing(
+                                0L, // Identity element for last line of num1 + num2
+                                (someChar) -> 2L, // Each character should be 'worth' 2. So that each letter is counter twice
+                                (num1, num2) ->  num1 + num2
+                        )));
+
+
+        // You can partition elements into 2 lists
+        var streamOfInts = Stream.of(1,2,3,4,5);
+        Map<Boolean, List<Integer>> partitionedOddEven = streamOfInts.collect(
+                Collectors.partitioningBy(oneInteger -> oneInteger % 2 == 0)
+        );
+
+        System.out.println(partitionedOddEven.get(Boolean.TRUE));
+        System.out.println(partitionedOddEven.get(Boolean.FALSE));
     }
 }
