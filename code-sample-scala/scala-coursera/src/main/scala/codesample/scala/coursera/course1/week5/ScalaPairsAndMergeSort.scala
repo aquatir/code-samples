@@ -15,10 +15,8 @@ object ScalaPairsAndMergeSort {
     case (left, Nil) => left
     case (Nil, right) => right
     case (leftHead :: leftTail, rightHead :: rightTail) =>
-      if (leftHead < rightHead)
-        leftHead :: merge(leftTail, right)
-      else
-        rightHead :: merge(left, rightTail)
+      if (leftHead < rightHead) leftHead :: merge(leftTail, right)
+      else rightHead :: merge(left, rightTail)
   }
 
 
