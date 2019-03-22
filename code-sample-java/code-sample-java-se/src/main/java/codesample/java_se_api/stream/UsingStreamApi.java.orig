@@ -15,8 +15,11 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+<<<<<<< HEAD
 
 import static java.util.stream.Collectors.groupingBy;
+=======
+>>>>>>> 726e6185ef4561aac2cfcf136b1699a4266c046e
 
 class UsingStreamApi {
     public static void main(String[] args) {
@@ -133,6 +136,18 @@ class UsingStreamApi {
         namesAsSet.stream().forEach((e) -> System.out.print(e + " "));
         System.out.print("\"\n");
 
+<<<<<<< HEAD
+        // You can use different collectors from Collect. There are many of them. Here is an example of groupby collector.
+        String value = "abcddfseca";
+        Map<Character, Long> collection = value.chars()
+                .mapToObj(charAsInt -> (char) charAsInt)
+                .collect(Collectors.groupingBy(
+                        Function.identity(), Collectors.counting())
+                );
+
+        System.out.println(collection);
+
+=======
 
         var someString = "aaab";
         var streamOfChars = someString.chars().mapToObj(character -> (char) character);
@@ -163,5 +178,6 @@ class UsingStreamApi {
 
         System.out.println(partitionedOddEven.get(Boolean.TRUE));
         System.out.println(partitionedOddEven.get(Boolean.FALSE));
+>>>>>>> 726e6185ef4561aac2cfcf136b1699a4266c046e
     }
 }
