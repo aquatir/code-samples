@@ -11,21 +11,24 @@
             <li> <b>code-sample-java-9</b>. Contains new stuff added in java 9 (including multi-module maven project, but excluding reactive API)</li>
             <li> <b>code-sample-java-10</b>. Contains new stuff added in java 10 </li>
             <li> <b>code-sample-java-11</b>. Contains new stuff added in java 11 </li>
-            <li> <b>code-sample-java-springboot-ldap-login</b>. LDAP login with spring security example</li> 
             <li> <b>code-sample-ignite-postgres-backstore</b>. Contain example of Ignite being deployed over postgres DB 
             in cache mode. All data from postgres is loaded into ignite on startup and then used for in-memory computing. 
             Request for data creating/modification are propagated by Ignite to Postgres</li> 
-            <li> <b> code-sample-spring-api-versioning</b>. Custom endpoint mapped based on request header "version"
             <li> <b> code-sample-java-algorithms-and-data-structures</b> Basic algorithms and data structures implemented on java. Data structures: Union, Queue, Stack. Algorithms: Binary Search </li>
             <li> <b> code-sample-java-aspectj</b>. Tiny aspectJ example</li>
             <li> <b> code-sample-java-ee</b>. Tiny jmx example </li>
             <li> <b> code-sample-java-hibernate</b>. Examples for most common hibernate features</li>
             <li> <b> code-sample-java-patterns</b>. Basic java implementation for most classical design patterns</li>
             <li> <b> code-sample-java-se</b>. Examples of some java SE APIs </li>
+            <ll> <b> spring-boot </b> 
+               <ul>
+                  <li> <b> code-sample-java-springboot</b>. Consist of some (but not all) springboot features</li>
+                  <li> <b>code-sample-java-springboot-ldap-login</b>. LDAP login with spring security example</li>
+                  <li> <b> code-sample-spring-api-versioning</b>. Custom endpoint mapped based on request header "version" 
+                  <li> <b> code-sample-spring-security</b>. Spring security features. </li>
+            <li>
             <li> <b> code-sample-java-spring</b>. Tiny spring example. Uses only bean definition</li>
-            <li> <b> code-sample-java-springboot</b>. Consist of some (but not all) springboot features</li>
-            <li> <b> code-sample-spring-security</b>. Spring security features. </li>
-	    <li> <b> code-sample-java-useful-implementations</b>. Contains implementstions for some fun stuff. Currently contains Boolean Expression Resolver (a thing simular to what spring data specification API do when resolving your custom-written expression) </li>
+	    <li> <b> code-sample-java-useful-implementations</b>. Should Contain implementstions for some fun stuff. Currently contains nothing of interest </li>
          </ul>
     </li>
     <li><b>code-sample-kotlin</b>. Kotlin examples 

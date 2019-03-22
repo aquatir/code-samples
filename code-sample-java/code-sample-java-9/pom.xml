@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <artifactId>codesample</artifactId>
-        <groupId>codesample</groupId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
 
+    <groupId>codesample</groupId>
+    <version>1.0-SNAPSHOT</version>
     <artifactId>code-sample-java-9</artifactId>
 
     <modules>
         <module>code-sample-java-9-module-one</module>
         <module>code-sample-java-9-module-two</module>
         <module>code-sample-java-9-new-stuff</module>
-    <module>test</module>
-  </modules>
+        <module>test</module>
+    </modules>
     <packaging>pom</packaging>
 
     <properties>
