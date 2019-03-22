@@ -8,6 +8,14 @@
     <li><b>code-sample-angular-kotlin</b>. Kotlin + Angular app with JWT access/refresh token authentication and spring security roles management
     <li><b>code-sample-java</b>. Java code examples
         <ul>
+            <li> <b> spring-boot </b> Spring boot examples
+               <ul>
+                  <li> <b> code-sample-java-springboot</b>. Consist of some (but not all) springboot features</li>
+                  <li> <b>code-sample-java-springboot-ldap-login</b>. LDAP login with spring security example</li>
+                  <li> <b> code-sample-spring-api-versioning</b>. Custom endpoint mapped based on request header "version" 
+                  <li> <b> code-sample-spring-security</b>. Spring security features. </li>
+               </ul>
+            </li>
             <li> <b>code-sample-java-9</b>. Contains new stuff added in java 9 (including multi-module maven project, but excluding reactive API)</li>
             <li> <b>code-sample-java-10</b>. Contains new stuff added in java 10 </li>
             <li> <b>code-sample-java-11</b>. Contains new stuff added in java 11 </li>
@@ -20,13 +28,6 @@
             <li> <b> code-sample-java-hibernate</b>. Examples for most common hibernate features</li>
             <li> <b> code-sample-java-patterns</b>. Basic java implementation for most classical design patterns</li>
             <li> <b> code-sample-java-se</b>. Examples of some java SE APIs </li>
-            <ll> <b> spring-boot </b> 
-               <ul>
-                  <li> <b> code-sample-java-springboot</b>. Consist of some (but not all) springboot features</li>
-                  <li> <b>code-sample-java-springboot-ldap-login</b>. LDAP login with spring security example</li>
-                  <li> <b> code-sample-spring-api-versioning</b>. Custom endpoint mapped based on request header "version" 
-                  <li> <b> code-sample-spring-security</b>. Spring security features. </li>
-            <li>
             <li> <b> code-sample-java-spring</b>. Tiny spring example. Uses only bean definition</li>
 	    <li> <b> code-sample-java-useful-implementations</b>. Should Contain implementstions for some fun stuff. Currently contains nothing of interest </li>
          </ul>
