@@ -25,7 +25,6 @@ public class ReactiveRequestMaker {
                 var result = this.requestBlockingQueue.poll(10, TimeUnit.SECONDS);
                 if (result != null) {
                     // make non-blocking request
-                    // make non-blocking request
                     System.out.println("Making reactive request...");
                     this.webClient.get()
                             .retrieve()
@@ -48,7 +47,7 @@ public class ReactiveRequestMaker {
             try {
                 var result = this.responseBlockingQueue.poll(10, TimeUnit.SECONDS);
                 if (result != null) {
-
+                    System.out.println("Got async response: " + result);
                 } else {
                     System.out.println("No data in RESPONSE queue for last 10 seconds");
                 }
