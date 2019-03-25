@@ -1,13 +1,13 @@
-package codesample.javaspringbootreactiveclient;
+package codesample.springboot.reactive.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JavaSpringbootReactiveClientApplication {
+public class NonReactiveServerStarter {
 
 	public static void main(String[] args) {
-		SpringApplication.run(JavaSpringbootReactiveClientApplication.class, args);
+		SpringApplication.run(NonReactiveServerStarter.class, args);
 	}
 
 }
