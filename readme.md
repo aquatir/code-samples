@@ -10,10 +10,11 @@
         <ul>
             <li> <b> spring-boot </b> Spring boot examples
                <ul>
-                  <li> <b> code-sample-java-springboot</b>. Consist of some (but not all) springboot features</li>
+                  <li> <b> code-sample-java-springboot</b>. Consist of some (but not all) springboot features (RabbitMQ integration, reloadable properties)</li>
                   <li> <b>code-sample-java-springboot-ldap-login</b>. LDAP login with spring security example</li>
                   <li> <b> code-sample-spring-api-versioning</b>. Custom endpoint mapped based on request header "version" 
-                  <li> <b> code-sample-spring-security</b>. Spring security features. </li>
+                  <li> <b> code-sample-spring-security</b>. Spring security features (Form login with Thymeleaf). </li>
+                  <li> <b> code-sample-java-springboot-reactive-client-example</b>. How to use async WebFlux client to get responses from normal synchronous tomcat server</li>
                </ul>
             </li>
             <li> <b>code-sample-java-9</b>. Contains new stuff added in java 9 (including multi-module maven project, but excluding reactive API)</li>
