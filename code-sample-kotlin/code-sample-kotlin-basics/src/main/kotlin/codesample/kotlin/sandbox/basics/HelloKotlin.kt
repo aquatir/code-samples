@@ -16,8 +16,7 @@ fun printNotNullString(a: String) {
     println(a)
 }
 
-/** Run this func in test BasicsRunner */
-fun helloKotlin() {
+fun main(args: Array<String>) {
     println("Hello, Kotlin!")
     println(sum(5, 1))
 
@@ -149,7 +148,4 @@ fun helloKotlin() {
             }
         }
     }
-
-
-
 }

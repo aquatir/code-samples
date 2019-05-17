@@ -7,8 +7,7 @@ data class Dude(val name: String,
         get() = "getter is called!"
 }
 
-/** Run this func in test BasicsRunner */
-fun dataClasses() {
+fun main(args: Array<String>) {
     val ivan = Dude("Ivan", "Ivanov", 15)
     println(ivan.toString() + " ivans hash: " + ivan.hashCode())
 

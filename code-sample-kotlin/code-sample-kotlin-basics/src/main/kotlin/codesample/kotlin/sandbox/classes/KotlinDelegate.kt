@@ -15,8 +15,7 @@ class VeryUsefullFunctionImpl : VeryUsefullFunction {
 class DelegatorForVeryUsefullFunction(base: VeryUsefullFunction)
     : VeryUsefullFunction by base
 
-/** Run this func in test BasicsRunner */
-fun kotlinDelegate() {
+fun main(args: Array<String>) {
     val funcClass = VeryUsefullFunctionImpl()
     DelegatorForVeryUsefullFunction(funcClass).printInputWithGreeting("Ivan")
 }

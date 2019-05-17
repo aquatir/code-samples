@@ -1,7 +1,6 @@
 package codesample.kotlin.sandbox.basics
 
-/** Run this func in test BasicsRunner */
-fun helloKotlinCollections() {
+fun main(args: Array<String>) {
 
     println("******* LISTS ********")
     val mutableList: MutableList<Int> = mutableListOf(1, 2)

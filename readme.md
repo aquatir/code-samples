@@ -36,9 +36,13 @@
     <li><b>code-sample-kotlin</b>. Kotlin examples 
         <ul> 
             <li><b>code-sample-kotlin-basics</b>. Boring basic kotlin API stuff</li>
-            <li><b>code-sample-kotlin-graphql</b>. GraphQL exampe with Kotlin </li>
-            <li><b>code-sample-kotlin-graphql</b>. GraphQL exampe with Kotlin using SPQR schema-from-code generator </li>
-            <li><b>code-sample-kotlin-spring-security</b>. Simple username-password authentication example </li>
+            <li><b>spring-boot</b>
+                <ul>
+                    <li><b>code-sample-kotlin-graphql</b>. GraphQL exampe with Kotlin </li>
+                    <li><b>code-sample-kotlin-graphql</b>. GraphQL exampe with Kotlin using SPQR schema-from-code generator </li>
+                    <li><b>code-sample-kotlin-spring-security</b>. Simple username-password authentication example </li>
+                <ul>
+            </li>
         </ul> 
     </li>
     <li><b>code-sample-scala</b>. Scala examples 
