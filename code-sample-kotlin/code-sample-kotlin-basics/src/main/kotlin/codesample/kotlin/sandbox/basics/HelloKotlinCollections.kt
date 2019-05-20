@@ -74,6 +74,12 @@ fun main(args: Array<String>) {
         doWork()
         close()
     }
+
+    MySingleTonThree.also {
+        it.init()
+        it.doWork()
+        it.close()
+    }
 }
 
 object MySingleTonOne {

@@ -148,4 +148,15 @@ fun main(args: Array<String>) {
             }
         }
     }
+
+    var aa = 1
+    var bb = 2
+    println("a: $aa b: $bb")
+
+    // This works because the expression inside {} only changes global bb value. The inner bb value is staying
+    // the same, thus also will return bb value which was passed to function initially.
+    // Protip: do not make it your interview question...
+    aa = bb.also { bb = aa }
+    println("a: $aa b: $bb")
+
 }
