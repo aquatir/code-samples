@@ -13,7 +13,7 @@ class Sorts {
         return merge(recursiveMerge(left), recursiveMerge(right))
     }
 
-    fun merge (left: List<Int>, right: List<Int>): List<Int> {
+    fun merge(left: List<Int>, right: List<Int>): List<Int> {
 
         val mergedList = mutableListOf<Int>()
         var leftIter = 0
@@ -45,12 +45,12 @@ class Sorts {
 fun main(args: Array<String>) {
     val sorts = Sorts()
 
-    val left = listOf(3,5,9)
-    val right = listOf(3,5,10)
+    val left = listOf(3, 5, 9)
+    val right = listOf(3, 5, 10)
 
     println(sorts.merge(left, right))
 
-    var superList = listOf(9,8,7,6,5,4,3,2,1)
+    var superList = listOf(9, 8, 7, 6, 5, 4, 3, 2, 1)
     println(sorts.recursiveMerge(superList))
 }
 

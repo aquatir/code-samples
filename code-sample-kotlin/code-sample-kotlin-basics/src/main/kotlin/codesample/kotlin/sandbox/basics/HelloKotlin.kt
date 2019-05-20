@@ -64,13 +64,13 @@ fun main(args: Array<String>) {
 
     println("\n****** WHEN ******* ")
     fun describe(obj: Any): String =
-            when (obj) {
-                1 -> "One"
-                "Hello" -> "Greeting"
-                is Long -> "Long"
-                !is String -> "Not a string"
-                else -> "Unknown"
-            }
+        when (obj) {
+            1 -> "One"
+            "Hello" -> "Greeting"
+            is Long -> "Long"
+            !is String -> "Not a string"
+            else -> "Unknown"
+        }
     println(describe(1))
     println(describe("Hello"))
     println(describe(30L))
@@ -99,30 +99,30 @@ fun main(args: Array<String>) {
     println("\n****** COLLECTIONS AND LAMBDAS ******* ")
     val fruits = listOf("apple", "mango", "avocado", "banana", "apple", null, null)
     fruits
-            .map { it.toString() } // null will be "null"
-            .filter { it.startsWith("a") } // and they will be filtered out
-            .sortedBy { it }
-            .distinctBy { it }
-            .map { it.toUpperCase() }
-            .forEach { println(it) }
+        .map { it.toString() } // null will be "null"
+        .filter { it.startsWith("a") } // and they will be filtered out
+        .sortedBy { it }
+        .distinctBy { it }
+        .map { it.toUpperCase() }
+        .forEach { println(it) }
 
     for ((index, value) in fruits.withIndex()) {
         println("intex: $index value: $value")
     }
 
     println("\n****** DESTRUCTURING DECLARATION ******* ")
-    data class Student(val a :String, val b: Int, val c: String ){
-        var name:String = this.a
-        var age:Int = this.b
-        val subject:String = this.c
+    data class Student(val a: String, val b: Int, val c: String) {
+        var name: String = this.a
+        var age: Int = this.b
+        val subject: String = this.c
     }
 
     val student = Student("Ivan", 4, "Biology")
     val (param1, param2, param3) = student
     println("Name $param1, age: $param2, subject: $param3")
 
-    fun returnArrayOfInt() : Array<Int> {
-        return arrayOf(1,2,3)
+    fun returnArrayOfInt(): Array<Int> {
+        return arrayOf(1, 2, 3)
     }
 
     val (value1, value2, value3) = returnArrayOfInt()

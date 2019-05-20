@@ -1,9 +1,11 @@
 package codesample.kotlin.sandbox.classes
 
-data class Dude(val name: String,
-                val surname: String,
-                val age: Int) {
-    val someProp : String
+data class Dude(
+    val name: String,
+    val surname: String,
+    val age: Int
+) {
+    val someProp: String
         get() = "getter is called!"
 }
 

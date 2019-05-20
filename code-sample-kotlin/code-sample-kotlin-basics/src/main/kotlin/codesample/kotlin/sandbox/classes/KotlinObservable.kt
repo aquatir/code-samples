@@ -3,8 +3,8 @@ package codesample.kotlin.sandbox.classes
 import kotlin.properties.Delegates
 
 class User {
-    var name: String by Delegates.observable("Default") {
-        _, old, new -> println("$old -> $new")
+    var name: String by Delegates.observable("Default") { _, old, new ->
+        println("$old -> $new")
     }
 }
 

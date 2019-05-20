@@ -34,7 +34,7 @@ fun main(args: Array<String>) {
     map.entries.forEach { println("${it.key} -> ${it.value}") }
     println("\nmap keys starts with f")
     map.filterKeys { it.startsWith('f') }
-            .forEach { key, value -> println("$key -> $value") }
+        .forEach { key, value -> println("$key -> $value") }
 
 
     /* Create an uneatable map from expression*/
@@ -44,7 +44,7 @@ fun main(args: Array<String>) {
     println("maMap2 = [$myMap2]")
 
     /* Traverse map by key-value pairs */
-    for ( (key,value) in myMap2) {
+    for ((key, value) in myMap2) {
         println("key: $key value: $value")
     }
     /* analogues to Java's myMap.get(1) */

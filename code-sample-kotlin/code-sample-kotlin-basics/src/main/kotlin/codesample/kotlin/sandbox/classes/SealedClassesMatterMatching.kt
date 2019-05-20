@@ -10,7 +10,7 @@ data class SealedAge(val age: Int) : Seal()
  * When your expression is a sealed class, you don't have to do it, since all the possible types can be
  * determined in compile time
  */
-fun eval (expression: Seal): String = when (expression) {
+fun eval(expression: Seal): String = when (expression) {
     is SealedName -> "Sealed name"
     is SealedAge -> "Sealed age"
 }

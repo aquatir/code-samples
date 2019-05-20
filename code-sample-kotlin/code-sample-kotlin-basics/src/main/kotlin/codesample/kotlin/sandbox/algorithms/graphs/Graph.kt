@@ -15,8 +15,8 @@ class Graph(val size: Int) {
     override fun toString(): String {
         return "size: $size vertexes: \n" +
                 adj.asSequence()
-                        .mapIndexed { index, mutableList -> "$index: $mutableList" }
-                        .joinToString("\n")
+                    .mapIndexed { index, mutableList -> "$index: $mutableList" }
+                    .joinToString("\n")
     }
 }
 

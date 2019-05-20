@@ -12,8 +12,7 @@ class VeryUsefullFunctionImpl : VeryUsefullFunction {
 
 /** DelegatorForVeryUsefullFunction class can now use functions and properties defined in VeryUsefullFunction,
  * if an instance VeryUsefullFunction is passed in. See an example */
-class DelegatorForVeryUsefullFunction(base: VeryUsefullFunction)
-    : VeryUsefullFunction by base
+class DelegatorForVeryUsefullFunction(base: VeryUsefullFunction) : VeryUsefullFunction by base
 
 fun main(args: Array<String>) {
     val funcClass = VeryUsefullFunctionImpl()
