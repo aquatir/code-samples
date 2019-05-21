@@ -1,5 +1,6 @@
 package codesample.kotlin.sandbox.basics
 
+typealias NumOfPerson = Map<String, Int>
 
 fun main(args: Array<String>) {
 
@@ -80,7 +81,22 @@ fun main(args: Array<String>) {
         it.doWork()
         it.close()
     }
+
+    /*
+    doubling accomulator. Each entry will be counted as two!
+     */
+    val names = listOf("aaa", "bbb", "aaa", "ccc", "aaa")
+    val res: NumOfPerson = names
+        .asSequence()
+        .groupingBy { it }
+        .fold(0) { curAccumulator: Int, _: String -> curAccumulator + 2 }
+    println(res)
+
+
 }
+
+fun doublingAccomulator(): (Int, String) -> Int = { input: Int, _: String -> input + 2 }
+
 
 object MySingleTonOne {
     val value: MySingleTonTwo? = null
