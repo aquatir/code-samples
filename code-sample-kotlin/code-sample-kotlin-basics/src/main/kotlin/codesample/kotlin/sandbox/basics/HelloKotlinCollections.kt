@@ -91,15 +91,15 @@ object MySingleTonTwo {
 }
 
 object MySingleTonThree {
-    fun init(): Unit {
+    fun init() {
         println("init...")
     }
 
-    fun doWork(): Unit {
+    fun doWork() {
         println("do work...")
     }
 
-    fun close(): Unit {
+    fun close() {
         println("close...")
     }
 }
