@@ -1,5 +1,7 @@
 package codesample.kotlin.sandbox.springboot.controller
 
+import codesample.kotlin.sandbox.springboot.db.CustomerRepository
+import codesample.kotlin.sandbox.springboot.entity.Customer
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -19,12 +21,14 @@ class HelloWorldControllerTest {
 
     @Autowired
     lateinit var mockMvc: MockMvc
+    @Autowired
+    lateinit var customerRepository: CustomerRepository
 
     @Test
     fun getAllTest() {
         mockMvc.perform(get("/all"))
-                .andDo(print())
-                .andExpect(status().isOk)
+            .andDo(print())
+            .andExpect(status().isOk)
     }
 
     @Test
@@ -33,9 +37,43 @@ class HelloWorldControllerTest {
         val destroyTable = "' or '1'='1"
 
         /* Doesn't work! */
-        mockMvc.perform(post("/customer")
-                .param("name", destroyTable))
-                .andDo(print())
-                .andExpect(status().isOk)
+        mockMvc.perform(
+            post("/customer")
+                .param("name", destroyTable)
+        )
+            .andDo(print())
+            .andExpect(status().isOk)
+    }
+
+    @Test
+    fun testSave() {
+        mockMvc.perform(get("/save"))
+            .andDo(print())
+            .andExpect(status().isOk)
+    }
+
+    /** Hibernate is actually updating entity even if it is immutable,
+     * so please don't write code like this in production*/
+    @Test
+    fun save() {
+        val customerOne = Customer("Foo", "Foo")
+        val customerTwo = Customer("Bar", "Bar")
+
+        val set = setOf(customerOne, customerTwo)
+
+        with(customerRepository) {
+            val custOneAfterSave = save(customerOne)
+            val custTwoAfterSave = save(customerTwo)
+
+            println("is custOneBefore in set? : ${set.contains(customerOne)}")
+            println("is custTwoBefore in set? : ${set.contains(customerTwo)}")
+            println("is custOneAfter in set? : ${set.contains(custOneAfterSave)}")
+            println("is custTwoAfter in set? : ${set.contains(custTwoAfterSave)}")
+
+            println("is beforeOne equal afterOne? ${customerOne == custOneAfterSave}")
+            println("is beforeTwo equal afterTwo? ${customerTwo == custTwoAfterSave}")
+        }
+
+        println(set)
     }
 }
