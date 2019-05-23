@@ -1,5 +1,7 @@
 package codesample.kotlin.sandbox.basics
 
+import com.sun.org.apache.xml.internal.security.utils.Base64
+
 typealias NumOfPerson = Map<String, Int>
 
 fun main(args: Array<String>) {
@@ -91,6 +93,33 @@ fun main(args: Array<String>) {
         .groupingBy { it }
         .fold(0) { curAccumulator: Int, _: String -> curAccumulator + 2 }
     println(res)
+
+
+    val weirdMap = mapOf("к&лю#ч1" to "знач#ени&е1", "кл#юч#2" to "з&на&че#ни#е2", "кл#ю&ч3" to "з&начени#е3")
+
+    val convertedMap = weirdMap.mapKeys { Base64.encode(it.key.toByteArray()) }
+        .mapValues { Base64.encode(it.value.toByteArray()) };
+
+    val asString = convertedMap
+        .map { "${it.key}&${it.value}" }
+        .joinToString("#")
+    println(asString)
+
+    val backToList = asString.split("#")
+    println(backToList)
+    val backToMap = backToList.associate {
+        val (left, right) = it.split("&")
+        left to right
+    }
+    println(backToMap)
+    println(backToMap == convertedMap)
+    val backToWeirdMap = backToMap
+        .mapKeys { String(Base64.decode(it.key.toByteArray())) }
+        .mapValues { String(Base64.decode(it.value.toByteArray())) }
+    println(backToWeirdMap)
+    println(backToWeirdMap == weirdMap)
+
+
 
 
 }
