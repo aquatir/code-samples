@@ -43,6 +43,13 @@ class TheSub : TheSuper(), Runnnnable {
     }
 }
 
+class Other(str: String) {
+
+    var str: String = str
+        get() = field.toUpperCase()
+        set(value) { field = value.toLowerCase() }
+}
+
 interface Runnnnable {
     fun run()
     var myVar: String // Kotlin properties may also be defined and initialized in subclasses
@@ -74,5 +81,13 @@ fun main(args: Array<String>) {
     val sub = TheSub()
     sub.printName()
     sub.run()
+
+    val o = Other("aaa")
+    with(Other("aaa")) {
+        println(str)
+        str = "bbb"
+        println(str)
+    }
+
 }
 
