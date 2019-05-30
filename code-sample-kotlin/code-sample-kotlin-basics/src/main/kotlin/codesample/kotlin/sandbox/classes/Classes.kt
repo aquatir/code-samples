@@ -55,6 +55,18 @@ interface Runnnnable {
     var myVar: String // Kotlin properties may also be defined and initialized in subclasses
 }
 
+
+// Properties not defined in primary constructor in data classes will not be in toString()
+data class Person(val name: String) {
+
+
+    var age: Int = 0
+    constructor(name: String, age: Int): this(name) {
+        this.age = age
+    }
+
+}
+
 fun main(args: Array<String>) {
     val innerStatic = TheSuper.InnerStatic()
     innerStatic.printInnerStatic()
@@ -82,12 +94,14 @@ fun main(args: Array<String>) {
     sub.printName()
     sub.run()
 
-    val o = Other("aaa")
     with(Other("aaa")) {
         println(str)
         str = "bbb"
         println(str)
     }
 
+    // Will only print name becase only primary constructor parameters for data class are printed in Kotlin
+    val person = Person("privet", 1)
+    println(person.toString())
 }
 
