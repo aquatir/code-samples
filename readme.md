@@ -41,7 +41,7 @@
                     <li><b>code-sample-kotlin-graphql</b>. GraphQL exampe with Kotlin </li>
                     <li><b>code-sample-kotlin-graphql</b>. GraphQL exampe with Kotlin using SPQR schema-from-code generator </li>
                     <li><b>code-sample-kotlin-spring-security</b>. Simple username-password authentication example </li>
-                <ul>
+                </ul>
             </li>
             <li><b>ktor</b>. Ktor sample applications
                 <ul>
