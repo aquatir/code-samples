@@ -1,19 +1,9 @@
 package codesample.kotlin.ktor
 
-import io.ktor.application.*
-import io.ktor.response.*
-import io.ktor.request.*
-import io.ktor.routing.*
 import io.ktor.http.*
-import io.ktor.auth.*
-import io.ktor.gson.*
-import io.ktor.features.*
 import io.ktor.client.*
-import io.ktor.client.engine.apache.*
-import io.ktor.client.features.json.*
 import io.ktor.client.request.*
 import kotlinx.coroutines.*
-import io.ktor.client.features.logging.*
 import kotlin.test.*
 import io.ktor.server.testing.*
 import io.ktor.client.engine.mock.*
@@ -23,7 +13,7 @@ import io.ktor.client.call.*
 class ApplicationTest {
     @Test
     fun testRoot() {
-        withTestApplication({ module(testing = true) }) {
+        withTestApplication({ main(testing = true) }) {
             handleRequest(HttpMethod.Get, "/").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
                 assertEquals("HELLO WORLD!", response.content)
@@ -32,11 +22,32 @@ class ApplicationTest {
     }
 
     @Test
+    fun testPost() {
+        withTestApplication({ main(testing = true) }) {
+            handleRequest(HttpMethod.Post, "/body") {
+                addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+                setBody(
+                    """
+                    {"name": "name",
+                    "age": 5
+                    }
+                """.trimIndent()
+                )
+            }
+                .apply {
+                    assertEquals(HttpStatusCode.OK, response.status())
+                    assertEquals("""{"hello":"successful received body with name: name, age: 5"}""", response.content)
+                }
+        }
+
+    }
+
+    @Test
     fun testClientMock() {
         runBlocking {
             val client = HttpClient(MockEngine) {
                 engine {
-                    addHandler { request -> 
+                    addHandler { request ->
                         when (request.url.fullPath) {
                             "/" -> respond(
                                 ByteReadChannel(byteArrayOf(1, 2, 3)),

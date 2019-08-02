@@ -19,7 +19,7 @@ fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
 @Suppress("unused") // Referenced in application.conf
 @kotlin.jvm.JvmOverloads
-fun Application.module(testing: Boolean = false) {
+fun Application.main(testing: Boolean = false) {
     install(Authentication) {
     }
 
@@ -55,8 +55,12 @@ fun Application.module(testing: Boolean = false) {
         get("/json/gson") {
             call.respond(JsonSampleClass("keks"))
         }
+
+        post<Body> ("/body") {
+            call.respond(JsonSampleClass("successful received body with name: ${it.name}, age: ${it.age}"))
+        }
     }
 }
 
 data class JsonSampleClass(val hello: String)
-
+data class Body(val name: String, val age: Int)
