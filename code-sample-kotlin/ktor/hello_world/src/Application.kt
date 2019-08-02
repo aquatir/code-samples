@@ -18,8 +18,6 @@ import io.ktor.request.queryString
 import org.yaml.snakeyaml.Yaml
 
 
-fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
-
 
 sealed class Component(open val nodeName: String)
 class Leaf(override val nodeName: String): Component(nodeName) {
@@ -30,45 +28,61 @@ class Composite(override val nodeName: String, private val children: MutableList
     fun getChildren() = children
 }
 
-fun readMapRecursively(composite: Composite, mutableMap: MutableMap<String, Any>) {
-    mutableMap.forEach { (key, value) ->
-        when(value) {
-            is String -> composite.addChild(Composite(nodeName = key, children = mutableListOf(Leaf(value))))
-            else -> {
-                val innerComp = Composite(key)
-                composite.addChild(innerComp)
-                readMapRecursively(innerComp, value as MutableMap<String, Any>)
+class PropertyReader(map: MutableMap<String, Any>) {
 
+    private val propertiesHolder = Composite("head")
+
+    init {
+        val first = mapOf("head" to map)
+        readMapRecursively(propertiesHolder, first.getValue("head"))
+    }
+
+    /** Composite is used here instead of Map<String, Any> to ensure type-safety and to make traversal easier to update if
+     * required */
+    fun readProperty(path: String): String? {
+        val splittedPath = path.split("/")
+        var curPlaceInTree = propertiesHolder as Component
+
+        var curNumOfTraversed = 0
+        val targetNumOfTraversed = splittedPath.size
+        for (curPath: String in splittedPath) {
+            when (curPlaceInTree) {
+                is Leaf -> if (curNumOfTraversed == targetNumOfTraversed) return curPlaceInTree.nodeName
+                is Composite -> {
+                    val possibleChild = curPlaceInTree.getChildren().find { it.nodeName == curPath }
+                    if (possibleChild == null) {
+                        return null
+                    }
+                    else {
+                        curNumOfTraversed++
+                        curPlaceInTree = possibleChild
+                    }
+                }
+            }
+        }
+        return if (curNumOfTraversed == targetNumOfTraversed && curPlaceInTree.nodeName == splittedPath.last())
+            curPlaceInTree.nodeName
+        else null
+    }
+
+    private fun readMapRecursively(composite: Composite, mutableMap: MutableMap<String, Any>) {
+        mutableMap.forEach { (key, value) ->
+            when(value) {
+                is String -> composite.addChild(Composite(nodeName = key, children = mutableListOf(Leaf(value))))
+                else -> {
+                    val innerComp = Composite(key)
+                    composite.addChild(innerComp)
+                    readMapRecursively(innerComp, value as MutableMap<String, Any>)
+
+                }
             }
         }
     }
 }
 
-fun tryReadProperty(path: String, propertyTree: Composite): String? {
-    val splittedPath = path.split("/")
-    var curPlaceInTree = propertyTree as Component
 
-    var curNumOfTraversed = 0
-    val targetNumOfTraversed = splittedPath.size
-    for (curPath: String in splittedPath) {
-        when (curPlaceInTree) {
-            is Leaf -> if (curNumOfTraversed == targetNumOfTraversed) return curPlaceInTree.nodeName
-            is Composite -> {
-                val possibleChild = curPlaceInTree.getChildren().find { it.nodeName == curPath }
-                if (possibleChild == null) {
-                    return null
-                }
-                else {
-                    curNumOfTraversed++
-                    curPlaceInTree = possibleChild
-                }
-            }
-        }
-    }
-    return if (curNumOfTraversed == targetNumOfTraversed && curPlaceInTree.nodeName == splittedPath.last())
-        curPlaceInTree.nodeName
-    else null
-}
+
+fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
 @kotlin.jvm.JvmOverloads
 fun Application.main(testing: Boolean = false) {
@@ -78,18 +92,12 @@ fun Application.main(testing: Boolean = false) {
             .withHostAndPort(HostAndPort.fromString("localhost:8500"))
             .build()
     val kvClient = consulClient.keyValueClient()
-    val dirClient = consulClient.catalogClient()
-    val key = kvClient.getValueAsString("myservice")
+    val result = Yaml().load<MutableMap<String, Any>>(kvClient.getValueAsString("myservice").get())
 
-    val asYaml = Yaml()
-    val result = asYaml.load<MutableMap<String, Any>>(key.get())
+    val propReader = PropertyReader(result)
 
-    val first = mapOf("head" to result)
-    val composite = Composite("head")
-    readMapRecursively(composite, first.getValue("head"))
-
-    val prop1 = tryReadProperty("mykey/subkey1", composite)
-    val prop2 = tryReadProperty("other", composite)
+    val prop1 = propReader.readProperty("mykey/subkey1")
+    val prop2 = propReader.readProperty("other")
     println(result)
 
 
