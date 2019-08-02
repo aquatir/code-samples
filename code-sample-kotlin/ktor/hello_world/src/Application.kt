@@ -2,7 +2,6 @@ package codesample.kotlin.ktor
 
 import io.ktor.application.*
 import io.ktor.response.*
-import io.ktor.request.*
 import io.ktor.routing.*
 import io.ktor.http.*
 import io.ktor.auth.*
@@ -11,9 +10,10 @@ import io.ktor.features.*
 import io.ktor.client.*
 import io.ktor.client.engine.apache.*
 import io.ktor.client.features.json.*
-import io.ktor.client.request.*
 import kotlinx.coroutines.*
 import io.ktor.client.features.logging.*
+import io.ktor.request.queryString
+
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -55,11 +55,20 @@ fun Application.main(testing: Boolean = false) {
             call.respond(JsonSampleClass("keks"))
         }
 
+        get("/get/{id}/now") {
+            val id = call.parameters["id"]
+            val first = call.request.queryParameters["param1"]
+            val second = call.request.queryParameters["param2"]
+            val third = call.request.queryParameters["param3"]
+            call.respond(JsonSampleClass("$id $first $second $third qString: ${call.request.queryString()}"))
+        }
+
         post<Body> ("/body") {
             call.respond(JsonSampleClass("successful received body with name: ${it.name}, age: ${it.age}"))
         }
     }
 }
+
 
 data class JsonSampleClass(val hello: String)
 data class Body(val name: String, val age: Int)
