@@ -1,3 +1,5 @@
+import groovy.xml.MarkupBuilder
+
 buildscript {
     repositories {
         jcenter()
@@ -60,3 +62,70 @@ shadowJar {
     classifier = null
     version = null
 }
+
+// TODO: Add jooq later
+//task jooq {
+//    doLast {
+//        def writer = new StringWriter()
+//        def xml = new MarkupBuilder(writer)
+//                .configuration('xmlns': 'http://www.jooq.org/xsd/jooq-codegen-3.11.0.xsd') {
+//                    jdbc() {
+//                        driver('org.postgresql.Driver')
+//                        url("jdbc:postgresql://postgres-01.dev.oboz.app:5432/oboz2")
+//                        user("postgres")
+//                        password(System.getenv("DATABASE_PASSWORD"))
+//                    }
+//                    generator() {
+//                        strategy() {
+//                            name('org.jooq.codegen.example.JPrefixGeneratorStrategy')
+//                        }
+//                        database() {
+//                            excludes('ST_.*|_ST.*')
+//                            name("org.jooq.meta.postgres.PostgresDatabase")
+//                            inputSchema("seal_data")
+//                            forcedTypes() {
+//                                forcedType() {
+//                                    userType('org.postgis.Geometry')
+//                                    types('geometry|GEOMETRY|geography')
+//                                    binding('online.oboz.seal.eventsDaemon.utils.jooq.PostgisGeometryBinding')
+//                                }
+//                            }
+//                        }
+//
+//                        // Watch out for this caveat when using MarkupBuilder with "reserved names"
+//                        // - https://github.com/jOOQ/jOOQ/issues/4797
+//                        // - http://stackoverflow.com/a/11389034/521799
+//                        // - https://groups.google.com/forum/#!topic/jooq-user/wi4S9rRxk4A
+//                        generate([:]) {
+//                            pojos true
+//                            daos true
+//                        }
+//                        target() {
+//                            packageName('online.oboz.seal.eventsDaemon.db')
+//                            directory("${rootDir}/src_generated")
+//                        }
+//                    }
+//                }
+//
+//        GenerationTool.generate(writer.toString())
+//    }
+//}
+
+
+// TODO: Inject application name into app
+//processResources {
+//    from(sourceSets["main"].resources.srcDirs) {
+//        include("**/bootstrap.yml","**/application.yml","**/banner.txt")
+//        filter{ line->
+//
+//            def lineReplaced = line.replace("APPLICATION_NAME", "${project.properties.get("rootProject.name")}")
+//            if(project.findProperty('persist_git_info') == "true") {
+//                return lineReplaced.replace("GIT_SNAPSHOT_COMMIT", project.ext.git["git.commit.id.abbrev"])
+//                        .replace("GIT_SNAPSHOT_BRANCH",project.ext.git["git.branch"])
+//            }else {
+//                return lineReplaced
+//            }
+//        }
+//    }
+//    dependsOn("generateGitProperties")
+//}
