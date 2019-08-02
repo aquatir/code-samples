@@ -63,6 +63,13 @@ fun Application.main(testing: Boolean = false) {
             call.respond(JsonSampleClass("$id $first $second $third qString: ${call.request.queryString()}"))
         }
 
+        post<Body>("/body/{some}/{parameters}/{optional?}") {
+            val some = call.parameters["some"]!!
+            val parameters = call.parameters["parameters"]!!
+            val optional = call.parameters["optional"]
+            call.respond(JsonSampleClass("$some $parameters $optional"))
+        }
+
         post<Body> ("/body") {
             call.respond(JsonSampleClass("successful received body with name: ${it.name}, age: ${it.age}"))
         }
