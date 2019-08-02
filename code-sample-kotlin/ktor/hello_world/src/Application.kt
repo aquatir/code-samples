@@ -37,7 +37,10 @@ class PropertyReader(map: MutableMap<String, Any>) {
         readMapRecursively(propertiesHolder, first.getValue("head"))
     }
 
-    /** Composite is used here instead of Map<String, Any> to ensure type-safety and to make traversal easier to update if
+    /**
+     * read property from [map] passed in when this class is created
+     *
+     * Composite is used here instead of Map<String, Any> to ensure type-safety and to make traversal easier to update if
      * required */
     fun readProperty(path: String): String? {
         val splittedPath = path.split("/")
@@ -47,15 +50,14 @@ class PropertyReader(map: MutableMap<String, Any>) {
         val targetNumOfTraversed = splittedPath.size
         for (curPath: String in splittedPath) {
             when (curPlaceInTree) {
-                is Leaf -> if (curNumOfTraversed == targetNumOfTraversed) return curPlaceInTree.nodeName
+                is Leaf -> if (curNumOfTraversed == targetNumOfTraversed) return curPlaceInTree.nodeName // Is it reachable?
                 is Composite -> {
-                    val possibleChild = curPlaceInTree.getChildren().find { it.nodeName == curPath }
-                    if (possibleChild == null) {
-                        return null
-                    }
-                    else {
-                        curNumOfTraversed++
-                        curPlaceInTree = possibleChild
+                    when(val possibleChild = curPlaceInTree.getChildren().find { it.nodeName == curPath }) {
+                        null -> return null
+                        else -> {
+                            curNumOfTraversed++
+                            curPlaceInTree = possibleChild
+                        }
                     }
                 }
             }
@@ -119,13 +121,13 @@ fun Application.main(testing: Boolean = false) {
     }
     runBlocking {
         // Sample for making a HTTP Client request
-        /*
+/*
         val message = client.post<JsonSampleClass> {
             url("http://127.0.0.1:8080/path/to/endpoint")
             contentType(ContentType.Application.Json)
             body = JsonSampleClass(hello = "world")
-        }
-        */
+        }*/
+
     }
 
     routing {
