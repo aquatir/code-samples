@@ -71,8 +71,8 @@ shadowJar {
 //                .configuration('xmlns': 'http://www.jooq.org/xsd/jooq-codegen-3.11.0.xsd') {
 //                    jdbc() {
 //                        driver('org.postgresql.Driver')
-//                        url("jdbc:postgresql://postgres-01.dev.oboz.app:5432/oboz2")
-//                        user("postgres")
+//                        url("jdbc:postgresql://host:port/dbname")
+//                        user("pg")
 //                        password(System.getenv("DATABASE_PASSWORD"))
 //                    }
 //                    generator() {
