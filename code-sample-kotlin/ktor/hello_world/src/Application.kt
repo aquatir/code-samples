@@ -2,6 +2,7 @@ package codesample.kotlin.ktor
 
 import com.google.common.net.HostAndPort
 import com.orbitz.consul.Consul
+import com.typesafe.config.ConfigFactory
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.routing.*
@@ -13,8 +14,10 @@ import io.ktor.client.engine.apache.*
 import io.ktor.client.features.json.*
 import kotlinx.coroutines.*
 import io.ktor.client.features.logging.*
+import io.ktor.config.HoconApplicationConfig
 import io.ktor.gson.gson
 import io.ktor.request.queryString
+import io.ktor.server.netty.NettyApplicationEngine
 import org.yaml.snakeyaml.Yaml
 
 
@@ -84,6 +87,9 @@ class PropertyReader(map: MutableMap<String, Any>) {
 
 
 
+
+
+
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
 @kotlin.jvm.JvmOverloads
@@ -101,6 +107,9 @@ fun Application.main(testing: Boolean = false) {
     val prop1 = propReader.readProperty("mykey/subkey1")
     val prop2 = propReader.readProperty("other")
     println(result)
+
+    val resultNum = this.environment.config.propertyOrNull("custom_constant.value_num")?.getString()?.toInt()
+    val resultStr = this.environment.config.propertyOrNull("custom_constant.value_str")?.getString()
 
 
     install(Authentication) {
