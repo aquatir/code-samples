@@ -84,6 +84,10 @@ class PropertyReader(map: MutableMap<String, Any>) {
 }
 
 
+
+
+
+
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
 @kotlin.jvm.JvmOverloads
@@ -109,6 +113,9 @@ fun Application.main(testing: Boolean = false) {
     val prop4 = propReaderService.readProperty("specific2")
     println(common)
 
+
+    val resultNum = this.environment.config.propertyOrNull("custom_constant.value_num")?.getString()?.toInt()
+    val resultStr = this.environment.config.propertyOrNull("custom_constant.value_str")?.getString()
 
 
     install(Authentication) {
