@@ -90,6 +90,18 @@ class PropertyReader(map: MutableMap<String, Any>) {
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
+/**
+ * Что нужно:
+ * Генериться из openApi
+ * CHECK Подгружать конфиги из консула
+ * Работать с кафкой, как в качестве consumer, так и в качестве producer
+ * Работать с postgres (из jooq)
+ * Уметь подниматься без окружения для тестов
+ * CHECK Собираться в docker образ
+ * Собираться через gitlab-ci
+ * Уметь в health-check
+ */
+
 @kotlin.jvm.JvmOverloads
 fun Application.main(testing: Boolean = false) {
 
