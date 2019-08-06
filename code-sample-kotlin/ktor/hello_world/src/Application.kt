@@ -18,12 +18,13 @@ import io.ktor.request.queryString
 import org.yaml.snakeyaml.Yaml
 
 
-
 sealed class Component(open val nodeName: String)
-class Leaf(override val nodeName: String): Component(nodeName) {
+class Leaf(override val nodeName: String) : Component(nodeName) {
     fun getValue() = nodeName
 }
-class Composite(override val nodeName: String, private val children: MutableList<Component> = mutableListOf()): Component(nodeName) {
+
+class Composite(override val nodeName: String, private val children: MutableList<Component> = mutableListOf()) :
+    Component(nodeName) {
     fun addChild(child: Component) = children.add(child)
     fun getChildren() = children
 }
@@ -52,7 +53,7 @@ class PropertyReader(map: MutableMap<String, Any>) {
             when (curPlaceInTree) {
                 is Leaf -> if (curNumOfTraversed == targetNumOfTraversed) return curPlaceInTree.nodeName // Is it reachable?
                 is Composite -> {
-                    when(val possibleChild = curPlaceInTree.getChildren().find { it.nodeName == curPath }) {
+                    when (val possibleChild = curPlaceInTree.getChildren().find { it.nodeName == curPath }) {
                         null -> return null
                         else -> {
                             curNumOfTraversed++
@@ -69,7 +70,7 @@ class PropertyReader(map: MutableMap<String, Any>) {
 
     private fun readMapRecursively(composite: Composite, mutableMap: MutableMap<String, Any>) {
         mutableMap.forEach { (key, value) ->
-            when(value) {
+            when (value) {
                 is String -> composite.addChild(Composite(nodeName = key, children = mutableListOf(Leaf(value))))
                 else -> {
                     val innerComp = Composite(key)
@@ -83,24 +84,31 @@ class PropertyReader(map: MutableMap<String, Any>) {
 }
 
 
-
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
 @kotlin.jvm.JvmOverloads
 fun Application.main(testing: Boolean = false) {
 
     val consulClient = Consul
-            .builder()
-            .withHostAndPort(HostAndPort.fromString("localhost:8500"))
-            .build()
+        .builder()
+        .withHostAndPort(HostAndPort.fromString("localhost:8500"))
+        .build()
     val kvClient = consulClient.keyValueClient()
-    val result = Yaml().load<MutableMap<String, Any>>(kvClient.getValueAsString("myservice").get())
 
-    val propReader = PropertyReader(result)
+    val yamlReader = Yaml()
+    val common = yamlReader.load<MutableMap<String, Any>>(kvClient.getValueAsString("config/common/data").get())
+    val service = yamlReader.load<MutableMap<String, Any>>(kvClient.getValueAsString("config/hello_world/data").get())
 
-    val prop1 = propReader.readProperty("mykey/subkey1")
-    val prop2 = propReader.readProperty("other")
-    println(result)
+    val propReaderCommon = PropertyReader(common)
+    val propReaderService = PropertyReader(service)
+
+    val prop1 = propReaderCommon.readProperty("common1/conf1")
+    val prop2 = propReaderCommon.readProperty("common2")
+
+    val prop3 = propReaderService.readProperty("specific1/conf1")
+    val prop4 = propReaderService.readProperty("specific2")
+    println(common)
+
 
 
     install(Authentication) {
@@ -154,7 +162,7 @@ fun Application.main(testing: Boolean = false) {
             call.respond(JsonSampleClass("$some $parameters $optional"))
         }
 
-        post<Body> ("/body") {
+        post<Body>("/body") {
             call.respond(JsonSampleClass("successful received body with name: ${it.name}, age: ${it.age}"))
         }
     }
