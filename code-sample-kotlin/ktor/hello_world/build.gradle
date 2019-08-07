@@ -1,5 +1,3 @@
-import groovy.xml.MarkupBuilder
-
 buildscript {
     repositories {
         jcenter()
@@ -9,12 +7,14 @@ buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "com.github.jengelman.gradle.plugins:shadow:5.1.0"
+        classpath "org.openapitools:openapi-generator-gradle-plugin:4.0.3"
     }
 }
 
 apply plugin: 'kotlin'
 apply plugin: "com.github.johnrengelman.shadow"
 apply plugin: 'application'
+apply plugin: "org.openapi.generator"
 
 group 'codesample.kotlin.ktor'
 version '0.0.1'
@@ -22,9 +22,11 @@ mainClassName = "io.ktor.server.netty.EngineMain"
 
 sourceSets {
     main.kotlin.srcDirs = main.java.srcDirs = ['src']
+    test.kotlin.srcDirs = test.java.srcDirs = ['test']
+    main.kotlin.srcDirs = ['src/main/kotlin', "$buildDir/generated/openapi/src/main/kotlin"]
     main.resources.srcDirs = ['resources']
     test.resources.srcDirs = ['testresources']
-    test.kotlin.srcDirs = test.java.srcDirs = ['test']
+
 }
 
 repositories {
@@ -48,6 +50,8 @@ dependencies {
     implementation "io.ktor:ktor-client-json-jvm:$ktor_version"
     implementation "io.ktor:ktor-client-gson:$ktor_version"
     implementation "io.ktor:ktor-client-logging-jvm:$ktor_version"
+    implementation "io.ktor:ktor-locations:$ktor_version"
+    implementation "io.ktor:ktor-metrics:$ktor_version"
 
     implementation "com.orbitz.consul:consul-client:1.3.6"
     implementation "org.yaml:snakeyaml:1.24"
@@ -62,6 +66,25 @@ shadowJar {
     classifier = null
     version = null
 }
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    dependsOn(tasks.getByName("openApiGenerate"))
+}
+
+tasks.withType(org.openapitools.generator.gradle.plugin.tasks.GenerateTask) {
+    outputDir = "$buildDir/generated/openapi"
+    generatorName = "kotlin-server"
+    inputSpec = "openapi3.yaml"
+    modelPackage = "codesample.kotlin.ktor.model"
+    apiPackage = "codesample.kotlin.ktor.api"
+    invokerPackage = "_trash"
+    configOptions =
+            ["library": "ktor"]
+}
+
 
 // TODO: Add jooq later
 //task jooq {

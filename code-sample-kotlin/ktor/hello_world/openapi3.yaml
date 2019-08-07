@@ -1,0 +1,217 @@
+openapi: "3.0.1"
+info:
+    version: 1.0.0
+    description: Сервис подключения к пломбе Клиента
+    title: seal-client-seal-joining
+servers:
+    - url: '{server}'
+
+paths:
+    /v1/grant_access/{phone_number}: ### Maybe delete all of the above?
+        post:
+            summary: Запрос на предоставление доступа для стороннего Клиента к пломбе
+            operationId: grantAccessForForeignClient
+            parameters:
+                - name: phone_number
+                  in: path
+                  required: true
+                  description: Номер телефона клиента, которому дают доступ к пломбе. Строка чисел, начинающихся с кода страны
+                  schema:
+                      type: string
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/GrantRequestDeviceUuidsDto' #TODO: Refactor to single field with 'required' overrides?
+            responses:
+                "201":
+                    description: OK
+                default:
+                    description: Ошибка
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+    /v1/access_period/{uuid}:
+        put:
+            summary: Запрос на установку периода наблюдения за пломбой
+            operationId: setWatchPeriod
+            parameters:
+                - name: uuid
+                  in: path
+                  required: true
+                  description: UUID клиента, имеющего доступ к пломбе
+                  schema:
+                      type: string
+                      format: uuid
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/SetWatchPeriodUuidsDto' #TODO: Refactor to single field with overrides
+
+            responses:
+                "201":
+                    description: OK
+                default:
+                    description: Ошибка
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+    /v1/terminate_access/{uuid}:
+        post:
+            summary: Запрос на лишение стороннего Клиента доступа к наблюдению за пломбой
+            operationId: terminateWatchAccess
+            parameters:
+                - name: uuid
+                  in: path
+                  required: true
+                  description: UUID клиента, имеющего доступ к пломье
+                  schema:
+                      type: string
+                      format: uuid
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/TerminateAccessUuidsDto' #TODO: Refactor to single field with overrides
+            responses:
+                "201":
+                    description: OK
+                default:
+                    description: Ошибка
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+    /v1/client_seals_connections:
+        get:
+            summary: Запрос списка пломб клиента c подключениями
+            operationId: getAvailableClientDevices
+
+            responses:
+                "200":
+                    description: Список пломб, доступных клиенту
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/AvailableDevicesDto"
+                default:
+                    description: Ошибка
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+
+
+components:
+    schemas:
+        Error:
+            required:
+                - error_code
+                - error_message
+            properties:
+                error_code:
+                    type: string
+                error_message:
+                    type: string
+
+        GrantRequestDeviceUuidsDto:
+            type: object
+            description: Тело запроса на предоставление доступа для стороннего Клиента к Устройствам
+            required:
+                - device_uuids
+            properties:
+                device_uuids:
+                    description: Массив UUID устройств, к которым выдан доступ
+                    type: array
+                    items:
+                        type: string
+                        format: uuid
+                access_dt_from:
+                    description: Необязательное. Время начала доступа c временной зоной
+                    type: string
+                    format: date-time
+                access_dt_to:
+                    description: Необязательное. Время окончания доступа c временной зоной
+                    type: string
+                    format: date-time
+
+        SetWatchPeriodUuidsDto:
+            type: object
+            description: Тело запроса на установку периода наблюдения за Устройствами
+            required:
+                - device_uuids
+                - access_dt_from
+                - access_dt_to
+            properties:
+                device_uuids:
+                    description: Массив UUID устройств, к которым выдан доступ
+                    type: array
+                    items:
+                        type: string
+                        format: uuid
+                access_dt_from:
+                    description: Необязательное. Время начала доступа c временной зоной
+                    type: string
+                    format: date-time
+                access_dt_to:
+                    description: Необязательное. Время окончания доступа c временной зоной
+                    type: string
+                    format: date-time
+
+        TerminateAccessUuidsDto:
+            type: object
+            description: Тело запроса на лишение стороннего Клиента доступа к наблюдению за Устройствами
+            required:
+                - device_uuids
+            properties:
+                device_uuids:
+                    description: Массив UUID устройств, к которым выдан доступ
+                    type: array
+                    items:
+                        type: string
+                        format: uuid
+
+
+        AvailableDevicesDto:
+            description: Список устройств клиента c подключениями
+            properties:
+                devices:
+                    description: Набор устройств пользователя
+                    type: array
+                    items:
+                        $ref: "#/components/schemas/DeviceDescription"
+
+        DeviceDescription:
+            properties:
+                uuid:
+                    type: string
+                    format: uuid
+                number:
+                    type: string
+                type:
+                    type: string
+                comment:
+                    type: string
+                active_connections:
+                    type: array
+                    items:
+                        $ref: "#/components/schemas/DeviceConnection"
+                disactive_connections:
+                    type: array
+                    items:
+                        $ref: "#/components/schemas/DeviceConnection"
+
+        DeviceConnection:
+            properties:
+                uuid:
+                    type: string
+                    format: uuid
+                client_name:
+                    type: string
+
