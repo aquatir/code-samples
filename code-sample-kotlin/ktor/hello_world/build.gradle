@@ -80,7 +80,6 @@ tasks.withType(org.openapitools.generator.gradle.plugin.tasks.GenerateTask) {
     inputSpec = "openapi3.yaml"
     modelPackage = "codesample.kotlin.ktor.model"
     apiPackage = "codesample.kotlin.ktor.api"
-    invokerPackage = "_trash"
     configOptions =
             ["library": "ktor"]
 }

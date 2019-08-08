@@ -1,5 +1,6 @@
 package codesample.kotlin.ktor
 
+import codesample.kotlin.ktor.api.DefaultApi
 import com.google.common.net.HostAndPort
 import com.orbitz.consul.Consul
 import io.ktor.application.*
@@ -14,6 +15,7 @@ import io.ktor.client.features.json.*
 import kotlinx.coroutines.*
 import io.ktor.client.features.logging.*
 import io.ktor.gson.gson
+import io.ktor.locations.Locations
 import io.ktor.request.queryString
 import org.yaml.snakeyaml.Yaml
 
@@ -92,12 +94,12 @@ fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
 /**
  * Что нужно:
- * Генериться из openApi
- * CHECK Подгружать конфиги из консула
+ * +/- Генериться из openApi (генерится, но нет артефактор для расширения)
+ * + Подгружать конфиги из консула
  * Работать с кафкой, как в качестве consumer, так и в качестве producer
  * Работать с postgres (из jooq)
  * Уметь подниматься без окружения для тестов
- * CHECK Собираться в docker образ
+ * + Собираться в docker образ
  * Собираться через gitlab-ci
  * Уметь в health-check
  */
@@ -137,6 +139,7 @@ fun Application.main(testing: Boolean = false) {
         gson {
         }
     }
+    install(Locations)
 
     val client = HttpClient(Apache) {
         install(JsonFeature) {
@@ -184,8 +187,15 @@ fun Application.main(testing: Boolean = false) {
         post<Body>("/body") {
             call.respond(JsonSampleClass("successful received body with name: ${it.name}, age: ${it.age}"))
         }
+
+        DefaultApi()
+
+
+
     }
 }
+
+
 
 
 data class JsonSampleClass(val hello: String)

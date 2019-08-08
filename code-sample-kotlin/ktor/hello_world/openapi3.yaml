@@ -27,12 +27,6 @@ paths:
             responses:
                 "201":
                     description: OK
-                default:
-                    description: Ошибка
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
     /v1/access_period/{uuid}:
         put:
             summary: Запрос на установку периода наблюдения за пломбой
@@ -55,12 +49,6 @@ paths:
             responses:
                 "201":
                     description: OK
-                default:
-                    description: Ошибка
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
     /v1/terminate_access/{uuid}:
         post:
             summary: Запрос на лишение стороннего Клиента доступа к наблюдению за пломбой
@@ -78,16 +66,10 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/TerminateAccessUuidsDto' #TODO: Refactor to single field with overrides
+                            $ref: '#/components/schemas/TerminateAccessUuidsDto'
             responses:
                 "201":
                     description: OK
-                default:
-                    description: Ошибка
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
     /v1/client_seals_connections:
         get:
             summary: Запрос списка пломб клиента c подключениями
@@ -100,13 +82,6 @@ paths:
                         application/json:
                             schema:
                                 $ref: "#/components/schemas/AvailableDevicesDto"
-                default:
-                    description: Ошибка
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-
 
 components:
     schemas:
