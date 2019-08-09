@@ -3,3 +3,6 @@ common1:
   conf2: com_conf_2
 
 common2: com_3
+
+kafka:
+  url: kafka:9092
