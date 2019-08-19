@@ -1,6 +1,5 @@
 package codesample.kotlin.ktor
 
-import codesample.kotlin.ktor.api.DefaultApi
 import com.google.common.net.HostAndPort
 import com.orbitz.consul.Consul
 import io.ktor.application.*
@@ -27,7 +26,6 @@ import org.apache.kafka.common.serialization.StringSerializer
 import org.yaml.snakeyaml.Yaml
 import java.time.Duration
 import java.util.*
-import kotlin.concurrent.thread
 
 
 sealed class Component(open val nodeName: String)
@@ -182,8 +180,8 @@ fun Application.main(testing: Boolean = false) {
     val consumer = createConsumer(kafkaBrokerUrl)
         .apply { this.subscribe(listOf("new_topic")) }
 
-    launch {
-        while (true) {
+    GlobalScope.launch {
+        while (isActive) {
             val record = consumer.poll(Duration.ofSeconds(10))
             if (record.count() == 0) {
                 println("no new messages")
@@ -235,7 +233,7 @@ fun Application.main(testing: Boolean = false) {
 
         get("/new_msg") {
 
-            GlobalScope.launch {
+            launch {
                 sendMsg(producer)
             }
 
@@ -271,7 +269,7 @@ fun Application.main(testing: Boolean = false) {
 }
 
 private fun sendMsg(producer: Producer<String, String>) {
-    producer.send(ProducerRecord("new_topic", "value")).get()
+    producer.send(ProducerRecord("new_topic", "value"))
     println("done with sending")
 }
 

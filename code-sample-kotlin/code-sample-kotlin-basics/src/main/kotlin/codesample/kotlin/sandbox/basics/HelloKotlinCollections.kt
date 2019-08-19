@@ -1,6 +1,7 @@
 package codesample.kotlin.sandbox.basics
 
-import com.sun.org.apache.xml.internal.security.utils.Base64
+import java.util.*
+
 
 typealias NumOfPerson = Map<String, Int>
 
@@ -97,8 +98,10 @@ fun main(args: Array<String>) {
 
     val weirdMap = mapOf("к&лю#ч1" to "знач#ени&е1", "кл#юч#2" to "з&на&че#ни#е2", "кл#ю&ч3" to "з&начени#е3")
 
-    val convertedMap = weirdMap.mapKeys { Base64.encode(it.key.toByteArray()) }
-        .mapValues { Base64.encode(it.value.toByteArray()) };
+    val encoder = Base64.getEncoder()
+    val decoder = Base64.getDecoder()
+    val convertedMap = weirdMap.mapKeys { encoder.encode(it.key.toByteArray()) }
+        .mapValues { encoder.encode(it.value.toByteArray()) };
 
     val asString = convertedMap
         .map { "${it.key}&${it.value}" }
@@ -114,8 +117,8 @@ fun main(args: Array<String>) {
     println(backToMap)
     println(backToMap == convertedMap)
     val backToWeirdMap = backToMap
-        .mapKeys { String(Base64.decode(it.key.toByteArray())) }
-        .mapValues { String(Base64.decode(it.value.toByteArray())) }
+        .mapKeys { String(decoder.decode(it.key.toByteArray())) }
+        .mapValues { String(decoder.decode(it.value.toByteArray())) }
     println(backToWeirdMap)
     println(backToWeirdMap == weirdMap)
 
