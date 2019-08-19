@@ -11,6 +11,7 @@ import kotlinx.coroutines.io.*
 import io.ktor.client.call.*
 
 class ApplicationTest {
+
     @Test
     fun testRoot() {
         withTestApplication({ main(testing = true) }) {
@@ -39,7 +40,6 @@ class ApplicationTest {
                     assertEquals("""{"hello":"successful received body with name: name, age: 5"}""", response.content)
                 }
         }
-
     }
 
     @Test

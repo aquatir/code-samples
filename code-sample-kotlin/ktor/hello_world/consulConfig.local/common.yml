@@ -5,4 +5,4 @@ common1:
 common2: com_3
 
 kafka:
-  url: kafka:9092
+  url: localhost:9092

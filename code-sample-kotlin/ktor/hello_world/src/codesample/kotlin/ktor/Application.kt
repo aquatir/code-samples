@@ -17,11 +17,15 @@ import io.ktor.client.features.logging.*
 import io.ktor.gson.gson
 import io.ktor.locations.Locations
 import io.ktor.request.queryString
+import org.apache.kafka.clients.consumer.Consumer
+import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.Producer
 import org.apache.kafka.clients.producer.ProducerRecord
+import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.kafka.common.serialization.StringSerializer
 import org.yaml.snakeyaml.Yaml
+import java.time.Duration
 import java.util.*
 
 
@@ -113,6 +117,17 @@ private fun createProducer(brokers: String): Producer<String, String> {
     return KafkaProducer(props)
 }
 
+fun createConsumer(brokers: String): Consumer<String, String> {
+    val props = Properties()
+        .apply {
+            this["bootstrap.servers"] = brokers
+            this["group.id"] = "hello_world"
+            this["key.deserializer"] = StringDeserializer::class.java.canonicalName
+            this["value.deserializer"] = StringDeserializer::class.java.canonicalName
+        }
+    return KafkaConsumer(props)
+}
+
 
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
@@ -158,11 +173,26 @@ fun Application.main(testing: Boolean = false) {
     println("$prop1, $prop2 $prop3 $prop4 $resultNum $resultStr")
 
     // KAFKA
-    val producer = createProducer(propReaderCommon.readPropertyOrThrow("kafka/url"))
+    val kafkaBrokerUrl = propReaderCommon.readPropertyOrThrow("kafka/url")
 
+    val producer = createProducer(kafkaBrokerUrl)
     val sendResult = producer.send(ProducerRecord("new_topic", "value")).get()
 
+    val consumer = createConsumer(kafkaBrokerUrl)
+        .apply { this.subscribe(listOf("new_topic")) }
+
+    launch {
+        while (true) {
+            val record = consumer.poll(Duration.ofSeconds(10))
+            println("RECORD:: $record")
+            consumer.commitSync()
+        }
+    }
+
     println("offset: ${sendResult.offset()} partition: ${sendResult.partition()}")
+
+    producer.send(ProducerRecord("new_topic", "value")).get()
+
 
 
 
@@ -196,6 +226,8 @@ fun Application.main(testing: Boolean = false) {
 
     }
 
+    producer.send(ProducerRecord("new_topic", "value")).get()
+
     routing {
         get("/") {
             call.respondText("HELLO WORLD!", contentType = ContentType.Text.Plain)
@@ -224,15 +256,13 @@ fun Application.main(testing: Boolean = false) {
             call.respond(JsonSampleClass("successful received body with name: ${it.name}, age: ${it.age}"))
         }
 
-        DefaultApi()
 
-
+        println("kek")
+        producer.send(ProducerRecord("new_topic", "value")).get()
 
     }
 
 }
-
-
 
 
 data class JsonSampleClass(val hello: String)
