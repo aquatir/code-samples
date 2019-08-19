@@ -27,6 +27,7 @@ import org.apache.kafka.common.serialization.StringSerializer
 import org.yaml.snakeyaml.Yaml
 import java.time.Duration
 import java.util.*
+import kotlin.concurrent.thread
 
 
 sealed class Component(open val nodeName: String)
@@ -184,17 +185,18 @@ fun Application.main(testing: Boolean = false) {
     launch {
         while (true) {
             val record = consumer.poll(Duration.ofSeconds(10))
-            println("RECORD:: $record")
+            if (record.count() == 0) {
+                println("no new messages")
+            } else {
+                record.records("new_topic").forEach {
+                    println("received on consumer: ${it.value()}")
+                }
+            }
             consumer.commitSync()
         }
     }
 
     println("offset: ${sendResult.offset()} partition: ${sendResult.partition()}")
-
-    producer.send(ProducerRecord("new_topic", "value")).get()
-
-
-
 
 
     // Actual application
@@ -226,11 +228,19 @@ fun Application.main(testing: Boolean = false) {
 
     }
 
-    producer.send(ProducerRecord("new_topic", "value")).get()
-
     routing {
         get("/") {
             call.respondText("HELLO WORLD!", contentType = ContentType.Text.Plain)
+        }
+
+        get("/new_msg") {
+
+            GlobalScope.launch {
+                sendMsg(producer)
+            }
+
+            println("done with handling")
+            call.respondText("Send message!", contentType = ContentType.Text.Plain)
         }
 
         get("/json/gson") {
@@ -256,12 +266,13 @@ fun Application.main(testing: Boolean = false) {
             call.respond(JsonSampleClass("successful received body with name: ${it.name}, age: ${it.age}"))
         }
 
-
-        println("kek")
-        producer.send(ProducerRecord("new_topic", "value")).get()
-
     }
 
+}
+
+private fun sendMsg(producer: Producer<String, String>) {
+    producer.send(ProducerRecord("new_topic", "value")).get()
+    println("done with sending")
 }
 
 
