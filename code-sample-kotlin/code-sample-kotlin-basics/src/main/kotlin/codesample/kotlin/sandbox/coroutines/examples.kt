@@ -83,6 +83,19 @@ fun main() =
         numProducer.cancel()
 
 
+        println("****************")
+
+        // Ticker channel
+        val ticker = ticker(delayMillis = 1000, initialDelayMillis = 0)
+
+        repeat(3) {
+            ticker.receive()
+            println("ping")
+            ticker.receive()
+            println("pong")
+        }
+        ticker.cancel()
+        println("****************")
 
 
     }
