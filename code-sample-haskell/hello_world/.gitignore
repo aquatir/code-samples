@@ -5,3 +5,7 @@ hello
 factorial.o
 factorial.hi
 factorial
+
+par.o
+par.hi
+par
