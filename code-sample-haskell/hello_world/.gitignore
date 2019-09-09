@@ -13,3 +13,7 @@ par
 indentation.o
 indentation.hi
 indentation
+
+cases.o
+cases.hi
+cases
