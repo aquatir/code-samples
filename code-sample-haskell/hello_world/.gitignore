@@ -1,3 +1,7 @@
 hello.o
 hello.hi
 hello
+
+factorial.o
+factorial.hi
+factorial
