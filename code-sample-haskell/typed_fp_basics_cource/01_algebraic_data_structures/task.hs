@@ -1,7 +1,7 @@
 -- Ссылка на задание: https://gist.github.com/astynax/1eb88e195c4bab2b8d31d04921b18dd0
 -- Нужно сделать только часть 1
 
---module ADT_TASK where
+module ADT_TASK where
 
 
 -- Откуда-нибудь заимпортить...?
@@ -11,9 +11,9 @@ data ListNonEmpty a = ListNonEmpty a (List a)    deriving (Show)
 
 -- Фишки и колонки 
 ---  
---- 1. Как задать Pillar - как конкретную имплементацию ListNonEmpty с параметром-цветом?
+--- 1. Как задать Pillar - как конкретную имплементацию ListNonEmpty с параметром Chip?
 --- 2. Figure (Color) Pillar | Chip -  это получилась пара из цвета и либо столбца либо фишки, так? 
---- 3. А как создать с Either <Pillar, Chip> ? В чем отличие A|B и Either A|B ?
+--- 3. А как создать с Either <Pillar, Chip> ? В чем отличие A|B и Either A|B ? Что вообще такое Either?
 --- v     
 
 data Color = Red | Blue                            deriving (Show) -- Доступные цвета фишки
@@ -33,7 +33,7 @@ data Field = Field Position (Maybe Figure)   -- Поле - это координ
 type From = Field
 type To = Field
 
-data Board = Board (ListNonEmpty (Field) )  -- Чет тут не чисто... Как сделать квадратное поле?
+data Board = Board (ListNonEmpty (Field) )  -- Доска - это список филдов... Но как сделать квадратное поле?
 
 --
 -- Ходы игроков
@@ -43,9 +43,8 @@ data Board = Board (ListNonEmpty (Field) )  -- Чет тут не чисто... 
 
 data Move = Move From To       -- Движение 1 игрока - это откуда подвинуть и куда подвинуть (куда, возможно, являются фишками противника)
 
--- data TurnType = Movement | Attack    -- Движение - это либо перемещение своих фишек, либо атака фишек противника.
-data Turn = Turn Move (Maybe Move)   -- Ход - это движение игрока одного цвета и, возможно, движение игрока другого цвета. Возможность движения и цвет определяются текущим статусом игры (GameState ниже)
-data History = History (List (Turn)) --  История игры - это последовательность ходов. В принципе она не нужно, но она позволит откатываться назад. Сюда можно добавить тип хода
+data TurnType = Movement | Attack    -- Движение - это либо перемещение своих фишек, либо атака фишек противника.
+data History = History (ListNonEmpty (Move)) --  История игры - это последовательность ходов. В принципе она не нужно, но она позволит откатываться назад. Сюда можно добавить тип хода. История - не пустой список, так как пустой список - это самое начало игры.
 
 data InProgress = RedTurn | BlueTurn
 data Done = RedWon | BlueWon 
