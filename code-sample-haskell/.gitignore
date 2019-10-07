@@ -7,3 +7,7 @@ task
 
 *.hi
 *.o
+*.aux
+*.log
+*.synctex.gz
+*.pdf
