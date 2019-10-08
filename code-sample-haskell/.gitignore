@@ -4,6 +4,7 @@ par
 indentation
 cases
 task
+code
 
 *.hi
 *.o
