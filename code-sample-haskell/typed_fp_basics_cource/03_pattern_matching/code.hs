@@ -1,6 +1,6 @@
 module Main where 
 
-import Prelude hiding (map, filter, zip, taske, head, zipWith, zipWith3)
+import Prelude hiding (map, filter, zip, taske, head, zipWith, zipWith3, takeWhile, dropWhile, break, foldr, foldl)
 
 filter :: (a -> Bool) -> [a] -> [a]
 filter _ [] = []
@@ -26,8 +26,39 @@ zipWith3 _ _ [] _ = []
 zipWith3 _ [] _ _ = []
 zipWith3 f (x:xs) (y:ys) (z:zs) = f x y z : zipWith3 f xs ys zs
 
-main = do 
-    putStrLn "kek"
+takeWhile, dropWhile :: (a -> Bool) -> [a] -> [a]
+takeWhile _ [] = []
+takeWhile p (x:xs) 
+    | p x       = x: takeWhile p xs
+    | otherwise = []
 
--- main = funk 5
+dropWhile _ [] = []
+dropWhile p (x:xs)
+    | p x       = dropWhile p xs
+    | otherwise = x : xs
+
+
+
+foldl :: (acc -> b -> acc) -> acc -> [b] -> acc
+foldr :: (b -> acc -> acc) -> acc -> [b] -> acc
+
+foldl _ acc []     =  acc 
+foldl f acc (x:xs) =  foldl f (f acc x) xs
+
+foldr _ acc []     =  acc 
+foldr f acc (x:xs) =  f x (foldr f acc xs)
+
+
+
+r = [1, 5, 3, 8, 3, 2, 3, 7, 4]
+main = do
+   print r
+   print x
+   where 
+       x = foldl (+) 0 ws
+       ws = zipWith (-) bs r
+       bs = zipWith min bl br
+       bl = tail $ scanl max 0 r
+       br = init $ scanr max 0 r
+
 
