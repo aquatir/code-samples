@@ -50,7 +50,7 @@ main = do
         emptyField n1 n2 = field (Position n1 n2) Nothing 
 
         emptyRow :: Place -> Row
-        emptyRow rowNumber = Row (emptyField rowNumber N1, emptyField rowNumber N2, emptyField rowNumber N3, emptyField rowNumber N4)
+        emptyRow rowN = Row (emptyField rowN N1, emptyField rowN N2, emptyField rowN N3, emptyField rowN N4)
 
 draw :: Board -> String
 draw _ = "str"

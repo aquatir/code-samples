@@ -1,0 +1,140 @@
+% texstudio
+\documentclass[10pt, a4paper]{article}
+
+\usepackage[
+	left=1.5cm,
+	right=1.5cm,
+	top=2cm,
+	bottom=2cm,
+]{geometry}
+
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{listings}
+\lstset
+{ %Formatting for code 
+	language=haskell,
+	basicstyle=\footnotesize,
+	numbers=left,
+	stepnumber=1,
+	%frame=single,
+	showstringspaces=false,
+	tabsize=1,
+	breaklines=true,
+	breakatwhitespace=false,
+}
+
+\setlength{\parindent}{0pt}
+
+
+\begin{document}
+\section{Давайте поговорим о паттерн матчинге}
+\subsection{Паттер матчинг на листах}
+
+\subsubsection{Определение}
+{\bf Тотальная функция} - определена на всей области возможных значений
+
+{\bf Нетотальная} - на каких-то значениях падает.
+
+
+\subsubsection{Функция head}
+Пример - функция $head$, которая возвращает голову листа, упадет с ошибкой при передачи пустого листа. Т.е. она нетотальрная
+\begin{lstlisting}[language=haskell]
+head :: [a] -> a
+head (x:_) = x
+head _ = error "empty list"
+\end{lstlisting}
+
+\subsubsection{Функция tail}
+Еще есть функция $tail$ - она вообще говоря в $Prelude$ падает на пустом списке, т.е. она нетотальна. 
+
+Но мы можем реализовать ее посвоему. Если нет даже головы или есть элемент всего один,то результат один и тот же - пустой список. Т.е. можно определить тотальную функцию $totalTail$ - тотальная
+
+\begin{lstlisting}[language=haskell]
+totalTail :: [a] -> [a]
+totalTail (_: xs) = xs
+totalTail _ = []
+\end{lstlisting}
+
+\subsubsection{Функция take}
+Еще есть функция $take$. Она возвращает какое-то (заданное) количество элементов
+
+\begin{lstlisting}[language=haskell]
+take :: Int -> [a] -> [a]
+take 0 _ = []
+take n (x: xs) = x : take (n-1) xs
+take _ [] = []
+\end{lstlisting}
+
+\subsubsection{Функция map}
+
+Преобазует $a -> b$ при помощи функции
+
+\begin{lstlisting}[language=haskell]
+map :: (a -> b) -> [a] -> [b]
+map _ [] = []
+map f (x: xs) = f x : map f xs
+\end{lstlisting}
+
+\subsubsection{Функция filter}
+
+Вариант №1 (обычный)
+\begin{lstlisting}[language=haskell]
+filter :: (a -> Bool) -> [a] -> [a]
+filter _ [] = []
+filter p (x:xs) = 
+    if p x 
+    then x : filter p xs 
+    else filter p xs
+\end{lstlisting}
+
+Вариант 2 (модный)
+\begin{lstlisting}[language=haskell]
+filter :: (a -> Bool) [a] -> [a]
+filter _ [] = []
+filter p (x: xs)
+    | p x       =   x : rest
+    | otherwise =       rest
+    where 
+        rest = filter p xs
+\end{lstlisting}
+
+\subsubsection{Функция zip}
+
+Которая объединяет 2 списка в список пар
+
+\begin{lstlisting}[language=haskell]
+zip :: [a] -> [b] -> [(a,b)]
+zip _     [] = []
+zip []    _  = []
+zip (x:xs) (y:ys) = (x,y): zip xs ys
+\end{lstlisting}
+
+\subsubsection{Функция zipWith}
+
+Которая объединяет 2 списка в третий при помощи вашей любой функции
+
+\begin{lstlisting}[language=haskell]
+zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
+zipWith _ _ [] = []
+zipWith _ [] _ = []
+zipWith f (x:xs) (y:ys) = f x y : zipWith f xs ys
+\end{lstlisting}
+
+Это упражнение можно продолжать до zipWith3, например, которая объеденит уже 3 
+
+\begin{lstlisting}[language=haskell]
+zipWith3 :: (a -> b -> c -> d) -> [a] -> [b] -> [c] -> [d]
+zipWith3 _ _ _ [] = []
+zipWith3 _ _ [] _ = []
+zipWith3 _ [] _ _ = []
+zipWith3 f (x:xs) (y:ys) (z:zs) = f x y z : zipWith3 f xs ys zs
+\end{lstlisting}
+
+
+\end{document}
