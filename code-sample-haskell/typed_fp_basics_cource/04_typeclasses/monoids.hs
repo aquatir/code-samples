@@ -11,7 +11,8 @@ import Data.Semigroup
 data These a b 
     = This a
     | That b 
-    | These a b deriving Show 
+    | These a b  
+    | Nope deriving Show
 
 instance (Semigroup a, Semigroup b) => Semigroup (These a b) where
     This a1 <> This a2         = This (a1 <> a2)
@@ -25,9 +26,12 @@ instance (Semigroup a, Semigroup b) => Semigroup (These a b) where
     These a1 b1 <> These a2 b2 = These (a1 <> a2) (b1 <> b2)
     These a1 b2 <> This a      = This a <> These a1 b2
     These a1 b2 <> That b      = That b <> These a1 b2
+    Nope <> x                  = x
+    x <> Nope                  = x
+
 
 instance (Monoid a, Monoid b) => Monoid (These a b) where
-    mempty = These mempty mempty 
+    mempty = Nope 
 
 
 main = do
