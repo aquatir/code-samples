@@ -91,7 +91,6 @@ note warning test = Validation $ \x ->
 nameV :: Validation String String
 nameV = check "Empty name!" (not . null)
 
-
 data User = User
  { userName :: String
  , userAge :: Int
