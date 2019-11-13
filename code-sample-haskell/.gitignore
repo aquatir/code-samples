@@ -5,6 +5,7 @@ indentation
 cases
 task
 code
+stuff
 
 *.hi
 *.o
