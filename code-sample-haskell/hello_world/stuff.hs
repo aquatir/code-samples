@@ -17,4 +17,77 @@ someComprehension xs ys = [(x,y) | x <- xs, y <- ys, y /= 5, x /= 3, x > y]
 removeNonUppercase :: [Char] -> [Char]  
 removeNonUppercase st = [ c | c <- st, c `elem` (' ' : ['A'..'Z'])] 
 
+-- guards!
+guardStuff :: Bool -> String
+guardStuff a
+    | a == True = "True!"
+    | otherwise = "False!"
+
+
+myCompare :: (Ord a) => a -> a -> Ordering  
+a `myCompare` b  
+    | a > b     = GT  
+    | a == b    = EQ  
+    | otherwise = LT 
+
+-- where 
+
+bmiTell :: (RealFloat a) => a -> a -> String  
+bmiTell weight height  
+    | bmi <= skinny = "You're underweight, you emo, you!"  
+    | bmi <= normal = "You're supposedly normal. Pffft, I bet you're ugly!"  
+    | bmi <= fat    = "You're fat! Lose some weight, fatty!"  
+    | otherwise     = "You're a whale, congratulations!"  
+    where bmi = weight / height ^ 2  
+          (skinny, normal, fat) = (18.5, 25.0, 30.0)
+
+-- case expressions! 
+head' :: [a] -> a  
+head' xs = case xs of []    -> error "No head for empty lists"
+                      (x:_) -> x  
+
+
+mymax :: (Ord a) => [a] -> a
+mymax []     = error "No elements is array!"
+mymax (x:[]) = x
+mymax (x:xy)   
+    | x > tailMax = x 
+    | otherwise   = tailMax
+    where tailMax = mymax xy
+
+
+mymax2 :: (Ord a) => [a] -> a
+mymax2 []     = error "No elements is array!"
+mymax2 (x:[]) = x
+mymax2 (x:xy) = max x (mymax2 xy)   
+
+
+take' :: (Num i, Ord i) => i -> [a] -> [a]  
+take' n _  
+    | n <= 0   = []
+take' _ []     = []  
+take' n (x:xs) = x : take' (n-1) xs  
+
+quicksort :: (Ord a) => [a] -> [a]
+quicksort []     = []
+quicksort (x:xs) = left ++ [x] ++ right
+    where 
+        left  = quicksort [a | a <- xs, a <= x]
+        right = quicksort [a | a <- xs, a > x ]
+
+
+mergesort :: (Ord a) => [a] -> [a]
+mergesort []     = []
+mergesort xs = undefined -- merge (split xs)  
+
+
+
+merge :: (Ord a) => [a] -> [a] -> [a]
+merge [] x = x
+merge x [] = x
+merge l1@(x:xs) l2@(y:ys)
+    | x > y     = x : merge xs l2
+    | x < y     = y : merge l1 ys
+    | otherwise = x : y : merge xs ys
+
 
