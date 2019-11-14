@@ -17,4 +17,15 @@ someComprehension xs ys = [(x,y) | x <- xs, y <- ys, y /= 5, x /= 3, x > y]
 removeNonUppercase :: [Char] -> [Char]  
 removeNonUppercase st = [ c | c <- st, c `elem` (' ' : ['A'..'Z'])] 
 
+devilNumber :: (Integral a) => a -> String
+devilNumber 666 = "HELL"
+devilNumber _   = "Sorry, no!"
+
+
+factorial :: (Integral a) => a -> a
+factorial a = factorial' a 1 
+
+factorial' :: (Integral a) => a -> a -> a
+factorial' 0 acc = acc
+factorial' a acc = factorial' (a-1) (acc * a)
 
