@@ -23,9 +23,9 @@ devilNumber _   = "Sorry, no!"
 
 
 factorial :: (Integral a) => a -> a
-factorial a = factorial' a 1 
+factorial a = factorialAccum a 1 
 
-factorial' :: (Integral a) => a -> a -> a
-factorial' 0 acc = acc
-factorial' a acc = factorial' (a-1) (acc * a)
+factorialAccum :: (Integral a) => a -> a -> a
+factorialAccum 0 acc = acc
+factorialAccum a acc = factorialAccum (a-1) (acc * a)
 
