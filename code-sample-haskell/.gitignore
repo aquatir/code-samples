@@ -6,6 +6,7 @@ cases
 task
 code
 stuff
+algos
 
 *.hi
 *.o
