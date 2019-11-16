@@ -68,6 +68,7 @@ take' n _
 take' _ []     = []  
 take' n (x:xs) = x : take' (n-1) xs  
 
+-- quicksort
 quicksort :: (Ord a) => [a] -> [a]
 quicksort []     = []
 quicksort (x:xs) = left ++ [x] ++ right
@@ -76,18 +77,21 @@ quicksort (x:xs) = left ++ [x] ++ right
         right = quicksort [a | a <- xs, a > x ]
 
 
+-- mergesort
 mergesort :: (Ord a) => [a] -> [a]
-mergesort []     = []
-mergesort xs = undefined -- merge (split xs)  
-
-
+mergesort []      = []
+mergesort [x]     = [x]
+mergesort [x,y]  
+    | x <= y      = [x] ++ [y]
+    | otherwise   = [y] ++ [x]
+mergesort (x:y:rest) = merge (mergesort [x,y]) (mergesort rest) 
 
 merge :: (Ord a) => [a] -> [a] -> [a]
 merge [] x = x
 merge x [] = x
 merge l1@(x:xs) l2@(y:ys)
-    | x > y     = x : merge xs l2
-    | x < y     = y : merge l1 ys
-    | otherwise = x : y : merge xs ys
-
+    | x < y     = x : merge xs l2
+    | x > y     = y : merge l1 ys
+    | otherwise = x:y : merge xs ys
+    
 
