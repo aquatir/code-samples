@@ -97,20 +97,24 @@ foldr' _ acc []     = acc
 foldr' f acc (x:xs) = f x (foldr' f acc xs)
 
 sum' :: (Num a) => [a] -> a  
-sum' xs = foldl (+) 0 xs  
-
--- assume first element is base accumulator for folding
+sum' xs = foldl (+) 0 xs   
+-- assume first element is a base for accumulator while folding
 sum'' xs = foldl1 (+) xs
 
+-- this is called point-free / point-less style. We omit the entry which is on both sides of equation
+sum''' :: (Num a) => [a] -> a 
+sum''' = foldl (+) 0 
 
--- with fold...
+-- another point-free example
+fn' x = ceiling (negate (tan (cos (max 50 x)))) 
+fn = ceiling . negate . tan . cos . max 50  
+
 map' :: (a -> b) -> [a] -> [b]
 map' _ [] = []
 -- map' f xs = foldl (\acc x -> acc ++ [f x]) [] xs can do it like this... but this one is expensive and the other one is much cheaper
 map' f xs = foldr (\x acc -> f x : acc) [] xs
 
 
--- TODO: make this with foldr
 filter'' :: (a -> Bool) -> [a] -> [a]
 filter'' _ [] = []
 filter'' p xs = foldl (accumulateBy p) [] xs
@@ -121,6 +125,14 @@ filter'' p xs = foldl (accumulateBy p) [] xs
 filter' :: (a -> Bool) -> [a] -> [a]
 filter' _ [] = []
 filter' p xs = foldr (\x acc -> if p x then x:acc else acc) [] xs
+
+
+-- function composition f (g x)) = f . g
+-- the following two lines are the same
+
+-- map (\x -> negate (abs x)) [5,-3,-6,7,-3,2,-19,24]  
+-- map (negate . abs) [5,-3,-6,7,-3,2,-19,24]
+
 
 
 
