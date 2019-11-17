@@ -83,6 +83,44 @@ zipWith' _ _ []          = []
 zipWith' _ [] _          = []
 zipWith' f (x:xs) (y:ys) = f x y : zipWith' f xs ys
 
+flip' :: (a -> b -> c) -> b -> a -> c
+flip' f a b = f b a
+
+thesum = \x y -> x + y
+
+foldl' :: (acc -> a -> acc) -> acc -> [a] -> acc
+foldl' _ acc []     = acc
+foldl' f acc (x:xs) = foldl' f (f acc x) xs 
+
+foldr' :: (a -> acc -> acc) -> acc -> [a] -> acc
+foldr' _ acc []     = acc
+foldr' f acc (x:xs) = f x (foldr' f acc xs)
+
+sum' :: (Num a) => [a] -> a  
+sum' xs = foldl (+) 0 xs  
+
+-- assume first element is base accumulator for folding
+sum'' xs = foldl1 (+) xs
+
+
+-- with fold...
+map' :: (a -> b) -> [a] -> [b]
+map' _ [] = []
+-- map' f xs = foldl (\acc x -> acc ++ [f x]) [] xs can do it like this... but this one is expensive and the other one is much cheaper
+map' f xs = foldr (\x acc -> f x : acc) [] xs
+
+
+-- TODO: make this with foldr
+filter'' :: (a -> Bool) -> [a] -> [a]
+filter'' _ [] = []
+filter'' p xs = foldl (accumulateBy p) [] xs
+    where accumulateBy p acc x 
+                   | p x       = acc ++ [x]
+                   | otherwise = acc  
+
+filter' :: (a -> Bool) -> [a] -> [a]
+filter' _ [] = []
+filter' p xs = foldr (\x acc -> if p x then x:acc else acc) [] xs
 
 
 
