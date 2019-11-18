@@ -6,6 +6,8 @@ cases
 task
 code
 stuff
+algos
+modules
 
 *.hi
 *.o

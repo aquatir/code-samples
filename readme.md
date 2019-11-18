@@ -55,6 +55,7 @@
             <li><b>scala-coursera</b> Scala specialization course materials from coursera: https://www.coursera.org/specializations/scala </li>
         </ul> 
     </li>
+    <li><b> code-sample-haskell</b>. Haskell examples</li>
     <li><b>code-sample-python</b>. Python code examples. Currently consist of a single Flask example </li>
     <li><b>code-sample-docker</b>. Contains some docker examples
         <ul>
