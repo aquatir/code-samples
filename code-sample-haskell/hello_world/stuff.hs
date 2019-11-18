@@ -29,3 +29,8 @@ factorialAccum :: (Integral a) => a -> a -> a
 factorialAccum 0 acc = acc
 factorialAccum a acc = factorialAccum (a-1) (acc * a)
 
+
+capital :: String -> String  
+capital "" = "Empty string, whoops!"  
+capital all@(x:xs) = "The first letter of " ++ all ++ " is " ++ [x]  
+
