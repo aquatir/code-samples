@@ -70,5 +70,23 @@ treeElem x (Node a left right)
     | x < a  = treeElem x left  
     | x > a  = treeElem x right
 
+-- j     == *->*
+-- a     == *
+-- j a   == *
+-- a j   == * -> (* -> *)
+-- t     == *... because if's a function returning one values, thus:
+-- t a j == {* -> (* -> *) this part is from 'a j'} -> *
+-- t a j == * -> (* -> *) -> *
+class Tofu t where  
+    tofu :: j a -> t a j  
 
+
+-- Frank     == *
+-- a         == * -> *
+-- b         == *
+-- Frank a b == * -> (* -> *) -> * same thing as above
+data Frank a b  = Frank {frankField :: b a} deriving (Show)  
+
+instance Tofu Frank where
+    tofu x = Frank x -- we cut everything out because 'Frank a b' has exactly the same kinds semantics (if it's the correct word) as 'Tofu'
 
