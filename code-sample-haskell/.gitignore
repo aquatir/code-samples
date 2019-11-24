@@ -8,6 +8,7 @@ code
 stuff
 algos
 modules
+adt
 
 *.hi
 *.o
