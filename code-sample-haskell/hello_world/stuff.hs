@@ -17,6 +17,24 @@ someComprehension xs ys = [(x,y) | x <- xs, y <- ys, y /= 5, x /= 3, x > y]
 removeNonUppercase :: [Char] -> [Char]  
 removeNonUppercase st = [ c | c <- st, c `elem` (' ' : ['A'..'Z'])] 
 
+devilNumber :: (Integral a) => a -> String
+devilNumber 666 = "HELL"
+devilNumber _   = "Sorry, no!"
+
+
+factorial :: (Integral a) => a -> a
+factorial a = factorialAccum a 1 
+
+factorialAccum :: (Integral a) => a -> a -> a
+factorialAccum 0 acc = acc
+factorialAccum a acc = factorialAccum (a-1) (acc * a)
+
+
+capital :: String -> String  
+capital "" = "Empty string, whoops!"  
+capital all@(x:xs) = "The first letter of " ++ all ++ " is " ++ [x]  
+
+
 -- guards!
 guardStuff :: Bool -> String
 guardStuff a

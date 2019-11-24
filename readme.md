@@ -1,5 +1,5 @@
 <h4> About </h4>
-<p> Java/Kotlin/Scala/Python/TypeScript/Angular code samples </p>
+<p> Java/Kotlin/Scala/Haskell/Python/TypeScript/Angular code samples </p>
 <p> Some code may be quite outdated considering modern best practises. </p>
 <p> Some parts way even not compile / not have test / be generally very junior because they were written an age ago</p>
 
@@ -55,6 +55,7 @@
             <li><b>scala-coursera</b> Scala specialization course materials from coursera: https://www.coursera.org/specializations/scala </li>
         </ul> 
     </li>
+    <li><b> code-sample-haskell</b>. Haskell examples</li>
     <li><b>code-sample-python</b>. Python code examples. Currently consist of a single Flask example </li>
     <li><b>code-sample-docker</b>. Contains some docker examples
         <ul>
