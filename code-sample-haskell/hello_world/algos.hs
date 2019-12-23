@@ -25,4 +25,20 @@ merge l1@(x:xs) l2@(y:ys)
     | otherwise = x:y : merge xs ys
 
 
+-- Reversed polish notation calculator
+calculateRPN :: String -> Int
+calculateRPN = readAsInt . head . calculate . words
+
+calculate :: [String] -> [String]
+calculate words = foldl (\acc x -> computeValue acc x) [] words
+
+computeValue :: [String] -> String -> [String]
+computeValue (x:y:ys) "-" = ys ++ [ show $ (readAsInt x) - (readAsInt y)]
+computeValue (x:y:ys) "+" = ys ++ [ show $ (readAsInt x) + (readAsInt y)]
+computeValue (x:y:ys) "*" = ys ++ [ show $ (readAsInt x) * (readAsInt y)]
+computeValue (x:y:ys) "/" = ys ++ [ show $ (readAsInt x) `div` (readAsInt y)]
+computeValue xs numberAsString = xs ++ [numberAsString] 
+
+readAsInt :: String -> Int
+readAsInt x = read x :: Int
 
