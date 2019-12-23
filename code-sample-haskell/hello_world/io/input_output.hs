@@ -65,3 +65,8 @@ printOnlyShortInteractOneLiner = interact $ unlines . filter ((<10) . length) . 
 
 reverseWords :: String -> String
 reverseWords = unwords . map reverse . words
+
+readAndReverseWithFmap = do line <- fmap reverse getLine  
+                            putStrLn $ "You said " ++ line ++ " backwards!"  
+                            putStrLn $ "Yes, you really said " ++ line ++ " backwards!" 
+
