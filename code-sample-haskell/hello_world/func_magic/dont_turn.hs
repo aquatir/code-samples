@@ -33,4 +33,10 @@ turnFunction R = turnRight
 turnFunction L = turnLeft
 
 testTurns = return 0 >>= turnLeft >>= turn L >>= turnMore L 1 >>= turnMore R 6
+testTurnsDo = do
+    start  <- return 0
+    first  <- turnLeft start
+    second <- turn L first
+    third  <- turnMore L 1 second
+    turnMore R 6 third
 
