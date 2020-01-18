@@ -140,10 +140,15 @@ minus a = state $ \x -> (x, x-a)
 
 -- runState (return 0 >>= (\x -> state $ \y -> (x,x+y))) 5
 -- WTF...?!?!?!?
+-- How to write this without do-notion...?
 
 testState = do
     plus 50
     a <- minus 25
     plus 100
 
--- How to write this without do-notion...?
+
+-- This is pure witchcraft
+powerset :: [a] -> [[a]]  
+powerset xs = filterM (\x -> [True, False]) xs  
+
