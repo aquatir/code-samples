@@ -14,6 +14,17 @@
     "allPublicMethods": true
   },
   {
+    "name": "com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name":"com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl",
+    "methods":[{"name":"<init>","parameterTypes":[] }]
+  },
+  {
     "name": "io.grpc.netty.shaded.io.netty.buffer.AbstractByteBufAllocator",
     "allDeclaredConstructors" : true,
     "allPublicConstructors" : true,
@@ -22,6 +33,13 @@
   },
   {
     "name": "io.grpc.netty.shaded.io.netty.util.ReferenceCountUtil",
+    "allDeclaredConstructors" : true,
+    "allPublicConstructors" : true,
+    "allDeclaredMethods" : true,
+    "allPublicMethods" : true
+  },
+  {
+    "name": "sun.misc.Unsafe",
     "allDeclaredConstructors" : true,
     "allPublicConstructors" : true,
     "allDeclaredMethods" : true,
