@@ -1,0 +1,5 @@
+profile: grpc
+defaultPackage: codesample.kotlin.graalvm
+---
+testFramework: kotlintest
+sourceLanguage: kotlin

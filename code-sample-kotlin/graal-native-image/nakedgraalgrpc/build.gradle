@@ -1,0 +1,105 @@
+plugins {
+    id "com.google.protobuf" version "0.8.10"
+    id "com.github.johnrengelman.shadow" version "5.2.0"
+    id "application"
+    id "org.jetbrains.kotlin.jvm" version "1.3.50"
+    id "org.jetbrains.kotlin.plugin.allopen" version "1.3.50"
+}
+
+version "0.1"
+group "codesample.kotlin.graalvm"
+
+repositories {
+    mavenCentral()
+    maven { url "https://jcenter.bintray.com" }
+}
+
+configurations {
+    developmentOnly 
+}
+
+dependencies {
+
+    // graalvm
+    compileOnly "org.graalvm.nativeimage:svm:19.3.1"
+
+    // kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}"
+    implementation "javax.annotation:javax.annotation-api:1.3.2"
+
+    // db dependencies
+    compile "org.jooq:jooq:3.13.1"
+    compile "org.postgresql:postgresql:42.2.11"
+    compile "com.zaxxer:HikariCP:3.4.1"
+
+    // grpc
+    implementation "io.grpc:grpc-netty-shaded:${grpcVersion}"
+    implementation "io.grpc:grpc-protobuf:${grpcVersion}"
+    implementation "io.grpc:grpc-stub:${grpcVersion}"
+    testImplementation "io.grpc:grpc-testing:${grpcVersion}" // gRCP testing utilities
+
+    // logging
+    runtimeOnly "ch.qos.logback:logback-classic:1.2.3"
+    runtimeOnly "org.codehaus.janino:janino:3.1.0"
+
+    // test runtime
+    testImplementation "io.mockk:mockk:1.9.3"
+    testImplementation "io.kotlintest:kotlintest-runner-junit5:3.3.2"
+}
+
+test.classpath += configurations.developmentOnly
+
+mainClassName = "codesample.kotlin.graalvm"
+
+ext {
+    protocVersion="3.5.1"
+    grpcVersion="1.18.0"
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'build/generated/source/proto/main/grpc'
+            srcDirs 'build/generated/source/proto/main/java'
+        }
+    }
+}
+
+protobuf {
+    protoc { artifact = "com.google.protobuf:protoc:${protocVersion}" }
+    plugins {
+        grpc { artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}" }
+    }
+    generateProtoTasks {
+        all()*.plugins { grpc {} }
+    }
+}
+
+shadowJar {
+    mergeServiceFiles()
+}
+
+tasks.withType(JavaExec) {
+    classpath += configurations.developmentOnly
+    jvmArgs('-noverify', '-XX:TieredStopAtLevel=1', '-Dcom.sun.management.jmxremote')
+}
+
+test {
+    useJUnitPlatform()
+}
+
+compileKotlin {
+	kotlinOptions {
+	    jvmTarget = '1.8' 
+	    //Will retain parameter names for Java reflection
+	    javaParameters = true 
+	}
+}
+
+compileTestKotlin {
+	kotlinOptions {
+	    jvmTarget = '1.8' 
+	    javaParameters = true 
+	}
+}
