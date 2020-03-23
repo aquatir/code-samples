@@ -48,6 +48,12 @@
 		    <li><b>hello_world</b>. Kotlin ktor example with docker</li>
                 </ul>
             </li>
+            <li><b>graal-native-image</b>. Kotlin application compiled with graal native image compiler
+                <ul>
+		    <li><b>graalgrpc</b>. Micronaut + Kotlin + jooq;postgres + grcp example </li>
+                    <li><b>nakedgraalgrpc</b>. Same as above but without Micronaut. The naked application! </li>
+                </ul>
+            </li>
         </ul> 
     </li>
     <li><b>code-sample-scala</b>. Scala examples 
