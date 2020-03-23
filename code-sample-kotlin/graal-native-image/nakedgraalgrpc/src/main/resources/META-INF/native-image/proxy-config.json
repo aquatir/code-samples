@@ -1,0 +1,14 @@
+[
+  ["com.orbitz.consul.AclClient$Api"],
+  ["com.orbitz.consul.AgentClient$Api"],
+  ["com.orbitz.consul.CatalogClient$Api"],
+  ["com.orbitz.consul.CoordinateClient$Api"],
+  ["com.orbitz.consul.EventClient$Api"],
+  ["com.orbitz.consul.HealthClient$Api"],
+  ["com.orbitz.consul.KeyValueClient$Api"],
+  ["com.orbitz.consul.OperatorClient$Api"],
+  ["com.orbitz.consul.PreparedQueryClient$Api"],
+  ["com.orbitz.consul.SessionClient$Api"],
+  ["com.orbitz.consul.SnapshotClient$Api"],
+  ["com.orbitz.consul.StatusClient$Api"]
+]

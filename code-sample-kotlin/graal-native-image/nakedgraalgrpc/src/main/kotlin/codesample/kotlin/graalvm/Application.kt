@@ -2,6 +2,8 @@ package codesample.kotlin.graalvm
 
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
+import com.google.common.net.HostAndPort
+import com.orbitz.consul.Consul
 import com.zaxxer.hikari.HikariDataSource
 import io.grpc.ServerBuilder
 import io.grpc.stub.StreamObserver
@@ -9,6 +11,7 @@ import org.jooq.DSLContext
 import org.jooq.SQLDialect
 import org.jooq.impl.DSL
 import org.slf4j.LoggerFactory
+import org.yaml.snakeyaml.Yaml
 import javax.sql.DataSource
 
 
@@ -19,13 +22,27 @@ object Application {
     @JvmStatic
     fun main(args: Array<String>) {
 
+        // Consul
+        val consulClient = Consul
+                .builder()
+                .withHostAndPort(HostAndPort.fromString("localhost:8500"))
+                //.withHostAndPort(HostAndPort.fromString("nakedgraalgrpc_consul_1.mynet:8500"))
+                .build()
+        val kvClient = consulClient.keyValueClient()
+
+        val yamlReader = Yaml()
+        val common = yamlReader.load<MutableMap<String, Any>>(kvClient.getValueAsString("config/common/data").get())
+        log.info("Got common from consul: $common")
+
+
         // TODO_1: Make it possible to set default level with logback.xml when compiling to native image. Not programmatically!
-        (LoggerFactory.getLogger("io.grpc") as Logger).apply {
-            level = Level.INFO
-        }
-        (LoggerFactory.getLogger("com.zaxxer.hikari") as Logger).apply {
-            level = Level.INFO
-        }
+//        (LoggerFactory.getLogger("io.grpc") as Logger).apply {
+//            level = Level.INFO
+//        }
+//        (LoggerFactory.getLogger("com.zaxxer.hikari") as Logger).apply {
+//            level = Level.INFO
+//        }
+
 
         // Datasource config
         val ds: DataSource = HikariDataSource().apply {

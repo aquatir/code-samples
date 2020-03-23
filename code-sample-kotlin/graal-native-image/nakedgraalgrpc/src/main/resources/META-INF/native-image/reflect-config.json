@@ -14,6 +14,20 @@
     "allPublicMethods": true
   },
   {
+    "name": "org.slf4j.impl.StaticLoggerBinder",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "com.fasterxml.jackson.databind.ObjectMapper",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
     "name": "com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl",
     "allDeclaredFields": true,
     "allPublicFields": true,
