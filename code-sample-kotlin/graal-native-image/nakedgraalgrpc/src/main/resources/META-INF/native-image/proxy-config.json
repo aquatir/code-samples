@@ -10,5 +10,6 @@
   ["com.orbitz.consul.PreparedQueryClient$Api"],
   ["com.orbitz.consul.SessionClient$Api"],
   ["com.orbitz.consul.SnapshotClient$Api"],
-  ["com.orbitz.consul.StatusClient$Api"]
+  ["com.orbitz.consul.StatusClient$Api"],
+  ["java.sql.Connection"]
 ]

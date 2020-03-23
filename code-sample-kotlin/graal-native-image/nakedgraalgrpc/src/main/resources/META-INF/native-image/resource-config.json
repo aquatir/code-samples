@@ -1,6 +1,8 @@
 {
   "resources":[
-    {"pattern":"\\Qlogback.xml\\E"}, 
+    {"pattern":"\\QMETA-INF/services/io.grpc.ServerProvider\\E"},
+    {"pattern":"\\QMETA-INF/services/java.sql.Driver\\E"},
+    {"pattern":"\\Qlogback.xml\\E"},
     {"pattern":"\\Qorg/slf4j/impl/StaticLoggerBinder.class\\E"}
   ],
   "bundles":[]

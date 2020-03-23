@@ -1,7 +1,5 @@
 package codesample.kotlin.graalvm
 
-import ch.qos.logback.classic.Level
-import ch.qos.logback.classic.Logger
 import com.google.common.net.HostAndPort
 import com.orbitz.consul.Consul
 import com.zaxxer.hikari.HikariDataSource
@@ -25,8 +23,8 @@ object Application {
         // Consul
         val consulClient = Consul
                 .builder()
-                .withHostAndPort(HostAndPort.fromString("localhost:8500"))
-                //.withHostAndPort(HostAndPort.fromString("nakedgraalgrpc_consul_1.mynet:8500"))
+                //.withHostAndPort(HostAndPort.fromString("localhost:8500"))
+                .withHostAndPort(HostAndPort.fromString("nakedgraalgrpc_consul_1.mynet:8500"))
                 .build()
         val kvClient = consulClient.keyValueClient()
 
@@ -47,8 +45,8 @@ object Application {
         // Datasource config
         val ds: DataSource = HikariDataSource().apply {
             driverClassName = "org.postgresql.Driver"
-            //jdbcUrl = "jdbc:postgresql://pg.mynet:5432/test"
-            jdbcUrl = "jdbc:postgresql://localhost:5432/test"
+            jdbcUrl = "jdbc:postgresql://pg.mynet:5432/test"
+            //jdbcUrl = "jdbc:postgresql://localhost:5432/test"
             username = "postgres"
             password = "postgres"
 
