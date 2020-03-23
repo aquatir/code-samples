@@ -30,21 +30,23 @@ object Application {
         // Datasource config
         val ds: DataSource = HikariDataSource().apply {
             driverClassName = "org.postgresql.Driver"
-            jdbcUrl = "jdbc:postgresql://pg.mynet:5432/test"
-            //jdbcUrl = "jdbc:postgresql://localhost:5432/test"
+            //jdbcUrl = "jdbc:postgresql://pg.mynet:5432/test"
+            jdbcUrl = "jdbc:postgresql://localhost:5432/test"
             username = "postgres"
             password = "postgres"
 
-            connectionTestQuery = "SELECT 1"
             minimumIdle = 50
             maximumPoolSize = 500
             isAutoCommit = true
             loginTimeout = 3
+
+            // TODO: Is it required?
             addDataSourceProperty("characterEncoding","utf8");
             addDataSourceProperty("useUnicode","true");
         }
 
         val dslContext = DSL.using(ds, SQLDialect.POSTGRES)
+        dslContext.execute("SELECT 1") // load JOOQ
 
         // Application configuration
         val port = 50051
