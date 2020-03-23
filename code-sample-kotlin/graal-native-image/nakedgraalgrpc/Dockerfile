@@ -16,6 +16,7 @@ RUN native-image \
   --initialize-at-build-time=org.postgresql.Driver \
   --initialize-at-build-time=org.postgresql.util.SharedTimer \
   --initialize-at-build-time='org.postgresql.PGProperty' \
+  --initialize-at-run-time=ch.qos.logback.core \
   --initialize-at-run-time=io.grpc.netty.shaded.io.netty.buffer.AbstractByteBufAllocator \
   --initialize-at-run-time=io.netty.util.internal.logging.Log4JLogger \
   --initialize-at-run-time=io.netty.handler.ssl.ReferenceCountedOpenSslContext \

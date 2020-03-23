@@ -1,17 +1,33 @@
 package codesample.kotlin.graalvm
 
+import ch.qos.logback.classic.Level
+import ch.qos.logback.classic.Logger
 import com.zaxxer.hikari.HikariDataSource
 import io.grpc.ServerBuilder
 import io.grpc.stub.StreamObserver
 import org.jooq.DSLContext
 import org.jooq.SQLDialect
 import org.jooq.impl.DSL
+import org.slf4j.LoggerFactory
 import javax.sql.DataSource
 
+
 object Application {
+
+    private val log = LoggerFactory.getLogger(Application::class.java)
+
     @JvmStatic
     fun main(args: Array<String>) {
 
+        // TODO_1: Make it possible to set default level with logback.xml when compiling to native image. Not programmatically!
+        (LoggerFactory.getLogger("io.grpc") as Logger).apply {
+            level = Level.INFO
+        }
+        (LoggerFactory.getLogger("com.zaxxer.hikari") as Logger).apply {
+            level = Level.INFO
+        }
+
+        // Datasource config
         val ds: DataSource = HikariDataSource().apply {
             driverClassName = "org.postgresql.Driver"
             jdbcUrl = "jdbc:postgresql://pg.mynet:5432/test"
@@ -30,31 +46,34 @@ object Application {
 
         val dslContext = DSL.using(ds, SQLDialect.POSTGRES)
 
+        // Application configuration
         val port = 50051
         val server = ServerBuilder.forPort(port)
                 .addService(ExampleEndpoint(dslContext))
                 .build()
                 .start()
 
-        println("GRPC Server started at 50051")
+        log.info("GRPC Server started at 50051")
         server?.awaitTermination()
     }
 }
 
 class ExampleEndpoint(private val dslContext: DSLContext) : ExampleServiceGrpc.ExampleServiceImplBase() {
+
+    private val log = LoggerFactory.getLogger(ExampleEndpoint::class.java)
+
     override fun send(request: ExampleRequest, responseObserver: StreamObserver<ExampleReply>) {
 
-        println("Got you request")
-
+        log.info("Got your request")
 
         val result = dslContext.execute("update transactions set amount = 100");
-        println("num of rows $result")
+        log.info("num of rows $result")
 
         val reply = ExampleReply.newBuilder().setMessage("Hello, gRPC!").build()
         with(responseObserver) {
             onNext(reply)
             onCompleted()
         }
-        println("Request processed")
+        log.info("Request processed")
     }
 }

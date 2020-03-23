@@ -40,8 +40,8 @@ dependencies {
     testImplementation "io.grpc:grpc-testing:${grpcVersion}" // gRCP testing utilities
 
     // logging
-    runtimeOnly "ch.qos.logback:logback-classic:1.2.3"
-    runtimeOnly "org.codehaus.janino:janino:3.1.0"
+    implementation "ch.qos.logback:logback-classic:1.2.3"
+    implementation "org.codehaus.janino:janino:3.1.0"
 
     // test runtime
     testImplementation "io.mockk:mockk:1.9.3"

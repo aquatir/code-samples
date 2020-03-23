@@ -44,6 +44,52 @@
     "allPublicConstructors" : true,
     "allDeclaredMethods" : true,
     "allPublicMethods" : true
+  },
+  {
+    "name":"jdk.internal.misc.Unsafe",
+    "methods":[{"name":"getUnsafe","parameterTypes":[] }]
+  },
+  {
+    "name":"java.nio.DirectByteBuffer",
+    "methods":[{"name":"<init>","parameterTypes":["long","int"] }]
+  },
+  {
+    "name":"io.grpc.netty.shaded.io.netty.buffer.AbstractByteBufAllocator",
+    "allDeclaredMethods":true
+  },
+  {
+    "name":"io.grpc.netty.shaded.io.netty.channel.epoll.Epoll",
+    "methods":[{"name":"isAvailable","parameterTypes":[] }]
+  },
+  {
+    "name":"io.grpc.netty.shaded.io.netty.channel.epoll.EpollEventLoopGroup",
+    "methods":[{"name":"<init>","parameterTypes":["int","java.util.concurrent.ThreadFactory"] }]
+  },
+  {
+    "name":"io.grpc.netty.shaded.io.netty.channel.epoll.EpollServerSocketChannel",
+    "methods":[{"name":"<init>","parameterTypes":[] }]
+  },
+  {
+    "name":"io.grpc.netty.shaded.io.netty.channel.epoll.EpollSocketChannel"
+  },
+  {
+    "name":"io.grpc.netty.shaded.io.netty.util.internal.shaded.org.jctools.queues.BaseMpscLinkedArrayQueueColdProducerFields",
+    "fields":[{"name":"producerLimit", "allowUnsafeAccess":true}]
+  },
+  {
+    "name":"io.grpc.netty.shaded.io.netty.util.internal.shaded.org.jctools.queues.BaseMpscLinkedArrayQueueConsumerFields",
+    "fields":[{"name":"consumerIndex", "allowUnsafeAccess":true}]
+  },
+  {
+    "name":"io.grpc.netty.shaded.io.netty.util.internal.shaded.org.jctools.queues.BaseMpscLinkedArrayQueueProducerFields",
+    "fields":[{"name":"producerIndex", "allowUnsafeAccess":true}]
+  },
+  {
+    "name": "io.grpc.netty.shaded.io.grpc.netty.NettyServerHandler",
+    "allDeclaredConstructors" : true,
+    "allPublicConstructors" : true,
+    "allDeclaredMethods" : true,
+    "allPublicMethods" : true
   }
 ]
 
