@@ -1,237 +1,57 @@
 [
   {
-    "name":"ch.qos.logback.classic.encoder.PatternLayoutEncoder",
-    "allPublicMethods":true,
-    "methods":[{"name":"<init>","parameterTypes":[] }]
+    "name": "[Ljava.sql.Statement;",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
   },
   {
-    "name":"ch.qos.logback.classic.pattern.DateConverter",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
+    "name": "[Lcom.zaxxer.hikari.util.ConcurrentBag$IConcurrentBagEntry;",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
   },
   {
-    "name":"ch.qos.logback.classic.pattern.LevelConverter",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"ch.qos.logback.classic.pattern.LineSeparatorConverter",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"ch.qos.logback.classic.pattern.LoggerConverter",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"ch.qos.logback.classic.pattern.MessageConverter",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"ch.qos.logback.classic.pattern.ThreadConverter",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"ch.qos.logback.classic.pattern.color.HighlightingCompositeConverter",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"ch.qos.logback.core.ConsoleAppender",
-    "allPublicMethods":true,
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"ch.qos.logback.core.pattern.color.CyanCompositeConverter",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"ch.qos.logback.core.pattern.color.GrayCompositeConverter",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"ch.qos.logback.core.pattern.color.MagentaCompositeConverter",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"com.fasterxml.jackson.databind.deser.Deserializers[]"
-  },
-  {
-    "name":"com.fasterxml.jackson.databind.ext.Java7SupportImpl",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"com.fasterxml.jackson.databind.ser.BeanSerializerModifier[]"
-  },
-  {
-    "name":"com.fasterxml.jackson.databind.ser.Serializers[]"
-  },
-  {
-    "name":"com.fasterxml.jackson.databind.type.TypeModifier[]"
-  },
-  {
-    "name":"com.google.protobuf.ExtensionRegistry",
-    "methods":[{"name":"getEmptyRegistry","parameterTypes":[] }]
-  },
-  {
-    "name":"com.orbitz.consul.model.kv.ImmutableValue",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
+    "name": "com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
   },
   {
     "name":"com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true,
-    "allPublicConstructors":true
-  },
-  {
-    "name":"[Lorg.jooq.types.UShort;",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true,
-    "allPublicConstructors":true
-  },
-  {
-    "name":"[Lorg.jooq.types.ULong;",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true,
-    "allPublicConstructors":true
-  },
-  {
-    "name":"[Lorg.jooq.types.DayToSecond;",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true,
-    "allPublicConstructors":true
-  },
-  {
-    "name":"[Lorg.jooq.types.UByte;",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true,
-    "allPublicConstructors":true
-  },
-  {
-    "name":"[Lorg.jooq.types.UInteger;",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true,
-    "allPublicConstructors":true
-  },
-  {
-    "name":"[Lorg.jooq.types.Unsigned;",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true,
-    "allPublicConstructors":true
-  },
-  {
-    "name":"[Lorg.jooq.types.UNumber;",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true,
-    "allPublicConstructors":true
-  },
-  {
-    "name":"[Lorg.jooq.types.YearToMonth;",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true,
-    "allPublicConstructors":true
-  },
-  {
-    "name":"[Lorg.jooq.types.YearToSecond;",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true,
-    "allPublicConstructors":true
-  },
-  {
-    "name":"[Ljava.time.LocalDate;",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true,
-    "allPublicConstructors":true
-  },
-  {
-    "name":"[Ljava.time.LocalDateTime;",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true,
-    "allPublicConstructors":true
-  },
-  {
-    "name":"[Ljava.time.LocalTime;",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true,
-    "allPublicConstructors":true
-  },
-  {
-    "name":"[Ljava.time.OffsetTime;",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true,
-    "allPublicConstructors":true
-  },
-  {
-    "name":"[Ljava.time.OffsetDateTime;",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true,
-    "allPublicConstructors":true
-  },
-  {
-    "name":"[Ljava.time.Instant;",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true,
-    "allPublicConstructors":true
-  },
-  {
-    "name":"[Lorg.jooq.RowId;",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true,
-    "allPublicConstructors":true
-  },
-  {
-    "name":"[Lorg.jooq.Result;",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true,
-    "allPublicConstructors":true
-  },
-  {
-    "name":"[Lorg.jooq.JSON;",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true,
-    "allPublicConstructors":true
-  },
-  {
-    "name":"[Lorg.jooq.JSONB;",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true,
-    "allPublicConstructors":true
-  },
-  {
-    "name":"com.orbitz.consul.model.kv.ImmutableValue$Json",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"com.orbitz.consul.model.kv.Value",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.orbitz.consul.util.UnsignedLongDeserializer",
     "methods":[{"name":"<init>","parameterTypes":[] }]
   },
   {
-    "name":"com.zaxxer.hikari.util.ConcurrentBag$IConcurrentBagEntry[]"
+    "name": "io.grpc.netty.shaded.io.netty.buffer.AbstractByteBufAllocator",
+    "allDeclaredConstructors" : true,
+    "allPublicConstructors" : true,
+    "allDeclaredMethods" : true,
+    "allPublicMethods" : true
+  },
+  {
+    "name": "io.grpc.netty.shaded.io.netty.util.ReferenceCountUtil",
+    "allDeclaredConstructors" : true,
+    "allPublicConstructors" : true,
+    "allDeclaredMethods" : true,
+    "allPublicMethods" : true
+  },
+  {
+    "name": "sun.misc.Unsafe",
+    "allDeclaredConstructors" : true,
+    "allPublicConstructors" : true,
+    "allDeclaredMethods" : true,
+    "allPublicMethods" : true
+  },
+  {
+    "name":"jdk.internal.misc.Unsafe",
+    "methods":[{"name":"getUnsafe","parameterTypes":[] }]
+  },
+  {
+    "name":"java.nio.DirectByteBuffer",
+    "methods":[{"name":"<init>","parameterTypes":["long","int"] }]
   },
   {
     "name":"io.grpc.netty.shaded.io.grpc.netty.AbstractNettyHandler",
@@ -278,10 +98,6 @@
       {"name":"channelRead","parameterTypes":["io.grpc.netty.shaded.io.netty.channel.ChannelHandlerContext","java.lang.Object"] },
       {"name":"exceptionCaught","parameterTypes":["io.grpc.netty.shaded.io.netty.channel.ChannelHandlerContext","java.lang.Throwable"] }
     ]
-  },
-  {
-    "name":"io.grpc.netty.shaded.io.netty.buffer.AbstractByteBufAllocator",
-    "allDeclaredMethods":true
   },
   {
     "name":"io.grpc.netty.shaded.io.netty.buffer.AbstractReferenceCountedByteBuf",
@@ -405,6 +221,27 @@
     "fields":[{"name":"consumerIndex", "allowUnsafeAccess":true}]
   },
   {
+    "name": "io.grpc.netty.shaded.io.grpc.netty.NettyServer$1",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "io.grpc.netty.shaded.io.netty.bootstrap.ServerBootstrap$1",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "java.lang.management.ManagementFactory",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
     "name":"io.grpc.netty.shaded.io.netty.util.internal.shaded.org.jctools.queues.BaseMpscLinkedArrayQueueProducerFields",
     "fields":[{"name":"producerIndex", "allowUnsafeAccess":true}]
   },
@@ -421,177 +258,96 @@
     "fields":[{"name":"producerLimit", "allowUnsafeAccess":true}]
   },
   {
-    "name":"java.lang.Throwable",
-    "methods":[{"name":"addSuppressed","parameterTypes":["java.lang.Throwable"] }]
+    "name":"ch.qos.logback.classic.encoder.PatternLayoutEncoder",
+    "allPublicMethods":true,
+    "methods":[{"name":"<init>","parameterTypes":[] }]
   },
   {
-    "name":"java.lang.management.ManagementFactory",
-    "methods":[{"name":"getRuntimeMXBean","parameterTypes":[] }]
+    "name":"ch.qos.logback.classic.pattern.DateConverter",
+    "methods":[{"name":"<init>","parameterTypes":[] }]
   },
   {
-    "name":"java.lang.management.RuntimeMXBean",
-    "methods":[
-      {"name":"getInputArguments","parameterTypes":[] },
-      {"name":"getName","parameterTypes":[] }
-    ]
+    "name":"ch.qos.logback.classic.pattern.LevelConverter",
+    "methods":[{"name":"<init>","parameterTypes":[] }]
   },
   {
-    "name":"java.nio.Bits",
-    "fields":[{"name":"UNALIGNED"}]
+    "name":"ch.qos.logback.classic.pattern.LineSeparatorConverter",
+    "methods":[{"name":"<init>","parameterTypes":[] }]
   },
   {
-    "name":"java.nio.Buffer",
-    "fields":[{"name":"address", "allowUnsafeAccess":true}]
+    "name":"ch.qos.logback.classic.pattern.LoggerConverter",
+    "methods":[{"name":"<init>","parameterTypes":[] }]
   },
   {
-    "name":"java.nio.DirectByteBuffer",
-    "methods":[{"name":"<init>","parameterTypes":["long","int"] }]
+    "name":"ch.qos.logback.classic.pattern.MessageConverter",
+    "methods":[{"name":"<init>","parameterTypes":[] }]
   },
   {
-    "name":"java.sql.Date"
+    "name":"ch.qos.logback.classic.pattern.ThreadConverter",
+    "methods":[{"name":"<init>","parameterTypes":[] }]
   },
   {
-    "name":"java.sql.Statement[]"
+    "name":"ch.qos.logback.classic.pattern.color.HighlightingCompositeConverter",
+    "methods":[{"name":"<init>","parameterTypes":[] }]
   },
   {
-    "name":"java.sql.Timestamp"
+    "name":"ch.qos.logback.core.ConsoleAppender",
+    "allPublicMethods":true,
+    "methods":[{"name":"<init>","parameterTypes":[] }]
+  },
+  {
+    "name":"ch.qos.logback.core.pattern.color.CyanCompositeConverter",
+    "methods":[{"name":"<init>","parameterTypes":[] }]
+  },
+  {
+    "name":"ch.qos.logback.core.pattern.color.GrayCompositeConverter",
+    "methods":[{"name":"<init>","parameterTypes":[] }]
+  },
+  {
+    "name":"ch.qos.logback.core.pattern.color.MagentaCompositeConverter",
+    "methods":[{"name":"<init>","parameterTypes":[] }]
+  },
+  {
+    "name":"com.orbitz.consul.model.kv.ImmutableValue",
+    "allDeclaredFields":true,
+    "allDeclaredMethods":true,
+    "allDeclaredConstructors":true
+  },
+  {
+    "name":"com.orbitz.consul.model.kv.ImmutableValue$Json",
+    "allDeclaredFields":true,
+    "allDeclaredMethods":true,
+    "allDeclaredConstructors":true
+  },
+  {
+    "name":"com.orbitz.consul.model.kv.Value",
+    "allDeclaredFields":true,
+    "allDeclaredMethods":true
+  },
+  {
+    "name":"com.orbitz.consul.util.UnsignedLongDeserializer",
+    "methods":[{"name":"<init>","parameterTypes":[] }]
+  },
+  {
+    "name":"[Lcom.fasterxml.jackson.databind.deser.Deserializers;"
+  },
+  {
+    "name":"com.fasterxml.jackson.databind.ext.Java7SupportImpl",
+    "methods":[{"name":"<init>","parameterTypes":[] }]
+  },
+  {
+    "name":"[Lcom.fasterxml.jackson.databind.ser.BeanSerializerModifier;"
+  },
+  {
+    "name":"[Lcom.fasterxml.jackson.databind.ser.Serializers;"
+  },
+  {
+    "name":"[Lcom.fasterxml.jackson.databind.type.TypeModifier;"
   },
   {
     "name":"java.util.ArrayList",
     "allDeclaredMethods":true,
     "allDeclaredConstructors":true
-  },
-  {
-    "name":"java.util.Optional"
-  },
-  {
-    "name":"java.util.concurrent.atomic.LongAdder",
-    "allPublicConstructors":true,
-    "methods":[
-      {"name":"add","parameterTypes":["long"] },
-      {"name":"sum","parameterTypes":[] }
-    ]
-  },
-  {
-    "name":"javax.management.ObjectName"
-  },
-  {
-    "name":"javax.net.ssl.SSLParameters",
-    "methods":[{"name":"setApplicationProtocols","parameterTypes":["java.lang.String[]"] }]
-  },
-  {
-    "name":"javax.net.ssl.SSLSocket",
-    "methods":[{"name":"getApplicationProtocol","parameterTypes":[] }]
-  },
-  {
-    "name":"org.jooq.impl.SQLDataType"
-  },
-  {
-    "name":"org.postgresql.Driver",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.postgresql.PGProperty",
-    "fields":[
-      {"name":"ALLOW_ENCODING_CHANGES"},
-      {"name":"APPLICATION_NAME"},
-      {"name":"ASSUME_MIN_SERVER_VERSION"},
-      {"name":"AUTOSAVE"},
-      {"name":"BINARY_TRANSFER"},
-      {"name":"BINARY_TRANSFER_DISABLE"},
-      {"name":"BINARY_TRANSFER_ENABLE"},
-      {"name":"CANCEL_SIGNAL_TIMEOUT"},
-      {"name":"CLEANUP_SAVEPOINTS"},
-      {"name":"CONNECT_TIMEOUT"},
-      {"name":"CURRENT_SCHEMA"},
-      {"name":"DATABASE_METADATA_CACHE_FIELDS"},
-      {"name":"DATABASE_METADATA_CACHE_FIELDS_MIB"},
-      {"name":"DEFAULT_ROW_FETCH_SIZE"},
-      {"name":"DISABLE_COLUMN_SANITISER"},
-      {"name":"ESCAPE_SYNTAX_CALL_MODE"},
-      {"name":"GSS_LIB"},
-      {"name":"HIDE_UNPRIVILEGED_OBJECTS"},
-      {"name":"HOST_RECHECK_SECONDS"},
-      {"name":"JAAS_APPLICATION_NAME"},
-      {"name":"JAAS_LOGIN"},
-      {"name":"KERBEROS_SERVER_NAME"},
-      {"name":"LOAD_BALANCE_HOSTS"},
-      {"name":"LOGGER_FILE"},
-      {"name":"LOGGER_LEVEL"},
-      {"name":"LOGIN_TIMEOUT"},
-      {"name":"LOG_SERVER_ERROR_DETAIL"},
-      {"name":"LOG_UNCLOSED_CONNECTIONS"},
-      {"name":"MAX_RESULT_BUFFER"},
-      {"name":"OPTIONS"},
-      {"name":"PASSWORD"},
-      {"name":"PG_DBNAME"},
-      {"name":"PG_HOST"},
-      {"name":"PG_PORT"},
-      {"name":"PREFER_QUERY_MODE"},
-      {"name":"PREPARED_STATEMENT_CACHE_QUERIES"},
-      {"name":"PREPARED_STATEMENT_CACHE_SIZE_MIB"},
-      {"name":"PREPARE_THRESHOLD"},
-      {"name":"PROTOCOL_VERSION"},
-      {"name":"RAISE_EXCEPTION_ON_SILENT_ROLLBACK"},
-      {"name":"READ_ONLY"},
-      {"name":"READ_ONLY_MODE"},
-      {"name":"RECEIVE_BUFFER_SIZE"},
-      {"name":"REPLICATION"},
-      {"name":"REWRITE_BATCHED_INSERTS"},
-      {"name":"SEND_BUFFER_SIZE"},
-      {"name":"SOCKET_FACTORY"},
-      {"name":"SOCKET_FACTORY_ARG"},
-      {"name":"SOCKET_TIMEOUT"},
-      {"name":"SSL"},
-      {"name":"SSL_CERT"},
-      {"name":"SSL_FACTORY"},
-      {"name":"SSL_FACTORY_ARG"},
-      {"name":"SSL_HOSTNAME_VERIFIER"},
-      {"name":"SSL_KEY"},
-      {"name":"SSL_MODE"},
-      {"name":"SSL_PASSWORD"},
-      {"name":"SSL_PASSWORD_CALLBACK"},
-      {"name":"SSL_ROOT_CERT"},
-      {"name":"SSPI_SERVICE_CLASS"},
-      {"name":"STRING_TYPE"},
-      {"name":"TARGET_SERVER_TYPE"},
-      {"name":"TCP_KEEP_ALIVE"},
-      {"name":"UNKNOWN_LENGTH"},
-      {"name":"USER"},
-      {"name":"USE_SPNEGO"}
-    ]
-  },
-  {
-    "name":"sun.misc.Unsafe",
-    "allDeclaredFields":true,
-    "methods":[
-      {"name":"arrayBaseOffset","parameterTypes":["java.lang.Class"] },
-      {"name":"arrayIndexScale","parameterTypes":["java.lang.Class"] },
-      {"name":"copyMemory","parameterTypes":["long","long","long"] },
-      {"name":"copyMemory","parameterTypes":["java.lang.Object","long","java.lang.Object","long","long"] },
-      {"name":"getAndSetObject","parameterTypes":["java.lang.Object","long","java.lang.Object"] },
-      {"name":"getBoolean","parameterTypes":["java.lang.Object","long"] },
-      {"name":"getByte","parameterTypes":["long"] },
-      {"name":"getByte","parameterTypes":["java.lang.Object","long"] },
-      {"name":"getDouble","parameterTypes":["java.lang.Object","long"] },
-      {"name":"getFloat","parameterTypes":["java.lang.Object","long"] },
-      {"name":"getInt","parameterTypes":["long"] },
-      {"name":"getInt","parameterTypes":["java.lang.Object","long"] },
-      {"name":"getLong","parameterTypes":["long"] },
-      {"name":"getLong","parameterTypes":["java.lang.Object","long"] },
-      {"name":"getObject","parameterTypes":["java.lang.Object","long"] },
-      {"name":"invokeCleaner","parameterTypes":["java.nio.ByteBuffer"] },
-      {"name":"objectFieldOffset","parameterTypes":["java.lang.reflect.Field"] },
-      {"name":"putBoolean","parameterTypes":["java.lang.Object","long","boolean"] },
-      {"name":"putByte","parameterTypes":["long","byte"] },
-      {"name":"putByte","parameterTypes":["java.lang.Object","long","byte"] },
-      {"name":"putDouble","parameterTypes":["java.lang.Object","long","double"] },
-      {"name":"putFloat","parameterTypes":["java.lang.Object","long","float"] },
-      {"name":"putInt","parameterTypes":["long","int"] },
-      {"name":"putInt","parameterTypes":["java.lang.Object","long","int"] },
-      {"name":"putLong","parameterTypes":["long","long"] },
-      {"name":"putLong","parameterTypes":["java.lang.Object","long","long"] },
-      {"name":"putObject","parameterTypes":["java.lang.Object","long","java.lang.Object"] }
-    ]
   }
 ]
+

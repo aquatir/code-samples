@@ -32,16 +32,6 @@ object Application {
         val common = yamlReader.load<MutableMap<String, Any>>(kvClient.getValueAsString("config/common/data").get())
         log.info("Got common from consul: $common")
 
-
-        // TODO_1: Make it possible to set default level with logback.xml when compiling to native image. Not programmatically!
-//        (LoggerFactory.getLogger("io.grpc") as Logger).apply {
-//            level = Level.INFO
-//        }
-//        (LoggerFactory.getLogger("com.zaxxer.hikari") as Logger).apply {
-//            level = Level.INFO
-//        }
-
-
         // Datasource config
         val ds: DataSource = HikariDataSource().apply {
             driverClassName = "org.postgresql.Driver"
