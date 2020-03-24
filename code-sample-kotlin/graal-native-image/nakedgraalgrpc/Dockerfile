@@ -62,7 +62,15 @@ RUN native-image \
   --initialize-at-build-time=com.google.common.primitives \
   --initialize-at-build-time=com.google.common.util \
   --initialize-at-build-time=com.google.common.collect \
-  --initialize-at-run-time=ch.qos.logback.core \
+  --initialize-at-build-time=org.apache.kafka \
+  --initialize-at-build-time=net.jpountz \
+  --initialize-at-build-time=com.github.luben \
+  --initialize-at-build-time=org.xerial.snappy \
+  --initialize-at-build-time=org.slf4j \
+  --initialize-at-build-time=ch.qos.logback \
+  --initialize-at-build-time=ch.qos.logback.core \
+  --initialize-at-build-time=java.lang.management.ManagementFactory \
+  --initialize-at-build-time=java.lang.management.RuntimeMXBean \
   --initialize-at-run-time=io.grpc.netty.shaded.io.netty.buffer.AbstractByteBufAllocator \
   --initialize-at-run-time=io.netty.util.internal.logging.Log4JLogger \
   --initialize-at-run-time=io.netty.handler.ssl.ReferenceCountedOpenSslContext \

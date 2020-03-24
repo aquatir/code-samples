@@ -12,6 +12,9 @@
 7. `insert into transactions(id, amount) values (1, 100);`
 
 
+### Compose Kafka and Consul
+1. `docker-compose up`
+
 ### App
 1. `docker run -p 50051:50051 --net mynet --name app nakedgraalgrpc` 
 
