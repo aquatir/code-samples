@@ -4,6 +4,7 @@ plugins {
     id "application"
     id "org.jetbrains.kotlin.jvm" version "1.3.50"
     id "org.jetbrains.kotlin.plugin.allopen" version "1.3.50"
+    // id("com.hpe.kraal") version "0.0.16"  May be used for coroutine. Can wait for graal 20.1 is released. See: https://github.com/oracle/graal/issues/366
 }
 
 version "0.1"
@@ -27,7 +28,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
     implementation "org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}"
     implementation "javax.annotation:javax.annotation-api:1.3.2"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5"
 
     // db dependencies
     compile "org.jooq:jooq:3.13.1"
@@ -66,12 +66,9 @@ ext {
 }
 
 sourceSets {
-    main {
-        java {
-            srcDirs 'build/generated/source/proto/main/grpc'
-            srcDirs 'build/generated/source/proto/main/java'
-        }
-    }
+    main.java.srcDirs = ['src/main/java', 'build/generated/source/proto/main/grpc', 'build/generated/source/proto/main/java']
+    main.kotlin.srcDirs = ['src/main/kotlin']
+    main.resources.srcDirs = ['src/main/resources']
 }
 
 protobuf {

@@ -1,4 +1,4 @@
-FROM oracle/graalvm-ce:19.3.1-java11 as graalvm
+FROM oracle/graalvm-ce:19.3.1 as graalvm
 RUN gu install native-image
 
 COPY . /home/app/nakedgraalgrpc
@@ -62,6 +62,7 @@ RUN native-image \
   --initialize-at-build-time=com.google.common.primitives \
   --initialize-at-build-time=com.google.common.util \
   --initialize-at-build-time=com.google.common.collect \
+  --initialize-at-build-time=org.slf4j \
   --initialize-at-build-time=org.apache.kafka \
   --initialize-at-build-time=net.jpountz \
   --initialize-at-build-time=com.github.luben \

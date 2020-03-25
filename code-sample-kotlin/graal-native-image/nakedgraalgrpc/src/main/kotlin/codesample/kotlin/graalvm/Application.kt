@@ -5,9 +5,6 @@ import com.orbitz.consul.Consul
 import com.zaxxer.hikari.HikariDataSource
 import io.grpc.ServerBuilder
 import io.grpc.stub.StreamObserver
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.isActive
-import kotlinx.coroutines.launch
 import org.apache.kafka.clients.consumer.Consumer
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.clients.producer.KafkaProducer
@@ -22,6 +19,7 @@ import org.slf4j.LoggerFactory
 import org.yaml.snakeyaml.Yaml
 import java.time.Duration
 import java.util.*
+import java.util.concurrent.Executors
 import javax.sql.DataSource
 
 
@@ -58,8 +56,8 @@ object Application {
             loginTimeout = 3
 
             // TODO: Is it required?
-            addDataSourceProperty("characterEncoding","utf8");
-            addDataSourceProperty("useUnicode","true");
+            addDataSourceProperty("characterEncoding", "utf8");
+            addDataSourceProperty("useUnicode", "true");
         }
 
         val dslContext = DSL.using(ds, SQLDialect.POSTGRES)
@@ -69,32 +67,28 @@ object Application {
         val kafkaBrokerUrl = "broker.mynet:9092"
 
         var producer: Producer<String, String>? = null
-        try {
-            log.info("Creating kafka")
-            producer = createProducer(kafkaBrokerUrl)
-            log.info("created producer")
-            val consumer = createConsumer(kafkaBrokerUrl)
-                    .apply { this.subscribe(listOf("new_topic")) }
-            log.info("created consumer")
+        log.info("Creating kafka")
+        producer = createProducer(kafkaBrokerUrl)
+        log.info("created producer")
+        val consumer = createConsumer(kafkaBrokerUrl)
+                .apply { this.subscribe(listOf("new_topic")) }
+        log.info("created consumer")
 
-            log.info("About to launch consumer in coroutine")
-            GlobalScope.launch {
-                while (isActive) {
-                    val record = consumer.poll(Duration.ofSeconds(10))
-                    if (record.count() == 0) {
-                        log.info("no new messages")
-                    } else {
-                        record.records("new_topic").forEach {
-                            log.info("received on consumer: ${it.value()}")
-                        }
-                    }
-                    consumer.commitSync()
+        log.info("About to launch consumer in coroutine")
+
+        val executor = Executors.newFixedThreadPool(1)
+        executor.execute {
+            val record = consumer.poll(Duration.ofSeconds(10))
+            if (record.count() == 0) {
+                log.info("no new messages")
+            } else {
+                record.records("new_topic").forEach {
+                    log.info("received on consumer: ${it.value()}")
                 }
             }
-            log.info("lanuched consumer loop")
-        } catch (ex: Exception) {
-            log.error("got error in kafka", ex)
+            consumer.commitSync()
         }
+        log.info("launched consumer loop")
 
 
         // Application configuration
