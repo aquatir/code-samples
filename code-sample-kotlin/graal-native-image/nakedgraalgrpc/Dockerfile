@@ -14,6 +14,7 @@ RUN native-image \
   --report-unsupported-elements-at-runtime \
   -H:EnableURLProtocols=http,https \
   -H:+AddAllCharsets \
+  -Dio.netty.noUnsafe=true \
   --initialize-at-build-time='org.jooq.SQLDialect$ThirdParty' \
   --initialize-at-build-time=org.postgresql.Driver \
   --initialize-at-build-time=org.postgresql.util.SharedTimer \
@@ -62,7 +63,8 @@ RUN native-image \
   --initialize-at-build-time=com.google.common.primitives \
   --initialize-at-build-time=com.google.common.util \
   --initialize-at-build-time=com.google.common.collect \
-  --initialize-at-run-time=ch.qos.logback.core \
+  --initialize-at-build-time=ch.qos.logback \
+  --initialize-at-build-time=org.slf4j \
   --initialize-at-run-time=io.grpc.netty.shaded.io.netty.buffer.AbstractByteBufAllocator \
   --initialize-at-run-time=io.netty.util.internal.logging.Log4JLogger \
   --initialize-at-run-time=io.netty.handler.ssl.ReferenceCountedOpenSslContext \

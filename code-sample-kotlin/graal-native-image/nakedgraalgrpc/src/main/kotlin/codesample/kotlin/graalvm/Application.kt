@@ -4,7 +4,11 @@ import com.google.common.net.HostAndPort
 import com.orbitz.consul.Consul
 import com.zaxxer.hikari.HikariDataSource
 import io.grpc.ServerBuilder
+import io.grpc.ServerInterceptors
 import io.grpc.stub.StreamObserver
+import io.prometheus.client.exporter.HTTPServer
+import me.dinowernli.grpc.prometheus.Configuration
+import me.dinowernli.grpc.prometheus.MonitoringServerInterceptor
 import org.jooq.DSLContext
 import org.jooq.SQLDialect
 import org.jooq.impl.DSL
@@ -46,22 +50,34 @@ object Application {
             loginTimeout = 3
 
             // TODO: Is it required?
-            addDataSourceProperty("characterEncoding","utf8");
-            addDataSourceProperty("useUnicode","true");
+            addDataSourceProperty("characterEncoding", "utf8");
+            addDataSourceProperty("useUnicode", "true");
         }
 
         val dslContext = DSL.using(ds, SQLDialect.POSTGRES)
         dslContext.execute("SELECT 1") // load JOOQ
 
+
+        val monitoringInterceptor = MonitoringServerInterceptor.create(Configuration.cheapMetricsOnly());
         // Application configuration
         val port = 50051
-        val server = ServerBuilder.forPort(port)
-                .addService(ExampleEndpoint(dslContext))
+        val server = ServerBuilder
+                .forPort(port)
+                .addService(
+                        ServerInterceptors.intercept(
+                                ExampleEndpoint(dslContext).bindService(),
+                                monitoringInterceptor
+                        )
+                )
                 .build()
                 .start()
 
+        // This will start prometheus metrics collector over the simplest http server
+        val prometheusHttpServer = HTTPServer(50052)
+
         log.info("GRPC Server started at 50051")
         server?.awaitTermination()
+        prometheusHttpServer.stop()
     }
 }
 
