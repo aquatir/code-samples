@@ -69,8 +69,6 @@
             <li><b>code-sample-nginx-spring-boot-docker</b>. Spring-boot with nginx inside docker deployed with docker-compose
         </ul>
     </li>
-    <li><b>code-sample-angular-java</b>. Angular app based on https://angular.io/tutorial .
-    Uses real backend (with in-memory DB) </li>
     <li><b>code-sample-react/react-tic-tac-toe</b>. React example from official documentation </li>
 </ul>
 
