@@ -165,6 +165,10 @@
     ]
   },
   {
+    "name":"io.grpc.netty.shaded.io.netty.buffer.AbstractByteBufAllocator",
+    "allDeclaredMethods":true
+  },
+  {
     "name":"io.grpc.netty.shaded.io.netty.buffer.AbstractReferenceCountedByteBuf",
     "fields":[{"name":"refCnt", "allowUnsafeAccess":true}]
   },
@@ -284,6 +288,22 @@
   {
     "name":"io.grpc.netty.shaded.io.netty.util.internal.shaded.org.jctools.queues.BaseMpscLinkedArrayQueueConsumerFields",
     "fields":[{"name":"consumerIndex", "allowUnsafeAccess":true}]
+  },
+  {
+    "name":"io.grpc.netty.shaded.io.netty.util.internal.shaded.org.jctools.queues.BaseMpscLinkedArrayQueueProducerFields",
+    "fields":[{"name":"producerIndex", "allowUnsafeAccess":true}]
+  },
+  {
+    "name":"io.grpc.netty.shaded.io.netty.util.internal.shaded.org.jctools.queues.MpscArrayQueueConsumerIndexField",
+    "fields":[{"name":"consumerIndex", "allowUnsafeAccess":true}]
+  },
+  {
+    "name":"io.grpc.netty.shaded.io.netty.util.internal.shaded.org.jctools.queues.MpscArrayQueueProducerIndexField",
+    "fields":[{"name":"producerIndex", "allowUnsafeAccess":true}]
+  },
+  {
+    "name":"io.grpc.netty.shaded.io.netty.util.internal.shaded.org.jctools.queues.MpscArrayQueueProducerLimitField",
+    "fields":[{"name":"producerLimit", "allowUnsafeAccess":true}]
   },
   {
     "name": "io.grpc.netty.shaded.io.grpc.netty.NettyServer$1",

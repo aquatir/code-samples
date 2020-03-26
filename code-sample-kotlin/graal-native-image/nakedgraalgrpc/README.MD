@@ -11,12 +11,15 @@
 6. `create table transactions (id int primary key not null, amount int not null);`
 7. `insert into transactions(id, amount) values (1, 100);`
 
+### Prometheus
+1. `docker run -p 9090:9090 --net mynet --name=prometheus -v $(pwd)/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus`
+
 
 ### Compose Kafka and Consul
 1. `docker-compose up`
 
 ### App
-1. `docker run -p 50051:50051 --net mynet --name app nakedgraalgrpc` 
+1. `docker run -p 50051:50051 -p 50052:50052 --net mynet --name app nakedgraalgrpc` 
 
 
 ### Local agent build
