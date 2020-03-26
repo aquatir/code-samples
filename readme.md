@@ -29,7 +29,6 @@
             <li> <b> code-sample-java-hibernate</b>. Examples for most common hibernate features</li>
             <li> <b> code-sample-java-patterns</b>. Basic java implementation for most classical design patterns</li>
             <li> <b> code-sample-java-se</b>. Examples of some java SE APIs </li>
-            <li> <b> code-sample-java-spring</b>. Tiny spring example. Uses only bean definition</li>
 	    <li> <b> code-sample-java-useful-implementations</b>. Should Contain implementstions for some fun stuff. Currently contains nothing of interest </li>
          </ul>
     </li>
