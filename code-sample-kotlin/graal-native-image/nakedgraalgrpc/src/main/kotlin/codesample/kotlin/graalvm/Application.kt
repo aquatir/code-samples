@@ -103,7 +103,7 @@ object Application {
                 .forPort(port)
                 .addService(
                         ServerInterceptors.intercept(
-                                ExampleEndpoint(dslContext).bindService(),
+                                ExampleEndpoint(dslContext, producer).bindService(),
                                 monitoringInterceptor
                         )
                 )
@@ -119,7 +119,7 @@ object Application {
     }
 }
 
-class ExampleEndpoint(private val dslContext: DSLContext, private val producer: Producer<String, String>?) : ExampleServiceGrpc.ExampleServiceImplBase() {
+class ExampleEndpoint(private val dslContext: DSLContext, private val producer: Producer<String, String>) : ExampleServiceGrpc.ExampleServiceImplBase() {
 
     private val log = LoggerFactory.getLogger(ExampleEndpoint::class.java)
 
@@ -131,12 +131,9 @@ class ExampleEndpoint(private val dslContext: DSLContext, private val producer: 
         log.info("num of rows $result")
 
         log.info("Sending kafka message")
-        if (producer != null) {
-            val sendResult = producer?.send(ProducerRecord("new_topic", "value")).get()
-            log.info("offset: ${sendResult.offset()} partition: ${sendResult.partition()}")
-        } else {
-            log.warn("No producer available. Sending nothing")
-        }
+
+        val sendResult = producer.send(ProducerRecord("new_topic", "value")).get()
+        log.info("offset: ${sendResult.offset()} partition: ${sendResult.partition()}")
 
         val reply = ExampleReply.newBuilder().setMessage("Hello, gRPC!").build()
         with(responseObserver) {

@@ -52,6 +52,7 @@ dependencies {
     implementation "io.prometheus:simpleclient:0.8.1"
     implementation "io.prometheus:simpleclient_httpserver:0.8.1"
     implementation "me.dinowernli:java-grpc-prometheus:0.3.0"
+
     // kafka
     implementation "org.apache.kafka:kafka-clients:2.3.0"
 
