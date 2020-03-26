@@ -20,7 +20,7 @@ import java.util.zip.Checksum;
 
 @TargetClass(className = "org.apache.kafka.common.utils.Crc32C$Java9ChecksumFactory")
 @Substitute
-final class MY_Java9ChecksumFactory {
+final class Java9ChecksumFactory {
 
     @Substitute
     public Checksum create() {

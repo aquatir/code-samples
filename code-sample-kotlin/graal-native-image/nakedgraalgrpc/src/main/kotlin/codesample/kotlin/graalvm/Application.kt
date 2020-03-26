@@ -23,7 +23,6 @@ import org.slf4j.LoggerFactory
 import org.yaml.snakeyaml.Yaml
 import java.time.Duration
 import java.util.*
-import java.util.concurrent.Executors
 import javax.sql.DataSource
 
 
@@ -68,36 +67,25 @@ object Application {
         dslContext.execute("SELECT 1") // load JOOQ
 
 
-        val monitoringInterceptor = MonitoringServerInterceptor.create(Configuration.cheapMetricsOnly());
-        //val kafkaBrokerUrl = "127.0.0.1:9092"
+        // kafka config
+        //val kafkaBrokerUrl = "localhost:9092"
         val kafkaBrokerUrl = "broker.mynet:9092"
 
-        var producer: Producer<String, String>? = null
-        log.info("Creating kafka")
-        producer = createProducer(kafkaBrokerUrl)
-        log.info("created producer")
+        log.info("Creating kafka producer and consumer")
+
+        val producer  = createProducer(kafkaBrokerUrl)
         val consumer = createConsumer(kafkaBrokerUrl)
                 .apply { this.subscribe(listOf("new_topic")) }
-        log.info("created consumer")
 
-        log.info("About to launch consumer in coroutine")
+        log.info("Created producer and consumer")
+        log.info("About to launch consumer thread")
 
-        val executor = Executors.newFixedThreadPool(1)
-        executor.execute {
-            val record = consumer.poll(Duration.ofSeconds(10))
-            if (record.count() == 0) {
-                log.info("no new messages")
-            } else {
-                record.records("new_topic").forEach {
-                    log.info("received on consumer: ${it.value()}")
-                }
-            }
-            consumer.commitSync()
-        }
-        log.info("launched consumer loop")
+        val kafkaConsumerThread = KafkaConsumerThread("kafka-consumer-thread", consumer)
+                .apply { start() }
+        log.info("launched consumer thread")
 
-
-        // Application configuration
+        // GRPC config
+        val monitoringInterceptor = MonitoringServerInterceptor.create(Configuration.cheapMetricsOnly());
         val port = 50051
         val server = ServerBuilder
                 .forPort(port)
@@ -116,6 +104,32 @@ object Application {
         log.info("GRPC Server started at 50051")
         server?.awaitTermination()
         prometheusHttpServer.stop()
+        kafkaConsumerThread.interrupt()
+    }
+}
+
+class KafkaConsumerThread(threadName: String, private val consumer: Consumer<String, String>) : Thread(threadName) {
+
+    private val log = LoggerFactory.getLogger(KafkaConsumerThread::class.java)
+
+    override fun run() {
+
+        while (!isInterrupted) {
+            try {
+                val record = consumer.poll(Duration.ofSeconds(10))
+                if (record.count() == 0) {
+                    log.info("no new messages")
+                } else {
+                    record.records("new_topic").forEach {
+                        log.info("received on consumer: ${it.value()}")
+                    }
+                }
+                consumer.commitSync()
+            } catch (ex: Exception) {
+                log.error("Something went wrong in kafka consumer thread: ", ex)
+            }
+
+        }
     }
 }
 
