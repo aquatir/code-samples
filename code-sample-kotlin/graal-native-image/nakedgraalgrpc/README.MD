@@ -1,26 +1,4 @@
-## Network
+Скоро здесь будет классный ридми!
 
-1. `docker network create mynet`
+Чтобы запустить, если вы и так знаете, что делать, здесь есть файлик `launch_this.md`
 
-### start DB
-1. `docker run --name pg -e POSTGRES_PASSWORD=postgres --net mynet -p 5432:5432 -d postgres`
-2. `docker exec -it pg bash`
-3. `psql -U postgres`
-4. `create database test;`
-5. `\c test`
-6. `create table transactions (id int primary key not null, amount int not null);`
-7. `insert into transactions(id, amount) values (1, 100);`
-
-### Prometheus
-1. `docker run -p 9090:9090 --net mynet --name=prometheus -v $(pwd)/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus`
-
-
-### Compose Kafka and Consul
-1. `docker-compose up`
-
-### App
-1. `docker run -p 50051:50051 -p 50052:50052 --net mynet --name app nakedgraalgrpc` 
-
-
-### Local agent build
-1. `$JAVA_HOME/bin/java -agentlib:native-image-agent=config-output-dir=/home/pavel/image_stuff -cp build/libs/nakedgraalgrpc-0.1-all.jar codesample.kotlin.graalvm.Application`
