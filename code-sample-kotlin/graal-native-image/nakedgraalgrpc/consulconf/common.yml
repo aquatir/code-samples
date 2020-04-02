@@ -1,9 +1,16 @@
-common1:
-  conf1: com_conf_1
-  conf2: com_conf_2
+app:
+  port: "50051"
 
-common2: com_3
+  prometheus:
+    port: "50052"
 
-kafka:
-  url: localhost:9092
+  db:
+    driver_class_name: "org.postgresql.Driver"
+    jdbc_url: "jdbc:postgresql://192.168.99.100:5432/test"
+    username: "postgres"
+    password: "postgres"
+
+  kafka:
+    broker: "192.168.99.100:9092"
+
 

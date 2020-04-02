@@ -1,7 +1,6 @@
 package codesample.kotlin.graalvm
 
-import com.google.common.net.HostAndPort
-import com.orbitz.consul.Consul
+import codesample.kotlin.graalvm.config.ConsulConfiguration
 import com.zaxxer.hikari.HikariDataSource
 import io.grpc.ServerBuilder
 import io.grpc.ServerInterceptors
@@ -20,10 +19,10 @@ import org.jooq.DSLContext
 import org.jooq.SQLDialect
 import org.jooq.impl.DSL
 import org.slf4j.LoggerFactory
-import org.yaml.snakeyaml.Yaml
 import java.time.Duration
 import java.util.*
 import javax.sql.DataSource
+import kotlin.system.exitProcess
 
 
 object Application {
@@ -33,25 +32,25 @@ object Application {
     @JvmStatic
     fun main(args: Array<String>) {
 
-        // Consul
-        val consulClient = Consul
-                .builder()
-                //.withHostAndPort(HostAndPort.fromString("localhost:8500"))
-                .withHostAndPort(HostAndPort.fromString("consul.mynet:8500"))
-                .build()
-        val kvClient = consulClient.keyValueClient()
+        // Consul config
+        val consulHost = System.getenv()["CONSUL_HOSTPORT"]
+        if (consulHost == null) {
+            log.error("Could not start! No value passed for CONSUL_HOSTPORT variable")
+            exitProcess(1)
+        }
 
-        val yamlReader = Yaml()
-        val common = yamlReader.load<MutableMap<String, Any>>(kvClient.getValueAsString("config/common/data").get())
-        log.info("Got common from consul: $common")
+        log.info("Connection to consul by host: $consulHost")
+        val consulConfig = ConsulConfiguration(consulHost).init()
+        val commonProps = consulConfig.readPropertyYaml("config/common/data")
+        log.info("Got common props: $commonProps")
 
         // Datasource config
         val ds: DataSource = HikariDataSource().apply {
-            driverClassName = "org.postgresql.Driver"
-            jdbcUrl = "jdbc:postgresql://pg.mynet:5432/test"
-            //jdbcUrl = "jdbc:postgresql://localhost:5432/test"
-            username = "postgres"
-            password = "postgres"
+            driverClassName = commonProps.readPropertyOrThrow("app.db.driver_class_name")
+            //jdbcUrl = "jdbc:postgresql://pg.mynet:5432/test"
+            jdbcUrl = commonProps.readPropertyOrThrow("app.db.jdbc_url" )
+            username = commonProps.readPropertyOrThrow("app.db.username" )
+            password = commonProps.readPropertyOrThrow("app.db.password")
 
             minimumIdle = 50
             maximumPoolSize = 500
@@ -68,8 +67,8 @@ object Application {
 
 
         // kafka config
-        //val kafkaBrokerUrl = "localhost:9092"
-        val kafkaBrokerUrl = "broker.mynet:9092"
+        val kafkaBrokerUrl = commonProps.readPropertyOrThrow("app.kafka.broker")
+        //val kafkaBrokerUrl = "broker.mynet:9092"
 
         log.info("Creating kafka producer and consumer")
 
@@ -86,7 +85,7 @@ object Application {
 
         // GRPC config
         val monitoringInterceptor = MonitoringServerInterceptor.create(Configuration.cheapMetricsOnly());
-        val port = 50051
+        val port = Integer.parseInt(commonProps.readPropertyOrThrow("app.port"))
         val server = ServerBuilder
                 .forPort(port)
                 .addService(
@@ -99,7 +98,7 @@ object Application {
                 .start()
 
         // This will start prometheus metrics collector over the simplest http server
-        val prometheusHttpServer = HTTPServer(50052)
+        val prometheusHttpServer = HTTPServer(Integer.parseInt(commonProps.readPropertyOrThrow("app.prometheus.port")))
 
         log.info("GRPC Server started at 50051")
         server?.awaitTermination()
