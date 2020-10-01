@@ -49,7 +49,7 @@ suspend fun doWorld() {
     println("World!")
 }
 
-fun main() = runBlocking {
+fun main5() = runBlocking {
     GlobalScope.launch {
         repeat(1000) { i ->
             println("I'm sleeping $i ...")
