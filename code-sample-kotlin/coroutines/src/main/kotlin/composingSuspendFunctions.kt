@@ -1,10 +1,39 @@
-import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import kotlin.system.measureTimeMillis
+
+
+fun main() = runBlocking<Unit> {
+    val time = measureTimeMillis {
+        try {
+            failedConcurrentSum()
+        } catch(e: ArithmeticException) {
+            println("Computation failed with ArithmeticException")
+        }
+    }
+    println("Total time spent: ${time}ms")
+
+}
+
+suspend fun failedConcurrentSum(): Int = coroutineScope {
+    val one = async<Int> {
+        try {
+            delay(Long.MAX_VALUE) // Emulates very long computation
+            42
+        } finally {
+            println("First child was cancelled")
+        }
+    }
+    val two = async<Int> {
+        delay(1000)
+        println("Second child throws an exception")
+        throw ArithmeticException() // this throw will stop upper coroutine because they are in the same scope
+    }
+    one.await() + two.await()
+}
 
 fun mainComposing2() = runBlocking {
     val time = measureTimeMillis {
