@@ -1,6 +1,6 @@
 import kotlinx.coroutines.*
 
-fun main1() = runBlocking<Unit> {
+fun mainBasic1() = runBlocking<Unit> {
 
     val worldJob = GlobalScope.launch {
         delay(1000)
@@ -11,7 +11,7 @@ fun main1() = runBlocking<Unit> {
     delay(2000)
 }
 
-fun main2() = runBlocking<Unit> { // <- does not complete unless all jobs inside complete
+fun mainBasic2() = runBlocking<Unit> { // <- does not complete unless all jobs inside complete
 
     launch {
         delay(1000)
@@ -20,7 +20,7 @@ fun main2() = runBlocking<Unit> { // <- does not complete unless all jobs inside
     print("Hello,")
 }
 
-fun main3() = runBlocking {
+fun mainBasic3() = runBlocking {
     launch {
         delay(200)
         println("Task from runBlocking")
@@ -39,7 +39,7 @@ fun main3() = runBlocking {
     println("Coroutine scope is over")
 }
 
-fun main4() = runBlocking {
+fun mainBasic4() = runBlocking {
     launch { doWorld() }
     print("Hello, ")
 }
@@ -49,7 +49,7 @@ suspend fun doWorld() {
     println("World!")
 }
 
-fun main5() = runBlocking {
+fun mainBasic5() = runBlocking {
     GlobalScope.launch {
         repeat(1000) { i ->
             println("I'm sleeping $i ...")

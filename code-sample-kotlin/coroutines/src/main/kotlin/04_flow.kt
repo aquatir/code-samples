@@ -2,10 +2,6 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import kotlin.system.measureTimeMillis
 
-//  -Dkotlinx.coroutines.debug
-fun log(msg: String) = println("[${Thread.currentThread().name}] $msg")
-
-
 
 
 ///
