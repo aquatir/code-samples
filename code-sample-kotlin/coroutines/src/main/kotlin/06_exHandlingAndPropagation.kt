@@ -1,5 +1,5 @@
 import kotlinx.coroutines.*
 
-fun main() = runBlocking {
+fun mainExHandling1() = runBlocking {
     println("hello")
 }
