@@ -1,7 +1,4 @@
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.channelFlow
@@ -12,31 +9,53 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.retryWhen
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import kotlin.random.Random
 import kotlin.system.measureTimeMillis
 
 
-
-suspend fun maybeSuccess(): Boolean = coroutineScope {
+suspend fun maybeSuccess(): Boolean {
     val result = Random.nextInt(10)
     log("is $result == 0 ? ")
-    if (result == 0) true else throw IllegalArgumentException("kek")
+
+
+
+    delay(0) // to use 'suspend modifier'
+    return if (result == 0) true else throw IllegalArgumentException("kek")
 }
 
-fun main3() = runBlocking {
+
+// may can retry a call like this:
+fun main() = runBlocking {
+
+    // simple 'blocking' code
+    var res: Boolean = false
+    do {
+        res = kotlin.runCatching {
+            withContext(Dispatchers.Default)
+            { maybeSuccess() }
+        }.getOrElse { false }
+    } while (!res)
+
+    println("done $res")
+}
+
+// Or like this:
+fun mainOtherStuff3() = runBlocking {
 
     val flowRes = flow {
         emit(maybeSuccess())
     }
-            .flowOn(Dispatchers.Default)
+            //.flowOn(Dispatchers.Default)
             .retryWhen { _, _ -> true } // retry forever!
+
 
     val fst = flowRes.firstOrNull()
     log("done $fst")
 }
 
 // Read only first emitted even and cancel all others
-fun main1() = runBlocking {
+fun mainOtherStuff2() = runBlocking {
 
     val time = measureTimeMillis {
 
@@ -58,7 +77,7 @@ fun main1() = runBlocking {
 }
 
 
-fun main2() = runBlocking {
+fun mainOtherStuff1() = runBlocking {
 
     val time = measureTimeMillis {
 
