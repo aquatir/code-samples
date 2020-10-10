@@ -22,8 +22,13 @@ dependencies {
     implementation("io.ktor:ktor-serialization:1.4.1")
 
     // ktor
-    implementation("io.ktor:ktor-server-core:1.3.2")
-    implementation("io.ktor:ktor-server-netty:1.3.2")
+    implementation("io.ktor:ktor-server-core:1.4.1")
+    implementation("io.ktor:ktor-server-netty:1.4.1")
+
+    // ktor-client
+    implementation ("io.ktor:ktor-client-core:1.4.1")
+    implementation ("io.ktor:ktor-client-okhttp:1.4.1")
+
 
     // logs
     implementation ("ch.qos.logback:logback-classic:1.2.3")
@@ -31,6 +36,9 @@ dependencies {
     implementation ("org.codehaus.janino:janino:3.1.2")
 
     // test
+
+    // kek TODO: remove
+    // testImplementation("com.konghq:unirest-java:3.7.02")
     testImplementation(kotlin("test-junit"))
     testImplementation("io.ktor:ktor-server-tests:1.4.1")
 }

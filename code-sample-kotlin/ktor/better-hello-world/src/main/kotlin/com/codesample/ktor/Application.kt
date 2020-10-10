@@ -34,12 +34,16 @@ object MyAttributeKeys {
 
 //fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 fun main(args: Array<String>) {
-    embeddedServer(Netty,
+    server(false).start(true)
+}
+
+fun server(test: Boolean): NettyApplicationEngine {
+    return embeddedServer(Netty,
         port = 8080,
         //watchPaths = listOf("/build/classes/kotlin"), // TODO: Fails with 'Module function provided as lambda cannot be unlinked for reload'
         configure = {
-        responseWriteTimeoutSeconds = 10
-    }) {
+            responseWriteTimeoutSeconds = 10
+        }) {
 
         install(CallLogging) {
             level = Level.INFO
@@ -116,5 +120,5 @@ fun main(args: Array<String>) {
                 call.respond(it)
             }
         }
-    }.start(wait = true)
+    }
 }
