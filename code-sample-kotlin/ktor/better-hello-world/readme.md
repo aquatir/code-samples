@@ -18,6 +18,11 @@ Trying to implement complete production-ready project template with ktor and cor
 - ktor http client 
 - client with proxy settings
 
+#### ktor specific
+
+- Configure timeout for Netty of 10 seconds (for some reason embedded server can't watch paths. 
+Throws `Module function provided as lambda cannot be unlinked for reload`. Worth an issue?)
+
 
 #### Logging
 
