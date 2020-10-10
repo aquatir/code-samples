@@ -8,10 +8,11 @@ Trying to implement complete production-ready project template with ktor and cor
 
 - **DONE** get requests
 - **DONE** post requests (works with kotlinx serialization)
-- url (path) parameters
-- query (`?a=bla`) parameters
+- **DONE** url (path) parameters (support both required and optional)
+- **DONE** query (`?a=bla`) parameters
 - **DONE** headers
-- filters (time takes for request?)
+- **DONE** interceptors (they are even typesafe!)
+- filters (before and after request)
 - log time taken for request processing (can do with custom coroutine scope key)
 - files
 - ktor http client 
