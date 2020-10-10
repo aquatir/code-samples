@@ -1,4 +1,4 @@
-package ktor
+package com.codesample.ktor
 
 import io.ktor.routing.*
 import io.ktor.application.*
@@ -22,14 +22,14 @@ data class RequestData(val hello: String)
 data class OkResponse(val ok: String = "ok")
 
 
-fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
-
 object MyAttributeKeys {
     val strKey = AttributeKey<String>("atrkey")
     val mapKey = AttributeKey<Map<String, String>>("atrmap")
 
     val timestart = AttributeKey<Long>("timestart") // use for filter functionality
 }
+
+fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
 fun Application.module(testing: Boolean = false) {
 
@@ -77,7 +77,7 @@ fun Application.module(testing: Boolean = false) {
 
             val req = call.parameters["requiredParam"]
             val part = call.parameters["optionalParam"]
-            log.info("path param required: '$req', optiona: '$part'")
+            log.info("path param required: '$req', optional: '$part'")
 
             call.respond(HttpStatusCode.OK, OkResponse())
         }
