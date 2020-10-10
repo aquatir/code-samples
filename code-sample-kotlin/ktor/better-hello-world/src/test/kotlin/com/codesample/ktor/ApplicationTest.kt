@@ -23,6 +23,8 @@ class ApplicationTest {
             }
         }
 
+        val kek = (arrayOf("gid", arrayOf("status", "c", "d"), 3))
+
         // Is it okay to start on save port always? Maybe configure port independently
         try {
             srv = server(true).start(false)

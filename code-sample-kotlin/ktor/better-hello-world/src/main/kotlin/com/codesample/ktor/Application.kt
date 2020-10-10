@@ -47,7 +47,16 @@ fun server(test: Boolean): NettyApplicationEngine {
 
         install(CallLogging) {
             level = Level.INFO
-            format { "Request ${it.request.httpMethod.value} on '${it.request.uri}' - status: ${it.response.status() ?: "unset"}" }
+            format { "Request ${it.request.httpMethod.value} on '${it.request.uri}' - status: ${it.response.status()?.value ?: "unset"}. Took: ${System.currentTimeMillis() - it.attributes.get(MyAttributeKeys.timestart)}ms" }
+        }
+
+        intercept(ApplicationCallPipeline.Setup) {
+            call.attributes.put(MyAttributeKeys.timestart, System.currentTimeMillis())
+        }
+
+        intercept(ApplicationCallPipeline.Call) {
+            call.attributes.put(MyAttributeKeys.strKey, "atrValue")
+            call.attributes.put(MyAttributeKeys.mapKey, mapOf("key" to "value"))
         }
 
         install(ContentNegotiation) {
@@ -70,11 +79,6 @@ fun server(test: Boolean): NettyApplicationEngine {
             }
         }
 
-        intercept(ApplicationCallPipeline.Call) {
-            call.attributes.put(MyAttributeKeys.strKey, "atrValue")
-            call.attributes.put(MyAttributeKeys.mapKey, mapOf("key" to "value"))
-        }
-
         this.environment.monitor.subscribe(ApplicationStarted) {
             log.info("Caught 'ApplicationStarted' event")
         }
@@ -89,10 +93,10 @@ fun server(test: Boolean): NettyApplicationEngine {
                 call.respond(HttpStatusCode.OK, hello)
             }
 
-            get("/map") {
 
-                log.info("att str key: '${call.attributes.get(MyAttributeKeys.strKey)}'")
-                log.info("att map key: '${call.attributes.get(MyAttributeKeys.mapKey)}'")
+            get("/map") {
+                log.info("att str key: '${call.attributes[MyAttributeKeys.strKey]}'")
+                log.info("att map key: '${call.attributes[MyAttributeKeys.mapKey]}'")
                 call.respond(mapOf("key" to "value"))
             }
 
