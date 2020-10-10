@@ -12,6 +12,7 @@ Trying to implement complete production-ready project template with ktor and cor
 - **DONE** query (`?a=bla`) parameters
 - **DONE** headers
 - **DONE** interceptors (they are even typesafe!)
+- **DONE** generic exception handling
 - filters (before and after request)
 - log time taken for request processing (can do with custom coroutine scope key)
 - files
