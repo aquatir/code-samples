@@ -22,6 +22,7 @@ Trying to implement complete production-ready project template with ktor and cor
 
 - Configure timeout for Netty of 10 seconds (for some reason embedded server can't watch paths. 
 Throws `Module function provided as lambda cannot be unlinked for reload`. Worth an issue?)
+- **DONE** Capturing events to stop stuff https://ktor.io/docs/lifecycle.html#monitor-events
 
 
 #### Logging
@@ -33,6 +34,7 @@ Throws `Module function provided as lambda cannot be unlinked for reload`. Worth
 - Check if starting up whole app does take too much time or not
 - Testcontainers (should be identical)
 - **DONE** Hot-realod
+- TestApplicationEngine? https://ktor.io/docs/lifecycle.html#monitor-events
 
 #### Tools
 

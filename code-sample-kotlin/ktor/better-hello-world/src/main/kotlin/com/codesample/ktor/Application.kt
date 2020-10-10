@@ -40,6 +40,10 @@ fun main(args: Array<String>) {
         responseWriteTimeoutSeconds = 10
     }) {
 
+        this.environment.monitor.subscribe(ApplicationStarted) {
+            log.info("Caught 'ApplicationStarted' event")
+        }
+
         install(CallLogging) {
             level = Level.INFO
             filter { call -> call.request.path().startsWith("/") }
