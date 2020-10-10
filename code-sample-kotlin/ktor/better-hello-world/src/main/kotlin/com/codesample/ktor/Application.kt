@@ -7,6 +7,8 @@ import io.ktor.http.*
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.serialization.*
+import io.ktor.server.engine.*
+import io.ktor.server.netty.*
 import io.ktor.util.*
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -29,61 +31,67 @@ object MyAttributeKeys {
     val timestart = AttributeKey<Long>("timestart") // use for filter functionality
 }
 
-fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
+//fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
+fun main(args: Array<String>) {
+    embeddedServer(Netty,
+        port = 8080,
+        //watchPaths = listOf("/build/classes/kotlin"), // Fails with 'Module function provided as lambda cannot be unlinked for reload'
+        configure = {
+        responseWriteTimeoutSeconds = 10
+    }) {
 
-fun Application.module(testing: Boolean = false) {
+        install(CallLogging) {
+            level = Level.INFO
+            filter { call -> call.request.path().startsWith("/") }
+        }
 
-    install(CallLogging) {
-        level = Level.INFO
-        filter { call -> call.request.path().startsWith("/") }
-    }
+        install(ContentNegotiation) {
+            json(
+                contentType = ContentType.Application.Json,
+                json = Json {
+                    encodeDefaults = true
+                    useArrayPolymorphism = true
+                    ignoreUnknownKeys = true
+                }
+            )
+        }
 
-    install(ContentNegotiation) {
-        json(
-            contentType = ContentType.Application.Json,
-            json = Json {
-                encodeDefaults = true
-                useArrayPolymorphism = true
-                ignoreUnknownKeys = true
+        intercept(ApplicationCallPipeline.Call) {
+            call.attributes.put(MyAttributeKeys.strKey, "atrValue")
+            call.attributes.put(MyAttributeKeys.mapKey, mapOf("key" to "value"))
+        }
+
+        routing {
+            get("/") {
+                val reqHeader = call.request.header("X-Other-Header")
+                val hello = HelloWorld("Hello, ", "world!!!")
+
+
+                call.response.header("X-My-Header", "My-value")
+                call.respond(HttpStatusCode.OK, hello)
             }
-        )
-    }
 
-    intercept(ApplicationCallPipeline.Call) {
-        call.attributes.put(MyAttributeKeys.strKey, "atrValue")
-        call.attributes.put(MyAttributeKeys.mapKey, mapOf("key" to "value"))
-    }
+            get("/map") {
 
-    routing {
-        get("/") {
-            val reqHeader = call.request.header("X-Other-Header")
-            val hello = HelloWorld("Hello, ", "world!!!")
+                log.info("att str key: '${call.attributes.get(MyAttributeKeys.strKey)}'")
+                log.info("att map key: '${call.attributes.get(MyAttributeKeys.mapKey)}'")
+                call.respond(mapOf("key" to "value"))
+            }
 
+            get("/params/{requiredParam}/{optionalParam?}") {
+                val params = call.request.queryParameters
+                log.info("one: '${params["one"]}' two: '${params["two"]}'")
 
-            call.response.header("X-My-Header", "My-value")
-            call.respond(HttpStatusCode.OK, hello)
+                val req = call.parameters["requiredParam"]
+                val part = call.parameters["optionalParam"]
+                log.info("path param required: '$req', optional: '$part'")
+
+                call.respond(HttpStatusCode.OK, OkResponse())
+            }
+
+            post<RequestData>("/body") {
+                call.respond(it)
+            }
         }
-
-        get("/map") {
-
-            log.info("att str key: '${call.attributes.get(MyAttributeKeys.strKey)}'")
-            log.info("att map key: '${call.attributes.get(MyAttributeKeys.mapKey)}'")
-            call.respond(mapOf("key" to "value"))
-        }
-
-        get("/params/{requiredParam}/{optionalParam?}") {
-            val params = call.request.queryParameters
-            log.info("one: '${params["one"]}' two: '${params["two"]}'")
-
-            val req = call.parameters["requiredParam"]
-            val part = call.parameters["optionalParam"]
-            log.info("path param required: '$req', optional: '$part'")
-
-            call.respond(HttpStatusCode.OK, OkResponse())
-        }
-
-        post<RequestData>("/body") {
-            call.respond(it)
-        }
-    }
+    }.start(wait = true)
 }
