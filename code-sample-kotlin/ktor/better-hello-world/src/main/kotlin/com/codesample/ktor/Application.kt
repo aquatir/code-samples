@@ -35,7 +35,7 @@ object MyAttributeKeys {
 fun main(args: Array<String>) {
     embeddedServer(Netty,
         port = 8080,
-        //watchPaths = listOf("/build/classes/kotlin"), // Fails with 'Module function provided as lambda cannot be unlinked for reload'
+        //watchPaths = listOf("/build/classes/kotlin"), // TODO: Fails with 'Module function provided as lambda cannot be unlinked for reload'
         configure = {
         responseWriteTimeoutSeconds = 10
     }) {

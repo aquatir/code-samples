@@ -46,7 +46,7 @@ Throws `Module function provided as lambda cannot be unlinked for reload`. Worth
     - or even this: https://matej.laitl.cz/bench-rust-kotlin-microservices/
     - how micronaut / quarkus do it?
 - **Kafka**. Should be simple. How micronaut / quarkus do it?
-- **Consul**
+- **Consul**. Config loader from https://ktor.io/docs/configuration.html#custom 
 
 #### Production stuff
 
