@@ -16,12 +16,14 @@ class ApplicationTest {
     suspend fun test(block: suspend (client: HttpClient) -> Unit) {
         var srv: NettyApplicationEngine? = null
 
+        // May cache http client?
         val client = HttpClient(OkHttp) {
             install(JsonFeature) {
                 serializer = KotlinxSerializer()
             }
         }
 
+        // Is it okay to start on save port always? Maybe configure port independently
         try {
             srv = server(true).start(false)
             block.invoke(client)
