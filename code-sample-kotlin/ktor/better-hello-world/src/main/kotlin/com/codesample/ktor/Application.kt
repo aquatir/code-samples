@@ -22,8 +22,11 @@ data class HelloWorld(val word1: String, val word2: String)
 data class RequestData(val hello: String)
 
 @Serializable
-data class StatusResponse(val status: String = "ok")
+data class StatusResponse(val status: Status = Status.OK)
 
+enum class Status {
+    OK, NOT_OK, UNKNOWN
+}
 
 object MyAttributeKeys {
     val strKey = AttributeKey<String>("atrkey")
@@ -72,10 +75,10 @@ fun server(test: Boolean): NettyApplicationEngine {
 
         install(StatusPages) {
             exception<ServerException> { _ ->
-                call.respond(HttpStatusCode.InternalServerError, StatusResponse("no ok"))
+                call.respond(HttpStatusCode.InternalServerError, StatusResponse(Status.NOT_OK))
             }
             exception<RuntimeException> {
-                call.respond(HttpStatusCode.InternalServerError, StatusResponse("unknown"))
+                call.respond(HttpStatusCode.InternalServerError, StatusResponse(Status.UNKNOWN))
             }
         }
 

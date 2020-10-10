@@ -55,5 +55,7 @@ Throws `Module function provided as lambda cannot be unlinked for reload`. Worth
 
 - prometheus metrics
 - json logs
-- MDC with logs for coroutines
+- MDC with logs for coroutines 
+    - call interceptor: https://ktor.io/docs/call-logging.html#mdc
+    - also, this for custom stuff: https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-thread-context-element/index.html
 
