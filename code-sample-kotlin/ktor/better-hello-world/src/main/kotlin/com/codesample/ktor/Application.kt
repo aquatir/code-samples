@@ -48,18 +48,11 @@ fun server(test: Boolean): NettyApplicationEngine {
             responseWriteTimeoutSeconds = 10
         }) {
 
+        // installs
+
         install(CallLogging) {
             level = Level.INFO
             format { "Request ${it.request.httpMethod.value} on '${it.request.uri}' - status: ${it.response.status()?.value ?: "unset"}. Took: ${System.currentTimeMillis() - it.attributes.get(MyAttributeKeys.timestart)}ms" }
-        }
-
-        intercept(ApplicationCallPipeline.Setup) {
-            call.attributes.put(MyAttributeKeys.timestart, System.currentTimeMillis())
-        }
-
-        intercept(ApplicationCallPipeline.Call) {
-            call.attributes.put(MyAttributeKeys.strKey, "atrValue")
-            call.attributes.put(MyAttributeKeys.mapKey, mapOf("key" to "value"))
         }
 
         install(ContentNegotiation) {
@@ -80,6 +73,17 @@ fun server(test: Boolean): NettyApplicationEngine {
             exception<RuntimeException> {
                 call.respond(HttpStatusCode.InternalServerError, StatusResponse(Status.UNKNOWN))
             }
+        }
+
+        // interceptors
+
+        intercept(ApplicationCallPipeline.Setup) {
+            call.attributes.put(MyAttributeKeys.timestart, System.currentTimeMillis())
+        }
+
+        intercept(ApplicationCallPipeline.Call) {
+            call.attributes.put(MyAttributeKeys.strKey, "atrValue")
+            call.attributes.put(MyAttributeKeys.mapKey, mapOf("key" to "value"))
         }
 
         this.environment.monitor.subscribe(ApplicationStarted) {
@@ -121,11 +125,21 @@ fun server(test: Boolean): NettyApplicationEngine {
                 throw RuntimeException("ex")
             }
 
+            get("/multiparam/{restOfPath...}") {
+                val params = call.parameters.getAll("restOfPath")
+                log.info("params: $params")
+                call.respond(HttpStatusCode.OK, StatusResponse())
+            }
+
+
             other()
 
             post<RequestData>("/body") {
-                call.respond(it)
+                call.respond(StatusResponse())
             }
+
         }
     }
 }
+
+
