@@ -83,9 +83,7 @@ class ApplicationTest {
                 header(HttpHeaders.ContentType, ContentType.Application.Json)
             }
 
-
             assertEquals(Status.OK, res.status)
-
 
             val dataAsJson = Json {
                 encodeDefaults = true
