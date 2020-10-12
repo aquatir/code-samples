@@ -16,7 +16,7 @@ Trying to implement complete production-ready project template with ktor and cor
 - filters (before and after request)
 - log time taken for request processing (can do with custom coroutine scope key)
 - files
-- ktor http client 
+- **DONE** ktor http client 
 - client with proxy settings
 
 #### ktor specific
@@ -32,7 +32,8 @@ Throws `Module function provided as lambda cannot be unlinked for reload`. Worth
 
 #### Testing
 
-- Check if starting up whole app does take too much time or not
+- **DONE** Check if starting up whole app does take too much time or not (Not really... Starts almost instantly. Why 
+even bother to use build-in test support?)
 - Testcontainers (should be identical)
 - **DONE** Hot-realod
 - TestApplicationEngine? https://ktor.io/docs/lifecycle.html#monitor-events

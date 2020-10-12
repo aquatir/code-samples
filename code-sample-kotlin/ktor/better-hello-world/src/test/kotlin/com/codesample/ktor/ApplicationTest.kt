@@ -1,13 +1,20 @@
 package com.codesample.ktor
 
 import io.ktor.client.*
+import io.ktor.client.call.*
 import io.ktor.client.engine.okhttp.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.request.*
+import io.ktor.client.statement.*
 import io.ktor.server.netty.*
+import io.ktor.utils.io.*
+import io.ktor.utils.io.core.*
 import kotlinx.coroutines.runBlocking
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import org.junit.Test
+import java.nio.ByteBuffer
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
@@ -45,6 +52,22 @@ class ApplicationTest {
         }
     }
 
+
+    @Test
+    fun testHttpClientGenerciResp() = runBlocking {
+        test { client ->
+            val res = client.get<HttpResponse>("http://localhost:8080/map")
+            assertEquals(200, res.status.value)
+
+            val body = res.receive<Map<String, String>>()
+
+            val dataAsJson = Json.encodeToString(body)
+            assertEquals("""
+                {"key":"value"}
+            """.trimIndent(), dataAsJson)
+        }
+    }
+
     @Test
     fun testOther() = runBlocking {
         test { client ->
@@ -55,5 +78,6 @@ class ApplicationTest {
             """.trimIndent(), res)
         }
     }
+
 
 }
