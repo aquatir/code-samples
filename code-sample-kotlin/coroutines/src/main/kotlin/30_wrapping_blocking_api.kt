@@ -9,19 +9,16 @@ fun main() = runBlocking {
     val blockingApiProvider = BlockingApiProvider()
     val blockingApiWrapper = BlockingApiWrapper(blockingApiProvider)
 
-    val jobs = mutableListOf<Job>()
     val jobsFinished = Array<Boolean>(50) { false }
 
     val time = measureTimeMillis {
         val outerJob = launch {
             for (i in 0..49) {
-                jobs.add(
-                        launch(Dispatchers.Default) {
-                            blockingApiWrapper.makeBlockingCall()
-                            println("done with $i")
-                            jobsFinished[i] = true
-                        }
-                )
+                launch(Dispatchers.Default) {
+                    blockingApiWrapper.makeBlockingCall()
+                    println("done with $i")
+                    jobsFinished[i] = true
+                }
             }
         }
         outerJob.join()
