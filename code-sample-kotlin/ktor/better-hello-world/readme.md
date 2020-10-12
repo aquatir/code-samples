@@ -60,3 +60,8 @@ even bother to use build-in test support?)
     - call interceptor: https://ktor.io/docs/call-logging.html#mdc
     - also, this for custom stuff: https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-thread-context-element/index.html
 
+
+#### Issues to reproduce?
+
+- For some reason embedded server can't watch paths.  Throws 
+`Module function provided as lambda cannot be unlinked for reload`. Worth an issue?

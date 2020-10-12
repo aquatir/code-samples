@@ -7,6 +7,7 @@ import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
+import io.ktor.http.*
 import io.ktor.server.netty.*
 import io.ktor.utils.io.*
 import io.ktor.utils.io.core.*
@@ -26,7 +27,13 @@ class ApplicationTest {
         // May cache http client?
         val client = HttpClient(OkHttp) {
             install(JsonFeature) {
-                serializer = KotlinxSerializer()
+                serializer = KotlinxSerializer(
+                    json = kotlinx.serialization.json.Json {
+                        encodeDefaults = true
+                        useArrayPolymorphism = true
+                        ignoreUnknownKeys = true
+                    }
+                )
             }
         }
 
@@ -54,7 +61,7 @@ class ApplicationTest {
 
 
     @Test
-    fun testHttpClientGenerciResp() = runBlocking {
+    fun testHttpClientHttpResponse() = runBlocking {
         test { client ->
             val res = client.get<HttpResponse>("http://localhost:8080/map")
             assertEquals(200, res.status.value)
@@ -64,6 +71,28 @@ class ApplicationTest {
             val dataAsJson = Json.encodeToString(body)
             assertEquals("""
                 {"key":"value"}
+            """.trimIndent(), dataAsJson)
+        }
+    }
+
+    @Test
+    fun testHttpClientPost() = runBlocking {
+        test { client ->
+            val res = client.post<StatusResponse>("http://localhost:8080/body") {
+                body = RequestData("hello")
+                header(HttpHeaders.ContentType, ContentType.Application.Json)
+            }
+
+
+            assertEquals(Status.OK, res.status)
+
+
+            val dataAsJson = Json {
+                encodeDefaults = true
+            }.encodeToString(res)
+
+            assertEquals("""
+                {"status":"OK"}
             """.trimIndent(), dataAsJson)
         }
     }
