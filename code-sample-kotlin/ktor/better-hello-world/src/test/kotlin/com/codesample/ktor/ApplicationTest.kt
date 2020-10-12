@@ -3,6 +3,7 @@ package com.codesample.ktor
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.engine.okhttp.*
+import io.ktor.client.features.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.request.*
@@ -81,6 +82,9 @@ class ApplicationTest {
             val res = client.post<StatusResponse>("http://localhost:8080/body") {
                 body = RequestData("hello")
                 header(HttpHeaders.ContentType, ContentType.Application.Json)
+                timeout {
+                    requestTimeoutMillis = 5000
+                }
             }
 
             assertEquals(Status.OK, res.status)
