@@ -1,13 +1,8 @@
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.asCoroutineDispatcher
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-import java.util.concurrent.Executors
 import kotlin.system.measureTimeMillis
 
 fun main() = runBlocking {
@@ -15,14 +10,16 @@ fun main() = runBlocking {
     val blockingApiWrapper = BlockingApiWrapper(blockingApiProvider)
 
     val jobs = mutableListOf<Job>()
+    val jobsFinished = Array<Boolean>(50) { false }
 
     val time = measureTimeMillis {
         val outerJob = launch {
-            for (i in 1..50) {
+            for (i in 0..49) {
                 jobs.add(
                         launch(Dispatchers.Default) {
-                            val res = blockingApiWrapper.makeBlockingCall()
+                            blockingApiWrapper.makeBlockingCall()
                             println("done with $i")
+                            jobsFinished[i] = true
                         }
                 )
             }
@@ -30,30 +27,21 @@ fun main() = runBlocking {
         outerJob.join()
     }
 
-    // WHY ARE YOU NOT FINISHING NORMALLY?!
-    blockingApiWrapper.stop()
-    coroutineContext.cancelChildren()
+    println("all finished: ${jobsFinished.all { it }}")
     println("time taken: $time")
 }
 
 class BlockingApiWrapper(private val blockingApiProvider: BlockingApiProvider) {
-    private val scope = CoroutineScope(Executors.newFixedThreadPool(50).asCoroutineDispatcher())
-
-    suspend fun makeBlockingCall(): Int {
-        return withContext(scope.coroutineContext) {
+    suspend fun makeBlockingCall() {
+        return withContext(Dispatchers.IO) {// a thread-pool of 64 threads used here OR number of threads on machine if it is larger
             blockingApiProvider.makeBlockingCall()
         }
-    }
-
-    fun stop() {
-        scope.cancel()
     }
 }
 
 class BlockingApiProvider() {
-    fun makeBlockingCall(): Int {
+    fun makeBlockingCall() {
         // emulate blocking call
         Thread.sleep(5000)
-        return 1
     }
 }
