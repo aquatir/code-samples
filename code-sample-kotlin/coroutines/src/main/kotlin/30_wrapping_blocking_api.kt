@@ -5,7 +5,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import kotlin.system.measureTimeMillis
 
-fun main() = runBlocking {
+fun mainWrappingBlockingApi() = runBlocking {
     val blockingApiProvider = BlockingApiProvider()
     val blockingApiWrapper = BlockingApiWrapper(blockingApiProvider)
 

@@ -26,7 +26,7 @@ suspend fun maybeSuccess(): Boolean {
 
 
 // may can retry a call like this:
-fun main() = runBlocking {
+fun mainOtherStuff() = runBlocking {
 
     // simple 'blocking' code
     var res: Boolean = false

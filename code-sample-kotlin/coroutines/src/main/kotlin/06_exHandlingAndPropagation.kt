@@ -1,7 +1,7 @@
 import kotlinx.coroutines.*
 
 
-fun main() = runBlocking {
+fun mainExHandlingAndPropagation() = runBlocking {
     val handler = CoroutineExceptionHandler { _, exception ->
         println("CoroutineExceptionHandler got $exception")
     }
