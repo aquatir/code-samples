@@ -14,6 +14,7 @@ repositories {
 dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.3.9")
 
     // kotlin-serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.0")

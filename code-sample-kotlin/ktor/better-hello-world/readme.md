@@ -13,15 +13,16 @@ Trying to implement complete production-ready project template with ktor and cor
 - **DONE** headers
 - **DONE** interceptors (they are even typesafe!)
 - **DONE** generic exception handling
-- filters (before and after request)
-- log time taken for request processing (can do with custom coroutine scope key)
-- files
+- **DONE** filters (before and after request). Before -> interceptor. After -> CallLogging Feature. 
+Can also create pipeline phases
+- **DONE** log time taken for request processing (can do with custom coroutine scope key)
+- **SKIP** files. Not done but documentation exists
 - **DONE** ktor http client 
-- client with proxy settings
+- **SKIP** client with proxy settings. Not done but documentation exists
 
 #### ktor specific
 
-- Configure timeout for Netty of 10 seconds (for some reason embedded server can't watch paths. 
+- **DONE** Configure timeout for Netty of 10 seconds (for some reason embedded server can't watch paths. 
 Throws `Module function provided as lambda cannot be unlinked for reload`. Worth an issue?)
 - **DONE** Capturing events to stop stuff https://ktor.io/docs/lifecycle.html#monitor-events
 
@@ -56,7 +57,7 @@ even bother to use build-in test support?)
 
 - prometheus metrics
 - json logs
-- MDC with logs for coroutines 
+- **DONE** MDC with logs for coroutines 
     - call interceptor: https://ktor.io/docs/call-logging.html#mdc
     - also, this for custom stuff: https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-thread-context-element/index.html
 

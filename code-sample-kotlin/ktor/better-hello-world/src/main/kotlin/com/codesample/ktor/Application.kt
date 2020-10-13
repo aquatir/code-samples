@@ -10,8 +10,14 @@ import io.ktor.serialization.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import io.ktor.util.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.slf4j.MDCContext
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
+import org.slf4j.MDC
 import org.slf4j.event.Level
 import java.lang.RuntimeException
 
@@ -51,6 +57,11 @@ fun server(test: Boolean): NettyApplicationEngine {
         // installs
 
         install(CallLogging) {
+            mdc("request_id") {
+                it.request.header("some-header") ?: "N/A"
+            }
+            mdc("object") { "id" }
+
             level = Level.INFO
             format { "Request ${it.request.httpMethod.value} on '${it.request.uri}' - status: ${it.response.status()?.value ?: "unset"}. Took: ${System.currentTimeMillis() - it.attributes.get(MyAttributeKeys.timestart)}ms" }
         }
@@ -90,14 +101,47 @@ fun server(test: Boolean): NettyApplicationEngine {
             log.info("Caught 'ApplicationStarted' event")
         }
 
+
+        suspend fun susFunc() = coroutineScope {
+            launch {
+                log.info("first")
+            }
+            launch {
+                log.info("second")
+            }
+        }
+
         routing {
             get("/") {
-                val reqHeader = call.request.header("X-Other-Header")
-                val hello = HelloWorld("Hello, ", "world!!!")
 
+                val reqHeader = call.request.header("X-Other-Header")
+
+                val hello = HelloWorld("Hello, ", "world!!!")
+                log.info("log stuff!")
+
+                // This key will not be available in next suspension point (in func below for example)
+                MDC.put("reason", "value")
+                susFunc()
+                // It will however be available at CallLogging level
+
+                println()
+
+                // We CAN propagate this context like so:
+                // (Notice that values are lost after this context is done with)
+                withContext(MDCContext()) {
+                    susFunc()
+                }
 
                 call.response.header("X-My-Header", "My-value")
                 call.respond(HttpStatusCode.OK, hello)
+            }
+
+            get("/multilog") {
+                for (i in 1..100) {
+                    launch(Dispatchers.IO) {
+                        log.info("logging $i to check MDC")
+                    }
+                }
             }
 
 
@@ -140,6 +184,7 @@ fun server(test: Boolean): NettyApplicationEngine {
 
         }
     }
+
 }
 
 
