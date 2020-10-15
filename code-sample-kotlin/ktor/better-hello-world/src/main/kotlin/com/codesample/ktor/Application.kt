@@ -15,11 +15,23 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.slf4j.MDCContext
 import kotlinx.coroutines.withContext
-import kotlinx.serialization.Serializable
+import kotlinx.serialization.*
+import kotlinx.serialization.descriptors.PrimitiveKind
+import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
+import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 import kotlinx.serialization.json.Json
 import org.slf4j.MDC
 import org.slf4j.event.Level
 import java.lang.RuntimeException
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.OffsetDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
+
+
 
 @Serializable
 data class HelloWorld(val word1: String, val word2: String)
@@ -29,6 +41,53 @@ data class RequestData(val hello: String)
 
 @Serializable
 data class StatusResponse(val status: Status = Status.OK)
+
+// private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
+// private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+
+
+object LocalDateSerializer: KSerializer<LocalDate> {
+    private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("LocalDate", PrimitiveKind.STRING)
+    override fun serialize(encoder: Encoder, value: LocalDate) = encoder.encodeString(value.format(formatter))
+    override fun deserialize(decoder: Decoder): LocalDate = LocalDate.parse(decoder.decodeString(), formatter)
+}
+
+object LocalDateTimeSerializer: KSerializer<LocalDateTime> {
+    private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("LocalDateTime", PrimitiveKind.STRING)
+    override fun serialize(encoder: Encoder, value: LocalDateTime) = encoder.encodeString(value.format(formatter))
+    override fun deserialize(decoder: Decoder): LocalDateTime = LocalDateTime.parse(decoder.decodeString(), formatter)
+}
+
+object OffsetDateTimeSerializer: KSerializer<OffsetDateTime> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("OffsetDateTime", PrimitiveKind.STRING)
+    override fun serialize(encoder: Encoder, value: OffsetDateTime) = encoder.encodeString(value.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME))
+    override fun deserialize(decoder: Decoder): OffsetDateTime = OffsetDateTime.parse(decoder.decodeString(), DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+}
+
+object UUIDSerializer: KSerializer<UUID> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("UUID", PrimitiveKind.STRING)
+    override fun serialize(encoder: Encoder, value: UUID) = encoder.encodeString(value.toString())
+    override fun deserialize(decoder: Decoder): UUID = UUID.fromString(decoder.decodeString())
+}
+
+@Serializable
+data class DifferentClasses(
+    @Serializable(with = LocalDateSerializer::class)
+    val localDate: LocalDate,
+
+    @Serializable(with = LocalDateTimeSerializer::class)
+    val localDateTime: LocalDateTime,
+
+    @Serializable(with = OffsetDateTimeSerializer::class)
+    val offsetDateTime: OffsetDateTime,
+
+    @Serializable(with = UUIDSerializer::class)
+    val uuid: UUID,
+
+    val statusResponse: StatusResponse
+)
 
 enum class Status {
     OK, NOT_OK, UNKNOWN
@@ -149,6 +208,19 @@ fun server(test: Boolean): NettyApplicationEngine {
                 log.info("att str key: '${call.attributes[MyAttributeKeys.strKey]}'")
                 log.info("att map key: '${call.attributes[MyAttributeKeys.mapKey]}'")
                 call.respond(mapOf("key" to "value"))
+            }
+
+            /*
+             curl -X POST -H "Content-Type: application/json" -d '{"localDate":"2020-10-15","localDateTime":"2020-10-15T10:34:26Z","offsetDateTime":"2020-10-15T10:34:26.036+03:00","uuid":"b04d009d-8e4d-4c6a-a8e1-98b7227fbfff","statusResponse":{"status":"OK"}}' localhost:8080/different
+             */
+            post<DifferentClasses>("/different") {
+                call.respond(DifferentClasses(
+                    localDate = LocalDate.now(),
+                    localDateTime = LocalDateTime.now(),
+                    offsetDateTime = OffsetDateTime.now(),
+                    uuid = UUID.randomUUID(),
+                    statusResponse = StatusResponse()
+                ))
             }
 
             get("/params/{requiredParam}/{optionalParam?}") {

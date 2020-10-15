@@ -37,7 +37,8 @@ Throws `Module function provided as lambda cannot be unlinked for reload`. Worth
 even bother to use build-in test support?)
 - Testcontainers (should be identical)
 - **DONE** Hot-realod
-- TestApplicationEngine? https://ktor.io/docs/lifecycle.html#monitor-events
+- **SKIP** TestApplicationEngine? https://ktor.io/docs/lifecycle.html#monitor-events. Why use it if app starts almost 
+instantly anyway? Maybe not so good with big apps but will see.
 
 #### Tools
 
@@ -56,8 +57,9 @@ even bother to use build-in test support?)
 #### Production stuff
 
 - prometheus metrics
-- json logs
-- **DONE** MDC with logs for coroutines 
+- **DONE** json logs. Not ktor. Simple `logback.xml` config is enough and works as expected.
+- **DONE** MDC with logs for coroutines. Works somehow, but need special coroutine scope, so no global `MDC.clear` after 
+request.
     - call interceptor: https://ktor.io/docs/call-logging.html#mdc
     - also, this for custom stuff: https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-thread-context-element/index.html
 
