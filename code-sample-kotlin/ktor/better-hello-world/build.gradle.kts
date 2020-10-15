@@ -1,8 +1,11 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import nu.studer.gradle.jooq.JooqEdition
 
 plugins {
     kotlin("jvm") version "1.4.10"
     kotlin("plugin.serialization") version "1.4.10"
+    id("nu.studer.jooq") version "5.1.1"
+    id("org.flywaydb.flyway") version "6.3.2"
 }
 group = "com.codesamples"
 version = "1.0-SNAPSHOT"
@@ -31,6 +34,13 @@ dependencies {
     implementation ("io.ktor:ktor-client-okhttp:1.4.1")
 
 
+    // db dependencies
+    implementation("org.jooq:jooq:3.13.1")
+    implementation("org.postgresql:postgresql:42.2.11")
+    jooqGenerator("org.postgresql:postgresql:42.2.11")
+
+    implementation("com.zaxxer:HikariCP:3.4.1")
+
     // logs
     implementation ("ch.qos.logback:logback-classic:1.2.3")
     implementation ("net.logstash.logback:logstash-logback-encoder:6.4")
@@ -38,8 +48,6 @@ dependencies {
 
     // test
 
-    // kek TODO: remove
-    // testImplementation("com.konghq:unirest-java:3.7.02")
     testImplementation(kotlin("test-junit"))
     testImplementation("io.ktor:ktor-server-tests:1.4.1")
 }
@@ -47,3 +55,48 @@ dependencies {
 tasks.withType<KotlinCompile>() {
     kotlinOptions.jvmTarget = "1.8"
 }
+
+jooq {
+    version.set("3.13.1")
+    edition.set(JooqEdition.OSS)
+
+    configurations {
+        create("main") {
+            jooqConfiguration.apply {
+                generateSchemaSourceOnCompilation.set(false) // Do not generate on each build
+                jdbc.apply {
+                    driver = "org.postgresql.Driver"
+                    url = "jdbc:postgresql://192.168.99.100:5432/db"
+                    user = "postgres"
+                    password = "postgres"
+                }
+                generator.apply {
+                    name = "org.jooq.codegen.DefaultGenerator"
+                    strategy.apply {
+                        name = "org.jooq.codegen.example.JPrefixGeneratorStrategy"
+                    }
+                    database.apply {
+                        name = "org.jooq.meta.postgres.PostgresDatabase"
+                        inputSchema = "user_access"
+                    }
+                    generate.apply {
+                        isImmutablePojos = true
+                        isFluentSetters = true
+                        isJavaTimeTypes = true
+                    }
+                    target.apply {
+                        packageName = "com.comesample.ktor.jooq"
+                        directory = "$projectDir/src/main/java"
+                    }
+                }
+            }
+        }
+    }
+}
+
+flyway {
+    url = "jdbc:postgresql://192.168.99.100:5432/db"
+    user = "postgres"
+    password = "postgres"
+}
+

@@ -2,6 +2,19 @@
 
 Trying to implement complete production-ready project template with ktor and coroutines
 
+
+### How to start
+
+1. Create network `docker network create mynet`
+2. start and configure pg 
+    1. `docker run --name pg -e POSTGRES_PASSWORD=postgres --net mynet -p 5432:5432 -d postgres`
+    2. `docker exec -it pg bash`
+    3. `psql -U postgres`
+    4. `create database db;`
+3. Migrate. `gradlew.bat flywayMigrate -i`
+4. start docker-compose (kafka + consul)
+5. start app
+
 ### TODO
 
 #### http

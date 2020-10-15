@@ -36,6 +36,7 @@ class ApplicationTest {
                     }
                 )
             }
+            install(HttpTimeout)
         }
 
         val kek = (arrayOf("gid", arrayOf("status", "c", "d"), 3))
@@ -105,7 +106,7 @@ class ApplicationTest {
             val res = client.get<String>("http://localhost:8080/other")
 
             assertEquals("""
-                {"status":"ok"}
+                {"status":"OK"}
             """.trimIndent(), res)
         }
     }
