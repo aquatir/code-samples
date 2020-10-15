@@ -1,5 +1,8 @@
-package com.codesample.ktor
+@file:UseSerializers(
+    UUIDSerializer::class, OffsetDateTimeSerializer::class, LocalDateTimeSerializer::class, LocalDateSerializer::class
+)
 
+package com.codesample.ktor
 import io.ktor.routing.*
 import io.ktor.application.*
 import io.ktor.features.*
@@ -30,6 +33,8 @@ import java.time.LocalDateTime
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+
+
 
 
 
@@ -74,16 +79,12 @@ object UUIDSerializer: KSerializer<UUID> {
 
 @Serializable
 data class DifferentClasses(
-    @Serializable(with = LocalDateSerializer::class)
+
+    /* Serializers for this classes are defined on very top of this file */
+
     val localDate: LocalDate,
-
-    @Serializable(with = LocalDateTimeSerializer::class)
     val localDateTime: LocalDateTime,
-
-    @Serializable(with = OffsetDateTimeSerializer::class)
     val offsetDateTime: OffsetDateTime,
-
-    @Serializable(with = UUIDSerializer::class)
     val uuid: UUID,
 
     val statusResponse: StatusResponse
