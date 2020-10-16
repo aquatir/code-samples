@@ -140,11 +140,13 @@ fun server(test: Boolean): NettyApplicationEngine {
         }
 
         install(StatusPages) {
-            exception<ServerException> { _ ->
+            exception<ServerException> {
+                log.error("ServerException caught ", it)
                 call.respond(HttpStatusCode.InternalServerError, StatusResponse(Status.NOT_OK))
             }
+
             exception<Exception> {
-                log.error("ex caught ", it)
+                log.error("Exception caught ", it)
                 call.respond(HttpStatusCode.InternalServerError, StatusResponse(Status.UNKNOWN))
             }
         }
