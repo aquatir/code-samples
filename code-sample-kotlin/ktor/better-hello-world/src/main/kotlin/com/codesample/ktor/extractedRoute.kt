@@ -16,7 +16,7 @@ fun Routing.other() {
     }
 }
 
-fun Routing.db(dbApiWrapper: JooqBlockingApiCoroutinesWrapper) {
+fun Routing.jooqDb(dbApiWrapper: JooqBlockingApiCoroutinesWrapper) {
 
     route("/jooq") {
         get("/basic") {

@@ -177,6 +177,8 @@ fun server(test: Boolean): NettyApplicationEngine {
         }
 
 
+        /** APP CONF */
+
         val jooqBlockingApiCoroutinesWrapper = JooqBlockingApiCoroutinesWrapper(
             // TODO: use func with receiver
             dbConfig = DBConfig(
@@ -271,7 +273,7 @@ fun server(test: Boolean): NettyApplicationEngine {
 
 
             other()
-            db(jooqBlockingApiCoroutinesWrapper)
+            jooqDb(jooqBlockingApiCoroutinesWrapper)
 
 
             post<RequestData>("/body") {
