@@ -54,7 +54,7 @@ class JAsyncDbApiWrapper(dbConfig: DBConfig) {
         // Maybe because it simply can not work with async driver?
         // suspConnection.sendQuery("BEGIN TRANSACTION ISOLATION LEVEL ${isolationLevel.asQueryString()}")
         suspConnection.sendQuery("BEGIN")
-        // suspConnection.sendQuery("SET TRANSACTION ${isolationLevel.asQueryString()}") doesn't work.
+        suspConnection.sendQuery("SET TRANSACTION ${isolationLevel.asQueryString()}")
         try {
             val result = f(suspConnection)
             suspConnection.sendQuery("COMMIT")
