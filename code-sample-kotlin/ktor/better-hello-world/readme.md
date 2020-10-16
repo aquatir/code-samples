@@ -56,11 +56,19 @@ instantly anyway? Maybe not so good with big apps but will see.
 #### Tools
 
 - **Coroutines postgres db**
-    - **SKIP** jooq with normal blockable connection pool? Try it and load test!
-    - **FAILED** jasync-sql https://github.com/jasync-sql/jasync-sql?. jasync uses it's own `Connection` interface but 
-    you can not set isolation level inside transactions which is critical for my usecase. 
-- **Kafka**. Should be simple. How micronaut / quarkus do it?
-- **Consul**. Config loader from https://ktor.io/docs/configuration.html#custom 
+    - **DONE** jooq with normal blocking connection pool. See [JooqBlockingJDBCApiCoroutinesWrapper.kt] The blocking 
+    offloads into `Dispatchers.IO` which should be better than blocking http request coroutine, but a dedicated async 
+    pool should provide better performance.
+    - **FAILED** jasync-sql https://github.com/jasync-sql/jasync-sql. jasync uses it's own `Connection` which is probably 
+    not a huge problem, but you also can not set isolation level inside transactions which is critical for my usecase. 
+    - **FAILED** r2dbc-postgresql https://github.com/pgjdbc/r2dbc-postgresql. r2dbc also uses it's own implementation 
+    of `Connection` interface, but you CAN set isolation level there. Some functional shenanigans would be required to 
+    make jOOQ queries executed on r2dbc client. May look into this problem later. 
+    - How micronaut / quarkus do it?
+- **Kafka**. Should be simple... Kafka consumer it NOT thread-safe, so cannot launch on the same `Dispathers.Default`. 
+Should create a dedicated thread for each consumer.
+- **Consul**. Config loader from https://ktor.io/docs/configuration.html#custom. Normal blocking implementation in main
+    should be an easy workaround if this approach doesn't work.
 
 #### Production stuff
 

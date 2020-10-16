@@ -44,6 +44,7 @@ dependencies {
 
     // jsync-db
     implementation("com.github.jasync-sql:jasync-postgresql:1.1.3")
+    implementation("io.r2dbc:r2dbc-postgresql:0.8.5.RELEASE")
 
     // logs
     implementation ("ch.qos.logback:logback-classic:1.2.3")
