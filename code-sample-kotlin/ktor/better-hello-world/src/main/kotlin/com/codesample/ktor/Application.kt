@@ -4,6 +4,7 @@
 
 package com.codesample.ktor
 import com.codesample.ktor.db.DBConfig
+import com.codesample.ktor.db.JAsyncDbApiWrapper
 import com.codesample.ktor.db.JooqBlockingApiCoroutinesWrapper
 import io.ktor.routing.*
 import io.ktor.application.*
@@ -183,20 +184,19 @@ fun server(test: Boolean): NettyApplicationEngine {
 
         /** APP CONF */
 
-        val jooqBlockingApiCoroutinesWrapper = JooqBlockingApiCoroutinesWrapper(
-            // TODO: use func with receiver
-            dbConfig = DBConfig(
-                driverClassName = "org.postgresql.Driver",
+        val dbConfig = DBConfig(
+            driverClassName = "org.postgresql.Driver",
 
-                dbPort = 5432,
-                dbHost = "192.168.99.100",
-                dbName = "test",
+            dbPort = 5432,
+            dbHost = "192.168.99.100",
+            dbName = "test",
 
-                numOfThreads = 4,
-                username = "postgres",
-                password = "postgres"
-            )
+            numOfThreads = 4,
+            username = "postgres",
+            password = "postgres"
         )
+        val jooqBlockingApiCoroutinesWrapper = JooqBlockingApiCoroutinesWrapper(dbConfig)
+        val jAsyncDbApiWrapper = JAsyncDbApiWrapper(dbConfig)
 
         routing {
             get("/") {
@@ -278,6 +278,7 @@ fun server(test: Boolean): NettyApplicationEngine {
 
             other()
             jooqDb(jooqBlockingApiCoroutinesWrapper)
+            asyncDb(jAsyncDbApiWrapper)
 
 
             post<RequestData>("/body") {

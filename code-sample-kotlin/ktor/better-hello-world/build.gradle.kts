@@ -18,6 +18,7 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.3.9")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.3.9")
 
     // kotlin-serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.0")
@@ -45,6 +46,7 @@ dependencies {
     // jsync-db
     implementation("com.github.jasync-sql:jasync-postgresql:1.1.3")
     implementation("io.r2dbc:r2dbc-postgresql:0.8.5.RELEASE")
+    implementation("joda-time:joda-time:2.10.6")
 
     // logs
     implementation ("ch.qos.logback:logback-classic:1.2.3")

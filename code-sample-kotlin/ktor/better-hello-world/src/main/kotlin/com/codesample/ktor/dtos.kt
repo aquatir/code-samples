@@ -11,11 +11,11 @@ import java.util.*
 
 
 @Serializable
-data class Users(val users: List<UserDto>)
+data class UsersDto(val users: List<UserDto>)
 
 @Serializable
 data class UserDto(
     val uuid: UUID,
-    val promocode: String? = null,
+    var promocode: String? = null,
     val createdAt: LocalDateTime
 )
