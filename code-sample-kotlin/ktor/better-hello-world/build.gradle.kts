@@ -35,11 +35,15 @@ dependencies {
 
 
     // db dependencies
-    implementation("org.jooq:jooq:3.13.1")
     implementation("org.postgresql:postgresql:42.2.11")
+    implementation("com.zaxxer:HikariCP:3.4.1")
+
+    // jooq
+    implementation("org.jooq:jooq:3.13.1")
     jooqGenerator("org.postgresql:postgresql:42.2.11")
 
-    implementation("com.zaxxer:HikariCP:3.4.1")
+    // jsync-db
+    implementation("com.github.jasync-sql:jasync-postgresql:1.1.3")
 
     // logs
     implementation ("ch.qos.logback:logback-classic:1.2.3")

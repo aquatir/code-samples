@@ -166,6 +166,10 @@ fun server(test: Boolean): NettyApplicationEngine {
             log.info("Caught 'ApplicationStarted' event")
         }
 
+        this.environment.monitor.subscribe(ApplicationStopping) {
+            log.info("Caught 'ApplicationStopping' event. Stopping schedulers and kafka")
+        }
+
 
         suspend fun susFunc() = coroutineScope {
             launch {

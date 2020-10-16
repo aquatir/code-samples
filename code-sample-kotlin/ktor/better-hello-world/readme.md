@@ -56,14 +56,9 @@ instantly anyway? Maybe not so good with big apps but will see.
 #### Tools
 
 - **Coroutines postgres db**
-    - jooq with normal blockable connection pool? Try it and load test!
-    - jasync-sql https://github.com/jasync-sql/jasync-sql ?
-    - Might help: https://github.com/TechEmpower/FrameworkBenchmarks/pull/4247
-    - Or this: https://medium.com/@OhadShai/async-with-style-kotlin-web-backend-with-ktor-coroutines-and-jasync-mysql-b34e8c83e4bd
-    - or this: https://medium.com/@OhadShai/reactive-java-all-the-way-to-the-database-with-jasync-sql-and-javalin-c982365d7dd2
-    - or this: https://medium.com/@OhadShai/just-a-small-example-of-how-kotlin-coroutines-are-great-c9774fe8434
-    - or even this: https://matej.laitl.cz/bench-rust-kotlin-microservices/
-    - how micronaut / quarkus do it?
+    - **SKIP** jooq with normal blockable connection pool? Try it and load test!
+    - **FAILED** jasync-sql https://github.com/jasync-sql/jasync-sql?. jasync uses it's own `Connection` interface but 
+    you can not set isolation level inside transactions which is critical for my usecase. 
 - **Kafka**. Should be simple. How micronaut / quarkus do it?
 - **Consul**. Config loader from https://ktor.io/docs/configuration.html#custom 
 
@@ -76,6 +71,14 @@ request.
     - call interceptor: https://ktor.io/docs/call-logging.html#mdc
     - also, this for custom stuff: https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-thread-context-element/index.html
 
+#### Async db links
+
+- Might help: https://github.com/TechEmpower/FrameworkBenchmarks/pull/4247
+- Or this: https://medium.com/@OhadShai/async-with-style-kotlin-web-backend-with-ktor-coroutines-and-jasync-mysql-b34e8c83e4bd
+- or this: https://medium.com/@OhadShai/reactive-java-all-the-way-to-the-database-with-jasync-sql-and-javalin-c982365d7dd2
+- or this: https://medium.com/@OhadShai/just-a-small-example-of-how-kotlin-coroutines-are-great-c9774fe8434
+- or even this: https://matej.laitl.cz/bench-rust-kotlin-microservices/
+- how micronaut / quarkus do it?
 
 #### Issues to reproduce?
 
