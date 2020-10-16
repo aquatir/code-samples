@@ -69,7 +69,7 @@ class JooqBlockingApiCoroutinesWrapper(dbConfig: DBConfig) {
         }
     }
 
-    /** Execute query and get result on provided scope */
+    /** Execute query on [Connection] and get result on provided scope returning connection to pool */
     private suspend fun <T> executeQuery(connection: Connection, task: suspend (methodDslContext: DSLContext) -> T): T = coroutineScope {
         withContext(this.coroutineContext) {
             connection.use { con ->

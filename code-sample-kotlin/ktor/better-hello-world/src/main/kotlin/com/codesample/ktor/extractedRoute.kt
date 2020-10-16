@@ -6,7 +6,6 @@ import com.comesample.ktor.jooq.tables.JUsers
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.routing.*
-import org.slf4j.LoggerFactory
 import java.sql.Connection
 import java.util.*
 
@@ -16,12 +15,12 @@ fun Routing.other() {
     }
 }
 
-fun Routing.jooqDb(dbApiWrapper: JooqBlockingApiCoroutinesWrapper) {
+fun Routing.jooqDb(jooBlockingApiWrapper: JooqBlockingApiCoroutinesWrapper) {
 
     route("/jooq") {
         get("/basic") {
             val res = kotlin.runCatching {
-                dbApiWrapper.asTransactionWithResult(Connection.TRANSACTION_READ_COMMITTED) { dsl ->
+                jooBlockingApiWrapper.asTransactionWithResult(Connection.TRANSACTION_READ_COMMITTED) { dsl ->
                     dsl.select(
                         JUsers.USERS.UUID,
                         JPromocodes.PROMOCODES.VALUE,
@@ -37,7 +36,7 @@ fun Routing.jooqDb(dbApiWrapper: JooqBlockingApiCoroutinesWrapper) {
         }
 
         post("/user") {
-            val res = dbApiWrapper.asTransactionWithResult(Connection.TRANSACTION_READ_COMMITTED) { dsl ->
+            val res = jooBlockingApiWrapper.asTransactionWithResult(Connection.TRANSACTION_READ_COMMITTED) { dsl ->
                 val dbResUser = dsl.insertInto(JUsers.USERS)
                     .set(JUsers.USERS.UUID, UUID.randomUUID())
                     .returning()
