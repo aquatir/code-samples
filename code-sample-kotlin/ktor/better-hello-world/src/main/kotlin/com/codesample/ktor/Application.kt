@@ -3,6 +3,8 @@
 )
 
 package com.codesample.ktor
+import com.codesample.ktor.db.DBConfig
+import com.codesample.ktor.db.JooqBlockingApiCoroutinesWrapper
 import io.ktor.routing.*
 import io.ktor.application.*
 import io.ktor.features.*
@@ -141,7 +143,8 @@ fun server(test: Boolean): NettyApplicationEngine {
             exception<ServerException> { _ ->
                 call.respond(HttpStatusCode.InternalServerError, StatusResponse(Status.NOT_OK))
             }
-            exception<RuntimeException> {
+            exception<Exception> {
+                log.error("ex caught ", it)
                 call.respond(HttpStatusCode.InternalServerError, StatusResponse(Status.UNKNOWN))
             }
         }
@@ -170,6 +173,22 @@ fun server(test: Boolean): NettyApplicationEngine {
                 log.info("second")
             }
         }
+
+
+        val jooqBlockingApiCoroutinesWrapper = JooqBlockingApiCoroutinesWrapper(
+            // TODO: use func with receiver
+            dbConfig = DBConfig(
+                driverClassName = "org.postgresql.Driver",
+
+                dbPort = 5432,
+                dbHost = "192.168.99.100",
+                dbName = "test",
+
+                numOfThreads = 4,
+                username = "postgres",
+                password = "postgres"
+            )
+        )
 
         routing {
             get("/") {
@@ -250,11 +269,12 @@ fun server(test: Boolean): NettyApplicationEngine {
 
 
             other()
+            db(jooqBlockingApiCoroutinesWrapper)
+
 
             post<RequestData>("/body") {
                 call.respond(StatusResponse())
             }
-
         }
     }
 

@@ -66,7 +66,7 @@ jooq {
                 generateSchemaSourceOnCompilation.set(false) // Do not generate on each build
                 jdbc.apply {
                     driver = "org.postgresql.Driver"
-                    url = "jdbc:postgresql://192.168.99.100:5432/db"
+                    url = "jdbc:postgresql://192.168.99.100:5432/test"
                     user = "postgres"
                     password = "postgres"
                 }
@@ -80,7 +80,7 @@ jooq {
                         inputSchema = "user_access"
                     }
                     generate.apply {
-                        isImmutablePojos = true
+                        isImmutablePojos = false
                         isFluentSetters = true
                         isJavaTimeTypes = true
                     }
@@ -95,7 +95,7 @@ jooq {
 }
 
 flyway {
-    url = "jdbc:postgresql://192.168.99.100:5432/db"
+    url = "jdbc:postgresql://192.168.99.100:5432/test"
     user = "postgres"
     password = "postgres"
 }
