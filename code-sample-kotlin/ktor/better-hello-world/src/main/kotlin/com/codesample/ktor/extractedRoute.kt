@@ -6,6 +6,7 @@ import com.comesample.ktor.jooq.tables.JUsers
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.routing.*
+import java.lang.RuntimeException
 import java.sql.Connection
 import java.util.*
 
@@ -18,7 +19,7 @@ fun Routing.other() {
 fun Routing.jooqDb(jooBlockingApiWrapper: JooqBlockingApiCoroutinesWrapper) {
 
     route("/jooq") {
-        get("/basic") {
+        get("/user") {
             val res = kotlin.runCatching {
                 jooBlockingApiWrapper.asTransactionWithResult(Connection.TRANSACTION_READ_COMMITTED) { dsl ->
                     dsl.select(
@@ -33,6 +34,26 @@ fun Routing.jooqDb(jooBlockingApiWrapper: JooqBlockingApiCoroutinesWrapper) {
                 }
             }.getOrThrow()
             call.respond(Users(res))
+        }
+
+        get("/user/{uuid}") {
+            val param = call.parameters["uuid"]?.toUuid() ?: throw RuntimeException("no parameter found")
+            val userDto = kotlin.runCatching {
+                val dbRes = jooBlockingApiWrapper.asTransactionWithResult(Connection.TRANSACTION_READ_COMMITTED) { dsl ->
+                    dsl.select(
+                        JUsers.USERS.UUID,
+                        JPromocodes.PROMOCODES.VALUE,
+                        JUsers.USERS.CREATED_AT
+                    )
+                        .from(JUsers.USERS)
+                        .leftJoin(JPromocodes.PROMOCODES).on(JPromocodes.PROMOCODES.EXTERNAL_USER_UUID.eq(JUsers.USERS.UUID))
+                        .where(JUsers.USERS.UUID.eq(param))
+                        .fetchOne()
+
+                }
+                UserDto(dbRes.component1(), dbRes.component2(), dbRes.component3())
+            }.getOrThrow()
+            call.respond(userDto)
         }
 
         post("/user") {
@@ -52,6 +73,12 @@ fun Routing.jooqDb(jooBlockingApiWrapper: JooqBlockingApiCoroutinesWrapper) {
             call.respond(res)
         }
     }
+}
+
+private fun String?.toUuid(): UUID? {
+    return if (this == null) null
+    else
+        UUID.fromString(this)
 }
 
 val large = 'A'..'Z'
