@@ -53,6 +53,7 @@
                     <li><b>nakedgraalgrpc</b>. Same as above but without Micronaut. The naked application! </li>
                 </ul>
             </li>
+            <li><b>algorithms</b>. Algorithms and data structures implemented in Kotlin.</li> 
         </ul> 
     </li>
     <li><b>code-sample-scala</b>. Scala examples 
