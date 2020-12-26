@@ -2,10 +2,9 @@
 
 Repo for algorithms and data structures implementations in Kotlin
 
-## Data Structures
+### Data types
 
-### Basic
-
+- [ ] Union (and dynamic connectivity problem)
 - Queue
   - [ ] Basic
   - [ ] Priority
@@ -15,20 +14,20 @@ Repo for algorithms and data structures implementations in Kotlin
   - [ ] Single-linked
   - [ ] Double-linked
   - [ ] Circular buffer
-- [ ] Binary tree
-
-### Advanced
-
-
-
-## Algos
 
 ### Sorts
 
 - [ ] Bubble sort
-- [ ] Insertion sort 
+- [ ] Insertion sort
 - [ ] Quick sort
 - [ ] Merge sort
+- [ ] Hash table
+
+### Searching
+
+- [ ] BST (Binary-search) tree
+- [ ] red-black BST
+- [ ] hash table
 
 ### Graphs
 
@@ -36,7 +35,22 @@ Repo for algorithms and data structures implementations in Kotlin
 - [ ] DFS (Depth-first search)
 - [ ] Dijkstra
 - [ ] Bellman-Ford ?
-- [ ] Kruskal ?
+- [ ] Kruskal
+- [ ] Prim
+
+### Strings
+
+- [ ] KMP
+- [ ] Regular expressions
+- [ ] TST
+- [ ] Huffman
+- [ ] LZW
+
+### Advanced
+
+- [ ] B-tree
+- [ ] Suffix Array
+- [ ] Bloom filter
 
 ### Other
 
