@@ -4,7 +4,9 @@ Repo for algorithms and data structures implementations in Kotlin
 
 ### Data types
 
-- [ ] Union (and dynamic connectivity problem)
+- Union (and dynamic connectivity problem)
+  - [ ] Quick find
+  - [ ] Quick union
 - Queue
   - [ ] Basic
   - [ ] Priority
