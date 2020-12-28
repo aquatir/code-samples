@@ -27,6 +27,7 @@ Repo for algorithms and data structures implementations in Kotlin
 
 ### Searching
 
+- [ ] Binary Search
 - [ ] BST (Binary-search) tree
 - [ ] red-black BST
 - [ ] hash table
