@@ -156,7 +156,10 @@ class QuickUnionUnionOptimized<T> : Union<T>() {
         }
     }
 
+    data class RootAndLength<T>(val root: T, val length: Int)
     private fun root(elem: T): T {
+
+        var size = 0
         var prev = elem
         var current = elementToParent[prev]
 
@@ -164,6 +167,7 @@ class QuickUnionUnionOptimized<T> : Union<T>() {
             val oldPrev = prev
             prev = current
             current = elementToParent[prev]
+            size++
 
             // OPTIMIZATION 2 HERE!
             // Shrink tree on each iteration by rebinding the farthest element 1 step closer to root
