@@ -142,10 +142,16 @@ class QuickUnionUnionOptimized<T> : Union<T>() {
 
         // OPTIMIZATION 1 HERE!
         // Pick smaller of two trees when linking unions
-        elementToParent[root(fst)] = root(snd)
+        val rootFst = root(fst)
+        val rootSnd = root(snd)
+        if (rootFst.size < rootSnd.size) {
+            elementToParent[rootFst.root] = rootSnd.root
+        } else {
+            elementToParent[rootSnd.root] = rootFst.root
+        }
     }
 
-    override fun connected(fst: T, snd: T): Boolean = root(fst) == root(snd)
+    override fun connected(fst: T, snd: T): Boolean = root(fst).root == root(snd).root
 
 
     // Can do comment below but seems harder to read
@@ -156,8 +162,8 @@ class QuickUnionUnionOptimized<T> : Union<T>() {
         }
     }
 
-    data class RootAndLength<T>(val root: T, val length: Int)
-    private fun root(elem: T): T {
+    data class RootAndLength<T>(val root: T, val size: Int)
+    private fun root(elem: T): RootAndLength<T> {
 
         var size = 0
         var prev = elem
@@ -173,8 +179,7 @@ class QuickUnionUnionOptimized<T> : Union<T>() {
             // Shrink tree on each iteration by rebinding the farthest element 1 step closer to root
             elementToParent[oldPrev] = prev
         }
-
-        return prev
+        return RootAndLength(prev, size)
     }
 
 }
@@ -192,8 +197,8 @@ fun main() {
 
     with(quickFindUnion) {
         union(1, 2)
-        union(2, 5)
         union(6, 5)
+        union(2, 5)
         union(3, 7)
 
         this.printConnected(1, 2) // true

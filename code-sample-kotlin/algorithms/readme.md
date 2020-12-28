@@ -6,7 +6,7 @@ Repo for algorithms and data structures implementations in Kotlin
 
 - Union (and dynamic connectivity problem)
   - [x] Quick find
-  - [ ] Quick union
+  - [x] Quick union
 - Queue
   - [ ] Basic
   - [ ] Priority
