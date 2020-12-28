@@ -1,7 +1,7 @@
 package com.codesample.algo
 
 
-abstract class Union<T : Comparable<T>>() {
+abstract class Union<T>() {
     /** Make two elements point to same union */
     abstract fun union(fst: T, snd: T)
 
@@ -19,7 +19,7 @@ fun Union<Int>.printConnected(fst: Int, snd: Int) {
  *
  * The entries are connected if and only if they have the same index.
  * Implementation is NOT thread-safe!*/
-class QuickFindUnion<T : Comparable<T>>() : Union<T>() {
+class QuickFindUnion<T> : Union<T>() {
 
     /** Next created union index. Incremented each time a new element in added to this union in 'connected' call */
     private var nextUnionIndex = 0
@@ -74,9 +74,117 @@ class QuickFindUnion<T : Comparable<T>>() : Union<T>() {
     private fun oldIndexOrNull(elem: T): Int? = elements[elem]
 }
 
+//
+//
+//
+//   Quick Union Union!
+//
+//
+
+/** Union with fast 'union' operation o(1) and 'slow' 'connected' operation o(n) in worst case,
+ * but can be optimized to o(log(n)) [QuickUnionUnionOptimized].
+ * The idea is to add elements as children on union operation which will create long-long trees */
+class QuickUnionUnion<T> : Union<T>() {
+
+    /** Each element may or may not have a parent. If no parent available -> it's a root of tree */
+    private val elementToParent: MutableMap<T, T?> = mutableMapOf()
+
+    override fun union(fst: T, snd: T) {
+        insertIfNotExist(fst)
+        insertIfNotExist(snd)
+
+        elementToParent[root(fst)] = root(snd)
+    }
+
+    override fun connected(fst: T, snd: T): Boolean = root(fst) == root(snd)
+
+
+    // Can do like this but harder to read
+    // private fun insertIfNotExist(elem: T) = elementToParent.computeIfAbsent(elem) { null }
+    private fun insertIfNotExist(elem: T) {
+        if (!elementToParent.containsKey(elem)) {
+            elementToParent[elem] = null
+        }
+    }
+
+    private fun root(elem: T): T {
+        var prev = elem
+        var current = elementToParent[prev]
+
+        while (current != null) {
+            prev = current
+            current = elementToParent[prev]
+        }
+
+        return prev
+    }
+
+}
+
+
+//
+//
+//   Quick Union Union Optimized!
+//
+//
+
+/** Union with fast 'union' operation o(1) and 'slow' 'connected' operation o(log(n)).
+ *
+ * Optimization is add new nodes not to a child but to a root itself  */
+class QuickUnionUnionOptimized<T> : Union<T>() {
+
+    /** Each element may or may not have a parent. If no parent available -> it's a root of tree */
+    private val elementToParent: MutableMap<T, T?> = mutableMapOf()
+
+    override fun union(fst: T, snd: T) {
+        insertIfNotExist(fst)
+        insertIfNotExist(snd)
+
+        // OPTIMIZATION 1 HERE!
+        // Pick smaller of two trees when linking unions
+        elementToParent[root(fst)] = root(snd)
+    }
+
+    override fun connected(fst: T, snd: T): Boolean = root(fst) == root(snd)
+
+
+    // Can do comment below but seems harder to read
+    // private fun insertIfNotExist(elem: T) = elementToParent.computeIfAbsent(elem) { null }
+    private fun insertIfNotExist(elem: T) {
+        if (!elementToParent.containsKey(elem)) {
+            elementToParent[elem] = null
+        }
+    }
+
+    private fun root(elem: T): T {
+        var prev = elem
+        var current = elementToParent[prev]
+
+        while (current != null) {
+            val oldPrev = prev
+            prev = current
+            current = elementToParent[prev]
+
+            // OPTIMIZATION 2 HERE!
+            // Shrink tree on each iteration by rebinding the farthest element 1 step closer to root
+            elementToParent[oldPrev] = prev
+        }
+
+        return prev
+    }
+
+}
+
+
+//
+//
+// main() for testing
+//
+//
+
 
 fun main() {
-    val quickFindUnion = QuickFindUnion<Int>()
+    val quickFindUnion = QuickUnionUnionOptimized<Int>()
 
     with(quickFindUnion) {
         union(1, 2)
@@ -85,30 +193,12 @@ fun main() {
         union(3, 7)
 
         this.printConnected(1, 2) // true
+        this.printConnected(2, 5) // true
+        this.printConnected(5, 6) // true
         this.printConnected(0, 5) // false
         this.printConnected(6, 2) // true
         this.printConnected(7, 3) // true
         this.printConnected(0, 0) // true
         this.printConnected(0, 4) // false
-    }
-
-}
-
-
-//
-//
-//
-//   Quick Union Union!
-//
-//
-
-/** Union with fast 'union' operation */
-class QuickUnionUnion<T : Comparable<T>>() : Union<T>() {
-    override fun union(fst: T, snd: T) {
-        TODO("Not yet implemented")
-    }
-
-    override fun connected(fst: T, snd: T): Boolean {
-        TODO("Not yet implemented")
     }
 }
