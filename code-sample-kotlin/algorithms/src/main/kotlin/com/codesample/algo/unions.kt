@@ -15,7 +15,7 @@ fun Union<Int>.printConnected(fst: Int, snd: Int) {
         println("'$fst' and '$snd' are NOT connected")
 }
 
-/** Union with fast 'find' operation n(1)
+/** Union with fast 'connected' operation o(1) and slow 'union' o(n)
  *
  * The entries are connected if and only if they have the same index.
  * Implementation is NOT thread-safe!*/
@@ -71,10 +71,7 @@ class QuickFindUnion<T : Comparable<T>>() : Union<T>() {
         }
     }
 
-    private fun oldIndexOrNull(elem: T): Int? {
-        return if (exist(elem)) elements.getValue(elem)
-        else null
-    }
+    private fun oldIndexOrNull(elem: T): Int? = elements[elem]
 }
 
 
