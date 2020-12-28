@@ -2,7 +2,10 @@ package com.codesample.algo
 
 
 abstract class Union<T : Comparable<T>>() {
+    /** Make two elements point to same union */
     abstract fun union(fst: T, snd: T)
+
+    /** Return true if two elements are connected or false otherwise. Same elements are always considered connected */
     abstract fun connected(fst: T, snd: T): Boolean
 }
 
@@ -18,20 +21,26 @@ fun Union<Int>.printConnected(fst: Int, snd: Int) {
  * Implementation is NOT thread-safe!*/
 class QuickFindUnion<T : Comparable<T>>() : Union<T>() {
 
-    /** Map element to numbered 'union' */
+    /** Next created union index. Incremented each time a new element in added to this union in 'connected' call */
     private var nextUnionIndex = 0
+
+    /** Map element to index of union */
     private val elements: MutableMap<T, Int> = mutableMapOf()
 
     override fun union(fst: T, snd: T) {
-        // Do not try inserting same element again
-        if (fst == snd) return
+
+        // Maybe insert new element and return if two elements are the same
+        if (fst == snd) {
+            oldIndexOrInsertAndIndex(fst)
+            return
+        }
 
         val fstIndex = oldIndexOrInsertAndIndex(fst)
         val sndIndex = oldIndexOrInsertAndIndex(snd)
 
-        if (fstIndex == sndIndex) return
+        if (fstIndex == sndIndex) return // both are already in the union
         else {
-            // Element in union with index 'fstIndex' will now be in secondIndex. Other elements continue to have their own index
+            // Element in union with index 'fstIndex' will now be in secondIndex. Other elements are not changed
             for (elem in elements) {
                 if (elem.value == fstIndex) {
                     elements[elem.key] = sndIndex
@@ -41,7 +50,7 @@ class QuickFindUnion<T : Comparable<T>>() : Union<T>() {
     }
 
     override fun connected(fst: T, snd: T): Boolean {
-        // Same element in always connected to itself
+        // Assume same element in always connected to itself
         if (fst == snd) return true
 
         val fstIndex = oldIndexOrNull(fst)
