@@ -130,7 +130,9 @@ class QuickUnionUnion<T> : Union<T>() {
 
 /** Union with fast 'union' operation o(1) and 'slow' 'connected' operation o(log(n)).
  *
- * Optimization is add new nodes not to a child but to a root itself  */
+ * There are 2 optimizations:
+ * 1. When joining 2 trees -> put smaller one to a root of a larger one (do not let large tree grow further)
+ * 2. When finding a root of tree -> rebind all children closer to root */
 class QuickUnionUnionOptimized<T> : Union<T>() {
 
     /** Each element may or may not have a parent. If no parent available -> it's a root of tree */
@@ -193,6 +195,11 @@ class QuickUnionUnionOptimized<T> : Union<T>() {
 
 
 fun main() {
+
+    // pick one of 3 implementations
+
+//    val quickFindUnion = QuickFindUnion<Int>()
+//    val quickFindUnion = QuickUnionUnion<Int>()
     val quickFindUnion = QuickUnionUnionOptimized<Int>()
 
     with(quickFindUnion) {
