@@ -15,7 +15,7 @@ fun Union<Int>.printConnected(fst: Int, snd: Int) {
         println("'$fst' and '$snd' are NOT connected")
 }
 
-/** Union with fast 'connected' operation o(1) and slow 'union' o(n)
+/** Union with fast 'connected' operation O(1) and slow 'union' O(n)
  *
  * The entries are connected if and only if they have the same index.
  * Implementation is NOT thread-safe!*/
@@ -81,8 +81,8 @@ class QuickFindUnion<T> : Union<T>() {
 //
 //
 
-/** Union with fast 'union' operation o(1) and 'slow' 'connected' operation o(n) in worst case,
- * but can be optimized to o(log(n)) [QuickUnionUnionOptimized].
+/** Union with fast 'union' operation O(1) and 'slow' 'connected' operation O(n) in worst case,
+ * but can be optimized to O(log(n)) [QuickUnionUnionOptimized].
  * The idea is to add elements as children on union operation which will create long-long trees */
 class QuickUnionUnion<T> : Union<T>() {
 
@@ -128,7 +128,7 @@ class QuickUnionUnion<T> : Union<T>() {
 //
 //
 
-/** Union with fast 'union' operation o(1) and 'slow' 'connected' operation o(log(n)).
+/** Union with fast 'union' operation O(1) and 'slow' 'connected' operation O(log(n)).
  *
  * There are 2 optimizations:
  * 1. When joining 2 trees -> put smaller one to a root of a larger one (do not let large tree grow further)
