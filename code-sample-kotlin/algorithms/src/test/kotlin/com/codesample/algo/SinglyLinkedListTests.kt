@@ -55,5 +55,36 @@ class SinglyLinkedListTests {
 
         assertEquals("SinglyLinkedList(size = 3, values=[1, 1, 1])", list.toString())
     }
+
+    @Test
+    fun testRevert() {
+        val list = SinglyLinkedList<Int>()
+            .also { it.add(1).add(2).add(3) }
+
+        assertEquals("SinglyLinkedList(size = 3, values=[3, 2, 1])", list.revert().toString())
+    }
+
+    @Test
+    fun testRevertAndAgain() {
+        val list = SinglyLinkedList<Int>()
+            .also { it.add(1).add(2).add(3) }
+
+        assertEquals("SinglyLinkedList(size = 3, values=[1, 2, 3])", list.revert().revert().toString())
+    }
+
+    @Test
+    fun testRevertNull() {
+        val list = SinglyLinkedList<Int>()
+
+        assertEquals("SinglyLinkedList(size = 0, values=[])", list.revert().toString())
+    }
+
+    @Test
+    fun testRevertOne() {
+        val list = SinglyLinkedList<Int>()
+            .also { it.add(1) }
+
+        assertEquals("SinglyLinkedList(size = 1, values=[1])", list.revert().toString())
+    }
 }
 

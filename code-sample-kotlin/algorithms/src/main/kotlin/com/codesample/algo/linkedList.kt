@@ -92,7 +92,22 @@ class SinglyLinkedList<T>(
     }
 
     override fun revert(): LinkedList<T> {
-        TODO("Not yet implemented")
+        return if (head == null) this
+        else  {
+            var prev: Node<T>? = null
+            var current = head
+
+            while (current?.next != null) {
+                val next = current.next
+                current.next = prev
+                prev = current
+                current = next
+            }
+
+            current!!.next = prev
+            head = current
+            this
+        }
     }
 }
 
