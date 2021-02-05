@@ -45,30 +45,24 @@ class SinglyLinkedList<T>(
     override fun removeFirst(value: T): LinkedList<T> {
         return when {
             head == null -> this // no elements
-            head != null && head!!.value == value -> { // element if found in head
+            head != null && head!!.value == value -> { // element is found in head
                 head = head!!.next
                 size--
                 this
             }
             else -> {
-                var beforeCurrent = head!!
+                var prev = head!!
                 var current = head!!.next
                 while (current != null) {
                     if (current.value == value) {
                         // found an element which should be deleted.
-                        beforeCurrent.next = current.next
+                        prev.next = current.next
                         size--
                         break
                     }
-                    beforeCurrent = current
+                    prev = current
                     current = current.next
                 }
-//                if (current != null && current.value == value) {
-//                    // found an element which should be deleted.
-//                    beforeCurrent.next = current.next
-//                    size--
-//                }
-
                 this
             }
         }

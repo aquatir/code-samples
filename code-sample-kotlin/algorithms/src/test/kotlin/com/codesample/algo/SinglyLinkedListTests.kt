@@ -38,6 +38,14 @@ class SinglyLinkedListTests {
     }
 
     @Test
+    fun removeJustAfterAdd() {
+        val list = SinglyLinkedList<Int>()
+            .also { it.add(1).add(2).removeFirst(2) }
+
+        assertEquals("SinglyLinkedList(size = 1, values=[1])", list.toString())
+    }
+
+    @Test
     fun addMultipleOfSameElementThenDeleteAll() {
         val list = SinglyLinkedList<Int>()
             .also { it.add(1).add(1).add(1).removeFirst(1).removeFirst(1) }
