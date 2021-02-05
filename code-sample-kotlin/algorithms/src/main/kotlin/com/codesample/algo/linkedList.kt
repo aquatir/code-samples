@@ -76,7 +76,7 @@ class SinglyLinkedList<T>(
 
     override fun toString(): String {
         return when (head) {
-            null -> "null"
+            null -> "SinglyLinkedList(size = 0, values=[])"
             else -> {
                 val strBuilder = StringBuilder()
                 strBuilder.append("SinglyLinkedList(size = $size, values=[")
