@@ -1,7 +1,8 @@
 package com.codesample.algo
 
-import org.junit.Test
-import kotlin.test.assertEquals
+import com.codesample.datastructs.basic.SinglyLinkedList
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 
 class SinglyLinkedListTests {
 

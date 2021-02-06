@@ -16,10 +16,16 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.3.9")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.3.9")
+    implementation("org.junit.jupiter:junit-jupiter:5.4.2")
 
     // test
 
-    testImplementation(kotlin("test-junit"))
+    testImplementation(platform("org.junit:junit-bom:5.7.1"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+}
+
+tasks.withType<Test>().configureEach {
+    useJUnitPlatform()
 }
 
 tasks.withType<KotlinCompile>() {

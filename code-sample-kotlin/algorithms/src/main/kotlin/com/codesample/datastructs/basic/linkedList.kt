@@ -1,12 +1,7 @@
-package com.codesample.algo
+package com.codesample.datastructs.basic
 
 import java.lang.StringBuilder
 
-
-class Node<T>(
-    val value: T,
-    var next: Node<T>?
-)
 
 
 interface LinkedList<T> {
