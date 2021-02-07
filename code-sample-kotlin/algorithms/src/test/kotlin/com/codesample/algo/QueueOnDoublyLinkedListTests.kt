@@ -78,6 +78,27 @@ class QueueOnDoublyLinkedListTests {
     }
 
     @Test
+    fun enqueueThreeElementsAndDequeThree() {
+        val queue = QueueOnDoublyLinkedList<Int>()
+            .also {
+                it.enqueue(1)
+                it.enqueue(2)
+                it.enqueue(3)
+            }
+
+        assertEquals("QueueOnDoublyLinkedList(head=1,tail=3,values=[1,2,3])", queue.toString())
+
+        val elem1 = queue.dequeue()
+        val elem2 = queue.dequeue()
+        val elem3 = queue.dequeue()
+        assertEquals(1, elem1)
+        assertEquals(2, elem2)
+        assertEquals(3, elem3)
+
+        assertEquals("QueueOnDoublyLinkedList(head=null,tail=null,values=[])", queue.toString())
+    }
+
+    @Test
     fun dequeOnEmptyThrows() {
         val queue = QueueOnDoublyLinkedList<Int>()
 
