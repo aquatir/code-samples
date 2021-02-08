@@ -33,6 +33,18 @@ class SortsTest {
                 sortImpl.invoke(array)
 
                 assertArrayEquals(arrayOf(1, 1, 2, 2, 3, 3), array)
+            },
+            Executable { // sorted in different way
+                val array = arrayOf(6, 5, 4, 3, 2, 1)
+                sortImpl.invoke(array)
+
+                assertArrayEquals(arrayOf(1, 2, 3, 4, 5, 6), array)
+            },
+            Executable { // already sorted
+                val array = arrayOf(1, 2, 3, 4, 5, 6)
+                sortImpl.invoke(array)
+
+                assertArrayEquals(arrayOf(1, 2, 3, 4, 5, 6), array)
             }
         )
     }
