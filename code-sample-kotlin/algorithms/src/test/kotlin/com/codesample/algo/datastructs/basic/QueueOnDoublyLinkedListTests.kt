@@ -1,4 +1,4 @@
-package com.codesample.algo
+package com.codesample.algo.datastructs.basic
 
 import QueueOnDoublyLinkedList
 import org.junit.jupiter.api.Assertions.assertEquals

@@ -1,4 +1,4 @@
-package com.codesample.algo
+package com.codesample.algo.datastructs.basic
 
 import com.codesample.datastructs.basic.StackOnLinkedListFast
 import org.junit.jupiter.api.Assertions

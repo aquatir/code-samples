@@ -1,4 +1,4 @@
-package com.codesample.algo
+package com.codesample.algo.datastructs.basic
 
 import com.codesample.datastructs.basic.StackOnLinkedListSlow
 import org.junit.jupiter.api.Assertions.assertEquals
