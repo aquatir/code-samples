@@ -1,6 +1,6 @@
 package com.codesample.algo
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Test
 import selectionSort
 
@@ -8,33 +8,33 @@ class SelectionSortTests {
 
     @Test
     fun testSelectionSortEmpty() {
-        val list = listOf<Int>()
-        val sorted = selectionSort(list)
+        val array = arrayOf<Int>()
+        selectionSort(array)
 
-        assertEquals(listOf<Int>(), sorted)
+        assertArrayEquals(arrayOf<Int>(), array)
     }
 
     @Test
     fun testSelectionSortOne() {
-        val list = listOf(1)
-        val sorted = selectionSort(list)
+        val array = arrayOf(1)
+        selectionSort(array)
 
-        assertEquals(listOf(1), sorted)
+        assertArrayEquals(arrayOf(1), array)
     }
 
     @Test
     fun testSelectionSortMultiple() {
-        val list = listOf(3, 1, 2)
-        val sorted = selectionSort(list)
+        val array = arrayOf(3, 1, 2)
+        selectionSort(array)
 
-        assertEquals(listOf(1, 2, 3), sorted)
+        assertArrayEquals(arrayOf(1, 2, 3), array)
     }
 
     @Test
     fun testSelectionSortMultipleWithRepeat() {
-        val list = listOf(3, 1, 1, 2, 3, 2)
-        val sorted = selectionSort(list)
+        val array = arrayOf(3, 1, 1, 2, 3, 2)
+        selectionSort(array)
 
-        assertEquals(listOf(1, 1, 2, 2, 3, 3), sorted)
+        assertArrayEquals(arrayOf(1, 1, 2, 2, 3, 3), array)
     }
 }

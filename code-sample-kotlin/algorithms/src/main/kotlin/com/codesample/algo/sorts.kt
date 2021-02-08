@@ -1,42 +1,35 @@
-fun <T: Comparable<T>> swap(list: MutableList<T>, fstIndex: Int, sndIndex: Int) {
-    val fstValue = list[fstIndex]
-    list[fstIndex] = list[sndIndex]
-    list[sndIndex] = fstValue
+fun <T: Comparable<T>> swap(array: Array<T>, fstIndex: Int, sndIndex: Int) {
+    val fstValue = array[fstIndex]
+    array[fstIndex] = array[sndIndex]
+    array[sndIndex] = fstValue
 }
 
 /** Find the smallest -> insert it to next position */
-fun <T: Comparable<T>> selectionSort(list: List<T>): List<T> {
-    val result = list.toMutableList()
+fun <T: Comparable<T>> selectionSort(array: Array<T>) {
 
-    for (i in 0 until result.size) {
+    for (i in array.indices) {
         var curMinIndex = i
-        for (j in (i+1) until result.size) {
-            if (result[j] < result[curMinIndex]) {
+        for (j in (i+1) until array.size) {
+            if (array[j] < array[curMinIndex]) {
                 curMinIndex = j
             }
         }
-        swap(result, i, curMinIndex)
+        swap(array, i, curMinIndex)
     }
-
-    return result
 }
 
-fun <T: Comparable<T>> insertionSort(list: List<T>): List<T> {
-    val result = list.toMutableList()
+fun <T: Comparable<T>> insertionSort(array: Array<T>) {
     TODO()
 }
 
-fun <T: Comparable<T>> shellSort(list: List<T>): List<T> {
-    val result = list.toMutableList()
+fun <T: Comparable<T>> shellSort(array: Array<T>) {
     TODO()
 }
 
-fun <T: Comparable<T>> mergeSort(list: List<T>): List<T> {
-    val result = list.toMutableList()
+fun <T: Comparable<T>> mergeSort(array: Array<T>) {
     TODO()
 }
 
-fun <T: Comparable<T>> quickSort(list: List<T>): List<T> {
-    val result = list.toMutableList()
+fun <T: Comparable<T>> quickSort(array: Array<T>) {
     TODO()
 }
