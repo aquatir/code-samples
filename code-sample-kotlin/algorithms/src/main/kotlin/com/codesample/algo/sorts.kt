@@ -32,8 +32,27 @@ fun <T : Comparable<T>> insertionSort(array: Array<T>) {
     }
 }
 
+/** h-sort with sequence 3x+1 */
 fun <T : Comparable<T>> shellSort(array: Array<T>) {
-    TODO()
+    var h = 1
+    while (h < array.size / 3) {
+        h = 3*h + 1 // 1, 4, 13, 40...
+    }
+
+    while (h >= 1) {
+        // h-sort array here with step == h
+        for (i in h until array.size) {
+            for (j in i downTo h step h) {
+                if (array[j] < array[j - h]) {
+                    swap(array, j, j - h)
+                } else {
+                    continue
+                }
+            }
+        }
+
+        h /= 3
+    }
 }
 
 fun <T : Comparable<T>> mergeSort(array: Array<T>) {
