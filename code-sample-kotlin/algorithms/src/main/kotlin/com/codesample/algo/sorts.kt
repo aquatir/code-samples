@@ -1,4 +1,4 @@
-fun <T : Comparable<T>> swap(array: Array<T>, fstIndex: Int, sndIndex: Int) {
+fun <T> swap(array: Array<T>, fstIndex: Int, sndIndex: Int) {
     val fstValue = array[fstIndex]
     array[fstIndex] = array[sndIndex]
     array[sndIndex] = fstValue
