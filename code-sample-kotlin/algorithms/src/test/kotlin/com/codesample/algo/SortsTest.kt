@@ -1,6 +1,7 @@
 package com.codesample.algo
 
 import insertionSort
+import mergeSort
 import org.junit.jupiter.api.Assertions.assertAll
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Test
@@ -65,4 +66,7 @@ class SortsTest {
 
     @Test
     fun testShellSort() = testSortImpl(::shellSort)
+
+    @Test
+    fun testMergeSort() = testSortImpl(::mergeSort)
 }
