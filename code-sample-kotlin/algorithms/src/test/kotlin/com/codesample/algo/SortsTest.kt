@@ -1,5 +1,6 @@
 package com.codesample.algo
 
+import bottomUpMergeSort
 import insertionSort
 import mergeSort
 import org.junit.jupiter.api.Assertions.assertAll
@@ -69,4 +70,7 @@ class SortsTest {
 
     @Test
     fun testMergeSort() = testSortImpl(::mergeSort)
+
+    @Test
+    fun testBottomUpMergeSort() = testSortImpl(::bottomUpMergeSort)
 }

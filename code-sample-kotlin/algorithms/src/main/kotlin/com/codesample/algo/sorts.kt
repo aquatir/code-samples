@@ -101,6 +101,76 @@ fun <T : Comparable<T>> mergeSort(array: Array<T>) {
     sort(array, aux, startIndex = 0, endIndex = array.size - 1)
 }
 
+fun <T : Comparable<T>> bottomUpMergeSort(array: Array<T>) {
+    val aux = array.copyOf()
+
+    val n = array.size
+    var step = 1
+    while (step < n) { // this will iterate over arrays of 2, than 4, than 8, until the end
+
+        var index = 0
+        while (index < n - step) {
+            merge(
+                array,
+                aux,
+                leftStart = index,
+                leftEnd = index + step - 1,
+                rightStart = index + step,
+                rightEnd = minOf(n - 1, index + step + step - 1)
+            )
+            index += step + step
+        }
+        step += step
+    }
+
+    /*
+     * Implementation can be much shorter for language which support 3 part for-loops. It will be as simpel as
+     * for (step = 1; step < n; step = step + step) {
+     *     for (i = 0; i < n - step; i += step + step) {
+     *         merge (array, aux, i, i + step - 1, i + step, minOf(n - 1, i + step + step - 1)
+     *     }
+     * }
+     */
+}
+
+fun <T : Comparable<T>> merge(
+    array: Array<T>,
+    auxArray: Array<T>,
+    leftStart: Int,
+    leftEnd: Int,
+    rightStart: Int,
+    rightEnd: Int
+) {
+    for (i in leftStart..rightEnd) {
+        auxArray[i] = array[i]
+    }
+
+    var left = leftStart
+    var right = rightStart
+
+    for (index in leftStart..rightEnd) {
+        when {
+            left > leftEnd -> {
+                array[index] = auxArray[right]
+                right++
+            }
+            right > rightEnd -> {
+                array[index] = auxArray[left]
+                left++
+            }
+            auxArray[left] <= auxArray[right] -> {
+                array[index] = auxArray[left];
+                left++
+            }
+            else -> {
+                array[index] = auxArray[right];
+                right++
+            }
+        }
+    }
+}
+
+
 fun <T : Comparable<T>> quickSort(array: Array<T>) {
     TODO()
 }
