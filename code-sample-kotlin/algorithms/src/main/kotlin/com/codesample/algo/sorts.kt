@@ -68,7 +68,7 @@ fun <T : Comparable<T>> mergeSort(array: Array<T>) {
     }
 
     val aux = array.copyOf()
-    sort(array, aux, startIndex = 0, endIndex = array.size - 1)
+    sort(array, aux, startIndex = 0, endIndex = array.lastIndex)
 }
 
 fun <T : Comparable<T>> bottomUpMergeSort(array: Array<T>) {
@@ -142,5 +142,52 @@ fun <T : Comparable<T>> merge(
 
 
 fun <T : Comparable<T>> quickSort(array: Array<T>) {
-    TODO()
+
+    fun partition(array: Array<T>, startLeft: Int, startRight: Int): Int {
+
+        /*
+        First element is used as partition element
+        After outer while(true) loop completes, all element to the left of startLeft will be
+        lower and all element to right of it will be higher.
+
+        Here we start with startLeft and startRight + 1 because the first thing we do before comparing
+        is ++left and --right
+        */
+
+        var left = startLeft
+        var right = startRight + 1
+
+        while (true) {
+
+            while (array[++left] < array[startLeft]) {
+                if (left == startRight) {
+                    break
+                }
+            }
+
+            while (array[startLeft] < array[--right]) {
+                if (right == startLeft) {
+                    break
+                }
+            }
+
+            if (left >= right) break
+            swap(array, left, right)
+        }
+
+        swap(array, startLeft, right)
+        return right // right is now in place
+    }
+
+    fun sort(array: Array<T>, startLeft: Int, startRight: Int) {
+        if (startRight <= startLeft) return
+
+        val inCorrectPlaceIndex = partition(array, startLeft, startRight)
+
+        sort(array, startLeft, inCorrectPlaceIndex - 1)
+        sort(array, inCorrectPlaceIndex + 1, startRight)
+    }
+
+    array.shuffle()
+    sort(array, 0, array.lastIndex)
 }
