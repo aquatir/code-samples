@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions.assertAll
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.function.Executable
+import quickSort
 import selectionSort
 import shellSort
 
@@ -73,4 +74,7 @@ class SortsTest {
 
     @Test
     fun testBottomUpMergeSort() = testSortImpl(::bottomUpMergeSort)
+
+    @Test
+    fun testQuickSort() = testSortImpl(::quickSort)
 }

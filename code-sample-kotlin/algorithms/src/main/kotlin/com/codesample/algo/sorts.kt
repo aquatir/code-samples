@@ -56,36 +56,6 @@ fun <T : Comparable<T>> shellSort(array: Array<T>) {
 }
 
 fun <T : Comparable<T>> mergeSort(array: Array<T>) {
-    fun merge(array: Array<T>, auxArray: Array<T>, leftStart: Int, leftEnd: Int, rightStart: Int, rightEnd: Int) {
-        for (i in leftStart..rightEnd) {
-            auxArray[i] = array[i]
-        }
-
-        var left = leftStart
-        var right = rightStart
-
-        for (index in leftStart..rightEnd) {
-            when {
-                left > leftEnd -> {
-                    array[index] = auxArray[right]
-                    right++
-                }
-                right > rightEnd -> {
-                    array[index] = auxArray[left]
-                    left++
-                }
-                auxArray[left] <= auxArray[right] -> {
-                    array[index] = auxArray[left];
-                    left++
-                }
-                else -> {
-                    array[index] = auxArray[right];
-                    right++
-                }
-            }
-        }
-
-    }
 
     fun sort(array: Array<T>, auxArray: Array<T>, startIndex: Int, endIndex: Int) {
 
