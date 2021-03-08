@@ -1,10 +1,10 @@
 package com.codesample.leetcode.medium
 
-/** Given n, output every correct parenthesis sequence with size 2*n
+/** Given n, output every correct parenthesis sequence with size 2*n. Input should be sorted lexicographically
  * e.g:
  * n = 1: ()
- * n = 2: ()(), (())
- * n = 3: ()()(), (())(), ()(()), (()()), ((()))
+ * n = 2: (()),()()
+ * n = 3: ((())),(()()),(())(),()(()),()()()
  * */
 
 fun correctParenthesis(n: Int): String {
@@ -17,15 +17,16 @@ fun correctParenthesis(n: Int): String {
             good.add(current)
             return
         }
-        if (opened > 0) { // close opened
-            allGoodParenthesis(opened - 1, parenthesisLeft - 1, "$current)")
+        if (opened > 0 && parenthesisLeft > opened) { // some opened, but can open more
+            allGoodParenthesis(opened + 1, parenthesisLeft - 1, "$current(")
         }
         if (opened == 0 && parenthesisLeft >= 2) { // none opened, but can open + close
             allGoodParenthesis(opened + 1, parenthesisLeft - 1, "$current(")
         }
-        if (opened > 0 && parenthesisLeft > opened) { // some opened, but can open more
-            allGoodParenthesis(opened + 1, parenthesisLeft - 1, "$current(")
+        if (opened > 0) { // close opened
+            allGoodParenthesis(opened - 1, parenthesisLeft - 1, "$current)")
         }
+
     }
 
     allGoodParenthesis(opened, n*2 - 1, "(")
@@ -34,6 +35,6 @@ fun correctParenthesis(n: Int): String {
 
 fun main() {
     println(correctParenthesis(1)) // ()
-    println(correctParenthesis(2)) // ()(), (())
-    println(correctParenthesis(3)) // ()()(), (())(), ()(()), (()()), ((()))
+    println(correctParenthesis(2)) // (()),()()
+    println(correctParenthesis(3)) // ((())),(()()),(())(),()(()),()()()
 }
