@@ -30,6 +30,7 @@ fun minAreaRect(points: Array<IntArray>): Int {
             }
             if (Pair(x1, y2) in lookupSet) { // for all other points -> try to see if we have a rectangle
                 if (Pair(x2, y1) in lookupSet) {
+                    // it only works if all points are DISTINCT which is true for this task
                     curMin = Math.min(curMin, Math.abs(x2-x1) * Math.abs(y2-y1))
                 }
             }
@@ -48,5 +49,15 @@ fun main() {
         intArrayOf(4,1),
         intArrayOf(4,3),
     )))
+
+    // (0,0), (0,1), (0,1), (1,0), (1,1)
+    println(minAreaRect(arrayOf(
+        intArrayOf(0,0),
+        intArrayOf(0,1),
+        intArrayOf(0,1),
+        intArrayOf(1,0),
+        intArrayOf(1,1),
+    )))
+
 }
 
