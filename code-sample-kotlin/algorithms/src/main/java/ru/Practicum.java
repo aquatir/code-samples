@@ -1,18 +1,13 @@
 package ru;
 
+import java.util.ArrayList;
 
 public class Practicum {
     public static void main(String[] args) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Привет")
-                .append(",")
-                .append(" ")
-                .append("как")
-                .append(" ")
-                .append("дела")
-                .append("?");
-        String kek = "kek";
-        kek = kek.replace("e", sb);
-        System.out.println(sb.toString());
+        var pizza = "Пицца, 1 шт., 10.50";
+        var tee = "Чай, 2 шт., 3.30";
+        var cookies = "Печенье, 1 уп., 5.75";
+
+        System.out.printf("%s%n%s%n%s", pizza, tee, cookies);
     }
 }
