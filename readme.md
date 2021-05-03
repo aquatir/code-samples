@@ -69,7 +69,6 @@
             <li><b>code-sample-nginx-spring-boot-docker</b>. Spring-boot with nginx inside docker deployed with docker-compose
         </ul>
     </li>
-    <li><b>code-sample-react/react-tic-tac-toe</b>. React example from official documentation </li>
 </ul>
 
 Some project have a dedicated README inside them.
