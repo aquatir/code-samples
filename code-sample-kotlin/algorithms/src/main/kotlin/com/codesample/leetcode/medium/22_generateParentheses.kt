@@ -1,13 +1,17 @@
 package com.codesample.leetcode.medium
 
-/** Given n, output every correct parenthesis sequence with size 2*n. Input should be sorted lexicographically
+import java.lang.StringBuilder
+
+/** 22. Generate Parentheses https://leetcode.com/problems/generate-parentheses/
+ *
+ * Given n, output every correct parenthesis sequence with size 2*n. Input should be sorted lexicographically
  * e.g:
  * n = 1: ()
  * n = 2: (()),()()
  * n = 3: ((())),(()()),(())(),()(()),()()()
  * */
 
-fun correctParenthesis(n: Int): String {
+fun generateParenthesis(n: Int): List<String> {
 
     val opened = 1
     val good = mutableListOf<String>();
@@ -30,11 +34,11 @@ fun correctParenthesis(n: Int): String {
     }
 
     allGoodParenthesis(opened, n*2 - 1, "(")
-    return good.joinToString(",")
+    return good.map { "\"$it\"" }
 }
 
 fun main() {
-    println(correctParenthesis(1)) // ()
-    println(correctParenthesis(2)) // (()),()()
-    println(correctParenthesis(3)) // ((())),(()()),(())(),()(()),()()()
+    println(generateParenthesis(1)) // ()
+    println(generateParenthesis(2)) // (()),()()
+    println(generateParenthesis(3)) // ((())),(()()),(())(),()(()),()()()
 }
