@@ -1,10 +1,10 @@
-name:                stack-pr
+name:                haskell-in-depth
 version:             0.1.0.0
-github:              "githubuser/stack-pr"
+github:              "githubuser/haskell-in-depth"
 license:             BSD3
 author:              "Author name here"
 maintainer:          "example@example.com"
-copyright:           "2019 Author name here"
+copyright:           "2021 Author name here"
 
 extra-source-files:
 - README.md
@@ -17,7 +17,7 @@ extra-source-files:
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-description:         Please see the README on GitHub at <https://github.com/githubuser/stack-pr#readme>
+description:         Please see the README on GitHub at <https://github.com/githubuser/haskell-in-depth#readme>
 
 dependencies:
 - base >= 4.7 && < 5
@@ -26,7 +26,7 @@ library:
   source-dirs: src
 
 executables:
-  stack-pr-exe:
+  haskell-in-depth-exe:
     main:                Main.hs
     source-dirs:         app
     ghc-options:
@@ -34,10 +34,10 @@ executables:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - stack-pr
+    - haskell-in-depth
 
 tests:
-  stack-pr-test:
+  haskell-in-depth-test:
     main:                Spec.hs
     source-dirs:         test
     ghc-options:
@@ -45,4 +45,4 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - stack-pr
+    - haskell-in-depth
