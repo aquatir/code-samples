@@ -1,1 +1,5 @@
-.beam
+*.beam
+*.beam
+.DS_Store
+**/*.beam
+
