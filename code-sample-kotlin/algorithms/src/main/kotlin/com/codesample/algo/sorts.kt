@@ -26,7 +26,7 @@ fun <T : Comparable<T>> insertionSort(array: Array<T>) {
             if (array[j] < array[j - 1]) {
                 swap(array, j, j - 1)
             } else {
-                continue
+                break
             }
         }
     }
