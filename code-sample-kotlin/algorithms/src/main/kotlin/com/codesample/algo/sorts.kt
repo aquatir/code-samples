@@ -18,7 +18,7 @@ fun <T : Comparable<T>> selectionSort(array: Array<T>) {
     }
 }
 
-/** aka Bubble Sort. Assume everything before i is sorted.
+/** Assume everything before i is sorted.
  * Add another element to sorted part -> swap elements until current element is in it's correct place */
 fun <T : Comparable<T>> insertionSort(array: Array<T>) {
     for (i in array.indices) {
