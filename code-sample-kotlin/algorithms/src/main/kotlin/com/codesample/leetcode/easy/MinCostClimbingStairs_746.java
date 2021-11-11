@@ -1,5 +1,7 @@
 package com.codesample.leetcode.easy;
 
+import java.sql.Array;
+
 /**
  * 746. Min Cost Climbing Stairs — https://leetcode.com/problems/min-cost-climbing-stairs/
  * <p>
