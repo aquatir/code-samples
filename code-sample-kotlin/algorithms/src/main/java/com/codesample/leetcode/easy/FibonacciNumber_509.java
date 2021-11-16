@@ -23,8 +23,8 @@ public class FibonacciNumber_509 {
 
     public static void main(String[] args) {
         final var fib = new FibonacciNumber_509();
-        System.out.println(fib.fib(3));
         System.out.println(fib.fib(2));
+        System.out.println(fib.fib(3));
         System.out.println(fib.fib(4));
     }
 }

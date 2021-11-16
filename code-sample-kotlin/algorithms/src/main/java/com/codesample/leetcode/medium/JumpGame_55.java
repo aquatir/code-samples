@@ -25,23 +25,6 @@ public class JumpGame_55 {
             }
         }
 
-        /*
-
-        for(int i=n-2;i>=0;i--)
-        {
-            for(int j=0;j<=nums[i] && i+j<n;j++)
-            {
-                if(jump[i+j]==true)
-                {
-                    jump[i]=true;
-                    break;
-                }
-            }
-        }
-
-        return jump[0];
-         */
-
         return canBeInPoint[0];
     }
 
