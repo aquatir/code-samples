@@ -3,6 +3,7 @@ package com.codesample.algo;
 public class QuickSort {
 
     public void sort(int[] array) {
+        // should also shuffle ideally
         sort(array, 0, array.length - 1);
     }
 
