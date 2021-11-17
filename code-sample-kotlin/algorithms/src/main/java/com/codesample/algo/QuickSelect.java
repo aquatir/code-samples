@@ -2,21 +2,27 @@ package com.codesample.algo;
 
 import static com.codesample.algo.Utils.swap;
 
-public class QuickSort {
+/**
+ * Select Kth largest elements
+ */
+public class QuickSelect {
 
-    public void sort(int[] array) {
-        // should also shuffle ideally
-        sort(array, 0, array.length - 1);
+    public int select(int[] array, int k) {
+        int left = 0;
+        int right = array.length - 1;
+
+        while (right > left) {
+            int j = partition(array, left, right);
+
+            if (j < k) left = j + 1;
+            if (j > k) right = j - 1;
+            else return array[k];
+        }
+
+        return array[k];
     }
 
-    private void sort(int[] array, int from, int to) {
-        if (to <= from) return;
-
-        int p = partition(array, from, to);
-        sort(array, from, p - 1);
-        sort(array, p + 1, to);
-    }
-
+    // same code as in QuickSort
     private int partition(int[] array, int from, int to) {
         int left = from;
         int right = to + 1;
@@ -45,13 +51,7 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
-        var q = new QuickSort();
-
-        int[] arr = new int[]{9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-        q.sort(arr);
-
-        for (int x : arr) {
-            System.out.print(x + ", ");
-        }
+        var q = new QuickSelect();
+        System.out.println(q.select(new int[]{2, 4, 6, 8, 10, 12}, 0)); // expected == 8 (k is counter from zero, e.g. k = 0 => first smallest elements
     }
 }
