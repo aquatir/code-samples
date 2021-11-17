@@ -1,11 +1,14 @@
 package com.codesample.algo;
 
+import static com.codesample.algo.Utils.shuffle;
 import static com.codesample.algo.Utils.swap;
 
 public class QuickSort {
 
     public void sort(int[] array) {
-        // should also shuffle ideally
+
+        // a shuffle will fix bad performance on reverse-sorter arrays
+        shuffle(array);
         sort(array, 0, array.length - 1);
     }
 
