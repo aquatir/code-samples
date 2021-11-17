@@ -8,7 +8,7 @@ package com.codesample.leetcode.medium;
  * Your goal is to reach the last index in the minimum number of jumps.
  * You can assume that you can always reach the last index.
  */
-public class _45_JumpGame2 {
+public class _45_JumpGameII {
 
     // Take forward approach from JumpGame (first one) -> instead of saving boolean save min number of steps.
     public int jump(int[] nums) {
