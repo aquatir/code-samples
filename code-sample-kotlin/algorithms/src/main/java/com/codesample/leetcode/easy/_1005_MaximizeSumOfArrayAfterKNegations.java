@@ -14,7 +14,7 @@ import java.util.Arrays;
  * -100 <= nums[i] <= 100
  * 1 <= k <= 10^4
  */
-public class MaximizeSumOfArrayAfterKNegations_1005 {
+public class _1005_MaximizeSumOfArrayAfterKNegations {
     static class Solution {
         public int largestSumAfterKNegations(int[] nums, int k) {
 

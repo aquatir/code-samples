@@ -9,7 +9,7 @@ package com.codesample.leetcode.medium;
  * A subarray may only include each element of the fixed buffer nums at most once. Formally, for a subarray nums[i],
  * nums[i + 1], ..., nums[j], there does not exist i <= k1, k2 <= j with k1 % n == k2 % n.
  */
-public class MaximumSumCircularSubarray_918 {
+public class _918_MaximumSumCircularSubarray {
     static class Solution {
         public int maxSubarraySumCircular(int[] nums) {
 

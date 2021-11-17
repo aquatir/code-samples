@@ -1,6 +1,6 @@
 package com.codesample.leetcode.easy;
 
-public class IsSubsequence_392 {
+public class _392_IsSubsequence {
     static class Solution {
         public boolean isSubsequence(String s, String t) {
             int si = 0;

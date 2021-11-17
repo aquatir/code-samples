@@ -8,7 +8,7 @@ package com.codesample.leetcode.medium;
  *
  * Return true if you can reach the last index, or false otherwise.
  */
-public class JumpGame_55 {
+public class _55_JumpGame {
 
     // DP from backward. Assume we can reach -> go backward and remember if we truly can.
     public boolean canJump(int[] nums) {

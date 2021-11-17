@@ -6,7 +6,7 @@ package com.codesample.leetcode.easy;
  *
  * Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
  */
-public class ClimbingStairs_70 {
+public class _70_ClimbingStairs {
 
     /* The solution for S[n] is a sum of all the ways to get to the last step s[n-1] + all the ways to get to the
     * previous step s[n-2] so it's essentially a Fibonacci sequence. */

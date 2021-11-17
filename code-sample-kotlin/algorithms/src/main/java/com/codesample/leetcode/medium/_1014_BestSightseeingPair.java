@@ -8,7 +8,7 @@ package com.codesample.leetcode.medium;
  * The score of a pair (i < j) of sightseeing spots is values[i] + values[j] + i - j: the sum of the values of the
  * sightseeing spots, minus the distance between them. Return the maximum score of a pair of sightseeing spots.
  */
-public class BestSightseeingPair_1014 {
+public class _1014_BestSightseeingPair {
     static class Solution {
         public int maxScoreSightseeingPair(int[] values) {
 

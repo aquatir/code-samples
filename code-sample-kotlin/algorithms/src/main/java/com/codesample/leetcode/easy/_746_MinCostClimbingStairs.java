@@ -7,7 +7,7 @@ package com.codesample.leetcode.easy;
  * You can either start from the step with index 0, or the step with index 1.
  * Return the minimum cost to reach the top of the floor.
  */
-public class MinCostClimbingStairs_746 {
+public class _746_MinCostClimbingStairs {
     public int minCostClimbingStairs(int[] cost) {
         if (cost.length == 1) {
             return cost[0];

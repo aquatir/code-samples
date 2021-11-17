@@ -5,7 +5,7 @@ package com.codesample.leetcode.easy;
  * The Fibonacci numbers, commonly denoted F(n) form a sequence, called the Fibonacci sequence, such that each number
  * is the sum of the two preceding ones, starting from 0 and 1. That is,
  */
-public class FibonacciNumber_509 {
+public class _509_FibonacciNumber {
     public int fib(int n) {
         if (n <= 0) return 0;
         if (n <= 2) return 1;
@@ -22,7 +22,7 @@ public class FibonacciNumber_509 {
     }
 
     public static void main(String[] args) {
-        final var fib = new FibonacciNumber_509();
+        final var fib = new _509_FibonacciNumber();
         System.out.println(fib.fib(2));
         System.out.println(fib.fib(3));
         System.out.println(fib.fib(4));

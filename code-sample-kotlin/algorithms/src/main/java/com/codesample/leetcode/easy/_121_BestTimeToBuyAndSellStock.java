@@ -8,7 +8,7 @@ package com.codesample.leetcode.easy;
  * to sell that stock.
  * Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
  */
-public class BestTimeToBuyAndSellStock_121 {
+public class _121_BestTimeToBuyAndSellStock {
     static class Solution {
         public int maxProfit(int[] prices) {
             int n = prices.length;

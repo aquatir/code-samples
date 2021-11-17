@@ -11,7 +11,7 @@ package com.codesample.leetcode.medium;
  *
  * TODO: SOLVE MYSELF. WHY DYNAMIC PROGRAMMING SO HARD.
  */
-public class LongestCommonSubsequence_1143 {
+public class _1143_LongestCommonSubsequence {
     public int longestCommonSubsequence(String text1, String text2) {
         int n = text1.length();
         int m = text2.length();

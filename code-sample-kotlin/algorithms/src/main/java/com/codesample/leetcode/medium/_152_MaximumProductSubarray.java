@@ -7,7 +7,7 @@ package com.codesample.leetcode.medium;
  * It is guaranteed that the answer will fit in a 32-bit integer.
  * A subarray is a contiguous subsequence of the array.
  */
-public class MaximumProductSubarray_152 {
+public class _152_MaximumProductSubarray {
     static class Solution {
         public int maxProduct(int[] nums) {
 

@@ -8,7 +8,7 @@ package com.codesample.leetcode.medium;
  * Pick any nums[i] and delete it to earn nums[i] points. Afterwards, you must delete every element equal to nums[i] - 1 and every element equal to nums[i] + 1.
  * Return the maximum number of points you can earn by applying the above operation some number of times.
  */
-public class DeleteAndEarn_740 {
+public class _740_DeleteAndEarn {
     static class Solution {
         public int deleteAndEarn(int[] nums) {
 

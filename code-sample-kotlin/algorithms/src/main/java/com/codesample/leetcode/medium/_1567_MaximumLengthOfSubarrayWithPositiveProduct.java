@@ -1,6 +1,6 @@
 package com.codesample.leetcode.medium;
 
-public class MaximumLengthOfSubarrayWithPositiveProduct_1567 {
+public class _1567_MaximumLengthOfSubarrayWithPositiveProduct {
     static class Solution {
 
         public int getMaxLen(int[] nums) {

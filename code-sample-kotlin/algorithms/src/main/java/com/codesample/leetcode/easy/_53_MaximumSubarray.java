@@ -7,7 +7,7 @@ package com.codesample.leetcode.easy;
  * <p>
  * A subarray is a contiguous part of an array.
  */
-public class MaximumSubarray_53 {
+public class _53_MaximumSubarray {
     static class Solution {
         public int maxSubArray(int[] nums) {
 
