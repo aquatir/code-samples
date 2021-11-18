@@ -34,28 +34,23 @@ public class _714_BestTimeToBuyAndSellStockWithTransactionFee {
         public int maxProfit(int[] prices, int fee) {
 
             int n = prices.length;
-            int buyCur = 0, sellCur = 0, skipCur = 0, holdCur = 0;
 
-            int buyPrev = -prices[0];
-            int sellPrev = Integer.MIN_VALUE;
-            int skipPrev = 0;
-            int holdPrev = -prices[0];
+            int prevBuy = - prices[0];
+            int prevSell = 0;
+
+            int curBuy = 0, curSell = 0;
 
             for (int i = 1; i < n; i++) {
-                buyCur = Math.max(sellPrev, skipPrev) - prices[i];
-                skipCur = Math.max(sellPrev, skipPrev);
-                holdCur = Math.max(buyPrev, holdPrev);
-                sellCur = Math.max(buyPrev, holdPrev) + prices[i] - fee;
+                curBuy = Math.max(prevBuy, prevSell - prices[i]);
+                curSell = Math.max(prevSell, prevBuy + prices[i] - fee);
 
-                buyPrev = buyCur;
-                skipPrev = skipCur;
-                holdPrev = holdCur;
-                sellPrev = sellCur;
+                prevBuy = curBuy;
+                prevSell = curSell;
             }
 
             return Math.max(
-                    sellCur,
-                    skipCur
+                    curBuy,
+                    curSell
             );
         }
     }
