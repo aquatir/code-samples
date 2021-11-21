@@ -6,9 +6,9 @@ import java.util.List;
 public class _118_Pascals_Triangle {
     static class Solution {
         public List<List<Integer>> generate(int numRows) {
-            List<List<Integer>> result = new ArrayList<>();
+            List<List<Integer>> result = new ArrayList<>(numRows);
 
-            List<Integer> prev = new ArrayList<>();
+            List<Integer> prev = new ArrayList<>(1);
             prev.add(1);
             result.add(prev);
 
@@ -17,7 +17,7 @@ public class _118_Pascals_Triangle {
             }
 
             for (int i = 2; i <= numRows; i++) {
-                ArrayList<Integer> line = new ArrayList<>();
+                ArrayList<Integer> line = new ArrayList<>(i);
 
                 for (int j = 0; j < i; j++) {
                     if (j == 0 | j == i - 1) {
