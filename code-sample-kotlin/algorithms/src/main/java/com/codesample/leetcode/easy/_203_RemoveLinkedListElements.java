@@ -6,7 +6,7 @@ package com.codesample.leetcode.easy;
  * Given the head of a linked list and an integer val, remove all the nodes of the linked list that has Node.val == val,
  * and return the new head.
  */
-public class _203_Remove_Linked_List_Elements {
+public class _203_RemoveLinkedListElements {
 
     class ListNode {
         int val;
