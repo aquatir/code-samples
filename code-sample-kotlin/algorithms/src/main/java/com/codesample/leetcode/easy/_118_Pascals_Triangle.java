@@ -8,27 +8,26 @@ public class _118_Pascals_Triangle {
         public List<List<Integer>> generate(int numRows) {
             List<List<Integer>> result = new ArrayList<>(numRows);
 
-            List<Integer> prev = new ArrayList<>(1);
-            prev.add(1);
-            result.add(prev);
+            List<Integer> line = new ArrayList<>(1);
+            line.add(1);
+            result.add(line);
 
             if (numRows == 1) {
                 return result;
             }
 
             for (int i = 2; i <= numRows; i++) {
-                ArrayList<Integer> line = new ArrayList<>(i);
+                line = new ArrayList<>(i);
 
                 for (int j = 0; j < i; j++) {
                     if (j == 0 | j == i - 1) {
                         line.add(1);
                     } else {
-                        line.add(prev.get(j - 1) + prev.get(j));
+                        line.add(result.get(i-2).get(j - 1) + result.get(i-2).get(j));
                     }
                 }
 
                 result.add(line);
-                prev = line;
             }
 
             return result;
