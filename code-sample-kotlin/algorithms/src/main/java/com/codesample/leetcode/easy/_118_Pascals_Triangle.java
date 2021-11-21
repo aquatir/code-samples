@@ -1,9 +1,7 @@
 package com.codesample.leetcode.easy;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class _118_Pascals_Triangle {
     static class Solution {
@@ -19,17 +17,18 @@ public class _118_Pascals_Triangle {
             }
 
             for (int i = 2; i <= numRows; i++) {
-                int[] line = new int[i];
-                line[0] = 1;
-                line[i - 1] = 1;
+                ArrayList<Integer> line = new ArrayList<>();
 
-                for (int j = 1; j < i - 1; j++) {
-                    line[j] = prev.get(j - 1) + prev.get(j);
+                for (int j = 0; j < i; j++) {
+                    if (j == 0 | j == i - 1) {
+                        line.add(1);
+                    } else {
+                        line.add(prev.get(j - 1) + prev.get(j));
+                    }
                 }
 
-                List<Integer> asList = Arrays.stream(line).boxed().collect(Collectors.toList());
-                result.add(asList);
-                prev = asList;
+                result.add(line);
+                prev = line;
             }
 
             return result;
@@ -38,7 +37,7 @@ public class _118_Pascals_Triangle {
 
     public static void main(String[] args) {
         var s = new Solution();
-
         System.out.println(s.generate(3)); // expected = [[1],[1,1],[1,2,1]]
+        System.out.println(s.generate(5)); // expected = [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]]
     }
 }
