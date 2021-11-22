@@ -3,7 +3,7 @@ package com.codesample.leetcode.easy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class _118_Pascals_Triangle {
+public class _118_PascalsTriangle {
     static class Solution {
         public List<List<Integer>> generate(int numRows) {
             List<List<Integer>> result = new ArrayList<>(numRows);
