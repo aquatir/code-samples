@@ -13,7 +13,6 @@ public class _64_MinimumPathSum {
             int m = grid.length;
             int n = grid[0].length;
 
-
             int[][] mins = new int[m][n];
             mins[0][0] = grid[0][0];
             for (int i = 0; i < m; i++) {
