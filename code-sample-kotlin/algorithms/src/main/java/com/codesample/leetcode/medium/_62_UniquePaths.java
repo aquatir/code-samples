@@ -1,5 +1,7 @@
 package com.codesample.leetcode.medium;
 
+import java.util.HashMap;
+
 /**
  * 62. Unique Paths — https://leetcode.com/problems/unique-paths/
  */
@@ -10,7 +12,7 @@ public class _62_UniquePaths {
 
         public int uniquePathsRecursive(int m, int n) {
             // m X n grid.
-
+            String key = m + "," + n;
             if (m == 1 && n == 1) {
                 return 1;
             }
@@ -20,41 +22,24 @@ public class _62_UniquePaths {
             return topPaths + leftPaths;
         }
 
+        // HashMap would generally be slower here, but should theoretically take less space for huge m and n
         public int uniquePaths(int m, int n) {
-            return uniquePaths(m, n, new int[m+1][n+1]);
+            return uniquePaths(m, n, new int[m + 1][n + 1]);
         }
 
         int uniquePaths(int m, int n, int[][] memo) {
+
+            if (memo[m][n] != 0) {
+                return memo[m][n];
+            }
             if (m == 1 && n == 1) {
                 return 1;
             }
-
-            int topPaths = 0;
-            if (m - 1 == 0) {
-                topPaths = 0;
-            } else {
-                if (memo[m - 1][n] != 0) {
-                    topPaths = memo[m-1][n];
-                } else {
-                    memo[m-1][n] = uniquePaths(m - 1, n, memo);
-                    topPaths = memo[m-1][n];
-                }
+            if (m == 0 || n == 0) {
+                return 0;
             }
 
-
-            int leftPaths = 0;
-            if (n - 1 == 0) {
-                leftPaths = 0;
-            } else {
-                if (memo[m][n-1] != 0) {
-                    leftPaths = memo[m][n-1];
-                } else {
-                    memo[m][n-1] = uniquePaths(m, n-1, memo);
-                    leftPaths = memo[m][n-1];
-                }
-            }
-
-            memo[m][n] = topPaths + leftPaths;
+            memo[m][n] = uniquePaths(m - 1, n, memo) + uniquePaths(m, n - 1, memo);
             return memo[m][n];
         }
 
