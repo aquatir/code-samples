@@ -1,14 +1,14 @@
 package algorithms.union;
 
 import codesample.algorithms.union.UnionWithQuickConnectedOperation;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class UnionWithQuickConnectedOperationTest {
 
     private UnionWithQuickConnectedOperation<String> union;
 
-    @Before
+    @BeforeEach
     public void unitUnion() {
         union = new UnionWithQuickConnectedOperation<>();
     }

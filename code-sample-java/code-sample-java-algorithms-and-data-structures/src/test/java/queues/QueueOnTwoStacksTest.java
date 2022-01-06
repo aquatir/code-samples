@@ -6,9 +6,10 @@
 package queues;
 
 import codesample.data_structures.queues.QueueOnTwoStacks;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class QueueOnTwoStacksTest {
 
@@ -29,10 +30,14 @@ public class QueueOnTwoStacksTest {
     /**
      * Test exception thrown when attempting to dequeue from empty queue
      */
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testDequeueEmpty() {
-        queue = new QueueOnTwoStacks<>(); /* queue is empty when just created */
-        queue.dequeue();
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            queue = new QueueOnTwoStacks<>(); /* queue is empty when just created */
+            queue.dequeue();
+        });
+
     }
 
 }

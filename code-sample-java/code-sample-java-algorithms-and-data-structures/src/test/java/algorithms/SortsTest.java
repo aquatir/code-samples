@@ -1,13 +1,11 @@
 package algorithms;
 
 import codesample.algorithms.Sorts;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -20,13 +18,9 @@ public class SortsTest {
     private List<Integer> arrTest = new ArrayList<>();
     private List<Integer> arrExp = new ArrayList<>();
 
-    @Before
-    public void setRandomSeed() {
-        rnd = new Random(randomSeed);
-    }
-
-    @Before
+    @BeforeEach
     public void initiateList() {
+        rnd = new Random(randomSeed);
         arrTest = generateRandomIntegerArray(size);
         arrExp = new ArrayList<>();
         arrExp.addAll(arrTest);
@@ -38,7 +32,7 @@ public class SortsTest {
         Sorts.insertionSort(arrTest, 0, size);
         arrExp.sort(Integer::compareTo);
 
-        Assert.assertEquals(arrExp, arrTest);
+        Assertions.assertEquals(arrExp, arrTest);
     }
 
     @Test
@@ -47,7 +41,7 @@ public class SortsTest {
         Sorts.selectionSort(arrTest, 0, size);
         arrExp.sort(Integer::compareTo);
 
-        Assert.assertEquals(arrExp, arrTest);
+        Assertions.assertEquals(arrExp, arrTest);
     }
 
     @Test
@@ -55,12 +49,12 @@ public class SortsTest {
         Sorts.shellSort(arrTest, 0, size);
         arrExp.sort(Integer::compareTo);
 
-        Assert.assertEquals(arrExp, arrTest);
+        Assertions.assertEquals(arrExp, arrTest);
     }
 
     private List<Integer> generateRandomIntegerArray(int size) {
         var array = new ArrayList<Integer>(size);
-        for (int i = 0; i<size; ++i) {
+        for (int i = 0; i < size; ++i) {
             array.add(rnd.nextInt());
         }
         return array;
