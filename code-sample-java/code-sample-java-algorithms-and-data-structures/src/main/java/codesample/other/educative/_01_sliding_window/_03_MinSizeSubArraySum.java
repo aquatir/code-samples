@@ -14,30 +14,35 @@ package codesample.other.educative._01_sliding_window;
  * Output: 1
  * Explanation: The smallest subarray with a sum greater than or equal to '7' is [8].
  */
-class MinSizeSubArraySum {
-    public static int findMinSubArray(int S, int[] arr) {
-        int n = arr.length;
+class _03_MinSizeSubArraySum {
+    public static int findMinSubArray(int target, int[] nums) {
+        int n = nums.length;
         int smallestWindowSoFar = n;
+        boolean hit = false;
 
         int windowStart = 0;
         int currentWindowsSum = 0;
 
         for (int windowEnd = 0; windowEnd < n; windowEnd++) {
 
-            currentWindowsSum += arr[windowEnd];
+            currentWindowsSum += nums[windowEnd];
 
-            if (currentWindowsSum >= S) {
-                while (currentWindowsSum - arr[windowStart] >= S) {
-                    currentWindowsSum -= arr[windowStart];
+            if (currentWindowsSum >= target) {
+                while (currentWindowsSum - nums[windowStart] >= target) {
+                    currentWindowsSum -= nums[windowStart];
                     windowStart++;
                 }
 
                 smallestWindowSoFar = Math.min(smallestWindowSoFar, windowEnd - windowStart + 1);
+                hit = true;
             }
         }
 
-        return smallestWindowSoFar;
+        return hit ? smallestWindowSoFar : 0;
+    }
 
+    public static void main(String[] args) {
+        System.out.println(_03_MinSizeSubArraySum.findMinSubArray(7, new int[]{2, 3, 1, 2, 4, 3})); // exp 2
     }
 }
 
