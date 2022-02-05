@@ -1,8 +1,8 @@
-package codesample.other.educative;
+package codesample.other.educative._01_sliding_window;
 
 import java.util.Arrays;
 
-public class AverageOfSubarrayOfSizeK {
+public class _01_AverageOfSubarrayOfSizeK {
     public static double[] findAverages(int k, int[] arr) {
         double[] result = new double[arr.length - k + 1];
         double windowSum = 0;
@@ -22,7 +22,7 @@ public class AverageOfSubarrayOfSizeK {
     }
 
     public static void main(String[] args) {
-        double[] result = AverageOfSubarrayOfSizeK.findAverages(5, new int[] { 1, 3, 2, 6, -1, 4, 1, 8, 2 });
+        double[] result = _01_AverageOfSubarrayOfSizeK.findAverages(5, new int[] { 1, 3, 2, 6, -1, 4, 1, 8, 2 });
         System.out.println("Averages of subarrays of size K: " + Arrays.toString(result));      // exp: [2.2, 2.8, 2.4, 3.6, 2.8]
     }
 }
