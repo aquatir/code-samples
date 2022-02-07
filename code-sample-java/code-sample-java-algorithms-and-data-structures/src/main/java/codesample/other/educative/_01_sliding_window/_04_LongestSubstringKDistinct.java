@@ -26,7 +26,7 @@ import java.util.Map;
  * Output: 6
  * Explanation: The longest substring with no more than '10' distinct characters is "cbbebi".
  */
-class LongestSubstringKDistinct {
+class _04_LongestSubstringKDistinct {
     public static int findLength(String str, int k) {
         // TODO: Write your code here
 
@@ -69,9 +69,9 @@ class LongestSubstringKDistinct {
     }
 
     public static void main(String[] args) {
-        System.out.println(LongestSubstringKDistinct.findLength("araaci", 2));      // exp: 4
-        System.out.println(LongestSubstringKDistinct.findLength("araaci", 1));      // exp: 2
-        System.out.println(LongestSubstringKDistinct.findLength("cbbebi", 3));      // exp: 5
-        System.out.println(LongestSubstringKDistinct.findLength("cbbebi", 10));     // exp: 6
+        System.out.println(_04_LongestSubstringKDistinct.findLength("araaci", 2));      // exp: 4
+        System.out.println(_04_LongestSubstringKDistinct.findLength("araaci", 1));      // exp: 2
+        System.out.println(_04_LongestSubstringKDistinct.findLength("cbbebi", 3));      // exp: 5
+        System.out.println(_04_LongestSubstringKDistinct.findLength("cbbebi", 10));     // exp: 6
     }
 }
