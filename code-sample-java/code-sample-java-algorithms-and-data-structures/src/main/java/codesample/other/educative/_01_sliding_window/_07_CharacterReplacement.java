@@ -3,30 +3,7 @@ package codesample.other.educative._01_sliding_window;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Given a string, find the length of the longest substring in it with no more than K distinct characters.
- * <p>
- * Example 1:
- * Input: String="araaci", K=2
- * Output: 4
- * Explanation: The longest substring with no more than '2' distinct characters is "araa".
- * <p>
- * Example 2:
- * Input: String="araaci", K=1
- * Output: 2
- * Explanation: The longest substring with no more than '1' distinct characters is "aa".
- * <p>
- * Example 3:
- * Input: String="cbbebi", K=3
- * Output: 5
- * Explanation: The longest substrings with no more than '3' distinct characters are "cbbeb" & "bbebi".
- * <p>
- * Example 4:
- * Input: String="cbbebi", K=10
- * Output: 6
- * Explanation: The longest substring with no more than '10' distinct characters is "cbbebi".
- */
-class _04_LongestSubstringKDistinct {
+public class _07_CharacterReplacement {
     public static int findLength(String str, int k) {
 
 
@@ -62,9 +39,8 @@ class _04_LongestSubstringKDistinct {
     }
 
     public static void main(String[] args) {
-        System.out.println(_04_LongestSubstringKDistinct.findLength("araaci", 2));      // exp: 4
-        System.out.println(_04_LongestSubstringKDistinct.findLength("araaci", 1));      // exp: 2
-        System.out.println(_04_LongestSubstringKDistinct.findLength("cbbebi", 3));      // exp: 5
-        System.out.println(_04_LongestSubstringKDistinct.findLength("cbbebi", 10));     // exp: 6
+        System.out.println(_07_CharacterReplacement.findLength("aabccbb", 2));  // exp: 5
+        System.out.println(_07_CharacterReplacement.findLength("abbcb", 1));    // exp: 4
+        System.out.println(_07_CharacterReplacement.findLength("abccde", 1));   // exp: 3
     }
 }
