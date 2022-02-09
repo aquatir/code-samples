@@ -26,36 +26,17 @@ public class _83_RemoveDuplicatesFromSortedList {
 
     public ListNode deleteDuplicates(ListNode head) {
 
-        // fix current element
-        // if another same element is found -> ignore it. Do not update the current list
-        // if another different element is found -> update the next.
+        ListNode cur = head;
 
-        if (head == null) {
-            return null;
-        }
-
-        ListNode noDuplicatesListCur = new ListNode(head.val);
-        noDuplicatesListCur.next = null;
-
-        ListNode noDuplicatesListHead = noDuplicatesListCur;
-
-        ListNode prev = head;
-        ListNode cur = prev.next;
-
-        while (cur != null) {
-            if (prev.val == cur.val) {
-                // ignore
+        while (cur != null && cur.next != null) {
+            if (cur.val == cur.next.val) {
+                cur.next = cur.next.next;
             } else {
-                ListNode newNode = new ListNode(cur.val);
-                newNode.next = null;
-                noDuplicatesListCur.next = newNode;
-                noDuplicatesListCur = noDuplicatesListCur.next;
+                cur = cur.next;
             }
-            prev = cur;
-            cur = cur.next;
         }
 
-        return noDuplicatesListHead;
+        return head;
     }
 
     public static void main(String[] args) {
