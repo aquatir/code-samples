@@ -1,5 +1,8 @@
 package codesample.other.educative._03_fast_and_slow_pointers;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class _03_CycleInACircularArray {
     public static boolean loopExists(int[] arr) {
         // for each number -> start fast and slow pointers.
