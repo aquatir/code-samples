@@ -1,7 +1,7 @@
-package codesample.other.educative._02_two_pointers;
+package codesample.other.educative._03_fast_and_slow_pointers;
 
 
-public class _08_RearrangeALinkedList {
+public class _02_RearrangeALinkedList {
 
     // 1 - 2 - 3 - 4 - 5 => 1 - 5 - 2 - 4 - 3 (middle goes to null)
     // 1 - 2 - 3 - 4 - 5 - 6 => 1 - 6 - 2 - 5 - 3 - 4  (niddle goes to null)

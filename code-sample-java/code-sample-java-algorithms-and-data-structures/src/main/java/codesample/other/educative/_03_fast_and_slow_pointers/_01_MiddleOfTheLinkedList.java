@@ -1,4 +1,4 @@
-package codesample.other.educative._02_two_pointers;
+package codesample.other.educative._03_fast_and_slow_pointers;
 
 class ListNode {
     int value = 0;
@@ -9,7 +9,7 @@ class ListNode {
     }
 }
 
-public class _07_MiddleOfTheLinkedList {
+public class _01_MiddleOfTheLinkedList {
 
     public static ListNode findMiddle(ListNode head) {
         // Use fast + slow pointer
