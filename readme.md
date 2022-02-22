@@ -1,6 +1,6 @@
 ## About 
 
-Java/Kotlin/Scala/Haskell/Erlang code samples
+Java/Kotlin/Elixir/Erlang/Scala/Haskell code samples
 
 Random code pieces
 
