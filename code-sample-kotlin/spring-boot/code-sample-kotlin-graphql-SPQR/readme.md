@@ -1,1 +1,0 @@
-graph example with speaker with SPQR generated schema

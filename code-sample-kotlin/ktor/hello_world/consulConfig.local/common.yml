@@ -1,8 +1,0 @@
-common1:
-  conf1: com_conf_1
-  conf2: com_conf_2
-
-common2: com_3
-
-kafka:
-  url: localhost:9092
