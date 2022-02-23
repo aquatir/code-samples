@@ -12,6 +12,8 @@ IO.inspect Enum.sort(["c", "b", "d", "a"], &>=/2)
 IO.inspect Enum.member?([10, 20, 12], 10)                             # check if the element exists in a list
 IO.inspect Enum.join(["apples", "hot dogs", "flowers"], ", ")         # join with value
 
+IO.inspect Enum.at([1,2,3], 2)
+
 IO.puts("")
 
 medals = [
