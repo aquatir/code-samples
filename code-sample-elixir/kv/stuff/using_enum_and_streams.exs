@@ -14,6 +14,16 @@ IO.inspect Enum.join(["apples", "hot dogs", "flowers"], ", ")         # join wit
 
 IO.inspect Enum.at([1,2,3], 2)
 
+list = [1,2,3,4]
+IO.inspect hd(list)
+IO.inspect tl(list)
+
+tuple = {:ok, "hello"}
+IO.inspect tuple
+new_tuple = put_elem(tuple, 1, "world")
+IO.inspect new_tuple
+
+
 IO.puts("")
 
 medals = [
