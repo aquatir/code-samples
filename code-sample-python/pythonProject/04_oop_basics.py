@@ -69,7 +69,7 @@ class Calculator:
 
 
 if __name__ == '__main__':
-    print("oop")
+    print("oop basics")
     emp1 = Employee(1, 100, "finance")
 
     print(emp1)
