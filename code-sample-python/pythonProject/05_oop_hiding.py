@@ -13,19 +13,19 @@ class Rectangle:
 class Student:
 
     __name = None
-    __rollNumber = None
+    __roll_number = None
 
-    def setName(self, name):
+    def set_name(self, name):
         self.__name = name
 
-    def getName(self):
+    def get_name(self):
         return self.__name
 
-    def setRollNumber(self, rollNumber):
-        self.__rollNumber = rollNumber
+    def set_roll_number(self, roll_number):
+        self.__roll_number = roll_number
 
-    def getRollNumber(self):
-        return self.__rollNumber
+    def get_roll_number(self):
+        return self.__roll_number
 
 if __name__ == '__main__':
     print("oop hiding")
