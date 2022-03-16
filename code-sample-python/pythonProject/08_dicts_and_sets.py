@@ -82,3 +82,8 @@ if __name__ == '__main__':
     print(set(some_dict))
     print(set(some_dict.items()))
     print("****")
+
+    test_list = [3, 2, 1]
+    test_list.sort()
+
+    print(test_list)
