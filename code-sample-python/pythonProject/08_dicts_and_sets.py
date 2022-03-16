@@ -46,6 +46,39 @@ if __name__ == '__main__':
     new_houses = {n**2: house + "!" for (n, house) in houses.items()}
     print(houses)
     print(new_houses)
-
     print("****")
 
+    # Only one boolean value could be in the set
+    some_set = {1, "str", ('c', 1), True, False}
+    print(some_set)
+    some_set = set({1, "str", True, ('c', 1), False, False})
+    print(some_set)
+
+    some_set.add("asdf")
+    some_set.discard("str")
+    some_set.remove(('c', 1))
+    print(some_set)
+
+    for e in some_set:
+        print(e, end=", ")
+    print("")
+
+    set_a = {1, 2, 3}
+    set_b = {3, 4, 5}
+    print(set_a.union(set_b), set_b.union(set_a))
+
+    print(set_a.intersection(set_b), set_a.intersection(set_b))
+    print(set_a.difference(set_b), set_b.difference(set_a))
+    print("****")
+
+    # converting dict to tuple only takes keys by default,
+    # but you can use dict.items() instead to get a tuple of tuples
+    some_dict = dict(one=1, two=2, three=3)
+    print(tuple(some_dict))
+    print(tuple(some_dict.items()))
+    print("****")
+
+    # same goes for sets
+    print(set(some_dict))
+    print(set(some_dict.items()))
+    print("****")
