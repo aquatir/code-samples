@@ -68,7 +68,7 @@ if __name__ == '__main__':
     print(odd_mult_by_three)
     print("****")
 
-    # go over all possible matches with two lists compherension
+    # go over all possible matches with two lists comprehension
     list1 = [10, 20, 30, 40, 50]
     list2 = [1, 2, 3, 4, 5]
     sum_of_lists = [n1 + n2 for n1 in list1 for n2 in list2]
