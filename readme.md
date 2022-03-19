@@ -21,3 +21,6 @@ Contents:
 - code-sample-haskell. Some haskell code.
 - code-sample-elixir
     - kv. the very basics of elixir.
+- code-sample-python
+    - python_first_project. Basic Python building blocks e.g. loops, sets, dictionaries and OOP
+    - python_libs_project. Examples of python modules e.g. itertools or functools
