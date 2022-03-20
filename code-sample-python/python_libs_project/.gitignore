@@ -1,2 +1,4 @@
 :memory
 text.txt
+*.bin
+*.pem
