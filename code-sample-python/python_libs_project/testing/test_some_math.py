@@ -62,5 +62,31 @@ class TestAdd(unittest.TestCase):
         self.assertEqual(result, 3)
 
 
+class TestMultiply(unittest.TestCase):
+    """
+    Test the multiply function from the mymath library
+    """
+
+    def test_subtract_integers(self):
+        """
+        Test that multiplying integers returns the correct result
+        """
+        result = some_math.multiply(5, 50)
+        self.assertEqual(result, 250)
+
+
+class TestDivide(unittest.TestCase):
+    """
+    Test the divide function from the mymath library
+    """
+
+    def test_divide_by_zero(self):
+        """
+        Test that multiplying integers returns the correct result
+        """
+        with self.assertRaises(ZeroDivisionError):
+            result = some_math.divide(8, 0)
+
+
 if __name__ == '__main__':
     unittest.main()
