@@ -23,4 +23,4 @@ Contents:
     - kv. the very basics of elixir.
 - code-sample-python
     - python_first_project. Basic Python building blocks e.g. loops, sets, dictionaries and OOP
-    - python_libs_project. Examples of python modules e.g. itertools or functools
+    - python_libs_project. Examples of python modules e.g. itertools, functools + more advanced stuff e.g. unittest, mocks, async_io
