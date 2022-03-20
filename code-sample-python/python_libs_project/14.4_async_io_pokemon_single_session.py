@@ -4,8 +4,10 @@ import time
 import aiohttp
 from aiohttp import ClientSession
 
-
+#
 # It DOES finish roughly after 150 seconds each time... why?
+#
+
 
 # async def on_request_start(
 #         session, trace_config_ctx, params):
@@ -33,9 +35,9 @@ async def main(loop):
     conn = aiohttp.TCPConnector(limit=100)
     async with ClientSession(connector=conn, loop=loop, trace_configs=[]) as session:
         print("opening client connection")
-        for i in range(1, 5):
+        for i in range(1, 150):
             url = f'https://pokeapi.co/api/v2/pokemon/{i}'
-            task = asyncio.create_task(get_pokemon(url.format(i), session))
+            task = get_pokemon(url.format(i), session)
             tasks.append(task)
 
         print("waiting on all responses")
