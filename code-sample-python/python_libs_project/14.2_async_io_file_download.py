@@ -7,6 +7,8 @@ import os
 # Downloads all files simultaneously
 
 async def download_coroutine(url):
+
+    # opening a session for each is costy
     async with aiohttp.ClientSession(loop=loop) as session:
         async with async_timeout.timeout(10):
             async with session.get(url) as response:

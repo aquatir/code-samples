@@ -8,6 +8,8 @@ from aiohttp import ClientSession
 
 async def get_pokemon(url):
     print(f"starting get on url: {url}")
+
+    # Opening a session for each is costly. Might move it up?
     async with ClientSession() as session:
         async with session.get(url) as resp:
             pokemon = await resp.json()
