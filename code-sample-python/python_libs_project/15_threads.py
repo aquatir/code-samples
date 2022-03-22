@@ -43,7 +43,7 @@ def doubler(number, logger):
         result))
 
 
-def creator(data, q):
+def creator(data: list, q: Queue) -> None:
     """
     Creates data to be consumed and waits for the consumer
     to finish processing
@@ -58,7 +58,7 @@ def creator(data, q):
     print("closing creator")
 
 
-def my_consumer(q: Queue):
+def my_consumer(q: Queue) -> None:
     """
     Consumes some data and works on it
 
