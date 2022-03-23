@@ -1,3 +1,5 @@
+from first_app import views
+
 """python_first_django URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -14,8 +16,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 # from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 urlpatterns = [
     #    path('admin/', admin.site.urls),
+    path('', views.index, name='index'),
+    path('home/', views.home, name="home"),
+
+    path('<int:age>/', views.show_age, name="show_age"),
+    path('<str:name>/', views.show_name, name="show_name"),
+
+    path('number/<int:num>/', views.even_or_odd, name="even_or_odd"),
+
+    path('profiles/', include('profiles.urls'))
 ]
