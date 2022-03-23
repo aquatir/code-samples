@@ -5,6 +5,11 @@
 
 {% block content %}
 
-<h3>Welcome to Home Page</h3>
+    <h3>Welcome to Home Page</h3>
+
+    {% load static %}
+    <img src="{% static "cats.jpg" %}" alt="My cats">
+    <p>good cats</p>
 
 {% endblock %}
+
