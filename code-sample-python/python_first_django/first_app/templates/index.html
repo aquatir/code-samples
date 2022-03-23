@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <title>My First Application</title>
+</head>
+<body>
+<h1>Hello this is index.html!</h1>
+{{ name }}, {{ surname }}
+
+{% for v in values %}
+    <p>{{ v }}</p>
+{% endfor %}
+
+{% lorem %}
+
+<p>{{ value|default:"No value" }}</p>
+<p>{{ "very long string"|truncatechars:10 }}</p>
+
+<a href = "{% url 'home' %}">Home</a>
+
+</body>
+</html>

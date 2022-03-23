@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <title>My First Application</title>
+</head>
+<body>
+    <table style="width:100%; text-align:center">
+    <tr>
+         <th>Index</th>
+        <th>Tv Show</th>
+        <th>IMDb Rating</th>
+    </tr>
+    {% for tv_show,IMDb_rating in tv_shows.items %}
+    {% if IMDb_rating >= "8.5" %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{tv_show}}</td>
+        <td>{{IMDb_rating}}</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+    </table>
+
+</body>
+</html>
