@@ -1,5 +1,11 @@
 ### Overview
 
+Contains the basics of basic of Django:
+- Creating multiple apps inside one project
+- Working with templates and template language
+- Adding static content
+- Static and dynamic routing
+
 ##### Starting the app
 
 ```
