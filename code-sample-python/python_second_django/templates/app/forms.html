@@ -7,9 +7,14 @@
 <body>
 
 <h3>The mega form</h3>
-<form method="GET" action="https://google.com">
+<form method="post">{% csrf_token %}
     {{ form }}
-    <input type="submit" value="Search">
+    <input type="submit" value="LET'S GO">
 </form>
+<div>
+    Data : {{ data }}
+    <br>
+    Text: {{ text }}
+</div>
 </body>
 </html>
