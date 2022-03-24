@@ -1,7 +1,5 @@
-from django.core.exceptions import ValidationError
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
-from django.utils.translation import gettext
 
 from app.forms import TestForm, CompanyModelForm
 from app.models import Company
@@ -12,7 +10,6 @@ def hello(request: HttpRequest) -> HttpResponse:
 
 
 def index(request: HttpRequest) -> HttpResponse:
-
     default_company = Company.objects.get(name='default company')
     if not default_company:
         print("creating default company")
@@ -21,7 +18,10 @@ def index(request: HttpRequest) -> HttpResponse:
     else:
         print("default company already exist")
 
-    return render(request, 'app/index.html', context=None)
+    return render(request, 'app/index.html',
+                  context={"name": default_company.name,
+                           "number_of_employees": default_company.number_of_employees
+                           })
 
 
 def forms(request):
