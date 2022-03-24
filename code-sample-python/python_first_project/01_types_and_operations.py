@@ -72,4 +72,7 @@ string'''
     print("Hello" in "Hello, Worlds")
     print([1, "qwer", 12.2, 'v'])
 
+    # print all methods of str
+    print(dir(str))
+
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
