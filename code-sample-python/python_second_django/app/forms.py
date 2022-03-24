@@ -2,6 +2,8 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext
 
+from app.models import Company
+
 
 class SearchForm(forms.Form):
     q = forms.CharField()
@@ -44,3 +46,10 @@ class TestForm(forms.Form):
         if integer <= 10:
             raise ValidationError(gettext("The integer must be greater than 10"), code='invalid')
         return integer
+
+
+class CompanyModelForm(forms.ModelForm):
+    class Meta:
+        model = Company
+        fields = ["name", "number_of_employees"]
+        exclude = []
