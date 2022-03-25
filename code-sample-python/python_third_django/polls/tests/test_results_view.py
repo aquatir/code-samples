@@ -1,15 +1,14 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from polls.models import Choice
 from polls.tests.test_utils import create_question
 
 
 class ResultsViewTests(TestCase):
 
-    def test_future_question(self):
+    def test_result_without_choices_is_shown(self):
         """
-        Results can be queried
+        Results can be shown even without choices
         """
         future_question = create_question(question_text='question.', days=0)
         url = reverse('polls:results', args=(future_question.id,))
