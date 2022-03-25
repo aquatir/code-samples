@@ -1,6 +1,7 @@
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
+from django.utils import timezone
 from django.views import generic
 
 from polls.models import Question, Choice
@@ -13,19 +14,28 @@ class IndexView(generic.ListView):
     # We could override it
     context_object_name = 'latest_question_list'
 
-    queryset = Question.objects.order_by('-pub_date')[:5]
+    # queryset = Question.objects.order_by('-pub_date')[:5]
 
     # Can also redefine whole function instead of just providing 'queryset' variable
-    # def get_queryset(self):
-    #     """Return the last five published questions."""
-    #     return Question.objects.order_by('-pub_date')[:5]
+    def get_queryset(self):
+        """Return the last five published questions."""
+        return Question.objects.filter(
+            pub_date__lte=timezone.now()
+        ).order_by('-pub_date')[:5]
 
 
 class DetailView(generic.DetailView):
     model = Question
+
     # here we omit 'template_name' and so the default is used
     # the default would have a form of "<app name>/<model name>_<view>.html"
     # which is polls/question_detail.html" in this case
+
+    def get_queryset(self):
+        """
+        Excludes any questions that aren't published yet.
+        """
+        return Question.objects.filter(pub_date__lte=timezone.now())
 
 
 class ResultsView(generic.DetailView):
