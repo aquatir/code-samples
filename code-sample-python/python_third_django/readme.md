@@ -2,6 +2,9 @@
 
 Python Django Tips and Tricks from official guide https://docs.djangoproject.com/en/4.0/intro/tutorial01/
 
+- views and routs
+- using redirects after form post-data processing
+- using django shortcuts such as `render` and `get_object_or_404`
 
 #### Running
 
