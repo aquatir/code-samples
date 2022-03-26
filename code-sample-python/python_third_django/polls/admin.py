@@ -27,5 +27,16 @@ class QuestionAdmin(admin.ModelAdmin):
     # It will display 1 unfilled entry, but you can also add some extras
     inlines = [ChoiceInline]
 
+    # By default, Django admin would display the result of __str__ for object.
+    # With this option, it would display the required fields as a table
+    # you can even add functions there as in 'was_published_recently'
+    # this also allow you so sort stuff (but not using the arbitrary function like 'was_published_recently')
+    list_display = ('question_text', 'pub_date', 'was_published_recently')
+
+    # This adds an extra filtering sidebar on the right of the admin panel
+    list_filter = ['pub_date']
+
+    # Adds an ability to search by text on the specified field
+    search_fields = ['question_text']
 
 admin.site.register(Question, QuestionAdmin)
