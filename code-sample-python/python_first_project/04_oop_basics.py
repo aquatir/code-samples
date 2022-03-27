@@ -29,6 +29,9 @@ class Employee:
     def get_department(self):
         return self.__department
 
+    def __call__(self):
+        print(f"{self.__class__} with id {self.identifier} is called")
+
 
 class Point:
     def __init__(self, x, y, z):
@@ -71,7 +74,7 @@ class Calculator:
 # *args == positional, **kwargs == keyword arguments
 def func(fixed, *args, **kwargs):
     print(fixed)
-    if args:    # Optional positional arguments
+    if args:  # Optional positional arguments
         print(args)
     if kwargs:  # Optional keyword arguments
         print(kwargs)
@@ -80,6 +83,11 @@ def func(fixed, *args, **kwargs):
 if __name__ == '__main__':
     print("oop basics")
     emp1 = Employee(1, 100, "finance")
+
+    # if class has __call__ it could be called as a function
+    emp1()
+    print(callable(emp1))
+    print("****")
 
     print(emp1)
     emp1.title = "title"
