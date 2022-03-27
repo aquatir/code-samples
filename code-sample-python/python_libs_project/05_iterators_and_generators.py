@@ -124,6 +124,11 @@ if __name__ == '__main__':
     print()
     print("****")
 
+    # Fibonacci iterator
+    f = Fibonacci(7)
+    print(next(f), next(f), next(f), next(f), next(f), next(f), next(f))
+    print("****")
+
     # generator
     doubler = doubler_generator(2)
     print(next(doubler), next(doubler), next(doubler), next(doubler))
@@ -160,10 +165,10 @@ if __name__ == '__main__':
     print()
     print("****")
 
-    # accumulate using a two argument functions
-    print(list(accumulate(range(10))))
+    # accumulate: sums the values.
+    print(f"accumulate: {list(accumulate(range(10)))}")
 
-    # create factorial with accumulate
+    # create factorial with accumulate using a function as argument
     mult = lambda x, y: x * y
     print(list(accumulate(range(1, 10), mult)))
     print(list(accumulate(range(1, 10), operator.mul)))  # same things
@@ -259,5 +264,6 @@ if __name__ == '__main__':
     # same with slightly harder comprehension
     print([(x, y) for x in 'WXYZ' for y in 'WXYZ' if x != y])
 
-    f = Fibonacci(7)
-    print(next(f), next(f), next(f), next(f), next(f), next(f), next(f))
+    # generator expressions -> creates a generator
+    generator = (n*2 for n in count())
+    print(next(generator), next(generator), next(generator), next(generator))
