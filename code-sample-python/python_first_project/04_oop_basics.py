@@ -68,6 +68,15 @@ class Calculator:
     def divide(self): return self.num2 / self.num1
 
 
+# *args == positional, **kwargs == keyword arguments
+def func(fixed, *args, **kwargs):
+    print(fixed)
+    if args:    # Optional positional arguments
+        print(args)
+    if kwargs:  # Optional keyword arguments
+        print(kwargs)
+
+
 if __name__ == '__main__':
     print("oop basics")
     emp1 = Employee(1, 100, "finance")
@@ -80,3 +89,10 @@ if __name__ == '__main__':
     print(f"class method: '{Employee.hello_world()}', static method: '{Employee.static_hello()}'")
     print(f"class method: '{emp1.hello_world()}', static method: '{emp1.static_hello()}'")
     print(f"access private: {emp1._Employee__department}'")  # this does work!
+
+    func("str")
+    print("***")
+    func("str", 1, 2, 3)
+    print("***")
+    func("str", 1, 2, 3, key1="value1", key2="value2")
+    print("***")

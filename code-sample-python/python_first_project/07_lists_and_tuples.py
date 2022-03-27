@@ -89,3 +89,9 @@ if __name__ == '__main__':
     print(the_tuple.index("c"), the_tuple.index('c'))
 
     print("****")
+
+    # Frozen set does not have 'del' and 'methods' operators
+    frozen = frozenset({1, 2, 3, 4})
+    print(frozen)
+    print("****")
+
