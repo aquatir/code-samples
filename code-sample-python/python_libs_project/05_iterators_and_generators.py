@@ -30,6 +30,36 @@ class MyIterator:
         return letter
 
 
+# 0 1 1 2 3 5 8
+class Fibonacci:
+    def __init__(self, n):
+        self.total = n
+        self.cur_iteration = 0
+        self.prev = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.cur_iteration == self.total:
+            raise StopIteration
+        else:
+            if self.cur_iteration == 0:
+                self.cur_iteration += 1
+                return 0
+            elif self.cur_iteration == 1:
+                self.prev = 0
+                self.cur = 1
+                self.cur_iteration += 1
+                return 1
+            else:
+                next = self.prev + self.cur
+                self.prev = self.cur
+                self.cur = next
+                self.cur_iteration += 1
+                return next
+
+
 # Infinite Iterator
 class Doubler:
     """
@@ -228,3 +258,6 @@ if __name__ == '__main__':
 
     # same with slightly harder comprehension
     print([(x, y) for x in 'WXYZ' for y in 'WXYZ' if x != y])
+
+    f = Fibonacci(7)
+    print(next(f), next(f), next(f), next(f), next(f), next(f), next(f))
