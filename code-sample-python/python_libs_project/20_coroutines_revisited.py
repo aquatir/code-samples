@@ -56,6 +56,14 @@ def minimum():
             result = value
 
 
+@coroutine_primer
+def coroutine_stub():
+    # result = + math.inf
+    value1 = yield
+    value2 = yield
+    print(f'value from coroutine_stub: {value1}, {value2}')
+
+
 Result = namedtuple('Result', 'count average')
 
 
@@ -138,4 +146,16 @@ if __name__ == '__main__':
     coro_avg.send(10)
     coro_avg.send(30)
     coro_avg.send(6.5)
-    coro_avg.send(None)
+    try:
+        coro_avg.send(None)
+    except StopIteration as ex:
+        print(ex)
+
+    print("printing kekw")
+    print("****")
+    k = coroutine_stub()
+    k.send(4)
+    try:
+        print(f'k.send(5) result: {k.send(5)}')
+    except StopIteration as ex:
+        print(f'printing k.send(5) ex: {ex}')
