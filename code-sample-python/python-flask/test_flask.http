@@ -1,0 +1,82 @@
+GET http://127.0.0.1:5000
+Accept: application/json
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+  client.assert(String(response.body) === "Hello World!", "Response is correct")
+});
+%}
+
+###
+
+GET http://127.0.0.1:5000/hello/kekw
+Accept: application/json
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+  client.assert(String(response.body) === "Hello, kekw!", "Response is correct")
+});
+%}
+
+###
+
+GET http://127.0.0.1:5000/path/some/path/over/there
+Accept: application/json
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+  client.assert(String(response.body) === "Path is: some/path/over/there", "Response is correct")
+});
+%}
+
+###
+
+GET http://127.0.0.1:5000/login
+Accept: application/json
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+  client.assert(String(response.body) === "GET method server", "Response is correct")
+});
+%}
+
+
+###
+
+POST http://127.0.0.1:5000/login
+Accept: application/json
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+  client.assert(String(response.body) === "POST method server", "Response is correct")
+});
+%}
+
+
+###
+
+PUT http://127.0.0.1:5000/login
+Accept: application/json
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 405, "Response status is 405 — Wrong method");
+});
+%}
+
+###
+
+GET http://127.0.0.1:5000/params?key=b&value=c
+Accept: application/json
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+  client.assert(String(response.body) === "your params. key: b, value: c", "Response is correct")
+});
+%}
