@@ -1,6 +1,6 @@
 import datetime
 from django.utils import timezone
-from polls.models import Question
+from apps.polls.models import Question
 
 
 def create_question(question_text, days):

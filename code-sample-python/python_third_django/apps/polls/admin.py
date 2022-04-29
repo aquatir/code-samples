@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from polls.models import Question, Choice
+from apps.polls.models import Question, Choice
 
 
 # (admin.StackedInline) takes a lot of place, but it looks obvious

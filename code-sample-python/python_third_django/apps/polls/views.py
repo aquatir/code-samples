@@ -4,11 +4,11 @@ from django.urls import reverse
 from django.utils import timezone
 from django.views import generic
 
-from polls.models import Question, Choice
+from apps.polls.models import Question, Choice
 
 
 class IndexView(generic.ListView):
-    template_name = 'polls/index.html'
+    template_name = 'polls/templates/polls/index.html'
 
     # Default variable name for ListView is "question_list" because the model used here is Question.
     # We could override it
@@ -40,7 +40,7 @@ class DetailView(generic.DetailView):
 
 class ResultsView(generic.DetailView):
     model = Question
-    template_name = 'polls/results.html'
+    template_name = 'polls/templates/polls/results.html'
 
 
 def vote(request: HttpRequest, question_id: int) -> HttpResponse:
@@ -49,7 +49,7 @@ def vote(request: HttpRequest, question_id: int) -> HttpResponse:
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
         # Redisplay the question voting form.
-        return render(request, 'polls/question_detail.html', {
+        return render(request, 'polls/templates/polls/question_detail.html', {
             'question': question,
             'error_message': "You didn't select a choice.",
         })
