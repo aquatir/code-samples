@@ -29,7 +29,7 @@ if __name__ == '__main__':
     print(len(memv))
     print(memv[0])
 
-    memv_oct = memv.cast('B') # this will create a binary representation of array
+    memv_oct = memv.cast('B')  # this will create a binary representation of array
     print(memv_oct.tolist())
 
     # change byte # 5. Bytes 4 and 5 are representing 0 from numbers.
