@@ -35,3 +35,10 @@ python3 manage.py check
 ```
 python manage.py shell
 ```
+
+
+#### Install from specific index
+
+```
+pip install -i https://pypi.org/simple django
+```
