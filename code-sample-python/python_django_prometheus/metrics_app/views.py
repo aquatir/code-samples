@@ -10,47 +10,47 @@ from metrics_app.serializers import UserSerializer, GroupSerializer
 
 # Counts... stuff
 COUNTER_CALLS_TOTAL = Counter(
-    "mainapp_calls_total", "Total number of calls to mainapp", ["some_label"]
+    "my_app_calls_total", "Total number of calls to my_app", ["some_label"]
 )
 
-COUNTER_EXCEPTIONS = Counter("mainapp_exceptions", "Number of exceptions")
+COUNTER_EXCEPTIONS = Counter("my_app_exceptions", "Number of exceptions")
 
 # exposes a single value which can be changed in time
 # good for measuring in-flight things, e.g. current number of processed tasks
-GAUGE_INDEX = Gauge("mainapp_random_gauge", "Mainapp random gauge", ["another_label"])
+GAUGE_INDEX = Gauge("my_app_random_gauge", "my_app random gauge", ["another_label"])
 
 # create two metrics
-# - mainapp_summary_count: number of times this was called
-# - mainapp_summary_sum: total sum of values
-SUMMARY_INDEX = Summary("mainapp_summary", "Mainapp summary")
+# - my_app_summary_count: number of times this was called
+# - my_app_summary_sum: total sum of values
+SUMMARY_INDEX = Summary("my_app_summary", "my_app summary")
 
 # measure values and create a histogram of buckets. Uses generic RPC bucket by default buckets of:
-# mainapp_histogram_bucket{le="0.005"} 0.0
-# mainapp_histogram_bucket{le="0.01"} 0.0
-# mainapp_histogram_bucket{le="0.025"} 0.0
-# mainapp_histogram_bucket{le="0.05"} 0.0
-# mainapp_histogram_bucket{le="0.075"} 0.0
-# mainapp_histogram_bucket{le="0.1"} 0.0
-# mainapp_histogram_bucket{le="0.25"} 0.0
-# mainapp_histogram_bucket{le="0.5"} 0.0
-# mainapp_histogram_bucket{le="0.75"} 0.0
-# mainapp_histogram_bucket{le="1.0"} 2.0
-# mainapp_histogram_bucket{le="2.5"} 5.0
-# mainapp_histogram_bucket{le="5.0"} 9.0
-# mainapp_histogram_bucket{le="7.5"} 9.0
-# mainapp_histogram_bucket{le="10.0"} 9.0
-HISTOGRAM_HST = Histogram("mainapp_histogram", "mainapp_histogram")
+# my_app_histogram_bucket{le="0.005"} 0.0
+# my_app_histogram_bucket{le="0.01"} 0.0
+# my_app_histogram_bucket{le="0.025"} 0.0
+# my_app_histogram_bucket{le="0.05"} 0.0
+# my_app_histogram_bucket{le="0.075"} 0.0
+# my_app_histogram_bucket{le="0.1"} 0.0
+# my_app_histogram_bucket{le="0.25"} 0.0
+# my_app_histogram_bucket{le="0.5"} 0.0
+# my_app_histogram_bucket{le="0.75"} 0.0
+# my_app_histogram_bucket{le="1.0"} 2.0
+# my_app_histogram_bucket{le="2.5"} 5.0
+# my_app_histogram_bucket{le="5.0"} 9.0
+# my_app_histogram_bucket{le="7.5"} 9.0
+# my_app_histogram_bucket{le="10.0"} 9.0
+HISTOGRAM_HST = Histogram("my_app_histogram", "my_app_histogram")
 
 # One-time static info.
 # Could also NOT be one-time, but... why?
 # metric name will have "_info" postfix added to it
-INFO = Info("mainapp", "generic mainapp info")
-INFO.info({"app_name": "mainapp", "launched_at": str(time.time())})
+INFO = Info("my_app", "generic my_app info")
+INFO.info({"app_name": "my_app", "launched_at": str(time.time())})
 
 # Set one state out of many for metric
 # Essentially a gauge with one of the possible states
 APP_STATES = ["RUNNING", "STOPPED", "IN_PROGRESS"]
-ENUM_INDEX = Enum("mainapp_current_state", "main app current state", states=APP_STATES)
+ENUM_INDEX = Enum("my_app_current_state", "main app current state", states=APP_STATES)
 
 RND = SystemRandom()
 
