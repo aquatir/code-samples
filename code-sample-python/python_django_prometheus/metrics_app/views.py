@@ -50,7 +50,7 @@ INFO.info({"app_name": "my_app", "launched_at": str(time.time())})
 # Set one state out of many for metric
 # Essentially a gauge with one of the possible states
 APP_STATES = ["RUNNING", "STOPPED", "IN_PROGRESS"]
-ENUM_INDEX = Enum("my_app_current_state", "main app current state", states=APP_STATES)
+ENUM_INDEX = Enum("my_app_current_state", "my app current state", states=APP_STATES)
 
 RND = SystemRandom()
 
@@ -67,7 +67,7 @@ def hist(request):
     for i in range(0, 100):
         value = RND.random() * 5
         HISTOGRAM_HST.observe(value)
-    return HttpResponse("Hello, historgram")
+    return HttpResponse("Hello, histogram")
 
 
 # This is done automatically
