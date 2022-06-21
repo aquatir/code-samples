@@ -1,6 +1,6 @@
 # Overview
 
-Django + django-rest apps with prometheus and Graphana
+Django + django-rest apps with prometheus and Grafana
 
 ## Setup
 
