@@ -5,7 +5,7 @@ Django + django-rest apps with prometheus and Grafana
 ## Setup
 
 - run `pip install -r requirments.txt`
-- go to docker/prometheus and run `docker-compose up`
+- go to `docker` folder and run `docker-compose up`
 - navigate to Grafana at `http://localhost:3060` and add prometheus with hostname `http://host.docker.internal:9090`
 
 ## Usage
