@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from prometheus_client import Counter, Gauge, Summary, Histogram, Info, Enum
 from rest_framework import viewsets, permissions
 
+from metrics_app.models import MyModel
 from metrics_app.serializers import UserSerializer, GroupSerializer
 
 # Counts... stuff
@@ -80,6 +81,31 @@ def ex(request):
         else:
             raise KeyError
     return HttpResponse("You're lucky")
+
+
+def model(request):
+    """either create, update or delete model"""
+    rnd = RND.random()
+    return_text = ""
+    if rnd > 0.66:
+        MyModel.objects.create(text="kekw")
+        return_text = "Model created"
+    elif rnd > 0.33:
+        m = MyModel.objects.first()
+        if m is not None:
+            m.delete()
+            return_text = "Model deleted"
+    else:
+        m = MyModel.objects.last()
+        if m is not None:
+            m.text = f"updated text {rnd}"
+            m.save()
+            return_text = "Model updated"
+
+    if return_text == "":
+        return_text = "No changes"
+
+    return HttpResponse(return_text)
 
 
 class UserViewSet(viewsets.ModelViewSet):
