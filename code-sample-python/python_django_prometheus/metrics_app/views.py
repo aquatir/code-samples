@@ -1,3 +1,4 @@
+import os
 import time
 from random import SystemRandom
 
@@ -61,7 +62,8 @@ def index(request):
     GAUGE_INDEX.labels(another_label="value").set(RND.random())
     SUMMARY_INDEX.observe(RND.random())
     ENUM_INDEX.state(RND.choice(APP_STATES))
-    return HttpResponse("Hello, world")
+
+    return HttpResponse(f"Hello from {os.getpid()}")
 
 
 def hist(request):

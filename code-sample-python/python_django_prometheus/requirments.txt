@@ -2,3 +2,4 @@ django
 djangorestframework
 django-prometheus
 prometheus_client
+gunicorn

@@ -141,3 +141,5 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
 }
+
+PROMETHEUS_METRICS_EXPORT_PORT_RANGE = range(8001, 8003)
