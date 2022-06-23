@@ -19,6 +19,7 @@ Does work with preload according to https://github.com/korfuri/django-prometheus
 
 ### Usage
 
-- FOR DEV setup go to `http://127.0.0.1:8000/metrics` to get raw metrics
+- For `runserver` setup go to `http://127.0.0.1:8000/metrics` to get raw metrics
+- For `gunicorn` setup go to either port 8001 or 8002 to get raw metrics
 - go to `http://127.0.0.1:9090` to get metrics on prometheus
 - got o `http://127.0.0.1:3060` to create Grafana dashboards
