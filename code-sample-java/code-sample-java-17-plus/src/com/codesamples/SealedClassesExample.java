@@ -33,19 +33,19 @@ public class SealedClassesExample {
         var one = new SubOne();
         var two = new SubTwo();
 
-        caller(one);
-        caller(two);
+//        caller(one);
+//        caller(two);
 
 
     }
 
-    public static void caller(BaseClass base) {
-
-        // You also don't need default here, because BaseClass is sealed, and we switch on all the cases.
-        // Addint another case to permit will break the compilation which is a good thing
-        switch (base) {
-            case SubOne subOne -> System.out.println("one");
-            case SubTwo subTwo -> System.out.println("two");
-        }
-    }
+//    public static void caller(BaseClass base) {
+//
+//        // You also don't need default here, because BaseClass is sealed, and we switch on all the cases.
+//        // Addint another case to permit will break the compilation which is a good thing
+//        switch (base) {
+//            case SubOne subOne -> System.out.println("one");
+//            case SubTwo subTwo -> System.out.println("two");
+//        }
+//    }
 }
