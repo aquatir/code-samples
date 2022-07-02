@@ -13,15 +13,6 @@ package codesample.leetcode.medium;
  */
 public class _518_CoinChange2 {
 
-    // with 3 coins of 1, 2, 5:
-    // res(x) = 3 + res(x-1) + res(x-2) + res(x-5) minus the overlaps
-
-    // 1 => 1: 1c (is coin)
-    // 2 => 2 (is coin), + res(2-1)
-    // 3 => 2 (not coin) + res(3-1) + res(3-2)
-    // 4 => 3 (not coin) + res(3) + res(2) - their reused result... which is 1?
-    // 5 => 4 (coin) + res(4) + res(3) - 1
-
     public int change(int amount, int[] coins) {
         Integer[][] cache = new Integer[amount + 1][coins.length + 1];
         return knapsack(amount, 0, coins, cache);
