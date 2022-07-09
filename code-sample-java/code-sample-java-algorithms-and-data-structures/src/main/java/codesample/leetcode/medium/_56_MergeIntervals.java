@@ -6,7 +6,6 @@ import java.util.List;
 
 public class _56_MergeIntervals {
     public int[][] merge(int[][] intervals) {
-        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
 
         List<int[]> result = new ArrayList<>();
 
