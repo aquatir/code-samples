@@ -48,7 +48,7 @@ public class _41_FirstMissingPositive {
                 return j + 1; // the correct element value
             }
         }
-        return nums.length + 1;
+        return nums.length + 1; // if non are missplaced, return the first element which is not in the array
     }
 
     public static void main(String[] args) {
