@@ -78,7 +78,7 @@ public class _92_ReverseLinkedListII {
 
         // reverting now
         prev = null;
-        while (curPosition != right + 1) {
+        while (curPosition != right + 1) { // right + 1 becase we have to revert right element too
             ListNode next = cur.next;
             cur.next = prev;
             prev = cur;
