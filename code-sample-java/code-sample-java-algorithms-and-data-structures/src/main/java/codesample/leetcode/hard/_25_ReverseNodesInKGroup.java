@@ -5,7 +5,7 @@ package codesample.leetcode.hard;
  */
 public class _25_ReverseNodesInKGroup {
 
-    public class ListNode {
+    public static class ListNode {
         int val;
         ListNode next;
 
@@ -19,6 +19,13 @@ public class _25_ReverseNodesInKGroup {
         ListNode(int val, ListNode next) {
             this.val = val;
             this.next = next;
+        }
+
+        @Override
+        public String toString() {
+            return "ListNode{" +
+                "val=" + val +
+                '}';
         }
     }
 
@@ -44,8 +51,8 @@ public class _25_ReverseNodesInKGroup {
 
         while (cur != null) {
 
-            ListNode lastNodeOfPrev = prev;
-            ListNode lastNodeOfSublist = cur;
+            ListNode lastNodeOfPrevSublist = prev;
+            ListNode lastNodeOfThisSublist = cur;
             ListNode next = null;
 
             // check if we should revert the last part
@@ -70,21 +77,39 @@ public class _25_ReverseNodesInKGroup {
 
             // connect with prev part
             // the first connection should change the head. All others should not.
-            if (lastNodeOfPrev != null) {
-                lastNodeOfPrev.next = prev;
+            if (lastNodeOfPrevSublist != null) {
+                lastNodeOfPrevSublist.next = prev;
             } else {
                 head = prev;
             }
 
             // connect with the next part
-            lastNodeOfSublist.next = cur;
+            lastNodeOfThisSublist.next = cur;
+            prev = lastNodeOfThisSublist;
 
             if (cur == null) {// break, if we've reached the end of the LinkedList
                 break;
             }
-            prev = lastNodeOfSublist;
+
         }
 
         return head;
+    }
+
+    public static void main(String[] args) {
+        var s = new _25_ReverseNodesInKGroup();
+
+        var head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(3);
+        head.next.next.next = new ListNode(4);
+        head.next.next.next.next = new ListNode(5);
+        var newHead = s.reverseKGroup(head, 2);
+
+        while (newHead != null) {
+            System.out.print(newHead.val + " -> " );
+            newHead = newHead.next;
+        }
+        System.out.print("null");
     }
 }
