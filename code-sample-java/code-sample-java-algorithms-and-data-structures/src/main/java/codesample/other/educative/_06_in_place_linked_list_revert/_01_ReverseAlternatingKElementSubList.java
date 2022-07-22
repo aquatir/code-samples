@@ -23,22 +23,30 @@ public class _01_ReverseAlternatingKElementSubList {
         // 2. then learn to rotate sublists on k elements
         // 3. skip 2 every other time
 
-        // 1
-
-
         ListNode prev = null;
         ListNode cur = head;
 
+        boolean shouldRotate = true;
+
         while (true) {
 
-            ListNode lastNodeOfPrev = prev;
-            ListNode lastNodeOfSublist = cur; // we know it because it's the first node we process
+            ListNode lastNodeOfPrevSubList = prev;
+            ListNode lastNodeOfCurSubList = cur; // we know it because it's the first node we process
 
-            if (prev != null) {
-                System.out.println("lastNodeOfPrev: " + lastNodeOfPrev.value + ", lastNodeOfSublist: " + lastNodeOfSublist.value);
-            } else {
-                System.out.println("lastNodeOfPrev: null, lastNodeOfSublist: " + lastNodeOfSublist.value);
+            if (!shouldRotate) {
+                for (int i = 0; i < k && cur != null; i++) {
+                    ListNode next = cur.next;
+                    prev = cur;
+                    cur = next;
+                }
+                if (cur == null) {
+                    break;
+                } else {
+                    shouldRotate = !shouldRotate;
+                    continue;
+                }
             }
+
             // rotate
             for (int i = 0; i < k && cur != null; i++) {
                 ListNode next = cur.next;
@@ -48,25 +56,21 @@ public class _01_ReverseAlternatingKElementSubList {
             }
 
             // re-assign head
-            if (lastNodeOfPrev != null) {
-                System.out.println("lastNodeOfPrev.next: " + lastNodeOfPrev.next.value + " => " + prev.value);
-                lastNodeOfPrev.next = prev;
+            if (lastNodeOfPrevSubList != null) {
+                lastNodeOfPrevSubList.next = prev;
             } else {
                 head = prev;
             }
-            lastNodeOfSublist.next = cur;
-            prev = lastNodeOfSublist;
+            lastNodeOfCurSubList.next = cur;
+            prev = lastNodeOfCurSubList;
 
             if (cur == null) {
                 break;
             }
+            shouldRotate = !shouldRotate;
         }
 
         return head;
-    }
-
-    public Optional<Integer> get() {
-        return Optional.of(3);
     }
 
     public static void main(String[] args) {
