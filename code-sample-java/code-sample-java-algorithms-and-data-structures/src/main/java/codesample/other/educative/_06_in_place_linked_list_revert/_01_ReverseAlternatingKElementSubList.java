@@ -30,9 +30,12 @@ public class _01_ReverseAlternatingKElementSubList {
 
         while (true) {
 
+            // last element of PREVIOUS list which was rotated. Is null for the first list
             ListNode lastNodeOfPrevSubList = prev;
-            ListNode lastNodeOfCurSubList = cur; // we know it because it's the first node we process
+            // last element of CURRENT list which is about to be rotated. It is the first element of the list == cur
+            ListNode lastNodeOfCurSubList = cur;
 
+            // an extra check to see if need to rotate or not.
             if (!shouldRotate) {
                 for (int i = 0; i < k && cur != null; i++) {
                     ListNode next = cur.next;
@@ -55,13 +58,23 @@ public class _01_ReverseAlternatingKElementSubList {
                 cur = next;
             }
 
-            // re-assign head
+            // Initially lastNodeOfPrevSubList.next point to the first element of the new list
+            // that element is becoming the last element
+            // we need to re-target lastNodeOfPrevSubList.next to point to the last reverted element of the new list,
+            // because it is the begginning of the reverted part
             if (lastNodeOfPrevSubList != null) {
                 lastNodeOfPrevSubList.next = prev;
             } else {
                 head = prev;
             }
+            // lastNodeOfCurSubList.next initially point to the next element of the reverted list, but that element
+            // also point to lastNodeOfCurSubList due to revert
+            // to fix that we point lastNodeOfCurSubList.next to current element, which is also the begginning of the
+            // next sublist
             lastNodeOfCurSubList.next = cur;
+
+            // we also reset prev to point to the last node of current sub list. `cur` already holds the first element
+            // of new sublist
             prev = lastNodeOfCurSubList;
 
             if (cur == null) {
