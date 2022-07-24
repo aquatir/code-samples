@@ -53,4 +53,8 @@ public class _94_BinaryTreeInorderTraversal {
             inorderTraversal(node.right, result);
         }
     }
+
+    public static void main(String[] args) {
+        System.out.println((double) 5 / 2);
+    }
 }
