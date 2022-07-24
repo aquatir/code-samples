@@ -1,5 +1,6 @@
 package codesample.other.educative._06_in_place_linked_list_revert;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
