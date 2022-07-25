@@ -4,8 +4,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * 116. Populating Next Right Pointers in Each Node — https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
- * You are given a perfect binary tree where all leaves are on the same level, and every parent has two children. The binary tree has the following definition:
+ * 117. Populating Next Right Pointers in Each Node II — https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/
+ * <p>
+ * Given a binary tree
  * <p>
  * struct Node {
  * int val;
@@ -16,10 +17,11 @@ import java.util.Queue;
  * Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL.
  * <p>
  * Initially, all next pointers are set to NULL.
- *
  */
-public class _116_PopulatingNextRightPointersInEachNode {
+public class _117_PopulatingNextRightPointersInEachNodeII {
 
+
+    // Definition for a Node.
     class Node {
         public int val;
         public Node left;
@@ -47,7 +49,6 @@ public class _116_PopulatingNextRightPointersInEachNode {
     public Node connect(Node root) {
         // BFS
         // when found the key => return the next
-        // This solution will also work for 117. I guess there must be some easier algorithm for "perfectly balanced tree"
         if (root == null) {
             return null;
         }
