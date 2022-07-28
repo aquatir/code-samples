@@ -67,25 +67,29 @@ public class _124_BinaryTreeMaximumPathSum {
     public static void main(String[] args) {
         var s = new _124_BinaryTreeMaximumPathSum();
 
-//        var root = new TreeNode(1);
-//        root.right = new TreeNode(-3);
-//        root.right.right = new TreeNode(-2);
-//        root.left = new TreeNode(-2);
-//        root.left.right = new TreeNode(3);
-//        root.left.left = new TreeNode(1);
-//        root.left.left.left = new TreeNode(-1); // expected = 3
-// System.out.println(s.maxPathSum(root)); // expected = 3
+        var root1 = new TreeNode(-1);
+        root1.left = new TreeNode(-2);
+        System.out.println(s.maxPathSum(root1)); // expected -1
 
-        var root = new TreeNode(5);
-        root.left = new TreeNode(4);
-        root.left.left = new TreeNode(11);
-        root.left.left.left = new TreeNode(7);
-        root.left.left.right = new TreeNode(2);
+        var root2 = new TreeNode(1);
+        root2.right = new TreeNode(-3);
+        root2.right.right = new TreeNode(-2);
+        root2.left = new TreeNode(-2);
+        root2.left.right = new TreeNode(3);
+        root2.left.left = new TreeNode(1);
+        root2.left.left.left = new TreeNode(-1); // expected = 3
+ System.out.println(s.maxPathSum(root2)); // expected = 3
 
-        root.right = new TreeNode(8);
-        root.right.left = new TreeNode(13);
-        root.right.right = new TreeNode(4);
-        root.right.right.right = new TreeNode(1);
-        System.out.println(s.maxPathSum(root)); // expected 48
+        var root3 = new TreeNode(5);
+        root3.left = new TreeNode(4);
+        root3.left.left = new TreeNode(11);
+        root3.left.left.left = new TreeNode(7);
+        root3.left.left.right = new TreeNode(2);
+
+        root3.right = new TreeNode(8);
+        root3.right.left = new TreeNode(13);
+        root3.right.right = new TreeNode(4);
+        root3.right.right.right = new TreeNode(1);
+        System.out.println(s.maxPathSum(root3)); // expected 48
     }
 }
