@@ -1,5 +1,7 @@
 package codesample.leetcode.hard;
 
+import java.util.PriorityQueue;
+
 /**
  * 502. IPO — https://leetcode.com/problems/ipo/
  * Suppose LeetCode will start its IPO soon. In order to sell a good price of its shares to Venture Capital, LeetCode would like to work on some projects to increase its capital before the IPO. Since it has limited resources, it can only finish at most k distinct projects before the IPO. Help LeetCode design the best way to maximize its total capital after finishing at most k distinct projects.
@@ -15,6 +17,32 @@ package codesample.leetcode.hard;
  * TODO: make optimal solution... with minheap + maxheap ??
  */
 public class _502_IPO {
+
+    class Pair<K, V> {
+        private K key;
+        private V value;
+
+        public Pair(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        private K getKey() {
+            return key;
+        }
+        private V getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return "Pair{" +
+                "key=" + key +
+                ", value=" + value +
+                '}';
+        }
+    }
+
     public int findMaximizedCapital(int k, int w, int[] profits, int[] capital) {
 
         /**
@@ -35,37 +63,91 @@ public class _502_IPO {
          */
 
         // approach 1: brute force — Time Limit Exceeded
-        int n = profits.length;
-        while (k != 0) {
-            int bestProjectProfits = -1;
-            int bestProjectIndex = 0;
-            for (int i = 0; i < n; i++) {
-                if (capital[i] > w) {
-                    continue;
-                } else {
-                    if (profits[i] > bestProjectProfits) {
-                        bestProjectProfits = profits[i];
-                        bestProjectIndex = i;
-                    }
+//         int n = profits.length;
+//         while (k != 0) {
+//             int bestProjectProfits = -1;
+//             int bestProjectIndex = 0;
+//             for (int i = 0; i < n; i++) {
+//                 if (capital[i] > w) {
+//                     continue;
+//                 } else {
+//                     if (profits[i] > bestProjectProfits) {
+//                         bestProjectProfits = profits[i];
+//                         bestProjectIndex = i;
+//                     }
 
-                }
+//                 }
+//             }
+//             // if no project bring value => break from the loop
+//             if (bestProjectProfits == -1) {
+//                 break;
+//             }
+//             // when project is used ones => never reuse it by setting profits to -1
+//             profits[bestProjectIndex] = -1;
+//             k--;
+//             w += bestProjectProfits;
+//         }
+
+//         return w;
+
+        // approach 2:
+        // two priority queues.
+        // One: max-heap of AFFORDABLE projects by profit (always take max profit)
+        // this will hold all projects where capital <= available (w)
+        // Two: min-heap of NON-AFFORDABLE projects by capital (always take min profit)
+        // this will hold all projects where capital > availble (w)
+        // when new project is finished from AFFORDABLE, we move values from NON-AFFORDABLE to AFFORDABLE
+
+
+        int n = profits.length;
+        int currentCapital = w;
+        int numOfProjectsLeft = Math.min(k, n);
+
+        // index -> profit
+        var pqMaxAffordableByProfit = new PriorityQueue<Pair<Integer, Integer>>(
+            (one, two) -> Integer.compare(two.getValue(), one.getValue())
+        );
+        // index -> capital
+        var pqMinNonAffordableByCapital = new PriorityQueue<Pair<Integer, Integer>>(
+            (one, two) -> Integer.compare(one.getValue(), two.getValue())
+        );
+
+        // split between affordable/non-affordable
+        for (int i = 0; i < n; i++) {
+            if (capital[i] > currentCapital) {
+                pqMinNonAffordableByCapital.offer(new Pair<>(i, capital[i]));
+            } else {
+                pqMaxAffordableByProfit.offer(new Pair<>(i, profits[i]));
             }
-            // if no project bring value => break from the loop
-            if (bestProjectProfits == -1) {
-                break;
-            }
-            // when project is used ones => never reuse it by setting profits to -1
-            profits[bestProjectIndex] = -1;
-            k--;
-            w += bestProjectProfits;
         }
 
-        return w;
+        // while there are affordable projects
+        //  -> 1. add the value of affordable to capital and remove from affordable
+        //  -> 2. add all projects which are now affordable into affordable list
+        while (!pqMaxAffordableByProfit.isEmpty() && numOfProjectsLeft != 0) {
+            // get max profit from affordable projects
+            var maxAffordableProject = pqMaxAffordableByProfit.poll();
+            currentCapital += maxAffordableProject.getValue();
 
-        // approach 2...
-        // 1. when we can afford the project with higher capital, and the number of projects left is <= number of unused projects, we can remove
-        // the lower-costing projects.
-        //
-        //
+            while(!pqMinNonAffordableByCapital.isEmpty() && currentCapital >= pqMinNonAffordableByCapital.peek().getValue()) {
+
+                // pqMinNonAffordableByCapital.getValue() is capital. Must change it to profit
+                // in pqMaxAffordableByProfit
+                var nowAffordable = pqMinNonAffordableByCapital.poll();
+                pqMaxAffordableByProfit.offer(
+                    new Pair<>(nowAffordable.getKey(), profits[nowAffordable.getKey()])
+                );
+            }
+
+            numOfProjectsLeft--;
+        }
+
+        return currentCapital;
+    }
+
+    public static void main(String[] args) {
+        var s = new _502_IPO();
+        System.out.println(s.findMaximizedCapital(2, 0, new int[] {1,2,3}, new int[] {0,1,1} )); // expected 4
+        System.out.println(s.findMaximizedCapital(3, 0, new int[] {1,2,3}, new int[] {0,1,2} )); // expected 6
     }
 }
