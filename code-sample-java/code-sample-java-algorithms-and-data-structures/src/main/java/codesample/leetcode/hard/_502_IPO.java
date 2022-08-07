@@ -104,11 +104,11 @@ public class _502_IPO {
         int numOfProjectsLeft = Math.min(k, n);
 
         // we could also use Pair class here, but this is faster because no pair is created
-        // index -> profit
+        // index -> profit (max heap)
         var pqMaxAffordableByProfit = new PriorityQueue<Integer>(
             (one, two) -> Integer.compare(profits[two], profits[one])
         );
-        // index -> capital
+        // index -> capital (min heap)
         var pqMinNonAffordableByCapital = new PriorityQueue<Integer>(
             (one, two) -> Integer.compare(capital[one], capital[two])
         );
