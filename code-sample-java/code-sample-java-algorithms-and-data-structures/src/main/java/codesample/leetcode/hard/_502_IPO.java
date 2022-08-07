@@ -103,21 +103,22 @@ public class _502_IPO {
         int currentCapital = w;
         int numOfProjectsLeft = Math.min(k, n);
 
+        // we could also use Pair class here, but this is faster because no pair is created
         // index -> profit
-        var pqMaxAffordableByProfit = new PriorityQueue<Pair<Integer, Integer>>(
-            (one, two) -> Integer.compare(two.getValue(), one.getValue())
+        var pqMaxAffordableByProfit = new PriorityQueue<Integer>(
+            (one, two) -> Integer.compare(profits[two], profits[one])
         );
         // index -> capital
-        var pqMinNonAffordableByCapital = new PriorityQueue<Pair<Integer, Integer>>(
-            (one, two) -> Integer.compare(one.getValue(), two.getValue())
+        var pqMinNonAffordableByCapital = new PriorityQueue<Integer>(
+            (one, two) -> Integer.compare(capital[one], capital[two])
         );
 
         // split between affordable/non-affordable
         for (int i = 0; i < n; i++) {
             if (capital[i] > currentCapital) {
-                pqMinNonAffordableByCapital.offer(new Pair<>(i, capital[i]));
+                pqMinNonAffordableByCapital.offer(i);
             } else {
-                pqMaxAffordableByProfit.offer(new Pair<>(i, profits[i]));
+                pqMaxAffordableByProfit.offer(i);
             }
         }
 
@@ -126,17 +127,10 @@ public class _502_IPO {
         //  -> 2. add all projects which are now affordable into affordable list
         while (!pqMaxAffordableByProfit.isEmpty() && numOfProjectsLeft != 0) {
             // get max profit from affordable projects
-            var maxAffordableProject = pqMaxAffordableByProfit.poll();
-            currentCapital += maxAffordableProject.getValue();
+            currentCapital += profits[pqMaxAffordableByProfit.poll()];
 
-            while(!pqMinNonAffordableByCapital.isEmpty() && currentCapital >= pqMinNonAffordableByCapital.peek().getValue()) {
-
-                // pqMinNonAffordableByCapital.getValue() is capital. Must change it to profit
-                // in pqMaxAffordableByProfit
-                var nowAffordable = pqMinNonAffordableByCapital.poll();
-                pqMaxAffordableByProfit.offer(
-                    new Pair<>(nowAffordable.getKey(), profits[nowAffordable.getKey()])
-                );
+            while(!pqMinNonAffordableByCapital.isEmpty() && currentCapital >= capital[pqMinNonAffordableByCapital.peek()]) {
+                pqMaxAffordableByProfit.offer(pqMinNonAffordableByCapital.poll());
             }
 
             numOfProjectsLeft--;
