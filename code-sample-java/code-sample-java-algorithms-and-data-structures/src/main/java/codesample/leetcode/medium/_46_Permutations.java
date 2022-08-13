@@ -97,7 +97,7 @@ public class _46_Permutations {
                 List<Integer> oldPermutation = permutations.poll();
                 // create a new permutation by adding the current number at every position
                 for (int j = 0; j <= oldPermutation.size(); j++) {
-                    List<Integer> newPermutation = new ArrayList<Integer>(oldPermutation);
+                    List<Integer> newPermutation = new ArrayList<>(oldPermutation);
                     newPermutation.add(j, currentNumber);
                     if (newPermutation.size() == nums.length) {
                         result.add(newPermutation);
