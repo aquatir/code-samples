@@ -8,64 +8,41 @@ package codesample.leetcode.medium;
 public class _96_UniqueBinarySearchTrees {
     static class Solution {
 
-        // doesn't seems to be a math problem?
-
-        // how many ways to create binary tree of 2:
-        // What is we know how much we can get from k
-        // what is k+1?
-
-        // if it k * (k+1) ? as any new node can be a root of BTS and we know how many
-        // BTSs are there for k.
-        // or is it more?
-
-        // R0 = 1
-        // R1 = 1
-        // R2 = 2
-        // R3 = 5.  (R3 = 3 * )
-        // R4 =
-
-        // What is number of trees with root at low and max number = high?
-        //
-        // if a sum of all the tree:
-        // a) starting in low and finishing in low, low+1, low+2 up until high WITHOUT high
-        // MULTIPLIED
-        // b) by number of trees starting at low, low+1, low+2 and finishing with high.
-        // essentially, we get a recursive solution...?
-
         public int numTrees(int n) {
-            return treesFrom(1, n, new int[21][21], "");
+            return allTrees(1, n, new int[21][21]);
         }
 
-        int treesFrom(int low, int high, int[][] memo, String spaces) {
-
-            if (low >= high) return 1;
-
-            int total = 0;
-
-            System.out.println(spaces + "Sum " + low + " — " + high + " is:" );
-            for (int i = low; i<= high; i++) {
-//                // starts with low and finished with number 1 less then high.
-//                if (memo[low][i-1] == 0) {
-//                    memo[low][i-1] = treesFrom(low, i - 1, memo);
-//                }
-//
-//                if (memo[i+1][high] == 0) {
-//                    memo[i+1][high] = treesFrom(i + 1, high, memo);
-//                }
-//
-//                total += memo[low][i-1] * memo[i+1][high];
-
-                String spaces2 = spaces + "  ";
-                System.out.println(spaces2 + "trees: " +  low + " — " + (i - 1) + " * trees: " + (i+1) + " — " + high);
-                total += treesFrom(low, i - 1, memo, spaces2) * treesFrom(i + 1, high, memo, spaces2);
+        public int allTrees(int start, int end, int[][] memo) {
+            if (start >= end) {
+                return 1;
             }
 
-            return total;
+            int sum = 0;
+            for (int i = start; i <= end; i++) {
+                // assume i is the root;
+                // > all subtrees on the left will be between [start, i-1]
+                // > all subtrees on the right will be between [i+1, end]
+                // left part of the tree => everything from start to current-1
+                if (memo[start][i-1] == 0) {
+                    memo[start][i-1] = allTrees(start, i - 1, memo);
+                }
+
+                // right part of the tree => everything from one over current to end
+                if (memo[i+1][end] == 0) {
+                    memo[i+1][end] = allTrees(i + 1, end, memo);
+                }
+
+                // total number of trees is the multiplication of two
+                sum += memo[start][i-1] * memo[i+1][end];
+            }
+
+            return sum;
         }
     }
 
     public static void main(String[] args) {
         var s = new Solution();
-        System.out.println(s.numTrees(4));
+        System.out.println(s.numTrees(3)); // expected 5
+        System.out.println(s.numTrees(4)); // expected 14
     }
 }
