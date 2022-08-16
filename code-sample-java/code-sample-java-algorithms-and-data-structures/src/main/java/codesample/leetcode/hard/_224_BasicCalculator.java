@@ -1,5 +1,7 @@
 package codesample.leetcode.hard;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Stack;
 
 /**
@@ -11,11 +13,13 @@ import java.util.Stack;
  */
 public class _224_BasicCalculator {
     public int calculate(String s) {
-        Stack<Integer> stack = new Stack<Integer>();
-        Stack<Integer> numbersBeforeLastOpenBracketStack = new Stack<Integer>();
+        Deque<Integer> stack = new ArrayDeque<>();
+        Deque<Integer> numbersBeforeLastOpenBracketStack = new ArrayDeque<>();
 
-        int num = 0;
-        boolean isPositive = true;
+        int curNumber = 0;
+
+        // this will remember if the last value is positive or not
+        boolean isNextPositive = true;
 
         for (int i = 0; i < s.length(); i++) {
             char cur = s.charAt(i);
@@ -24,40 +28,40 @@ public class _224_BasicCalculator {
                 continue;
             }
             if (Character.isDigit(cur)) {
-                num = num * 10 + (cur - '0');
+                curNumber = curNumber * 10 + (cur - '0');
             }
             if (cur == '+' || cur == '-') {
-                int toPush = (isPositive ? num : -num);
+                int toPush = (isNextPositive ? curNumber : -curNumber);
                 stack.push(toPush);
-                num = 0;
-                isPositive = cur == '+';
+                curNumber = 0;
+                isNextPositive = cur == '+';
             }
             if (cur == '(') {
-                if (isPositive) {
+                if (isNextPositive) {
                     numbersBeforeLastOpenBracketStack.push(stack.size());
                 } else {
                     numbersBeforeLastOpenBracketStack.push(-stack.size());
                 }
-                isPositive = true;
+                isNextPositive = true;
             }
             if (cur == ')') {
-                int toPush = (isPositive ? num : -num);
+                int toPush = (isNextPositive ? curNumber : -curNumber);
                 stack.push(toPush);
-                num = 0;
+                curNumber = 0;
 
                 int numbersBeforeLastOpenBracket = numbersBeforeLastOpenBracketStack.pop();
-                isPositive = numbersBeforeLastOpenBracket >= 0;
+                isNextPositive = numbersBeforeLastOpenBracket >= 0;
                 numbersBeforeLastOpenBracket = Math.abs(numbersBeforeLastOpenBracket);
 
                 // this will pop out only the values in the brackets
                 while (stack.size() > numbersBeforeLastOpenBracket) {
-                    num += stack.pop();
+                    curNumber += stack.pop();
                 }
             }
 
         }
 
-        int toPush = isPositive ? num : -num;
+        int toPush = isNextPositive ? curNumber : -curNumber;
         stack.push(toPush);
 
         int result = 0;
