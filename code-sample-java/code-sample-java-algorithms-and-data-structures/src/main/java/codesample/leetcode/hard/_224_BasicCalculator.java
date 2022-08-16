@@ -12,10 +12,10 @@ import java.util.Stack;
 public class _224_BasicCalculator {
     public int calculate(String s) {
         Stack<Integer> stack = new Stack<Integer>();
-        Stack<Integer> pStack = new Stack<Integer>();
+        Stack<Integer> numbersBeforeLastOpenBracketStack = new Stack<Integer>();
 
         int num = 0;
-        char sign = '+';
+        boolean isPositive = true;
 
         for (int i = 0; i < s.length(); i++) {
             char cur = s.charAt(i);
@@ -27,36 +27,37 @@ public class _224_BasicCalculator {
                 num = num * 10 + (cur - '0');
             }
             if (cur == '+' || cur == '-') {
-                int toPush = (sign == '-' ? -num : num);
+                int toPush = (isPositive ? num : -num);
                 stack.push(toPush);
                 num = 0;
-                sign = cur;
+                isPositive = cur == '+';
             }
             if (cur == '(') {
-                if (sign == '+') {
-                    pStack.push(stack.size());
-                } else if (sign == '-') {
-                    pStack.push(-stack.size());
+                if (isPositive) {
+                    numbersBeforeLastOpenBracketStack.push(stack.size());
+                } else {
+                    numbersBeforeLastOpenBracketStack.push(-stack.size());
                 }
-                sign = '+';
+                isPositive = true;
             }
             if (cur == ')') {
-                int toPush = (sign == '-' ? -num : num);
+                int toPush = (isPositive ? num : -num);
                 stack.push(toPush);
                 num = 0;
 
-                int numLeft = pStack.pop();
-                sign = (numLeft < 0 ? '-' : '+');
-                numLeft = Math.abs(numLeft);
+                int numbersBeforeLastOpenBracket = numbersBeforeLastOpenBracketStack.pop();
+                isPositive = numbersBeforeLastOpenBracket >= 0;
+                numbersBeforeLastOpenBracket = Math.abs(numbersBeforeLastOpenBracket);
 
-                while (stack.size() > numLeft) { // this will pop out only the values in the brackets
+                // this will pop out only the values in the brackets
+                while (stack.size() > numbersBeforeLastOpenBracket) {
                     num += stack.pop();
                 }
             }
 
         }
 
-        int toPush = (sign == '-' ? -num : num);
+        int toPush = isPositive ? num : -num;
         stack.push(toPush);
 
         int result = 0;
