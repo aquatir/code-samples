@@ -1,7 +1,9 @@
 package codesample.leetcode.medium;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 241. Different Ways to Add Parentheses — https://leetcode.com/problems/different-ways-to-add-parentheses/
@@ -11,6 +13,9 @@ import java.util.List;
  * The test cases are generated such that the output values fit in a 32-bit integer and the number of different results does not exceed 104.
  */
 public class _241_DifferentWaysToAddParentheses {
+
+    Map<String, List<Integer>> expressionToResult = new HashMap<>();
+
     public List<Integer> diffWaysToCompute(String expression) {
         // 2-1-1
         // 2-1 either compute to 1 or don't 2-1
@@ -21,6 +26,10 @@ public class _241_DifferentWaysToAddParentheses {
         // 2*3-4*5 => [6-4*5] or 2*(3-4*5)
         // 2*5 or 6-(4*5) or 2*(-1*5) or 2*(3-(4*5))
 
+
+        if (expressionToResult.containsKey(expression)) {
+            return expressionToResult.get(expression);
+        }
         List<Integer> result = new ArrayList<>();
 
         // one big number
@@ -52,7 +61,7 @@ public class _241_DifferentWaysToAddParentheses {
                 }
             }
         }
-
+        expressionToResult.put(expression, result);
         return result;
     }
 
