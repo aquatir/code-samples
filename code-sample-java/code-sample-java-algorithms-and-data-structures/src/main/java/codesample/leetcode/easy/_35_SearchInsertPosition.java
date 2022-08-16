@@ -12,7 +12,6 @@ public class _35_SearchInsertPosition {
         int left = 0;
         int right = nums.length - 1;
 
-        int curIndex = 0;
         if (target > nums[right]) {
             return nums.length;
         }
@@ -24,7 +23,6 @@ public class _35_SearchInsertPosition {
             if (numAtMid == target) {
                 return mid;
             } else {
-                curIndex = mid;
                 if (target > numAtMid) {
                     left = mid + 1;
                 } else {
