@@ -14,26 +14,46 @@ package codesample.leetcode.medium;
  * You must solve it in O(log(arr.length)) time complexity.
  */
 public class _852_PeakIndexInAMountainArray {
+
+    // Approach 1: check left and right borders
+//    public int peakIndexInMountainArray(int[] arr) {
+//        int left = 0;
+//        int right = arr.length - 1;
+//
+//        while (left <= right) {
+//            int mid = left + (right - left) / 2;
+//
+//            // either left is less, right is more (still climbing, move left)
+//            // or left is more, right is less (overclimbed, move right)
+//            // or left is less, right is less (exact)
+//
+//            if (mid != 0 && mid != arr.length - 1 && arr[mid - 1] < arr[mid] && arr[mid] < arr[mid + 1]) {
+//                left = mid + 1;
+//            } else if (mid != 0 && mid != arr.length - 1 && arr[mid - 1] > arr[mid] && arr[mid] > arr[mid + 1]) {
+//                right = mid - 1;
+//            } else {
+//                return mid == 0 ? 1 : mid;
+//            }
+//        }
+//
+//        return -1;
+//    }
+
+    // Approach 2: rely on result always being in left. Always don't need to check both borders
+    // because number do not repeat
     public int peakIndexInMountainArray(int[] arr) {
         int left = 0;
         int right = arr.length - 1;
 
-        while (left <= right) {
+        while (left < right) {
             int mid = left + (right - left) / 2;
-
-            // either left is less, right is more (still climbing, move left)
-            // or left is more, right is less (overclimbed, move right)
-            // or left is less, right is less (exact)
-
-            if (mid != 0 && mid != arr.length - 1 && arr[mid - 1] < arr[mid] && arr[mid] < arr[mid + 1]) {
-                left = mid + 1;
-            } else if (mid != 0 && mid != arr.length - 1 && arr[mid - 1] > arr[mid] && arr[mid] > arr[mid + 1]) {
-                right = mid - 1;
+            if (arr[mid] > arr[mid + 1]) {
+                right = mid;
             } else {
-                return mid == 0 ? 1 : mid;
+                left = mid + 1;
             }
         }
 
-        return -1;
+        return left;
     }
 }
