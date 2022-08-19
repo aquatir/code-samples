@@ -19,18 +19,10 @@ public class _744_FindSmallestLetterGreaterThanTarget {
 
             char atMid = letters[mid];
 
-            if ( (target - atMid) > 0) {
+            if ( (target - atMid) >= 0) {
                 left = mid + 1;
-            } else if ( (target - atMid) < 0) {
-                right = mid - 1;
             } else {
-                while(letters[mid] == target) {
-                    mid++;
-                    if (mid == letters.length) {
-                        mid = 0;
-                    }
-                }
-                return letters[mid];
+                right = mid - 1;
             }
         }
 
