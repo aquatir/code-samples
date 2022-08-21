@@ -47,6 +47,7 @@ public class _852_PeakIndexInAMountainArray {
 
         while (left < right) {
             int mid = left + (right - left) / 2;
+            // element to the right is smaller
             if (arr[mid] > arr[mid + 1]) {
                 right = mid;
             } else {
