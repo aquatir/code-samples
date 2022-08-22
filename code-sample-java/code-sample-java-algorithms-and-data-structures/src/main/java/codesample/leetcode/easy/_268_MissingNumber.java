@@ -19,19 +19,34 @@ import java.util.List;
  * range since it does not appear in nums.
  */
 public class _268_MissingNumber {
+    // approach 1: sum of linear progression is a known maths fact
+//    public int missingNumber(int[] nums) {
+//
+//        int actualSum = 0;
+//        for (int i: nums) {
+//            actualSum += i;
+//        }
+//
+//        int max = nums.length;
+//        int expectedSum = max * (max + 1) / 2;
+//
+//        return expectedSum - actualSum;
+//    }
+
+    // approach 2: xor
     public int missingNumber(int[] nums) {
 
-        int actualSum = 0;
-        for (int i: nums) {
-            actualSum += i;
+        int xorExpected = 0;
+        for (int i = 1; i <= nums.length; i++) {
+            xorExpected = xorExpected ^ i;
         }
 
-        int max = nums.length;
-        int expectedSum = max * (max + 1) / 2;
+        int xorActual = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            xorActual = xorActual ^ nums[i];
+        }
 
-
-        List.of(1,2,3);
-
-        return expectedSum - actualSum;
+        return xorExpected ^ xorActual;
     }
+
 }
