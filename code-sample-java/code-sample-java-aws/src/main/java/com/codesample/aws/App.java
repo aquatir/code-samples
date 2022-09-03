@@ -11,7 +11,6 @@ import software.amazon.awssdk.services.s3.model.SelectObjectContentResponseHandl
 import software.amazon.awssdk.services.s3.model.selectobjectcontenteventstream.DefaultRecords;
 import software.amazon.awssdk.services.ssm.SsmClient;
 import software.amazon.awssdk.services.ssm.model.GetParameterRequest;
-import software.amazon.awssdk.services.ssm.model.GetParameterResponse;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -51,21 +50,21 @@ public class App {
     }
 
     private static String getBucketName() {
-        GetParameterRequest getParameterRequest = GetParameterRequest
+        var paramResponse = ssmClient.getParameter(GetParameterRequest
                 .builder()
                 .name("dragon_data_bucket_name")
-                .withDecryption(false).build();
-        GetParameterResponse getParameterResponse = ssmClient.getParameter(getParameterRequest);
-        return getParameterResponse.parameter().value();
+                .withDecryption(false).build()
+        );
+
+        return paramResponse.parameter().value();
     }
 
     private static String getKey() {
-        GetParameterRequest getParameterRequest = GetParameterRequest
+        var paramResponse = ssmClient.getParameter(GetParameterRequest
                 .builder()
                 .name("dragon_data_file_name")
-                .withDecryption(false).build();
-        GetParameterResponse getParameterResponse = ssmClient.getParameter(getParameterRequest);
-        return getParameterResponse.parameter().value();
+                .withDecryption(false).build());
+        return paramResponse.parameter().value();
     }
 
     private static String getQuery() {
@@ -88,14 +87,12 @@ public class App {
                 .expression(query)
                 .expressionType(ExpressionType.SQL)
                 .outputSerialization(outputSerializationBuilder -> outputSerializationBuilder
-                        .json(outputJsonBuilder -> {
-                        })
+                        .json(outputJsonBuilder -> {})
                 )
                 .inputSerialization(
                         inputSerializationBuilder -> inputSerializationBuilder
                                 .json(inputJsonBuilder -> inputJsonBuilder.type("Document"))
                                 .compressionType(CompressionType.NONE)
-
                 )
                 .build();
 
