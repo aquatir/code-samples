@@ -63,7 +63,8 @@ public class App {
         var paramResponse = ssmClient.getParameter(GetParameterRequest
                 .builder()
                 .name("dragon_data_file_name")
-                .withDecryption(false).build());
+                .withDecryption(false).build()
+        );
         return paramResponse.parameter().value();
     }
 
