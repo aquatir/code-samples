@@ -6,8 +6,8 @@ public class _703_KthLargestElementInAStream {
     class KthLargest {
 
         // the lowest element is Kth largest. Peek will return it.
-        private PriorityQueue<Integer> minQueue = new PriorityQueue<>();
-        private int maxSize;
+        private final PriorityQueue<Integer> minQueue = new PriorityQueue<>();
+        private final int maxSize;
 
         public KthLargest(int k, int[] nums) {
             this.maxSize = k;
