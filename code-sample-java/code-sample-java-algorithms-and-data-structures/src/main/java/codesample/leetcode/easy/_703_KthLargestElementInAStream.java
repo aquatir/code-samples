@@ -20,9 +20,9 @@ public class _703_KthLargestElementInAStream {
             // if maxSize => maybe add
             if (this.minQueue.size() == this.maxSize) {
                 if (minQueue.peek() >= val) {
-                    // don't add element which is smaller than the smaller already
+                    // don't add element which is smaller than the smallest already
                 } else {
-                    // else, remove the smallest and add antoher one.
+                    // else, remove the smallest and add another one.
                     minQueue.poll();
                     minQueue.offer(val);
                 }
