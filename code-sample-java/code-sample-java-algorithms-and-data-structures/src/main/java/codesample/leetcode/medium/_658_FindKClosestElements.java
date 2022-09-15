@@ -15,10 +15,13 @@ import java.util.PriorityQueue;
  *
  * |a - x| < |b - x|, or
  * |a - x| == |b - x| and a < b
+ *
  */
 public class _658_FindKClosestElements {
 
-    // this will will for unsorted array too, but is slower.
+    // this will work for unsorted array too, but is slower
+    // the faster way is to binary search the number closes to X and then  either add left or right elements
+    // depending on diff.
     public List<Integer> findClosestElements(int[] arr, int k, int x) {
 
         // 1. Store the numbers by lowest diff
