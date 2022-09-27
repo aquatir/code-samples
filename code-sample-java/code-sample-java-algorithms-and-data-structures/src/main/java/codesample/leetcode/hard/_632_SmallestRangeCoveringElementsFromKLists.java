@@ -77,6 +77,8 @@ public class _632_SmallestRangeCoveringElementsFromKLists {
 
         // take the smallest (top) element form the min heap, if it gives us smaller range, update the ranges
         // if the array of the top element has more elements, insert the next element in the heap
+        // the condition here is important: the minHeap ALWAYS will one element from ALL arrays
+        // because if we take one from araryX, we will put the next element from the same arrayX
         while (minHeap.size() == nums.size()) {
             Node node = minHeap.poll();
             int curNumber = nums.get(node.arrayIndex).get(node.elementIndex);
