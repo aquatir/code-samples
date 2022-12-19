@@ -9,17 +9,25 @@ package codesample.leetcode.easy;
  */
 public class _1480_RunningSumOf1dArray {
     class Solution {
-        public int[] runningSum(int[] nums) {
-            var result = new int[nums.length];
-            var currentSum = 0;
+//        public int[] runningSum(int[] nums) {
+//            var result = new int[nums.length];
+//            var currentSum = 0;
+//
+//            for (int i = 0; i < nums.length; i++) {
+//                var num = nums[i];
+//                currentSum += num;
+//                result[i] = currentSum;
+//            }
+//
+//            return result;
+//        }
 
-            for (int i = 0; i < nums.length; i++) {
-                var num = nums[i];
-                currentSum += num;
-                result[i] = currentSum;
+        public int[] runningSum(int[] nums) {
+            for (int i = 1; i < nums.length; i++) {
+                nums[i] = nums[i] + nums[i-1];
             }
 
-            return result;
+            return nums;
         }
     }
 }
