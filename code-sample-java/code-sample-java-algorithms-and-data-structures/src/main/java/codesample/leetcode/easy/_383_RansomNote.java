@@ -2,6 +2,7 @@ package codesample.leetcode.easy;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.PriorityQueue;
 
 /**
  * 383. Ransom Note — https://leetcode.com/problems/ransom-note/description/
