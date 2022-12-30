@@ -23,9 +23,11 @@ public class _905_SortArrayByParity {
 
             while (left <= right) {
 
+                // find first odd on left side
                 while (left != right && nums[left] % 2 == 0) {
                     left++;
                 }
+                // find first even on right side
                 while (right != left && nums[right] % 2 == 1) {
                     right--;
                 }
