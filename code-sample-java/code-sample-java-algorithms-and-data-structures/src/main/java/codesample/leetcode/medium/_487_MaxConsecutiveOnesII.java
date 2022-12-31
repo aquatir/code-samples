@@ -4,6 +4,9 @@ package codesample.leetcode.medium;
  * 487. Max Consecutive Ones II — https://leetcode.com/problems/max-consecutive-ones-ii/description/
  */
 public class _487_MaxConsecutiveOnesII {
+
+    // this approach works, but takes O(n) space (n*2 in reality)
+    // you can do the same with sliding window which is O(1) and still be a O(n) time
     class Solution {
         public int findMaxConsecutiveOnes(int[] nums) {
             // build two arrays: ones-to-the-right of i and ones-to-the-left-of-i
