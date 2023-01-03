@@ -2,8 +2,132 @@ package codesample.leetcode.medium;
 
 /**
  * 707. Design Linked List — https://leetcode.com/problems/design-linked-list/
+ *
+ * TODO: try it with Sentinel node, see solution https://leetcode.com/problems/design-linked-list/solutions/398730/official-solution/
+ * + bi-directional list
  */
 public class _707_DesignLinkedList {
+
+    // first impl without sentinel node
+//    static class MyLinkedList {
+//
+//        class Node {
+//            public int val;
+//            public Node next;
+//
+//            public Node(int val) {
+//                this.val = val;
+//            }
+//        }
+//
+//        private Node head;
+//        private int size;
+//
+//        public MyLinkedList() {
+//            this.size = 0;
+//            this.head = null;
+//        }
+//
+//        public int get(int index) {
+//            if (index < 0 || index >= size || size == 0) {
+//                return -1;
+//            }
+//
+//            // if index == 0 => skip none
+//            // if index == 1 => skip only 1 element
+//            // if index == 2 => skip only 2 elements, return third
+//            var curNode = this.head;
+//            for (int i = 0; i < index; i++) {
+//                curNode = curNode.next;
+//            }
+//
+//            return curNode.val;
+//        }
+//
+//        public void addAtHead(int val) {
+//            var newHead = new Node(val);
+//            if (head == null) {
+//                this.head = newHead;
+//            } else {
+//                newHead.next = this.head;
+//                this.head = newHead;
+//            }
+//            size++;
+//        }
+//
+//        public void addAtTail(int val) {
+//            if (head == null) {
+//                addAtHead(val);
+//                return;
+//            } else {
+//                var cur = this.head;
+//                while (cur.next != null) {
+//                    cur = cur.next;
+//                }
+//
+//                var newNode = new Node(val);
+//                cur.next = newNode;
+//                size++;
+//            }
+//        }
+//
+//        public void addAtIndex(int index, int val) {
+//            if (index == 0) {
+//                addAtHead(val);
+//                return;
+//            }
+//            if (index == size) {
+//                addAtTail(val);
+//                return;
+//            }
+//            if (index < 0 || index > size || size == 0) {
+//                return;
+//            }
+//
+//            // if index = 1 => prev = index[0], cur = index[1]
+//            Node prev = null;
+//            Node cur = this.head;
+//            for (int i = 0; i < index; i++) {
+//                prev = cur;
+//                cur = cur.next;
+//            }
+//            Node newNode = new Node(val);
+//            prev.next = newNode;
+//            newNode.next = cur;
+//            size++;
+//        }
+//
+//        public void deleteAtIndex(int index) {
+//            if (index < 0 || index >= size || size == 0) {
+//                return;
+//            }
+//            if (index == 0) {
+//                if (size == 1) {
+//                    head = null;
+//                    size = 0;
+//                    return;
+//                } else {
+//                    size--;
+//                    head = head.next;
+//                    return;
+//                }
+//            }
+//
+//            // if index = 1 => prev = index[0], cur = index[1]
+//            Node prev = null;
+//            Node cur = this.head;
+//            for (int i = 0; i < index; i++) {
+//                prev = cur;
+//                cur = cur.next;
+//            }
+//            Node afterCur = cur.next;
+//            prev.next = afterCur;
+//            cur = null;
+//            size--;
+//        }
+//    }
+
+    // second impl: with head as sentinel node => makes all code easier
     static class MyLinkedList {
 
         class Node {
@@ -20,11 +144,11 @@ public class _707_DesignLinkedList {
 
         public MyLinkedList() {
             this.size = 0;
-            this.head = null;
+            this.head = new Node(0); // sentinel node
         }
 
         public int get(int index) {
-            if (index < 0 || index >= size || size == 0) {
+            if (index < 0 || index >= size) {
                 return -1;
             }
 
@@ -32,7 +156,7 @@ public class _707_DesignLinkedList {
             // if index == 1 => skip only 1 element
             // if index == 2 => skip only 2 elements, return third
             var curNode = this.head;
-            for (int i = 0; i < index; i++) {
+            for (int i = 0; i < index + 1; i++) {
                 curNode = curNode.next;
             }
 
@@ -40,84 +164,38 @@ public class _707_DesignLinkedList {
         }
 
         public void addAtHead(int val) {
-            var newHead = new Node(val);
-            if (head == null) {
-                this.head = newHead;
-            } else {
-                newHead.next = this.head;
-                this.head = newHead;
-            }
-            size++;
+            this.addAtIndex(0, val);
         }
 
         public void addAtTail(int val) {
-            if (head == null) {
-                addAtHead(val);
-                return;
-            } else {
-                var cur = this.head;
-                while (cur.next != null) {
-                    cur = cur.next;
-                }
-
-                var newNode = new Node(val);
-                cur.next = newNode;
-                size++;
-            }
+            this.addAtIndex(size, val);
         }
 
         public void addAtIndex(int index, int val) {
-            if (index == 0) {
-                addAtHead(val);
-                return;
-            }
-            if (index == size) {
-                addAtTail(val);
-                return;
-            }
-            if (index < 0 || index > size || size == 0) {
+            if (index < 0 || index > size) {
                 return;
             }
 
-            // if index = 1 => prev = index[0], cur = index[1]
-            Node prev = null;
-            Node cur = this.head;
+            Node pred = this.head;
             for (int i = 0; i < index; i++) {
-                prev = cur;
-                cur = cur.next;
+                pred = pred.next;
             }
-            Node newNode = new Node(val);
-            prev.next = newNode;
-            newNode.next = cur;
+            var toAdd = new Node(val);
+            toAdd.next = pred.next;
+            pred.next = toAdd;
             size++;
         }
 
         public void deleteAtIndex(int index) {
-            if (index < 0 || index >= size || size == 0) {
+            if (index < 0 || index >= size) {
                 return;
             }
-            if (index == 0) {
-                if (size == 1) {
-                    head = null;
-                    size = 0;
-                    return;
-                } else {
-                    size--;
-                    head = head.next;
-                    return;
-                }
-            }
 
-            // if index = 1 => prev = index[0], cur = index[1]
-            Node prev = null;
-            Node cur = this.head;
+            var pred = this.head;
             for (int i = 0; i < index; i++) {
-                prev = cur;
-                cur = cur.next;
+                pred = pred.next;
             }
-            Node afterCur = cur.next;
-            prev.next = afterCur;
-            cur = null;
+            pred.next = pred.next.next;
             size--;
         }
     }
