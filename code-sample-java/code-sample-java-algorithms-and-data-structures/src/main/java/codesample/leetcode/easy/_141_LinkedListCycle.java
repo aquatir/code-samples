@@ -22,7 +22,7 @@ public class _141_LinkedListCycle {
                 slow = slow.next;
                 fast = fast.next.next;
 
-                if (slow != null && fast != null && slow == fast) {
+                if (slow == fast) {
                     return true;
                 }
             }
