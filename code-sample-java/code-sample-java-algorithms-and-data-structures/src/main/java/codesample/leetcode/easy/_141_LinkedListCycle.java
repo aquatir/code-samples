@@ -8,27 +8,28 @@ package codesample.leetcode.easy;
  * Return true if there is a cycle in the linked list. Otherwise, return false.
  */
 public class _141_LinkedListCycle {
-    public boolean hasCycle(ListNode head) {
+    public class Solution {
 
-        if (head == null) {
+        public boolean hasCycle(ListNode head) {
+            if (head == null) {
+                return false;
+            }
+
+            ListNode slow = head;
+            ListNode fast = head;
+
+            while (fast != null && fast.next != null) {
+                slow = slow.next;
+                fast = fast.next.next;
+
+                if (slow != null && fast != null && slow == fast) {
+                    return true;
+                }
+            }
+
             return false;
         }
 
-        ListNode slow = head;
-        ListNode fast = head;
-        head.val = 1;
-
-        while (fast.next != null && fast.next.next != null) {
-            slow.next.val = slow.val;
-            slow = slow.next;
-
-            fast.next.next.val = fast.val + 2;
-            fast = fast.next.next;
-            if (slow.val == fast.val) {
-                return true;
-            }
-        }
-        return false;
     }
 
     class ListNode {
