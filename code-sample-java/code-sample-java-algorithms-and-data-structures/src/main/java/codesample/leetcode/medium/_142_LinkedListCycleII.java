@@ -9,38 +9,28 @@ package codesample.leetcode.medium;
  * Do not modify the linked list.
  */
 public class _142_LinkedListCycleII {
-    public ListNode detectCycle(ListNode head) {
-        if (head == null || head.next == null) {
-            return null;
-        }
+    public class Solution {
+        public ListNode detectCycle(ListNode head) {
+            var slow = head;
+            var fast = head;
 
-        ListNode slow = head;
-        ListNode fast = head;
+            while (fast != null && fast.next != null) {
+                slow = slow.next;
+                fast = fast.next.next;
 
-        // find cycle
-        boolean cycleExist = false;
-        while (fast.next != null && fast.next.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
-
-            if (slow == fast) {
-                cycleExist = true;
-                break;
+                if (slow == fast) {
+                    // we have a loop
+                    fast = head;
+                    while (slow != fast) {
+                        slow = slow.next;
+                        fast = fast.next;
+                    }
+                    return slow;
+                }
             }
-        }
-        // or exit if not found
-        if (!cycleExist) {
+
             return null;
         }
-
-        ListNode node = head;
-
-        while (node != slow) {
-            node = node.next;
-            slow = slow.next;
-        }
-
-        return node;
     }
 
     class ListNode {
