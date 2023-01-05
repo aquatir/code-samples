@@ -18,37 +18,63 @@ public class _160_IntersectionOfTwoLinkedLists {
     public class Solution {
         public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
             // 2 lists
-            // cycle one of the lists
-            // iterate to find the loop point form the other one
-            // if not found => no itersection. If found => break the cycle are return the node
+            // Approach 1 (find in git history): create a cycle in one of the lists
+            //  iterate to find the loop point form the other one
+            //  if not found => no intersection. If found => break the cycle are return the node
+
+            // Approach 2 (implemented): find lengths of both lists + iterate over them until the end
+            //  if the end is not the same for both lists => there is no intersection
+            //      the length after interception is >= length of the shortest list
+            //      find longer and shorter list
+            //      iterate longer list until they both have the same size
+            //      iterate both lists until we find an intersection point
 
             var listOne = headA;
+            var listTwo = headB;
+
+            var lengthOne = 1;
+            var lengthTwo = 1;
 
             while (listOne.next != null) {
                 listOne = listOne.next;
-            }
-            var endNodeA = listOne;
-            endNodeA.next = headA;
-
-            var slow = headB;
-            var fast = headB;
-            while (fast != null && fast.next != null) {
-                slow = slow.next;
-                fast = fast.next.next;
-
-                if (slow == fast) {
-                    slow = headB;
-                    while (slow != fast) {
-                        slow = slow.next;
-                        fast = fast.next;
-                    }
-                    endNodeA.next = null;
-                    return slow;
-                }
+                lengthOne++;
             }
 
-            endNodeA.next = null;
-            return null;
+            while (listTwo.next != null) {
+                listTwo = listTwo.next;
+                lengthTwo++;
+            }
+
+            // lists ends with different nodes => no intersection
+            if (listOne != listTwo) {
+                return null;
+            }
+
+            ListNode longerList, shorterList = null;
+            int longerSize, shorterSize = 0;
+
+            if (lengthOne >= lengthTwo) {
+                longerList = headA;
+                longerSize = lengthOne;
+                shorterList = headB;
+                shorterSize = lengthTwo;
+            } else {
+                longerList = headB;
+                longerSize = lengthTwo;
+                shorterList = headA;
+                shorterSize = lengthOne;
+            }
+
+            while (longerSize != shorterSize) {
+                longerList = longerList.next;
+                longerSize--;
+            }
+
+            while(longerList != shorterList) {
+                shorterList = shorterList.next;
+                longerList = longerList.next;
+            }
+            return longerList;
         }
     }
 }
