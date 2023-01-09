@@ -36,7 +36,7 @@ public class _203_RemoveLinkedListElements {
 
             var prev = dummy;
 
-            while (prev != null && prev.next != null) {
+            while (prev.next != null) {
                 if (prev.next.val == val) {
                     // if next element is val => skip it and don't advance pointer
                     prev.next = prev.next.next;
