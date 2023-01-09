@@ -8,7 +8,7 @@ package codesample.leetcode.easy;
  */
 public class _203_RemoveLinkedListElements {
 
-    class ListNode {
+    static class ListNode {
         int val;
         ListNode next;
 
@@ -27,29 +27,44 @@ public class _203_RemoveLinkedListElements {
 
     static class Solution {
         public ListNode removeElements(ListNode head, int val) {
-
-            // first -> remove elements from head updating head
-            while (head != null && head.val == val) {
-                head = head.next;
-            }
             if (head == null) {
                 return null;
             }
 
-            // second -> remove all other elements. We know that head stays.
-            ListNode prev = head;
-            ListNode next = head.next;
+            ListNode dummy = new ListNode(-1);
+            dummy.next = head;
 
-            while(next != null) {
-                if (next.val == val) {
-                    prev.next = next.next;
+            var prev = dummy;
+
+            while (prev != null && prev.next != null) {
+                if (prev.next.val == val) {
+                    // if next element is val => skip it and don't advance pointer
+                    prev.next = prev.next.next;
                 } else {
-                    prev = next;
+                    // else => advance pointer
+                    prev = prev.next;
                 }
-                next = next.next;
-            }
 
-            return head;
+            }
+            return dummy.next;
+        }
+    }
+
+    public static void main(String[] args) {
+
+        var s = new _203_RemoveLinkedListElements.Solution();
+
+        var head = new ListNode(1);
+
+        var newHead = s.removeElements(head, 1);
+
+        if (newHead == null) {
+            System.out.println("null");
+        } else {
+            while (newHead != null) {
+                System.out.print(newHead.val + " -> ");
+                newHead = newHead.next;
+            }
         }
     }
 }
