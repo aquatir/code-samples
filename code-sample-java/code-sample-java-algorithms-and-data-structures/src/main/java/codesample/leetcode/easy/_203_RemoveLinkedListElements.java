@@ -35,7 +35,6 @@ public class _203_RemoveLinkedListElements {
             dummy.next = head;
 
             var prev = dummy;
-
             while (prev.next != null) {
                 if (prev.next.val == val) {
                     // if next element is val => skip it and don't advance pointer
@@ -44,8 +43,22 @@ public class _203_RemoveLinkedListElements {
                     // else => advance pointer
                     prev = prev.next;
                 }
-
             }
+
+            // alternative with next AND cur nodes
+//            var prev = dummy;
+//            var cur = head;
+//
+//            while (cur != null) {
+//                if (cur.val == val) {
+//                    // if next element is val => skip it
+//                    prev.next = cur.next;
+//                } else {
+//                    prev = cur;
+//                }
+//                cur = cur.next;
+//
+//            }
             return dummy.next;
         }
     }
