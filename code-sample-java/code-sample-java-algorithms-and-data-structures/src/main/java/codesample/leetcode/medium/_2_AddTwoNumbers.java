@@ -23,8 +23,9 @@ public class _2_AddTwoNumbers {
     }
 
     static class Solution {
+        // approach 1: (here) create new node on each sum
+        // approach 2: find the longer list, replace the nodes value. Saves n space
         public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-            // appraoch 1: rotate both and sum normally from lower digits
             // approach 2... ????
 
             var result = new ListNode(0);
