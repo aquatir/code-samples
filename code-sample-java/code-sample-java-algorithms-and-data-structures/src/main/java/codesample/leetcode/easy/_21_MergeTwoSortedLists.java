@@ -39,59 +39,93 @@ public class _21_MergeTwoSortedLists {
     }
 
 
-    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+    // a complicated approach that iterate all the nodes
+//    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+//
+//        // any of lists is null => return another
+//        if (list1 == null) {
+//            return list2;
+//        } else if (list2 == null) {
+//            return list1;
+//        }
+//
+//
+//        ListNode headLeft = list1;
+//        ListNode headRight = list2;
+//
+//        ListNode result;
+//
+//        // save bigger first as first element
+//        if (headLeft.val < headRight.val) {
+//            result = headLeft;
+//            headLeft = headLeft.next;
+//        } else {
+//            result = headRight;
+//            headRight = headRight.next;
+//        }
+//
+//        ListNode headOfResult = result;
+//
+//        // iterate
+//
+//
+//        while (true) {
+//            if (headLeft == null && headRight == null) {
+//                break;
+//            } else if (headLeft != null && headRight == null) {
+//                result.next = headLeft;
+//                headLeft = headLeft.next;
+//                result = result.next;
+//            } else if (headLeft == null && headRight != null) {
+//                result.next = headRight;
+//                headRight = headRight.next;
+//                result = result.next;
+//            } else {
+//                if (headLeft.val < headRight.val) {
+//                    result.next = headLeft;
+//                    headLeft = headLeft.next;
+//                    result = result.next;
+//                } else {
+//                    result.next = headRight;
+//                    headRight = headRight.next;
+//                    result = result.next;
+//                }
+//            }
+//        }
+//
+//        return headOfResult;
+//    }
 
-        // any of lists is null => return another
+    // a simplified approach that only iterate on nodes while it need to
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         if (list1 == null) {
             return list2;
-        } else if (list2 == null) {
+        }
+        if (list2 == null) {
             return list1;
         }
 
+        var sentinel = new ListNode(0);
+        var headOfSentinel = sentinel;
 
-        ListNode headLeft = list1;
-        ListNode headRight = list2;
-
-        ListNode result;
-
-        // save bigger first as first element
-        if (headLeft.val < headRight.val) {
-            result = headLeft;
-            headLeft = headLeft.next;
-        } else {
-            result = headRight;
-            headRight = headRight.next;
-        }
-
-        ListNode headOfResult = result;
-
-        // iterate
-
-
-        while (true) {
-            if (headLeft == null && headRight == null) {
-                break;
-            } else if (headLeft != null && headRight == null) {
-                result.next = headLeft;
-                headLeft = headLeft.next;
-                result = result.next;
-            } else if (headLeft == null && headRight != null) {
-                result.next = headRight;
-                headRight = headRight.next;
-                result = result.next;
+        while(list1 != null && list2 != null) {
+            if (list1.val < list2.val) {
+                sentinel.next = list1;
+                list1 = list1.next;
             } else {
-                if (headLeft.val < headRight.val) {
-                    result.next = headLeft;
-                    headLeft = headLeft.next;
-                    result = result.next;
-                } else {
-                    result.next = headRight;
-                    headRight = headRight.next;
-                    result = result.next;
-                }
+                sentinel.next = list2;
+                list2 = list2.next;
             }
+
+            sentinel = sentinel.next;
         }
 
-        return headOfResult;
+        if (list1 == null) {
+            sentinel.next = list2;
+        } else {
+            sentinel.next = list1;
+        }
+
+        return headOfSentinel.next;
     }
 }
