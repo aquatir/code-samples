@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class _167_Two_Sum_II_InputArrayIsSorted {
 
-    // doesn't use the fact that the array is sorter + non-constant extra space as task suggests
+    // normal two sum solution — doesn't use the fact that the array is sorter + non-constant extra space as task suggests
 //    public int[] twoSum(int[] numbers, int target) {
 //
 //        int n = numbers.length;
@@ -36,37 +36,57 @@ public class _167_Two_Sum_II_InputArrayIsSorted {
 //    }
 
     // uses binary search to find the other number
+//    public int[] twoSum(int[] numbers, int target) {
+//
+//        int n = numbers.length;
+//
+//        for (int i = 0; i < n; i++) {
+//            var searchFor = target - numbers[i];
+//
+//            var bsIndex = binarySearch(numbers, i + 1, n, searchFor);
+//            if (bsIndex != -1) {
+//                return new int[] {i + 1, bsIndex + 1};
+//            }
+//        }
+//
+//        return new int[] {-1, -1};
+//    }
+//
+//    public int binarySearch(int[] numbers, int from, int to, int target) {
+//        var left = from;
+//        var right = to;
+//
+//        while (left <= right && left != numbers.length) {
+//            var mid = left + ((right - left) / 2);
+//            if (numbers[mid] == target) {
+//                return mid;
+//            } else if (target > numbers[mid]) {
+//                left = mid + 1;
+//            } else {
+//                right = mid - 1;
+//            }
+//        }
+//        return -1;
+//    }
+
+    // two indexes even easier solution
     public int[] twoSum(int[] numbers, int target) {
+        var left = 0;
+        var right = numbers.length - 1;
 
-        int n = numbers.length;
+        while (left < right) {
+            int sum = numbers[left] + numbers[right];
 
-        for (int i = 0; i < n; i++) {
-            var searchFor = target - numbers[i];
-
-            var bsIndex = binarySearch(numbers, i + 1, n, searchFor);
-            if (bsIndex != -1) {
-                return new int[] {i + 1, bsIndex + 1};
-            }
-        }
-
-        return new int[] {-1, -1};
-    }
-
-    public int binarySearch(int[] numbers, int from, int to, int target) {
-        var left = from;
-        var right = to;
-
-        while (left <= right && left != numbers.length) {
-            var mid = left + ((right - left) / 2);
-            if (numbers[mid] == target) {
-                return mid;
-            } else if (target > numbers[mid]) {
-                left = mid + 1;
+            if (sum == target) {
+                return new int[] {left + 1, right + 1};
+            } else if (sum > target) { // move right
+                right--;
             } else {
-                right = mid - 1;
+                left++;
             }
         }
-        return -1;
+
+        return new int[] {-1, -1}; // no result
     }
 
     public static void main(String[] args) {
