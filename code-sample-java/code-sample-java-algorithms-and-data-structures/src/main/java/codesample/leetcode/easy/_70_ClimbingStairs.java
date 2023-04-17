@@ -30,4 +30,26 @@ public class _70_ClimbingStairs {
 
         return cur;
     }
+
+    // recursive solution
+//    public int climbStairs(int n) {
+//        return climbStairs(0, n, new int[n + 1]);
+//    }
+//
+//    private int climbStairs(int cur, int n, int[] memo) {
+//        if (cur > n) {
+//            return 0;
+//        }
+//        if (cur == n) {
+//            return 1;
+//        }
+//
+//        if (memo[cur] != 0) {
+//            return memo[cur];
+//        } else {
+//            var value = climbStairs(cur + 1, n, memo) + climbStairs(cur + 2, n, memo);
+//            memo[cur] = value;
+//            return memo[cur];
+//        }
+//    }
 }
