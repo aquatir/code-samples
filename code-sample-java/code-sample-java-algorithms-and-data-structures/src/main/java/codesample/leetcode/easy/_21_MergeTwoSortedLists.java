@@ -153,12 +153,10 @@ public class _21_MergeTwoSortedLists {
 
         if (list1.val < list2.val) {
             prev.next = list1;
-            prev = prev.next;
-            mergeTwoLists(prev, list1.next, list2);
+            mergeTwoLists(list1, list1.next, list2);
         } else {
             prev.next = list2;
-            prev = prev.next;
-            mergeTwoLists(prev, list1, list2.next);
+            mergeTwoLists(list2, list1, list2.next);
         }
     }
 
