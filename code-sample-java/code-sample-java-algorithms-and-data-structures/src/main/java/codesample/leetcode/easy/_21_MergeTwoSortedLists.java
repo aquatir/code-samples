@@ -97,35 +97,69 @@ public class _21_MergeTwoSortedLists {
 //    }
 
     // a simplified approach that only iterate on nodes while it need to
+//    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+//        if (list1 == null) {
+//            return list2;
+//        }
+//        if (list2 == null) {
+//            return list1;
+//        }
+//
+//        var sentinel = new ListNode(0);
+//        var headOfSentinel = sentinel;
+//
+//        while(list1 != null && list2 != null) {
+//            if (list1.val < list2.val) {
+//                sentinel.next = list1;
+//                list1 = list1.next;
+//            } else {
+//                sentinel.next = list2;
+//                list2 = list2.next;
+//            }
+//
+//            sentinel = sentinel.next;
+//        }
+//
+//        if (list1 == null) {
+//            sentinel.next = list2;
+//        } else {
+//            sentinel.next = list1;
+//        }
+//
+//        return headOfSentinel.next;
+//    }
+
+    // a recursive solution
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        if (list1 == null) {
-            return list2;
-        }
-        if (list2 == null) {
-            return list1;
-        }
-
         var sentinel = new ListNode(0);
-        var headOfSentinel = sentinel;
 
-        while(list1 != null && list2 != null) {
-            if (list1.val < list2.val) {
-                sentinel.next = list1;
-                list1 = list1.next;
-            } else {
-                sentinel.next = list2;
-                list2 = list2.next;
-            }
+        mergeTwoLists(sentinel, list1, list2);
 
-            sentinel = sentinel.next;
-        }
-
-        if (list1 == null) {
-            sentinel.next = list2;
-        } else {
-            sentinel.next = list1;
-        }
-
-        return headOfSentinel.next;
+        return sentinel.next;
     }
+
+    public void mergeTwoLists(ListNode prev, ListNode list1, ListNode list2) {
+        if (list1 == null && list2 != null) {
+            prev.next = list2;
+            return;
+        }
+        if (list1 != null && list2 == null) {
+            prev.next = list1;
+            return;
+        }
+        if (list1 == null && list2 == null) {
+            return;
+        }
+
+        if (list1.val < list2.val) {
+            prev.next = list1;
+            prev = prev.next;
+            mergeTwoLists(prev, list1.next, list2);
+        } else {
+            prev.next = list2;
+            prev = prev.next;
+            mergeTwoLists(prev, list1, list2.next);
+        }
+    }
+
 }
