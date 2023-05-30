@@ -130,33 +130,51 @@ public class _21_MergeTwoSortedLists {
 //    }
 
     // a recursive solution
+//    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+//        var sentinel = new ListNode(0);
+//
+//        mergeTwoLists(sentinel, list1, list2);
+//
+//        return sentinel.next;
+//    }
+//
+//    public void mergeTwoLists(ListNode prev, ListNode list1, ListNode list2) {
+//        if (list1 == null && list2 != null) {
+//            prev.next = list2;
+//            return;
+//        }
+//        if (list1 != null && list2 == null) {
+//            prev.next = list1;
+//            return;
+//        }
+//        if (list1 == null && list2 == null) {
+//            return;
+//        }
+//
+//        if (list1.val < list2.val) {
+//            prev.next = list1;
+//            mergeTwoLists(list1, list1.next, list2);
+//        } else {
+//            prev.next = list2;
+//            mergeTwoLists(list2, list1, list2.next);
+//        }
+//    }
+
+    // an easier recursive
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        var sentinel = new ListNode(0);
-
-        mergeTwoLists(sentinel, list1, list2);
-
-        return sentinel.next;
-    }
-
-    public void mergeTwoLists(ListNode prev, ListNode list1, ListNode list2) {
-        if (list1 == null && list2 != null) {
-            prev.next = list2;
-            return;
+        if (list1 == null) {
+            return list2;
         }
-        if (list1 != null && list2 == null) {
-            prev.next = list1;
-            return;
+        else if (list2 == null) {
+            return list1;
         }
-        if (list1 == null && list2 == null) {
-            return;
+        else if (list1.val < list2.val) {
+            list1.next = mergeTwoLists(list1.next, list2);
+            return list1;
         }
-
-        if (list1.val < list2.val) {
-            prev.next = list1;
-            mergeTwoLists(list1, list1.next, list2);
-        } else {
-            prev.next = list2;
-            mergeTwoLists(list2, list1, list2.next);
+        else {
+            list2.next = mergeTwoLists(list1, list2.next);
+            return list2;
         }
     }
 
