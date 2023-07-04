@@ -1,5 +1,6 @@
 package codesample.leetcode.easy;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,9 +52,25 @@ public class _94_BinaryTreeInorderTraversal {
 //    }
 
     // iterative
-//    public List<Integer> inorderTraversal(TreeNode root) {
-//
-//    }
+    public List<Integer> inorderTraversal(TreeNode root) {
+        var answer = new ArrayList<Integer>();
+        var stack = new ArrayDeque<TreeNode>();
+        var cur = root;
+        while(cur != null || !stack.isEmpty()) {
+            // push all the left nodes first
+            while (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            }
+            // add cur node
+            cur = stack.pop();
+            answer.add(cur.val);
+            // switch to right side. If it has left children, the condition above will become truem so we'll push them
+            cur = cur.right;
+        }
+
+        return answer;
+    }
 
     public static void main(String[] args) {
         System.out.println((double) 5 / 2);
