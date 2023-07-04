@@ -59,18 +59,14 @@ public class _144_BinaryTreePreorderTraversal {
 
             // Note that we add currNode's right child to the stack first.
             while (!stack.isEmpty()) {
-                var cur = stack.peek();
-                stack.pop();
-                if (cur != null) {
-                    answer.add(cur.val);
-                    // first add right child and left on top of is to pop left faster
-                    if (cur.right != null) {
-                        stack.push(cur.right);
-                    }
-                    if (cur.left != null) {
-                        stack.push(cur.left);
-                    }
-
+                var cur = stack.pop();
+                answer.add(cur.val);
+                // first add right child and left on top of is to pop left faster
+                if (cur.right != null) {
+                    stack.push(cur.right);
+                }
+                if (cur.left != null) {
+                    stack.push(cur.left);
                 }
             }
 

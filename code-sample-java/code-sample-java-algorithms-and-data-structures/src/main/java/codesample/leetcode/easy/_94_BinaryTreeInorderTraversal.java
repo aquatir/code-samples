@@ -30,24 +30,30 @@ public class _94_BinaryTreeInorderTraversal {
     }
 
 
-    public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> result = new ArrayList<>();
-        inorderTraversal(root, result);
-        return result;
-    }
+    // recursive
+//    public List<Integer> inorderTraversal(TreeNode root) {
+//        List<Integer> result = new ArrayList<>();
+//        inorderTraversal(root, result);
+//        return result;
+//    }
+//
+//    public void inorderTraversal(TreeNode root, List<Integer> result) {
+//        if (root == null) {
+//            return;
+//        }
+//        if (root.left != null) {
+//            inorderTraversal(root.left, result);
+//        }
+//        result.add(root.val);
+//        if (root.right != null) {
+//            inorderTraversal(root.right, result);
+//        }
+//    }
 
-    public void inorderTraversal(TreeNode root, List<Integer> result) {
-        if (root == null) {
-            return;
-        }
-        if (root.left != null) {
-            inorderTraversal(root.left, result);
-        }
-        result.add(root.val);
-        if (root.right != null) {
-            inorderTraversal(root.right, result);
-        }
-    }
+    // iterative
+//    public List<Integer> inorderTraversal(TreeNode root) {
+//
+//    }
 
     public static void main(String[] args) {
         System.out.println((double) 5 / 2);
