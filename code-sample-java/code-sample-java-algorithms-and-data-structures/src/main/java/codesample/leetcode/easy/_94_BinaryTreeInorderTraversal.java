@@ -65,7 +65,7 @@ public class _94_BinaryTreeInorderTraversal {
             // add cur node
             cur = stack.pop();
             answer.add(cur.val);
-            // switch to right side. If it has left children, the condition above will become truem so we'll push them
+            // switch to right side. If it has left children, the condition above will become true, so we'll push them
             cur = cur.right;
         }
 
