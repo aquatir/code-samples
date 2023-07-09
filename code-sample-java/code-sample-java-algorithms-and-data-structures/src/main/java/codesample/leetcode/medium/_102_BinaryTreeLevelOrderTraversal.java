@@ -2,6 +2,7 @@ package codesample.leetcode.medium;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -62,37 +63,67 @@ public class _102_BinaryTreeLevelOrderTraversal {
 //        }
 //    }
 
-    // iterative
+    // iterative with list
+//    public List<List<Integer>> levelOrder(TreeNode root) {
+//        var res = new ArrayList<List<Integer>>();
+//        if (root == null) {
+//            return res;
+//        }
+//
+//        var curLevelNodes = new ArrayList<TreeNode>();
+//        curLevelNodes.add(root);
+//
+//        // can't put 'null' in the queue to mark
+//        // how can I possibly mark "level"?
+//        //  one solution -> have a "cur" level LIST, generate another LIST in the end of iteration
+//        //  no queue needed at all
+//        //  but will need an array on TreeNodes.
+//        while (!curLevelNodes.isEmpty()) {
+//            var curLevelVals = new ArrayList<Integer>();
+//            var nextLevelNodes = new ArrayList<TreeNode>();
+//
+//            for (int i = 0; i < curLevelNodes.size(); i++) {
+//                var node = curLevelNodes.get(i);
+//                curLevelVals.add(node.val);
+//                if (node.left != null) {
+//                    nextLevelNodes.add(node.left);
+//                }
+//                if (node.right != null) {
+//                    nextLevelNodes.add(node.right);
+//                }
+//            }
+//            res.add(curLevelVals);
+//            curLevelNodes = nextLevelNodes;
+//        }
+//        return res;
+//    }
+
+
+    // iterative with queue
     public List<List<Integer>> levelOrder(TreeNode root) {
         var res = new ArrayList<List<Integer>>();
         if (root == null) {
             return res;
         }
 
-        var curLevelNodes = new ArrayList<TreeNode>();
-        curLevelNodes.add(root);
+        // on each level, the queue size will determine how many elements are on this level.
+        var levelNodes = new LinkedList<TreeNode>();
+        levelNodes.add(root);
 
-        // can't put 'null' in the queue to mark
-        // how can I possibly mark "level"?
-        //  one solution -> have a "cur" level LIST, generate another LIST in the end of iteration
-        //  no queue needed at all
-        //  but will need an array on TreeNodes.
-        while (!curLevelNodes.isEmpty()) {
+        while (!levelNodes.isEmpty()) {
             var curLevelVals = new ArrayList<Integer>();
-            var nextLevelNodes = new ArrayList<TreeNode>();
-
-            for (int i = 0; i < curLevelNodes.size(); i++) {
-                var node = curLevelNodes.get(i);
+            var iterationSize = levelNodes.size();
+            for (int i = 0; i < iterationSize; i++) {
+                var node = levelNodes.remove();
                 curLevelVals.add(node.val);
                 if (node.left != null) {
-                    nextLevelNodes.add(node.left);
+                    levelNodes.add(node.left);
                 }
                 if (node.right != null) {
-                    nextLevelNodes.add(node.right);
+                    levelNodes.add(node.right);
                 }
             }
             res.add(curLevelVals);
-            curLevelNodes = nextLevelNodes;
         }
         return res;
     }
