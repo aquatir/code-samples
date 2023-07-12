@@ -24,22 +24,43 @@ public class _104_MaximumDepthOfBinaryTree {
         }
     }
 
+    // top-down
     class Solution {
 
         private int knownMax = 0;
 
         public int maxDepth(TreeNode root) {
-            return dfs(root, 0);
+            if (root == null) {
+                return 0;
+            }
+            maxDepth(root, 1);
+            return knownMax;
         }
 
-        private int dfs(TreeNode root, int curDepth) {
+        private void maxDepth(TreeNode root, int curDepth) {
             if (root == null) {
-                return curDepth;
+                return;
             }
-            return Math.max(
-                dfs(root.left, curDepth + 1),
-                dfs(root.right, curDepth + 1)
-            );
+
+            knownMax = Math.max(knownMax, curDepth);
+
+            maxDepth(root.left, curDepth + 1);
+            maxDepth(root.right, curDepth + 1);
         }
     }
+
+    // bottom-up
+//    class Solution {
+//
+//        public int maxDepth(TreeNode root) {
+//            if (root == null) {
+//                return 0;
+//            }
+//
+//            var left = maxDepth(root.left);
+//            var right = maxDepth(root.right);
+//
+//            return Math.max(left, right) + 1;
+//        }
+//    }
 }
