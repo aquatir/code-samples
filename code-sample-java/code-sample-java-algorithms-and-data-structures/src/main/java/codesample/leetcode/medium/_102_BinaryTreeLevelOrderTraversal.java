@@ -99,7 +99,37 @@ public class _102_BinaryTreeLevelOrderTraversal {
 //    }
 
 
-    // iterative with queue
+//    // iterative with queue over LinkedList
+//    public List<List<Integer>> levelOrder(TreeNode root) {
+//        var res = new ArrayList<List<Integer>>();
+//        if (root == null) {
+//            return res;
+//        }
+//
+//        // on each level, the queue size will determine how many elements are on this level.
+//        var levelNodes = new LinkedList<TreeNode>();
+//        levelNodes.add(root);
+//
+//        while (!levelNodes.isEmpty()) {
+//            var curLevelVals = new ArrayList<Integer>();
+//            var iterationSize = levelNodes.size();
+//            for (int i = 0; i < iterationSize; i++) {
+//                var node = levelNodes.remove();
+//                curLevelVals.add(node.val);
+//                if (node.left != null) {
+//                    levelNodes.add(node.left);
+//                }
+//                if (node.right != null) {
+//                    levelNodes.add(node.right);
+//                }
+//            }
+//            res.add(curLevelVals);
+//        }
+//        return res;
+//    }
+
+
+    // iterative with queue over Deque
     public List<List<Integer>> levelOrder(TreeNode root) {
         var res = new ArrayList<List<Integer>>();
         if (root == null) {
@@ -107,20 +137,20 @@ public class _102_BinaryTreeLevelOrderTraversal {
         }
 
         // on each level, the queue size will determine how many elements are on this level.
-        var levelNodes = new LinkedList<TreeNode>();
-        levelNodes.add(root);
+        var levelNodes = new ArrayDeque<TreeNode>();
+        levelNodes.addLast(root);
 
         while (!levelNodes.isEmpty()) {
             var curLevelVals = new ArrayList<Integer>();
             var iterationSize = levelNodes.size();
             for (int i = 0; i < iterationSize; i++) {
-                var node = levelNodes.remove();
+                var node = levelNodes.removeFirst();
                 curLevelVals.add(node.val);
                 if (node.left != null) {
-                    levelNodes.add(node.left);
+                    levelNodes.addLast(node.left);
                 }
                 if (node.right != null) {
-                    levelNodes.add(node.right);
+                    levelNodes.addLast(node.right);
                 }
             }
             res.add(curLevelVals);
