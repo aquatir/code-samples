@@ -13,7 +13,7 @@ import java.util.Deque;
 public class _112_PathSum {
 
 
-    public class TreeNode {
+    public static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
@@ -33,21 +33,59 @@ public class _112_PathSum {
     }
 
 
-    // recursive
-    public boolean hasPathSum(TreeNode root, int targetSum) {
+    // recursive bottom-up
+//    public boolean hasPathSum(TreeNode root, int targetSum) {
+//
+//        if (root == null) {
+//            return false;
+//        }
+//
+//        if (root.val == targetSum && root.left == null && root.right == null) {
+//            return true;
+//        }
+//
+//        return hasPathSum(root.left, targetSum - root.val)
+//            || hasPathSum(root.right, targetSum - root.val);
+//    }
 
+    // recursive top down
+    private boolean found = false;
+
+    public boolean hasPathSum(TreeNode root, int targetSum) {
         if (root == null) {
             return false;
         }
+        hasPathSum(root, targetSum, 0);
 
-        if (root.val == targetSum && root.left == null && root.right == null) {
-            return true;
-        }
-
-        return hasPathSum(root.left, targetSum - root.val)
-            || hasPathSum(root.right, targetSum - root.val);
+        return found;
     }
 
-    // iterative
+    public void hasPathSum(TreeNode root, int targetSum, int curSum) {
+        if (root == null) {
+            return;
+        }
+        // reached the end of the tree
+        if (root.left == null && root.right == null && targetSum == (curSum + root.val)) {
+            found = true;
+            return;
+        }
+
+        // try to find sum in the left & right subtrees
+        hasPathSum(root.left, targetSum, curSum + root.val);
+        hasPathSum(root.right, targetSum, curSum + root.val);
+    }
+
+    public static void main(String[] args) {
+        var s = new _112_PathSum();
+
+        var root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        System.out.println(s.hasPathSum(root, 1)); // expected: false
+
+        var otherRoot = new TreeNode(1);
+        otherRoot.left = new TreeNode(2);
+        otherRoot.right = new TreeNode(3);
+        System.out.println(s.hasPathSum(root, 5)); // expected: false
+    }
 
 }
