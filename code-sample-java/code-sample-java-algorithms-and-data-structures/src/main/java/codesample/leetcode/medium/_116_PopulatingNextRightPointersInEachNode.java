@@ -1,5 +1,6 @@
 package codesample.leetcode.medium;
 
+import java.util.ArrayDeque;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -41,36 +42,65 @@ public class _116_PopulatingNextRightPointersInEachNode {
         }
     }
 
-    ;
+//    public Node connect(Node root) {
+//        // BFS
+//        // when found the key => return the next
+//        // This solution will also work for 117. I guess there must be some easier algorithm for "perfectly balanced tree"
+//        if (root == null) {
+//            return null;
+//        }
+//
+//        Queue<Node> queue = new LinkedList<Node>();
+//        queue.offer(root);
+//        Node prev = null;
+//
+//        while (!queue.isEmpty()) {
+//            int levelSize = queue.size();
+//            prev = null;
+//            for (int i = 0; i < levelSize; i++) {
+//                Node node = queue.poll();
+//                if (prev != null) {
+//                    prev.next = node;
+//                }
+//                prev = node;
+//
+//                if (node.left != null) {
+//                    queue.offer(node.left);
+//                }
+//                if (node.right != null) {
+//                    queue.offer(node.right);
+//                }
+//            }
+//        }
+//
+//        return root;
+//    }
 
-
+    // Deque solution
     public Node connect(Node root) {
         // BFS
-        // when found the key => return the next
-        // This solution will also work for 117. I guess there must be some easier algorithm for "perfectly balanced tree"
+        var queue = new ArrayDeque<Node>();
+        Node prev = null;
         if (root == null) {
             return null;
         }
-
-        Queue<Node> queue = new LinkedList<Node>();
-        queue.offer(root);
-        Node prev = null;
-
+        queue.addLast(root);
         while (!queue.isEmpty()) {
             int levelSize = queue.size();
             prev = null;
             for (int i = 0; i < levelSize; i++) {
-                Node node = queue.poll();
-                if (prev != null) {
-                    prev.next = node;
-                }
-                prev = node;
+                var next = queue.removeFirst();
 
-                if (node.left != null) {
-                    queue.offer(node.left);
+                if (prev != null) {
+                    prev.next = next;
                 }
-                if (node.right != null) {
-                    queue.offer(node.right);
+                prev = next;
+
+                if (next.left != null) {
+                    queue.addLast(next.left);
+                }
+                if (next.right != null) {
+                    queue.addLast(next.right);
                 }
             }
         }
