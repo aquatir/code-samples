@@ -18,11 +18,12 @@ public class _1431_KidsWithTheGreatestNumberOfCandies {
         }
 
         for (int candy : candies) {
-            if (candy + extraCandies >= max) {
-                res.add(true);
-            } else {
-                res.add(false);
-            }
+            res.add(candy + extraCandies >= max);
+//            if (candy + extraCandies >= max) {
+//                res.add(true);
+//            } else {
+//                res.add(false);
+//            }
         }
 
         return res;
