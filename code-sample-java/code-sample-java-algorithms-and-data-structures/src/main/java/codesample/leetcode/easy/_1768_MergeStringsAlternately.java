@@ -1,7 +1,7 @@
 package codesample.leetcode.easy;
 
 /**
- * 1768. Merge Strings Alternately — https://leetcode.com/problems/merge-strings-alternately/description/?envType=study-plan-v2&envId=leetcode-75
+ * 1768. Merge Strings Alternately — https://leetcode.com/problems/merge-strings-alternately/description/
  */
 public class _1768_MergeStringsAlternately {
     public String mergeAlternately(String word1, String word2) {
