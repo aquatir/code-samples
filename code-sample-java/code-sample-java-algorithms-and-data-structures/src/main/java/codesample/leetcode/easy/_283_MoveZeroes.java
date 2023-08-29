@@ -15,7 +15,6 @@ public class _283_MoveZeroes {
             int writer = 0;
             int zeroes = 0;
 
-
             while (reader != n) {
                 if (nums[reader] != 0) {
                     nums[writer] = nums[reader];
