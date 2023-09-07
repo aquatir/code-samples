@@ -37,20 +37,24 @@ public class _724_FindPivotIndex {
 //        }
 
         // approach 2: only precalculate the total sum of elements.
-        // then grow "left" sum and shrink "right" sum
+        // then grow "left" and calculate "right" sum on flight
         public int pivotIndex(int[] nums) {
-            int rightSum = 0;
+            int totalSum = 0;
             int leftSum = 0;
 
-            // calculate the sum when looking from right
             for (int x : nums) {
-                rightSum += x;
+                totalSum += x;
             }
 
             // leftSum start with 0. For each element, check if condition holds, then
-            // update the leftSum (no need to update the rightSum, because the leftSum update will do it anyway)
+            // For the pivotal elements, the sum of elements to the left and to the right
+            // is the same
+            // the sum to left is leftSum
+            // the sum to right is all the rest of elements which will be totalSum - leftSum - num[i]
             for (int i = 0; i < nums.length; ++i) {
-                if (leftSum == rightSum - leftSum - nums[i]) return i;
+                if (leftSum == totalSum - leftSum - nums[i]) {
+                    return i;
+                }
                 leftSum += nums[i];
             }
             return -1;
