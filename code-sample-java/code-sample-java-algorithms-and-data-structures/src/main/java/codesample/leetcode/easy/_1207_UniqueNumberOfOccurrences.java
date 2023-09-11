@@ -1,5 +1,8 @@
 package codesample.leetcode.easy;
 
+import java.util.HashMap;
+import java.util.HashSet;
+
 /**
  * 1207. Unique Number of Occurrences — https://leetcode.com/problems/unique-number-of-occurrences/description/
  */
