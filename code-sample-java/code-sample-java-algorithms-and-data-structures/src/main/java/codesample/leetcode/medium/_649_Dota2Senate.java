@@ -16,60 +16,61 @@ public class _649_Dota2Senate {
 
                 if (ch == 'R') {
                     // find next D and remove it if possible, circling around if needed
-                    var j = i+1;
-                    while (j < s.length() && s.charAt(j) != 'D') {
-                        j++;
-                    }
-                    if (j < s.length()) {
-                        s.deleteCharAt(j);
-                    } else {
-                        var circleUntilIndex = j;
-                        j = 0;
-                        while (j < circleUntilIndex && s.charAt(j) != 'D') {
-                            j++;
-                        }
-                        if (j == circleUntilIndex) {
-                            return "Radiant";
-                        } else {
-                            s.deleteCharAt(j);
-                        }
+                    if (deleteNext(i, s, 'D')) {
+                        return "Radiant";
                     }
                 }
 
                 if (ch == 'D') {
                     // find next D and remove it if possible
-                    var j = i+1;
-                    while (j < s.length() && s.charAt(j) != 'R') {
-                        j++;
-                    }
-                    if (j < s.length()) {
-                        s.deleteCharAt(j);
-                    } else {
-                        var circleUntilIndex = j;
-                        j = 0;
-                        while (j < circleUntilIndex && s.charAt(j) != 'R') {
-                            j++;
-                        }
-                        if (j == circleUntilIndex) {
-                            return "Dire";
-                        } else {
-                            s.deleteCharAt(j);
-                        }
+                    if (deleteNext(i, s, 'R')) {
+                        return "Dire";
                     }
                 }
                 i++;
             }
         }
 
-        // only one letter will remake
-        return s.charAt(s.length() - 1) == 'R' ? "Radiant" : "Dire";
+        // s has only 1 of the 2 possible chars, so check any like first in this case
+        return s.charAt(0) == 'R' ? "Radiant" : "Dire";
     }
 
+    /**
+     * Deletes next specified character starting from position [i+1]
+     * If it circles back to original character => there is nothing to delete => return true
+     * indicating that one of the sides has won
+     */
+    private boolean deleteNext(int i, StringBuilder s, char d) {
+        var j = i + 1;
+        while (j < s.length() && s.charAt(j) != d) {
+            j++;
+        }
+        if (j < s.length()) {
+            s.deleteCharAt(j);
+            return false;
+        } else {
+            var circleUntilIndex = j;
+            j = 0;
+            while (j < circleUntilIndex && s.charAt(j) != d) {
+                j++;
+            }
+            if (j == circleUntilIndex) {
+                return true;
+            } else {
+                s.deleteCharAt(j);
+                return false;
+            }
+        }
+    }
+
+    /**
+     * See if all characters in string builder are the same
+     */
     private boolean isMono(StringBuilder s) {
         var r = false;
         var d = false;
 
-        for (char ch: s.toString().toCharArray()) {
+        for (char ch : s.toString().toCharArray()) {
             if (ch == 'R') {
                 r = true;
             } else {
