@@ -31,36 +31,79 @@ public class _437_PathSumIII {
         }
     }
 
+    // approach 1: Store all the possible sums before this one
+    // check if any matches the target
+
+    private int result = 0;
     public int pathSum(TreeNode root, int targetSum) {
-        List<Integer> possibleSums = new ArrayList<>();
-        return pathSum(root, targetSum, possibleSums);
+        // pass a list of all possible sums in a subtree above to each node.
+        // max length of that array will be [length] of a tree
+
+        var possibleSums = new ArrayList<Long>();
+        pathSum(root, targetSum, possibleSums);
+        return result;
     }
 
-    public int pathSum(TreeNode node, int targetSum, List<Integer> possibleSums) {
+    public void pathSum(TreeNode node, int targetSum, List<Long> possibleSums) {
         if (node == null) {
-            return 0;
+            return;
         }
 
-        // see if any of existing paths are good
-        possibleSums.add(node.val);
-        int correctPathCount = 0;
-        long sum = 0;
+        // new possible sums:
+        // - this node
+        // - any of the possible previous sums + value of this node
+        var newPossibleSums = new ArrayList<Long>();
+        newPossibleSums.add( (long) node.val);
+        for (var sum: possibleSums) {
+            newPossibleSums.add( (long) node.val + sum);
+        }
 
-        for (int i = possibleSums.size() - 1; i >= 0; i--) {
-            sum += possibleSums.get(i);
+        // see if any of the possible sums adds up to target for this node
+        for (var sum: newPossibleSums) {
             if (sum == targetSum) {
-                correctPathCount += 1;
+                result++;
             }
         }
 
-        correctPathCount += pathSum(node.left, targetSum, possibleSums);
-        correctPathCount += pathSum(node.right, targetSum, possibleSums);
 
-        possibleSums.remove(possibleSums.size() - 1);
-
-
-        return correctPathCount;
+        // traverse both to the left and to the right
+        pathSum(node.left, targetSum, newPossibleSums);
+        pathSum(node.right, targetSum, newPossibleSums);
     }
+
+    // approach 2: store all the nodes before this one
+    // and count the sum each time
+
+//    public int pathSum(TreeNode root, int targetSum) {
+//        List<Integer> possibleSums = new ArrayList<>();
+//        return pathSum(root, targetSum, possibleSums);
+//    }
+//
+//    public int pathSum(TreeNode node, int targetSum, List<Integer> possibleSums) {
+//        if (node == null) {
+//            return 0;
+//        }
+//
+//        // see if any of existing paths are good
+//        possibleSums.add(node.val);
+//        int correctPathCount = 0;
+//        long sum = 0;
+//
+//        for (int i = possibleSums.size() - 1; i >= 0; i--) {
+//            sum += possibleSums.get(i);
+//            if (sum == targetSum) {
+//                correctPathCount += 1;
+//            }
+//        }
+//
+//        correctPathCount += pathSum(node.left, targetSum, possibleSums);
+//        correctPathCount += pathSum(node.right, targetSum, possibleSums);
+//
+//        // while traversing back from DFS, remove current node from the list of nodes
+//        possibleSums.remove(possibleSums.size() - 1);
+//
+//        return correctPathCount;
+//    }
 
     public static void main(String[] args) {
         var s = new _437_PathSumIII();
