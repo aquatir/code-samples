@@ -40,13 +40,7 @@ public class _1161_MaximumLevelSumOfABinaryTree {
             var levelSize = q.size();
             for (int i = 0; i < levelSize; i++) {
                 var node = q.removeFirst();
-
-                // always set the levelSum to the first value to mitigate negative numbers
-                if (i == 0) {
-                    levelSum = node.val;
-                } else {
-                    levelSum += node.val;
-                }
+                levelSum += node.val;
 
                 if (node.left != null) {
                     q.addLast(node.left);
