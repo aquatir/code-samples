@@ -1,5 +1,6 @@
 package codesample.leetcode.medium;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -33,33 +34,72 @@ public class _199_BinaryTreeRightSideView {
     }
 
 
-    public List<Integer> rightSideView(TreeNode root) {
-        // bfs
-        // add last value on each cycle to the list
+    // approach 1: with LinkedList as queue
+//    public List<Integer> rightSideView(TreeNode root) {
+//        // bfs
+//        // add last value on each cycle to the list
+//
+//        List<Integer> result = new ArrayList<>();
+//        if (root == null) {
+//            return result;
+//        }
+//
+//        Queue<TreeNode> queue = new LinkedList<>();
+//        queue.offer(root);
+//
+//        while (!queue.isEmpty()) {
+//            int size = queue.size();
+//            TreeNode last = null;
+//            for (int i = 0; i < size; i++) {
+//                last = queue.poll();
+//                if (last.left != null) {
+//                    queue.offer(last.left);
+//                }
+//                if (last.right != null) {
+//                    queue.offer(last.right);
+//                }
+//            }
+//            result.add(last.val);
+//        }
+//
+//        return result;
+//    }
 
-        List<Integer> result = new ArrayList<>();
+    // approach 2: with array deque
+    public List<Integer> rightSideView(TreeNode root) {
+
         if (root == null) {
-            return result;
+            return new ArrayList<>();
         }
 
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
+        var res = new ArrayList<Integer>();
+        var q = new ArrayDeque<TreeNode>();
 
-        while (!queue.isEmpty()) {
-            int size = queue.size();
-            TreeNode last = null;
+        q.addLast(root);
+
+        while (!q.isEmpty()) {
+
+            // loop over current level;
+            var size = q.size();
+            var lastIndex = size - 1;
+
             for (int i = 0; i < size; i++) {
-                last = queue.poll();
-                if (last.left != null) {
-                    queue.offer(last.left);
+                var node = q.removeFirst();
+
+                if (node.left != null) {
+                    q.addLast(node.left);
                 }
-                if (last.right != null) {
-                    queue.offer(last.right);
+                if (node.right != null) {
+                    q.addLast(node.right);
+                }
+
+                if (i == lastIndex) {
+                    res.add(node.val);
                 }
             }
-            result.add(last.val);
         }
 
-        return result;
+        return res;
     }
+
 }
