@@ -2,6 +2,9 @@ package codesample.algorithms.mix;
 
 import codesample.data_structures.stacks.StackOnLinkedList;
 
+/**
+ * Two stack calculator for full brackets Strings, e.g. (1+2) is valid, 1+2 is not
+ */
 class DijkstraTwoStackCalculator {
 
     private final StackOnLinkedList<Character> ops = new StackOnLinkedList<>();
@@ -19,62 +22,47 @@ class DijkstraTwoStackCalculator {
 
             /* pushing operations into stack */
             switch (curChar) {
-                case '(':
-                case ' ':
-                    inNumber = false;
-                    break;
-                case '-':
+                case '(', ' ' -> inNumber = false;
+                case '-' -> {
                     ops.push('-');
                     inNumber = false;
-                    break;
-                case '+':
+                }
+                case '+' -> {
                     ops.push('+');
                     inNumber = false;
-                    break;
-                case '*':
+                }
+                case '*' -> {
                     ops.push('*');
                     inNumber = false;
-                    break;
-                case '/':
+                }
+                case '/' -> {
                     inNumber = false;
                     ops.push('/');
-                    break;
-                /* 
-                * calculating 2 last values pushed into stack when
-                * we encounter ')' symbol 
-                */
-                case ')':
+                }
+                /*
+                 * calculating 2 last values pushed into stack when
+                 * we encounter ')' symbol
+                 */
+                case ')' -> {
                     tmpChar = ops.pop();
                     switch (tmpChar) {
-                        case '-':
-                            values.push((-values.pop() + values.pop()));
-                            break;
-                        case '+':
-                            values.push((values.pop() + values.pop()));
-                            break;
-                        case '*':
-                            values.push((values.pop() * values.pop()));
-                            break;
-                        case '/':
-                            values.push((Math.pow(values.pop(), -1) * values.pop()));
-                            break;
-
-                        default:
-                            break;
+                        case '-' -> values.push((-values.pop() + values.pop()));
+                        case '+' -> values.push((values.pop() + values.pop()));
+                        case '*' -> values.push((values.pop() * values.pop()));
+                        case '/' -> values.push((Math.pow(values.pop(), -1) * values.pop()));
                     }
-
                     inNumber = false;
-                    break;
+                }
 
                 /* Parsing value */
-                default:
+                default -> {
                     if (inNumber) {
-                        values.push(values.pop() * 10.0 + (double) Character.getNumericValue(curChar));
+                        values.push(values.pop() * 10.0 + Character.getNumericValue(curChar));
                     } else {
                         values.push((double) Character.getNumericValue(curChar));
                         inNumber = true;
                     }
-                    break;
+                }
             }
         }
 
