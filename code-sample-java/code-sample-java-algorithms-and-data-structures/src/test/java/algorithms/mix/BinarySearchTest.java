@@ -3,11 +3,30 @@ package algorithms.mix;
 import codesample.algorithms.mix.BinarySearch;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class BinarySearchTest {
+
+    @Test
+    void test_0_elements() {
+        var list = new ArrayList<Integer>();
+
+        assertThat(BinarySearch.search(list, -1)).isEqualTo(-1);
+        assertThat(BinarySearch.search(list, 0)).isEqualTo(-1);
+        assertThat(BinarySearch.search(list, 1)).isEqualTo(-1);
+    }
+
+    @Test
+    void test_1_elements() {
+        var list = List.of(0);
+
+        assertThat(BinarySearch.search(list, -1)).isEqualTo(-1);
+        assertThat(BinarySearch.search(list, 0)).isEqualTo(0);
+        assertThat(BinarySearch.search(list, 1)).isEqualTo(-1);
+    }
 
     @Test
     void test_5_elements() {

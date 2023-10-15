@@ -4,6 +4,10 @@ import java.util.List;
 
 public class BinarySearch {
 
+    private BinarySearch() {
+        // no creation
+    }
+
     public static <T extends Comparable<T>> int search(List<T> sortedList, T value) {
         int left = 0;
         int right = sortedList.size() - 1;
