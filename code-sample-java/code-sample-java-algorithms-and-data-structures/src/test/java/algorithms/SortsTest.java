@@ -9,10 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class SortsTest {
+class SortsTest {
 
-    private final int size = 10;
-    private final int randomSeed = 0;
+    private final int SIZE = 5_000;
     private Random rnd;
 
     private List<Integer> arrTest = new ArrayList<>();
@@ -20,35 +19,29 @@ public class SortsTest {
 
     @BeforeEach
     public void initiateList() {
-        rnd = new Random(randomSeed);
-        arrTest = generateRandomIntegerArray(size);
+        rnd = new Random(0);
+        arrTest = generateRandomIntegerArray(SIZE);
         arrExp = new ArrayList<>();
         arrExp.addAll(arrTest);
+        arrExp.sort(Integer::compareTo);
     }
 
     @Test
-    public void insertionSortTest() {
+    void insertionSortTest() {
 
-        Sorts.insertionSort(arrTest, 0, size);
-        arrExp.sort(Integer::compareTo);
-
+        Sorts.insertionSort(arrTest, 0, SIZE);
         Assertions.assertEquals(arrExp, arrTest);
     }
 
     @Test
-    public void selectionSortTest() {
-        int bob = 1;
-        Sorts.selectionSort(arrTest, 0, size);
-        arrExp.sort(Integer::compareTo);
-
+    void selectionSortTest() {
+        Sorts.selectionSort(arrTest, 0, SIZE);
         Assertions.assertEquals(arrExp, arrTest);
     }
 
     @Test
-    public void shellSortTest() {
-        Sorts.shellSort(arrTest, 0, size);
-        arrExp.sort(Integer::compareTo);
-
+    void shellSortTest() {
+        Sorts.shellSort(arrTest, 0, SIZE);
         Assertions.assertEquals(arrExp, arrTest);
     }
 

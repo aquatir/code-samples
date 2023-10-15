@@ -3,8 +3,15 @@ package codesample.data_structures.queues;
 /**
  * Basic queue implementation using arrays
  */
-class QueueOnArray<T> {
+public class QueueOnArray<T> {
+
+    /**
+     * Always points to the next elements that will be extracted
+     */
     private int head;
+    /**
+     * Point to the position of the last inserted elements, must be updated before insert
+     */
     private int tail;
     private int size;
     private T[] array;
@@ -35,15 +42,15 @@ class QueueOnArray<T> {
      * Get next element index to be used as tail
      */
     private void nextTail() {
-        if (tail + 1 == array.length) {
-            if (head == 0) {
+        if (tail + 1 == array.length) { // when at the end of array
+            if (head == 0) { // if head is at zero already, can't override, have to resize
                 tail = array.length;
                 resize(array.length * 2);
-            } else {
+            } else { // if head not at zero, there are elements to override
                 tail = 0;
             }
-        } else {
-            if (tail + 1 == head) {
+        } else { // not at the end of array
+            if (tail + 1 == head) { // if you will hit head => can't override => have to resize
                 tail = array.length;
                 resize(array.length * 2);
             } else {
@@ -56,18 +63,11 @@ class QueueOnArray<T> {
      * Get next element index to be used as head
      */
     private void nextHead() {
-        if (head + 1 == array.length) {
-            if (tail == 0) {
-                head = tail = 0;
-            } else {
-                head = 0;
-            }
+        // don't update tail, because tail will be updated with a call to enqueue anyway
+        if (head + 1 == array.length) { // if head at max, rotate over array
+            head = 0;
         } else {
-            if (head + 1 > tail) {
-                head = tail = 0;
-            } else {
-                head += 1;
-            }
+            head += 1;
         }
     }
 
@@ -93,7 +93,8 @@ class QueueOnArray<T> {
      */
     public void enqueue(T element) {
         if (this.isEmpty()) {
-            head = tail = 0;
+            head = 0;
+            tail = 0;
         } else {
             nextTail();
         }
@@ -112,7 +113,7 @@ class QueueOnArray<T> {
             throw new IllegalArgumentException("Attempting to dequeue from empty queue");
         }
 
-        /* If not empty proceed with exctracting value */
+        /* If not empty proceed with extracting value */
         T value = array[head];
 
         array[head] = null;

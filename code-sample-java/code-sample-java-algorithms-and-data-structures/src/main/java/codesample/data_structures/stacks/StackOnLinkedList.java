@@ -6,15 +6,15 @@
 package codesample.data_structures.stacks;
 
 
-public class StackOnLinkedList<GenericItemType> {
+public class StackOnLinkedList<T> {
     private Node head;
     private int size;
     
     private class Node {
-        private final GenericItemType value;
+        private final T value;
         private Node next;
         
-        Node(GenericItemType value) {
+        Node(T value) {
             this.value = value;
             this.next = null;
         }
@@ -24,19 +24,19 @@ public class StackOnLinkedList<GenericItemType> {
         return size == 0;
     }
     
-    public void push(GenericItemType value) {
+    public void push(T value) {
         Node newHead = new Node(value);
         newHead.next = head;
         head = newHead;
         ++size;
     }
     
-    public GenericItemType pop() {
+    public T pop() {
         if (this.isEmpty()) {
             throw new IllegalArgumentException ("Attempting to pop from empty stack");
         }
         
-        GenericItemType value = head.value;
+        T value = head.value;
         
         Node newHead = head.next;
         head.next = null;

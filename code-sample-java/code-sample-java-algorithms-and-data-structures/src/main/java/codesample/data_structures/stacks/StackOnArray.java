@@ -62,6 +62,7 @@ public class StackOnArray<T> {
      */
     public void push(T item) {
         if (head == array.length) {
+            // double the size
             resize( array.length << 2 );
         }
 
