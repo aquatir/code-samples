@@ -1,6 +1,6 @@
-package algorithms.union;
+package data_structures.union;
 
-import codesample.algorithms.union.Union;
+import codesample.data_structures.union.Union;
 import org.junit.jupiter.api.Assertions;
 
 public class GenericUnionTests {

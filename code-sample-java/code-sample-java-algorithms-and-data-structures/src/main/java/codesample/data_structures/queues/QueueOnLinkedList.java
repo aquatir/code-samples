@@ -75,8 +75,6 @@ class QueueOnLinkedList<T> implements Iterable {
 
     /**
      * Iterator implementation
-     *
-     * @return
      */
     public Iterator<T> iterator() {
         return new QueueIterator();

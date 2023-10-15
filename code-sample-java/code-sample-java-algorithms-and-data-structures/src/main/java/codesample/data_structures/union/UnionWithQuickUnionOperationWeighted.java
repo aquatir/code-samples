@@ -1,7 +1,6 @@
 
-package codesample.algorithms.union;
+package codesample.data_structures.union;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -11,32 +10,26 @@ import java.util.stream.Collectors;
  * This is a Union implementation with quick 'connect' operation.
  *
  * connect (node1, node2). Takes up to 0(log(n))
- * areConnected (node1, node2). Takes up to 0(log(n)) (In practice its close to 0(1) due to flattering)
- * removeNode(node). Takes up to 0(n)
+ * areConnected (node1, node2). Takes up to 0(log(n)).
+ * removeNode(node). Takes up to 0(log(n))
  *
  * This implementation watch for tree sizesMap when adding elements making
  * sure that when connecting 2 trees the smaller one would get connected to bigger one which decrees overall tree size.
  *
  * The tree size will not get increased unless two trees with the same size are getting connected. If that's the case
- *
- * This algorithms also implements flattering. When traversing to root, we remap values in trees directly to root to make
- * tree size even smaller. This is good for areConnected() and connect() operations but a bad for removeNode() operation.
- *
- * If you are not planning to remove nodes this implementations should be better for use, otherwise you
- * implementation without flattering
  * */
-public class UnionWithQuickUnionOperationWeightedWithFlattering<T extends Comparable<T>> implements Union<T>{
+public class UnionWithQuickUnionOperationWeighted<T extends Comparable<T>> implements Union<T>{
 
     private Map<T, T> valuesMap;
     private Map<T, Integer> sizesMap;
 
 
-    public UnionWithQuickUnionOperationWeightedWithFlattering() {
+    public UnionWithQuickUnionOperationWeighted() {
         valuesMap = new HashMap<>();
         sizesMap = new HashMap<>();
     }
 
-    public UnionWithQuickUnionOperationWeightedWithFlattering(Set<T> set) {
+    public UnionWithQuickUnionOperationWeighted(Set<T> set) {
         /* Initially all entices are roots thus they refer to themselves */
         this.valuesMap = set.stream()
                 .collect(Collectors.toMap(value -> value, value -> value));
@@ -50,29 +43,11 @@ public class UnionWithQuickUnionOperationWeightedWithFlattering<T extends Compar
      * Find the root of hierarchy. Root element has a mapping to itself in valuesMap
      */
     private T root(T value) {
-        if (value == null || !valuesMap.containsKey(value))
-            return null;
         var currentValue = value;
-
-        // Collect nodes which we traverse while getting to root node.
-        var traversedNodes = new ArrayList<T>();
-        while (!valuesMap.get(currentValue).equals(currentValue) ) {
-            traversedNodes.add(currentValue);
+        while (valuesMap.get(currentValue) != currentValue) {
             currentValue = valuesMap.get(currentValue);
         }
-
-        // Map traversed nodes directly to root. Set size of those nodes to 1 (the are now directly point to root)
-        var root = currentValue;
-        traversedNodes.forEach(node -> {
-            valuesMap.put(node, root);
-            sizesMap.put(node, 1);
-        });
-
-        if (!traversedNodes.isEmpty() && sizesMap.get(root) != 1) {
-            sizesMap.put(root, 2);
-        }
-
-        return root;
+        return currentValue;
     }
 
     @Override
@@ -174,3 +149,4 @@ public class UnionWithQuickUnionOperationWeightedWithFlattering<T extends Compar
         }
     }
 }
+   

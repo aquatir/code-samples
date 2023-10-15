@@ -1,5 +1,5 @@
 
-package codesample.algorithms.union;
+package codesample.data_structures.union;
 
 import java.util.ArrayList;
 import java.util.HashMap;

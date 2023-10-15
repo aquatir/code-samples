@@ -1,16 +1,16 @@
-package algorithms.union;
+package data_structures.union;
 
-import codesample.algorithms.union.UnionWithQuickUnionOperationWeightedWithFlattering;
+import codesample.data_structures.union.UnionWithQuickUnionOperationWeighted;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class UnionWithQuickUnionOperationWeightedWithFlatteringTest {
+public class UnionWithQuickUnionOperationWeightedTest {
 
-    private UnionWithQuickUnionOperationWeightedWithFlattering<String> union;
+    private UnionWithQuickUnionOperationWeighted<String> union;
 
     @BeforeEach
     public void unitUnion() {
-        union = new UnionWithQuickUnionOperationWeightedWithFlattering<>();
+        union = new UnionWithQuickUnionOperationWeighted<>();
     }
 
     @Test

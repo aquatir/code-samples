@@ -20,8 +20,9 @@ public class QueueOnTwoStacks<T> {
     }
 
     public T dequeue() {
-        if (outputStack.isEmpty() && inputStack.isEmpty())
+        if (outputStack.isEmpty() && inputStack.isEmpty()) {
             throw new IllegalArgumentException("Attempting to dequeue from empty queue");
+        }
 
         if (outputStack.isEmpty()) {
             while (!inputStack.isEmpty()) {
