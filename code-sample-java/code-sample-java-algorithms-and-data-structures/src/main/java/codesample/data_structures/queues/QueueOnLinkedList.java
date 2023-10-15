@@ -6,7 +6,7 @@ import java.util.Iterator;
 /**
  * Basic queue implementation using linked list
  */
-class QueueOnLinkedList<T> implements Iterable {
+public class QueueOnLinkedList<T> implements Iterable<T>, Queue<T> {
 
     private Node head;
     private Node tail;
@@ -31,13 +31,15 @@ class QueueOnLinkedList<T> implements Iterable {
      *
      * @param value of element to put into queue
      */
+    @Override
     public void enqueue(T value) {
         Node inserted = new Node(value);
 
         if (this.isEmpty()) {
-            head = tail = inserted;
+            head = inserted;
+            tail = inserted;
         } else {
-            Node oldTail = this.tail;
+            var oldTail = this.tail;
             oldTail.next = inserted;
             this.tail = inserted;
         }
@@ -52,13 +54,14 @@ class QueueOnLinkedList<T> implements Iterable {
      * @throws IllegalArgumentException when attempting to dequeue
      *                                  from empty queue
      */
+    @Override
     public T dequeue() {
         /* see if queue is empty */
         if (this.isEmpty()) {
             throw new IllegalArgumentException("Attempting to dequeue from empty queue");
         }
 
-        /* Of not empty proceed with exctracting value */
+        /* If not empty proceed with extracting value */
         T value = head.value;
 
         if (size == 1) {

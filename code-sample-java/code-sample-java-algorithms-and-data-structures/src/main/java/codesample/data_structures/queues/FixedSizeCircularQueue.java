@@ -13,7 +13,7 @@ public class FixedSizeCircularQueue {
         this.elements = new int[k];
     }
 
-    public boolean enQueue(int value) {
+    public boolean enqueue(int value) {
         if (isFull()) {
             return false;
         }
@@ -34,7 +34,7 @@ public class FixedSizeCircularQueue {
         }
     }
 
-    public boolean deQueue() {
+    public boolean dequeue() {
         if (isEmpty()) {
             rear = front = 0;
             return false;
@@ -53,14 +53,20 @@ public class FixedSizeCircularQueue {
         }
     }
 
-    public int Front() {
-        if (isEmpty()) return -1;
-        else return elements[front];
+    public int front() {
+        if (isEmpty()) {
+            return -1;
+        } else {
+            return elements[front];
+        }
     }
 
-    public int Rear() {
-        if (isEmpty()) return -1;
-        else return elements[rear];
+    public int rear() {
+        if (isEmpty()) {
+            return -1;
+        } else {
+            return elements[rear];
+        }
     }
 
     public boolean isEmpty() {
@@ -90,15 +96,15 @@ my:  [null,true,true,true,true,true,true,true,true,true,0]
          */
 
         var q = new FixedSizeCircularQueue(2);
-        q.enQueue(1);
-        q.enQueue(2);
-        q.deQueue();
-        q.enQueue(3);
-        q.deQueue();
-        q.enQueue(3);
-        q.deQueue();
-        q.enQueue(3);
-        q.deQueue();
-        System.out.println(q.Front()); // exp: 3
+        q.enqueue(1);
+        q.enqueue(2);
+        q.dequeue();
+        q.enqueue(3);
+        q.dequeue();
+        q.enqueue(3);
+        q.dequeue();
+        q.enqueue(3);
+        q.dequeue();
+        System.out.println(q.front()); // exp: 3
     }
 }

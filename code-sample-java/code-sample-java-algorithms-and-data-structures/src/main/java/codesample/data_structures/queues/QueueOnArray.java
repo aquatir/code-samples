@@ -3,7 +3,7 @@ package codesample.data_structures.queues;
 /**
  * Basic queue implementation using arrays
  */
-public class QueueOnArray<T> {
+public class QueueOnArray<T> implements Queue<T> {
 
     /**
      * Always points to the next elements that will be extracted
@@ -107,6 +107,7 @@ public class QueueOnArray<T> {
      *
      * @return element for queue's tail
      */
+    @Override
     public T dequeue() {
         /* see if queue is empty */
         if (this.isEmpty()) {

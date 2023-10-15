@@ -5,7 +5,7 @@ import codesample.data_structures.stacks.StackOnArray;
 /**
  * @param <T> - Generic item type for this queue
  */
-public class QueueOnTwoStacks<T> {
+public class QueueOnTwoStacks<T> implements Queue<T> {
 
     private final StackOnArray<T> inputStack;
     private final StackOnArray<T> outputStack;
@@ -15,10 +15,12 @@ public class QueueOnTwoStacks<T> {
         outputStack = new StackOnArray<>();
     }
 
+    @Override
     public void enqueue(T item) {
         inputStack.push(item);
     }
 
+    @Override
     public T dequeue() {
         if (outputStack.isEmpty() && inputStack.isEmpty()) {
             throw new IllegalArgumentException("Attempting to dequeue from empty queue");

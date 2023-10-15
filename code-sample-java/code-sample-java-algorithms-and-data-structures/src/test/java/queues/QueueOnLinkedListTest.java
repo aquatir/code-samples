@@ -1,12 +1,12 @@
 package queues;
 
 import codesample.data_structures.queues.Queue;
-import codesample.data_structures.queues.QueueOnArray;
+import codesample.data_structures.queues.QueueOnLinkedList;
 import org.junit.jupiter.api.Test;
 
-class QueueOnArrayTest {
+class QueueOnLinkedListTest {
 
-    private final Queue<Integer> queue = new QueueOnArray<>();
+    private final Queue<Integer> queue = new QueueOnLinkedList<>();
 
     @Test
     void test_enqueue_and_dequeue() {
