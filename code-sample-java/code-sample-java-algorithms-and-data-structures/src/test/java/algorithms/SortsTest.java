@@ -27,8 +27,14 @@ class SortsTest {
     }
 
     @Test
-    void insertionSortTest() {
+    void bubbleSortTest() {
 
+        Sorts.bubbleSort(arrTest, 0, SIZE);
+        Assertions.assertEquals(arrExp, arrTest);
+    }
+
+    @Test
+    void insertionSortTest() {
         Sorts.insertionSort(arrTest, 0, SIZE);
         Assertions.assertEquals(arrExp, arrTest);
     }
