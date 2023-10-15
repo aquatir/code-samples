@@ -1,10 +1,10 @@
 package data_structures.union;
 
-import codesample.data_structures.union.UnionWithQuickUnionOperationWeightedWithFlattering;
+import codesample.data_structures.unions.UnionWithQuickUnionOperationWeightedWithFlattering;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class UnionWithQuickUnionOperationWeightedWithFlatteringTest {
+class UnionWithQuickUnionOperationWeightedWithFlatteringTest {
 
     private UnionWithQuickUnionOperationWeightedWithFlattering<String> union;
 
@@ -14,17 +14,17 @@ public class UnionWithQuickUnionOperationWeightedWithFlatteringTest {
     }
 
     @Test
-    public void unionThreeNodes_CheckTransitiveAreConnectedTrue() {
+    void unionThreeNodes_CheckTransitiveAreConnectedTrue() {
         GenericUnionTests.unionThreeNodes_CheckTransitiveAreConnectedTrue(union);
     }
 
     @Test
-    public void createUnlinkedNode_TestNotConnectedToAnything() {
+    void createUnlinkedNode_TestNotConnectedToAnything() {
         GenericUnionTests.createUnlinkedNode_TestNotConnectedToAnything(union);
     }
 
     @Test
-    public void removeUnionNode_TestNotConnectedAnyMore() {
+    void removeUnionNode_TestNotConnectedAnyMore() {
         GenericUnionTests.removeUnionNode_TestNotConnectedAnyMore(union);
     }
 }

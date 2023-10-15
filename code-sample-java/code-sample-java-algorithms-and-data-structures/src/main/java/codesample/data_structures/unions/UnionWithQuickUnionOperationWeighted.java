@@ -1,5 +1,4 @@
-
-package codesample.data_structures.union;
+package codesample.data_structures.unions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,17 +7,17 @@ import java.util.stream.Collectors;
 
 /**
  * This is a Union implementation with quick 'connect' operation.
- *
+ * <p>
  * connect (node1, node2). Takes up to 0(log(n))
  * areConnected (node1, node2). Takes up to 0(log(n)).
  * removeNode(node). Takes up to 0(log(n))
- *
+ * <p>
  * This implementation watch for tree sizesMap when adding elements making
  * sure that when connecting 2 trees the smaller one would get connected to bigger one which decrees overall tree size.
- *
+ * <p>
  * The tree size will not get increased unless two trees with the same size are getting connected. If that's the case
- * */
-public class UnionWithQuickUnionOperationWeighted<T extends Comparable<T>> implements Union<T>{
+ */
+public class UnionWithQuickUnionOperationWeighted<T extends Comparable<T>> implements Union<T> {
 
     private Map<T, T> valuesMap;
     private Map<T, Integer> sizesMap;
@@ -31,12 +30,10 @@ public class UnionWithQuickUnionOperationWeighted<T extends Comparable<T>> imple
 
     public UnionWithQuickUnionOperationWeighted(Set<T> set) {
         /* Initially all entices are roots thus they refer to themselves */
-        this.valuesMap = set.stream()
-                .collect(Collectors.toMap(value -> value, value -> value));
+        this.valuesMap = set.stream().collect(Collectors.toMap(value -> value, value -> value));
 
-        // By default sizesMap of each node is 1
-        sizesMap = set.stream().collect(
-                Collectors.toMap(value -> value, value -> 1));
+        // By default, sizesMap of each node is 1
+        sizesMap = set.stream().collect(Collectors.toMap(value -> value, value -> 1));
     }
 
     /**
@@ -52,11 +49,10 @@ public class UnionWithQuickUnionOperationWeighted<T extends Comparable<T>> imple
 
     @Override
     public boolean areConnected(T nodeOne, T nodeTwo) {
-        var rootLeft =  root(nodeOne);
+        var rootLeft = root(nodeOne);
         var rootRight = root(nodeTwo);
 
-        if (rootLeft == null || rootRight == null)
-            return false;
+        if (rootLeft == null || rootRight == null) return false;
         else {
             return rootLeft.equals(rootRight);
         }
@@ -70,15 +66,16 @@ public class UnionWithQuickUnionOperationWeighted<T extends Comparable<T>> imple
         T rootLeft = root(nodeOne);
         T rootRight = root(nodeTwo);
 
-        if (rootLeft.equals(rootRight))
+        if (rootLeft.equals(rootRight)) {
             return;
+        }
 
         var sizeLeft = sizesMap.get(rootLeft);
         var sizeRight = sizesMap.get(rootRight);
 
         if (sizeLeft < sizeRight) {
             valuesMap.put(rootLeft, rootRight);
-        } else if (sizeLeft > sizeRight){
+        } else if (sizeLeft > sizeRight) {
             valuesMap.put(rootRight, rootLeft);
         } else {
             valuesMap.put(rootRight, rootLeft);
@@ -97,13 +94,10 @@ public class UnionWithQuickUnionOperationWeighted<T extends Comparable<T>> imple
     @Override
     public void removeNode(T node) {
 
-        if (!valuesMap.containsKey(node))
-            return;
+        if (!valuesMap.containsKey(node)) return;
 
         /* Nodes which should be remapped to other nodes when current node is removed */
-        var toBeRemapped = valuesMap.keySet().stream()
-                .filter(key -> valuesMap.get(key).equals(node))
-                .collect(Collectors.toList());
+        var toBeRemapped = valuesMap.keySet().stream().filter(key -> valuesMap.get(key).equals(node)).collect(Collectors.toList());
 
         /* If nothing to remap, simply remove the node */
         if (toBeRemapped.isEmpty()) {

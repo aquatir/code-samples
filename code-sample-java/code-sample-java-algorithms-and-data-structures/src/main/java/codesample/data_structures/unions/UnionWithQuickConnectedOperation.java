@@ -1,5 +1,4 @@
-
-package codesample.data_structures.union;
+package codesample.data_structures.unions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,8 +11,8 @@ import java.util.stream.IntStream;
  * connect (node1, node2). Takes O(n)
  * areConnected (node1, node2). Takes 0(1)
  * removeNode(node). Takes 0(1)
- *
- *  * See test in test/java/algorithms/union/UnionWithQuickConnectedOperationTest
+ * <p>
+ * * See test in test/java/algorithms/union/UnionWithQuickConnectedOperationTest
  */
 public class UnionWithQuickConnectedOperation<T extends Comparable<T>> implements Union<T> {
 
@@ -28,8 +27,7 @@ public class UnionWithQuickConnectedOperation<T extends Comparable<T>> implement
     public UnionWithQuickConnectedOperation(Set<T> set) {
         var list = new ArrayList<>(set);
         this.map = new HashMap<>(list.size());
-        IntStream.range(0, list.size())
-                .forEach(i -> map.put(list.get(i), i));
+        IntStream.range(0, list.size()).forEach(i -> map.put(list.get(i), i));
 
         this.nextSetIndex = list.size();
     }
@@ -74,8 +72,6 @@ public class UnionWithQuickConnectedOperation<T extends Comparable<T>> implement
     }
 
     private void remapOldIndexToNewIndex(Integer oldIndex, Integer newIndex) {
-        map.entrySet().stream()
-                .filter(entry -> entry.getValue().equals(oldIndex))
-                .forEach(entry -> map.put(entry.getKey(), newIndex));
+        map.entrySet().stream().filter(entry -> entry.getValue().equals(oldIndex)).forEach(entry -> map.put(entry.getKey(), newIndex));
     }
 }

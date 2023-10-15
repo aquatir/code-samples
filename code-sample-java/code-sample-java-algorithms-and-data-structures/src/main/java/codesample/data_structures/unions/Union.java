@@ -1,4 +1,4 @@
-package codesample.data_structures.union;
+package codesample.data_structures.unions;
 
 
 public interface Union<T extends Comparable<T>> {

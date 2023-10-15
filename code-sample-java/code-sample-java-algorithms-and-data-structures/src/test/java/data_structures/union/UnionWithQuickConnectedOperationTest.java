@@ -1,6 +1,6 @@
 package data_structures.union;
 
-import codesample.data_structures.union.UnionWithQuickConnectedOperation;
+import codesample.data_structures.unions.UnionWithQuickConnectedOperation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
