@@ -7,7 +7,7 @@ public class FixedSizeCircularQueue {
     private int rear = 0;
 
     private int size = 0;
-    private int[] elements;
+    private final int[] elements;
 
     public FixedSizeCircularQueue(int k) {
         this.elements = new int[k];
