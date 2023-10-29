@@ -53,7 +53,7 @@ public class Sorts {
     }
 
     /**
-     * Sort array using insertion sort. In insertion sort after ith iteration [0,i] is sorted
+     * Sort array using insertion sort. In insertion sort after ith iteration, the subarray [left,i] is sorted
      *
      * @param array input array.
      * @param left  left index of array. Included in sort
@@ -83,13 +83,16 @@ public class Sorts {
 
         /* generate maximum h value */
         int h = 1;
-        while (h < n / 3) h = h * 3 + 1;
+        while (h < n / 3) {
+            h = h * 3 + 1;
+        }
 
         /* start sorting */
         while (h >= 1) {
             for (int i = h; i < n; i += h) {
-                for (int j = i; j >= h && less(list.get(j), list.get(j - h)); j -= h)
+                for (int j = i; j >= h && less(list.get(j), list.get(j - h)); j -= h) {
                     swap(list, j, j - h);
+                }
             }
             h = h / 3;
         }
