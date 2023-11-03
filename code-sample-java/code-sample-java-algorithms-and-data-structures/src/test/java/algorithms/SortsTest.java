@@ -51,6 +51,24 @@ class SortsTest {
         Assertions.assertEquals(arrExp, arrTest);
     }
 
+    @Test
+    void mergeSortTest() {
+        Sorts.mergeSort(arrTest, 0, SIZE);
+        Assertions.assertEquals(arrExp, arrTest);
+    }
+
+//    @Test
+//    void testMerge() {
+//        var arr = new ArrayList<Integer>(List.of(1, 4, 5, 7, 2, 3, 6, 8));
+//        var aux = new ArrayList<Integer>(arr.size());
+//        for (var e: arr) {
+//            aux.add(e);
+//        }
+//        Sorts.merge(arr, aux, 0, 3, 7);
+//
+//        System.out.println(arr);
+//    }
+
     private List<Integer> generateRandomIntegerArray(int size) {
         var array = new ArrayList<Integer>(size);
         for (int i = 0; i < size; ++i) {

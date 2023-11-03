@@ -1,6 +1,7 @@
 package codesample.algorithms;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Sorts {
@@ -98,10 +99,69 @@ public class Sorts {
         }
     }
 
-    public static <T extends Comparable<T>> void mergeSort(List<T> list, int left, int right) {
+    // **********
+    // MERGE SORT
+    // **********
 
+    /**
+     * Merge sort for [left; right). Right is usually the size
+     */
+    public static <T extends Comparable<T>> void mergeSort(List<T> list, int left, int right) {
+        var aux = new ArrayList<T>(list.size());
+        aux.addAll(list);
+        mergeSort(list, aux, left, right - 1);
     }
 
+    // merge sort for [left; right]
+    private static <T extends Comparable<T>> void mergeSort(List<T> list, List<T> aux, int left, int right) {
+        if (right <= left) {
+            return;
+        }
+
+        var mid = left + (right - left) / 2;
+
+        mergeSort(list, aux, left, mid);
+        mergeSort(list, aux, mid + 1, right);
+
+        merge(list, aux, left, mid, right);
+    }
+
+    /**
+     * Merge two lists [left; mid] and [mid+1; right]
+     */
+    private static <T extends Comparable<T>> void merge(List<T> list, List<T> aux, int lo, int mid, int hi) {
+
+        // assert sorted [lo, mid]
+        // assert sorted [mid+1; hi]
+        for (int i = lo; i <= hi; i++) {
+            aux.set(i, list.get(i));
+        }
+
+        // i => index of left sorted half
+        // j => index of right sorter half
+        // k => insert index
+        int i = lo;
+        int j = mid + 1;
+        for (int k = lo; k <= hi; k++) {
+            if (i > mid) {
+                list.set(k, aux.get(j));
+                j++;
+            } else if (j > hi) {
+                list.set(k, aux.get(i));
+                i++;
+            } else if (less(aux.get(j), aux.get(i))) {
+                list.set(k, aux.get(j));
+                j++;
+            } else {
+                list.set(k, aux.get(i));
+                i++;
+            }
+        }
+    }
+
+    // **********
+    // QUICK SORT
+    // **********
 
     public static <T extends Comparable<T>> void quickSort(List<T> list, int left, int right) {
 
