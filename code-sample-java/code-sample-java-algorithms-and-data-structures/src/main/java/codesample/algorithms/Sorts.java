@@ -180,14 +180,15 @@ public class Sorts {
         }
         var j = partition(list, left, right);
         quickSortInternal(list, left, j - 1);
-        quickSortInternal(list, j+1, right);
+        quickSortInternal(list, j + 1, right);
     }
 
     private static <T extends Comparable<T>> int partition(List<T> list, int lo, int hi) {
-        int left = lo; // will increment instantly
-        int right = hi + 1; // will decrement instantly
+        int left = lo;          // will increment instantly
+        int right = hi + 1;     // will decrement instantly
 
-        // move left, then more right, then swap
+        // move left pointer to preserve left < lo, then more right to preserve right > lo , then swap
+        // at the end swap lo with right pointer, because it now points to correct place
         while (true) {
             while (less(list.get(++left), list.get(lo))) {
                 if (left == hi) {
