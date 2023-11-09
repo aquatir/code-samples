@@ -69,6 +69,12 @@ class SortsTest {
 //        System.out.println(arr);
 //    }
 
+    @Test
+    void quickSortTest() {
+        Sorts.quickSort(arrTest, 0, SIZE);
+        Assertions.assertEquals(arrExp, arrTest);
+    }
+
     private List<Integer> generateRandomIntegerArray(int size) {
         var array = new ArrayList<Integer>(size);
         for (int i = 0; i < size; ++i) {

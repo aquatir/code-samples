@@ -163,8 +163,50 @@ public class Sorts {
     // QUICK SORT
     // **********
 
+    // Sorts [left; right)
+    // Algo:
+    // - shuffle to randomize
+    // - partition: no larger to left of J, no smaller to right of J
+    // - sort each piece
     public static <T extends Comparable<T>> void quickSort(List<T> list, int left, int right) {
+        Shuffle.shuffle(list, left, right);
+        quickSortInternal(list, left, right - 1);
+    }
 
+    // sorts [left; right]
+    private static <T extends Comparable<T>> void quickSortInternal(List<T> list, int left, int right) {
+        if (left >= right) {
+            return;
+        }
+        var j = partition(list, left, right);
+        quickSortInternal(list, left, j - 1);
+        quickSortInternal(list, j+1, right);
+    }
+
+    private static <T extends Comparable<T>> int partition(List<T> list, int lo, int hi) {
+        int left = lo; // will increment instantly
+        int right = hi + 1; // will decrement instantly
+
+        // move left, then more right, then swap
+        while (true) {
+            while (less(list.get(++left), list.get(lo))) {
+                if (left == hi) {
+                    break;
+                }
+            }
+            while (less(list.get(lo), list.get(--right))) {
+                if (right == lo) {
+                    break;
+                }
+            }
+            if (left >= right) {
+                break;
+            }
+            swap(list, left, right);
+        }
+
+        swap(list, lo, right);
+        return right;
     }
 
 
