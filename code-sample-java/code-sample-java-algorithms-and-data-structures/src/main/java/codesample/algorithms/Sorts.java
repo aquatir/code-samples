@@ -218,7 +218,7 @@ public class Sorts {
     }
 
 
-    private static <T extends Comparable<T>> boolean less(T a, T b) {
+    public static <T extends Comparable<T>> boolean less(T a, T b) {
         return a.compareTo(b) < 0;
     }
 }
