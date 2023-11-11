@@ -10,15 +10,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BinaryHeapTest {
 
+    private final int SIZE = 5_000;
+
     @Test
     void test_can_insert_and_retrieve_in_order() {
         var heap = new BinaryHeap<Integer>();
 
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < SIZE; i++) {
             heap.add(i);
         }
 
-        for (int i = 49; i >= 0; i--) {
+        for (int i = SIZE - 1; i >= 0; i--) {
             assertEquals(i, heap.peek());
             assertEquals(i, heap.poll());
 
@@ -35,7 +37,7 @@ class BinaryHeapTest {
         var rnd = new Random();
         var randomElements = new ArrayList<Integer>();
 
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < SIZE; i++) {
             randomElements.add(rnd.nextInt());
         }
 
@@ -44,10 +46,10 @@ class BinaryHeapTest {
         }
 
         var sortedWithHeap = new ArrayList<Integer>();
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < SIZE; i++) {
             sortedWithHeap.add(null);
         }
-        for (int i = 49; i >= 0; i--) {
+        for (int i = SIZE - 1; i >= 0; i--) {
             sortedWithHeap.set(i, heap.poll());
         }
 
