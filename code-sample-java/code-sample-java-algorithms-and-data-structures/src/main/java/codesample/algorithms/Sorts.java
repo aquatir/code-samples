@@ -1,6 +1,8 @@
 package codesample.algorithms;
 
 
+import codesample.data_structures.BinaryHeap;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -208,6 +210,19 @@ public class Sorts {
 
         swap(list, lo, right);
         return right;
+    }
+
+    // Sorts at [left, right)
+    public static <T extends Comparable<T>> void heapSort(List<T> list, int left, int right) {
+        var binaryHeap = new BinaryHeap<T>();
+
+        for (int i = left; i < right; i++) {
+            binaryHeap.add(list.get(i));
+        }
+
+        for (int i = right - 1; i >= left; i--) {
+            list.set(i, binaryHeap.poll());
+        }
     }
 
 

@@ -75,6 +75,12 @@ class SortsTest {
         Assertions.assertEquals(arrExp, arrTest);
     }
 
+    @Test
+    void heapSortTest() {
+        Sorts.heapSort(arrTest, 0, SIZE);
+        Assertions.assertEquals(arrExp, arrTest);
+    }
+
     private List<Integer> generateRandomIntegerArray(int size) {
         var array = new ArrayList<Integer>(size);
         for (int i = 0; i < size; ++i) {
