@@ -238,8 +238,12 @@ public class Sorts {
         // step 1: heapify an array
         // step 2: start moving top elements and swapping similar to `sink` operation in a heap
 
+        // we don't need to heapify the last level of BinaryHeap because last level == heap of 1 == already heapify
+        int totalElements = right - left + 1;
+        int withLastLevelRemoved = totalElements / 2;
+
         int maxRightIndex = right - 1;
-        for (int i = maxRightIndex; i >= left; i--) {
+        for (int i = maxRightIndex - withLastLevelRemoved; i >= left; i--) {
             sink(list, i, maxRightIndex);
         }
 
