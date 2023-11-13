@@ -76,6 +76,12 @@ class SortsTest {
     }
 
     @Test
+    void heapSortNaiveTest() {
+        Sorts.heapSortNaive(arrTest, 0, SIZE);
+        Assertions.assertEquals(arrExp, arrTest);
+    }
+
+    @Test
     void heapSortTest() {
         Sorts.heapSort(arrTest, 0, SIZE);
         Assertions.assertEquals(arrExp, arrTest);

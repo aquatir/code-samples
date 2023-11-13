@@ -18,22 +18,21 @@ public class BinaryHeap<T extends Comparable<T>> {
 
     public BinaryHeap() {
         this.arr = new ArrayList<>();
-        arr.add(null);
     }
 
     public T peek() {
-        return arr.get(1);
+        return arr.get(0);
     }
 
     public T poll() {
-        var returned = arr.get(1);
+        var returned = arr.get(0);
 
         // swap current max with the lowest elements, them remove "lowest element" with is now max
-        this.swap(1, size() - 1);
+        this.swap(0, size() - 1);
         arr.remove(size() - 1);
 
         // now the first element may be out of place, we must sink it
-        this.sink(1);
+        this.sink(0);
 
         return returned;
     }
@@ -52,7 +51,7 @@ public class BinaryHeap<T extends Comparable<T>> {
     private void swim(int k) {
 
         // if k already at the top, nowhere else to swim
-        while (k != 1) {
+        while (k != 0) {
 
             // compare with parent
             var parentIndex = parentIndex(k);
@@ -110,15 +109,15 @@ public class BinaryHeap<T extends Comparable<T>> {
     }
 
     private int leftChildIndex(int k) {
-        return 2 * k;
+        return ((k + 1) * 2) - 1;
     }
 
     private int rightChildIndex(int k) {
-        return 2 * k + 1;
+        return (k + 1) * 2;
     }
 
     private int parentIndex(int k) {
-        return k / 2;
+        return (k - 1) / 2;
     }
 
     private void swap(int i, int k) {

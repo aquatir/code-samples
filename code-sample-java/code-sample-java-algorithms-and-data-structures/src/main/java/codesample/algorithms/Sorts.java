@@ -212,8 +212,13 @@ public class Sorts {
         return right;
     }
 
-    // Sorts at [left, right)
-    public static <T extends Comparable<T>> void heapSort(List<T> list, int left, int right) {
+    /**
+     * Sorts at [left, right)
+     * This implementation creates a separate heap for sorting.
+     * Non-native implementation will re-arrange elements in heap-order first because this won't require extra space
+     */
+
+    public static <T extends Comparable<T>> void heapSortNaive(List<T> list, int left, int right) {
         var binaryHeap = new BinaryHeap<T>();
 
         for (int i = left; i < right; i++) {
@@ -225,6 +230,62 @@ public class Sorts {
         }
     }
 
+    /**
+     * Sorts at [left, right)
+     * This implementation sorts an array in-place without extra memory
+     */
+    public static <T extends Comparable<T>> void heapSort(List<T> list, int left, int right) {
+        // step 1: heapify an array
+        // step 2: start moving top elements and swapping similar to `sink` operation in a heap
+
+        int maxRightIndex = right - 1;
+        for (int i = maxRightIndex; i >= left; i--) {
+            sink(list, i, maxRightIndex);
+        }
+
+        for (int i = maxRightIndex; i > left; i--) {
+            swap(list, left, i);
+            sink(list, left, i - 1);
+        }
+
+    }
+
+    private static <T extends Comparable<T>> void sink(List<T> list, int i, int maxIndex) {
+        var leftChild = leftChildIndex(i);
+        var rightChild = rightChildIndex(i);
+
+        // if leftChild is more than max index, right child is also more
+        // there is nowhere to sink, so we exist now
+        if (leftChild > maxIndex) {
+            return;
+        }
+
+        // start assuming that the left child is larger of two
+        // if there is no right child, lake left
+        // if left child is smaller, take right
+        int largerOfChildren = leftChild;
+        if (rightChild > maxIndex) {
+            // largerOfChildren = leftChild; // aka do nothing
+        } else if (less(list.get(leftChild), list.get(rightChild))) {
+            largerOfChildren = rightChild;
+        }
+
+        if (!less(list.get(i), list.get(largerOfChildren))) {
+            return; // if k (element at the top) is not less than larger children => nothing left to do
+        } else {
+            // else, swap, continue
+            swap(list, i, largerOfChildren);
+            sink(list, largerOfChildren, maxIndex);
+        }
+    }
+
+    private static int leftChildIndex(int k) {
+        return ((k + 1) * 2) - 1;
+    }
+
+    private static int rightChildIndex(int k) {
+        return (k + 1) * 2;
+    }
 
     private static <T extends Comparable<T>> void swap(List<T> list, int i, int j) {
         var tmp = list.get(i);
