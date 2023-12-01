@@ -12,8 +12,8 @@ package codesample.data_structures.trees;
  * </ul>
  * </p>
  */
-public class BinarySearchTree {
-    private TreeNode root;
+public class BinarySearchTree<K extends Comparable<K>, V> {
+    private TreeNode<K, V> root;
 
     public BinarySearchTree() {
         this.root = null;
@@ -22,13 +22,22 @@ public class BinarySearchTree {
     /**
      * Adds a node to current binary search tree in a correct place
      */
-    public void addNode(int nodeValue) {
-        // edge case => no root is available
-        if (root == null) {
-            root = new TreeNode(nodeValue);
-            return;
+    public void put(K key, V value) {
+    }
+
+    public V get(K key) {
+        var cur = root;
+
+        while (cur != null) {
+            var cmp = key.compareTo(cur.key);
+            if (cmp > 0) { // key is larger => need to search in right subtree
+                cur = cur.right;
+            } else if (cmp < 0) { // key is smaller => need to search in left subtree
+                cur = cur.left;
+            } else { // key equals, found result
+                return cur.val;
+            }
         }
-
-
+        return null;
     }
 }

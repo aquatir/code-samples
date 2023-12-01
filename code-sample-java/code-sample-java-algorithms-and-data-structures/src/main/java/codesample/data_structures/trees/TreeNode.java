@@ -1,20 +1,16 @@
 package codesample.data_structures.trees;
 
-public class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
+public class TreeNode<K extends Comparable<K>, V> {
+    K key;
+    V val;
+    TreeNode<K, V> left;
+    TreeNode<K, V> right;
 
     TreeNode() {
     }
 
-    TreeNode(int val) {
+    TreeNode(K key, V val) {
+        this.key = key;
         this.val = val;
-    }
-
-    TreeNode(int val, TreeNode left, TreeNode right) {
-        this.val = val;
-        this.left = left;
-        this.right = right;
     }
 }
