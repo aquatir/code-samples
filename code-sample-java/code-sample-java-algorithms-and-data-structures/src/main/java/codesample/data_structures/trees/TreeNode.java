@@ -13,4 +13,12 @@ public class TreeNode<K extends Comparable<K>, V> {
         this.key = key;
         this.val = val;
     }
+
+    @Override
+    public String toString() {
+        return "TreeNode{" +
+            "key=" + key +
+            ", val=" + val +
+            '}';
+    }
 }
