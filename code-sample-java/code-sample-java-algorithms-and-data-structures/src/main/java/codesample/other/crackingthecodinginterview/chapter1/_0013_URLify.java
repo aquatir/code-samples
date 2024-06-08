@@ -1,5 +1,6 @@
 package codesample.other.crackingthecodinginterview.chapter1;
 
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 /**
@@ -8,7 +9,7 @@ import java.util.function.Function;
  */
 public class _0013_URLify {
 
-    public String urlify(char[] charStr) {
+    public String urlify(char[] charStr, int trueLength) {
         // approach 1: create an extra char[] to hold the resulting string
         // analyze initial string char-by-char. If it's a char => insert, if it's a space => insert %20 instead
         // this uses an extra string.length space and is O(n)
@@ -18,49 +19,29 @@ public class _0013_URLify {
         // we could start analyzing characters from the back. If it's a char => insert at the very end. If it's a space => insert %20 instead.
         // We are guaranteed to not override initial string due to "true" length property of input string
 
-        // there could be legitimate whitespaces at the end of the string. How to measure the number of those?
-        // 1. We can compute the number of spaces before the firstNonSpaceIndex as [numberOfSpacesBeforeEnd]
-        // 2. Also compute the number of trailing spaces [numberOfSpacesAtTheEnd]
-        // if (numberOfSpacesBeforeEnd * 3) == numberOfSpacesAtTheEnd; there are no extra whitespaces
-        // else there are (numberOfSpacesAtTheEnd - (numberOfSpacesBeforeEnd * 3)) / 3 extra whitespace characters
+        // there could be legitimate whitespaces at the beginning or end of the string, must think about them too
 
-        var firstNonSpaceIndex = charStr.length - 1;
-        while (charStr[firstNonSpaceIndex] == ' ' && firstNonSpaceIndex != 0) {
-            firstNonSpaceIndex--;
-        }
-
-        var numberOfSpacesBeforeEnd = 0;
-        for (int i = 0; i < firstNonSpaceIndex; i++) {
+        // This here assumes that (charStr) might hold MORE spaces than required. If this is the case, we have to compute
+        // the first insert positions by
+        // 1. counting (trueNumberOfSpaces)
+        // 2. set the (insertIndex) to (trueLength - 1 + 2 * trueNumberOfSpaces)
+        // otherwise, if (charStr) has exactly enough characters, we may set (insertIndex) to (charStr.length - 1)
+        var trueNumberOfSpaces = 0;
+        for (int i = 0; i < trueLength; i++) {
             if (charStr[i] == ' ') {
-                numberOfSpacesBeforeEnd++;
+                trueNumberOfSpaces++;
             }
         }
-        var numberOfSpacesAtTheEnd = 0;
-        for (int i = firstNonSpaceIndex; i <= charStr.length - 1; i++) {
-            numberOfSpacesAtTheEnd++;
-        }
+        var insertIndex = (trueLength - 1) + 2 * trueNumberOfSpaces;
+        var trueIndex = trueLength - 1;
 
-        var numberOfTrailingSpacesInString = (numberOfSpacesAtTheEnd - (numberOfSpacesBeforeEnd * 3)) / 3;
-        var nextFreeIndex = charStr.length - 1;
-        for (int i = 0; i < numberOfTrailingSpacesInString; i++) {
-            charStr[nextFreeIndex--] = '0';
-            charStr[nextFreeIndex--] = '2';
-            charStr[nextFreeIndex--] = '%';
-        }
-
-        if (nextFreeIndex == -1) {
-            return new String(charStr);
-        }
-
-        for (int i = firstNonSpaceIndex; i >= 0; i--) {
-            var charAt = charStr[i];
-            if (charAt == ' ') {
-                charStr[nextFreeIndex--] = '0';
-                charStr[nextFreeIndex--] = '2';
-                charStr[nextFreeIndex--] = '%';
-                i -= 2; // move index by extra 2 positions because there were extra 2 writes
+        for (int i = trueIndex; i >= 0; i--) {
+            if (charStr[i] == ' ') {
+                charStr[insertIndex--] = '0';
+                charStr[insertIndex--] = '2';
+                charStr[insertIndex--] = '%';
             } else {
-                charStr[nextFreeIndex--] = charAt;
+                charStr[insertIndex--] = charStr[i];
             }
         }
 
@@ -70,12 +51,15 @@ public class _0013_URLify {
     public static void main(String[] args) {
         var s = new _0013_URLify();
 
-        Function<char[], String> func = s::urlify;
+        BiFunction<char[], Integer, String> func = s::urlify;
 
-        System.out.println(func.apply("Mr John Smith    ".toCharArray())); // expected: Mr%20John%20Smith
-        System.out.println(func.apply("      ".toCharArray())); // expected: %20%20
-        System.out.println(func.apply("a      ".toCharArray())); // expected: a%20%20
-        System.out.println(func.apply("      a".toCharArray())); // expected: %20%20a
-        System.out.println(func.apply("a      a".toCharArray())); // expected: a%20%20a
+        System.out.println(func.apply("Mr John Smith    ".toCharArray(), 13)); // expected: Mr%20John%20Smith
+        System.out.println(func.apply("      ".toCharArray(), 2)); // expected: %20%20
+        System.out.println(func.apply("a      ".toCharArray(), 3)); // expected: a%20%20
+        System.out.println(func.apply("  a    ".toCharArray(), 3)); // expected: %20%20a
+        System.out.println(func.apply("a  a    ".toCharArray(), 4)); // expected: a%20%20a
+
+        // this test cases check that we don't use extra space even if it's available
+        System.out.println(func.apply("Mr John Smith       ".toCharArray(), 13)); // expected: Mr%20John%20Smith
     }
 }
