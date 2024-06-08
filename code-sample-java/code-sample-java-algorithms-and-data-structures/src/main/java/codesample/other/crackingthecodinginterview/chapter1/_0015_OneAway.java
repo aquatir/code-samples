@@ -11,8 +11,8 @@ public class _0015_OneAway {
 
     public boolean isOneEditAtMostAway(String str1, String str2) {
         // if length difference is more than one => false
-        // if one of string is shorter => only remove/insert is allowed => there could be one difference, but we move a carrier
-        // instead of fixing it
+        // if one of string is shorter => only remove/insert is allowed => find shorter and longer string => check that all
+        //  character in short and in long too, allowing 1 character to not match when comparing.
         // if strings are the same length => can have 1 edit at most. Iterate and find edits. If more than one => return false
 
         var len1 = str1.length();
@@ -25,23 +25,23 @@ public class _0015_OneAway {
         } else if (lenDiff == 0) {
             return isAtMostOneReplaceAway(str1, str2);
         } else {
-            // one is longer than the other
-            String shortStr;
-            String longStr;
-            if (len1 > len2) {
-                longStr = str1;
-                shortStr = str2;
-            } else {
-                longStr = str2;
-                shortStr = str1;
-            }
-
-            return isAtMostOneInsertAway(shortStr, longStr);
+            return isAtMostOneInsertAway(str1, str2);
         }
     }
 
-    private boolean isAtMostOneInsertAway(String shortStr, String longStr) {
-        assert Math.abs(shortStr.length() - longStr.length()) == 1;
+    private boolean isAtMostOneInsertAway(String str1, String str2) {
+        assert Math.abs(str1.length() - str2.length()) == 1;
+
+        String shortStr;
+        String longStr;
+        if (str1.length() > str2.length()) {
+            longStr = str1;
+            shortStr = str2;
+        } else {
+            longStr = str2;
+            shortStr = str1;
+        }
+
         var shortCharArray = shortStr.toCharArray();
         var longCharArray = longStr.toCharArray();
 
