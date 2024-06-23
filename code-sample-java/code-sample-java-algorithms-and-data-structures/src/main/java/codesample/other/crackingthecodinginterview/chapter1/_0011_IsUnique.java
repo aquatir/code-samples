@@ -45,7 +45,7 @@ public class _0011_IsUnique {
         var arr = new int[26];
         var chars = str.toCharArray();
 
-        for (var ch: chars) {
+        for (var ch : chars) {
             var index = ch - 'a';
 
             if (arr[index] == 1) {
@@ -63,7 +63,7 @@ public class _0011_IsUnique {
         long bitmask = 0L;
         var chars = str.toCharArray();
 
-        for (var ch: chars) {
+        for (var ch : chars) {
 
             var bitPlace = ch - 'a';
             var bitAtPlaceAsDecimal = (long) Math.pow(2, bitPlace); // this will product 1, 2, 4, 8, 16 as values, corresponding to bits in a bitmask

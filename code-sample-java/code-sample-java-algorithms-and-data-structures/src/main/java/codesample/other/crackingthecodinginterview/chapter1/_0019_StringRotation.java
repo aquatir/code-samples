@@ -1,5 +1,7 @@
 package codesample.other.crackingthecodinginterview.chapter1;
 
+import java.util.function.BiFunction;
+
 /**
  * Assume you have a method isSubstring which checks if one word is a substring of another. Given two strings, s1 and s2,
  * write code to check if s2 is a rotation of s1 using only one call to isSubstring
@@ -41,6 +43,24 @@ public class _0019_StringRotation {
         return isSubstring(s1, s2Cut);
     }
 
+    public boolean isStringRotationConcat(String s1, String s2) {
+        // "rotation" -> same string, but elements are shifted around
+        // Iterate until the end then substring the rest:
+        // 1. start indexes on each string
+        // 2. iterate both s1 and s2 while a character matches, count No of matches
+        // 3. If a char does not match, reset s1 index, always continue s2. Do this until the end of s2.
+        // 4. move s1 by No of matches, skip No of matches as s2 => compare two string
+        //  if match => one is a rotation, if not => not a rotation
+        if (s1.length() != s2.length()) {
+            return false;
+        }
+
+        var doubleS2 = s2 + s2; // more space, but faster than n
+
+
+        return isSubstring(doubleS2, s1);
+    }
+
     /**
      * Checks if s2 is a substring of s1
      */
@@ -51,8 +71,11 @@ public class _0019_StringRotation {
     public static void main(String[] args) {
         var s = new _0019_StringRotation();
 
-        System.out.println(s.isStringRotation("waterbottle", "erbottlewat"));   // true
-        System.out.println(s.isStringRotation("waterbottle", "ebrottlewat"));   // false
-        System.out.println(s.isStringRotation("kekwait", "waitkek"));           // true
+//        BiFunction<String, String, Boolean> func = s::isStringRotation;
+        BiFunction<String, String, Boolean> func = s::isStringRotationConcat;
+
+        System.out.println(func.apply("waterbottle", "erbottlewat"));   // true
+        System.out.println(func.apply("waterbottle", "ebrottlewat"));   // false
+        System.out.println(func.apply("kekwait", "waitkek"));           // true
     }
 }
