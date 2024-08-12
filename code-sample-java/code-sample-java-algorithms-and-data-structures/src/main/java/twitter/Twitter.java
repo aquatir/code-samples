@@ -58,14 +58,14 @@ public class Twitter {
      */
 
     public static void main(String[] args) {
-//        Twitter twitter = new Twitter(new Database());
-//        twitter.postTweet(1, 5);
-//        System.out.println(twitter.getNewsFeed(1));
-//        twitter.follow(1, 2);
-//        twitter.postTweet(2, 6);
-//        System.out.println(twitter.getNewsFeed(1));
-//        twitter.unfollow(1, 2);
-//        System.out.println(twitter.getNewsFeed(1));
+        Twitter twitter = new Twitter(new Database());
+        twitter.postTweet(1, 5);
+        System.out.println(twitter.getNewsFeed(1));
+        twitter.follow(1, 2);
+        twitter.postTweet(2, 6);
+        System.out.println(twitter.getNewsFeed(1));
+        twitter.unfollow(1, 2);
+        System.out.println(twitter.getNewsFeed(1));
 
         /*
         3[a] => aaa
@@ -96,8 +96,8 @@ public class Twitter {
         var shouldContinue = true;
 
         while (shouldContinue) {
+            shouldContinue = false;
             for (int i = 0; i < str.length(); i++) {
-                shouldContinue = false;
                 var ch = str.charAt(i);
                 if (ch == '[') {
                     leftBracketIndex = i;

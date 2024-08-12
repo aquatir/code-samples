@@ -51,7 +51,7 @@ public class Database {
             .map(theUserIdentifier -> selectAllTweetIds(theUserIdentifier))
             .flatMap(Collection::stream)
             .map(tweetId -> tweetEntities.get(tweetId))
-            .sorted(Comparator.comparing(it -> it.updatedAt)) // TODO: reversed?
+            .sorted(Comparator.<TweetEntity, OffsetDateTime>comparing(it -> it.updatedAt).reversed())
             .toList();
 
         var lastIndex = Math.min(10, listOfFoloweesTweets.size());
