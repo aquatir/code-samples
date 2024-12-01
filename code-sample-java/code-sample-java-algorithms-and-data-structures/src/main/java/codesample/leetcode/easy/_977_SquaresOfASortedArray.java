@@ -30,4 +30,30 @@ public class _977_SquaresOfASortedArray {
 
         return squares;
     }
+
+    public int[] sortedSquaresEasier(int[] nums) {
+
+        /*
+         * Difference with above: for-loop for insertion instead of having an extra variable
+         */
+        int left = 0;
+        int right = nums.length - 1;
+
+        // O(n) memory => with new array
+        int[] result = new int[nums.length];
+
+        for (int i = nums.length -1; i >= 0; i--) {
+            var leftAbs = Math.abs(nums[left]);
+            var rightAbs = Math.abs(nums[right]);
+
+            if (leftAbs > rightAbs) {
+                result[i] = leftAbs * leftAbs;
+                left++;
+            } else {
+                result[i] = rightAbs * rightAbs;
+                right--;
+            }
+        }
+        return result;
+    }
 }
