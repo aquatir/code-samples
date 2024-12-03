@@ -33,4 +33,34 @@ public class _643_MaximumAverageSubarrayI {
 
         return max;
     }
+
+    public double findMaxAverageWithSimplerIteration(int[] nums, int k) {
+        // average == total sum / number of elements
+        // we know the number of elements
+
+        double answer = 0f;
+        double curSum = 0f;
+        var left = 0;
+        var doubleK = (double) k;
+        for (int i = 0; i < k; i++) {
+            curSum += nums[i];
+        }
+
+        answer = curSum / doubleK;
+
+
+        for (int right = k; right < nums.length; right++) {
+            // expand subarray
+            curSum += nums[right];
+
+            // shring to make valid
+            curSum -= nums[left];
+            left++;
+
+            // recalculate answer
+            answer = Math.max(answer, curSum / doubleK);
+        }
+
+        return answer;
+    }
 }
