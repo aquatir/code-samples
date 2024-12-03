@@ -1,5 +1,8 @@
 package codesample.leetcode.medium;
 
+import java.util.function.BiFunction;
+import java.util.function.Function;
+
 /**
  * 1004. Max Consecutive Ones III — https://leetcode.com/problems/max-consecutive-ones-iii/
  * <p>
@@ -10,7 +13,8 @@ public class _1004_MaxConsecutiveOnesIII {
 
     // Approach 1: sliding window but slightly magical "shrink" function
     // approach 2: below: a much clearer shrink function
-    public int longestOnes(int[] nums, int k) {
+    // approach 3: the simplest shrink function
+    public static int longestOnes(int[] nums, int k) {
         int windowStart = 0;
         int max = 0;
         int maxOnesCount = 0;
@@ -36,7 +40,7 @@ public class _1004_MaxConsecutiveOnesIII {
         return max;
     }
 
-    public int longestOnesSimpler(int[] nums, int k) {
+    public static int longestOnesSimpler(int[] nums, int k) {
         // flip 0 to 1 to create a larger consecutive array.
         // if we have a sliding window and there are [k] zeroes somewhere inside this window
         // we can count them all as consecutive.
@@ -80,7 +84,8 @@ public class _1004_MaxConsecutiveOnesIII {
         return max;
     }
 
-    public int longestOnesEvenSimpler(int[] nums, int k) {
+    public static int longestOnesEvenSimpler(int[] nums, int k) {
+        //
         var maxLength = 0;
         var zeroesRemaining = k;
         var left = 0;
@@ -106,8 +111,8 @@ public class _1004_MaxConsecutiveOnesIII {
     }
 
     public static void main(String[] args) {
-        var s = new _1004_MaxConsecutiveOnesIII();
-        System.out.println(s.longestOnes(new int[]{1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0}, 2)); // exp: 6
-        //System.out.println(s.longestOnes(new int[]{0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1}, 3)); // exp: 10
+        BiFunction<int[], Integer, Integer> func = _1004_MaxConsecutiveOnesIII::longestOnesEvenSimpler;
+        System.out.println(func.apply(new int[]{1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0}, 2)); // exp: 6
+        System.out.println(func.apply(new int[]{0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1}, 3)); // exp: 10
     }
 }
