@@ -12,18 +12,12 @@ public class _2540_MinimumCommonValue {
         var nums2Ptr = 0;
 
         while (nums1Ptr != nums1.length && nums2Ptr != nums2.length) {
-            if (nums1[nums1Ptr] == nums2[nums2Ptr]) {
-                return nums1[nums1Ptr];
-            }
-
-            if (nums1Ptr == nums1.length) {
+            if (nums1[nums1Ptr] > nums2[nums2Ptr]) {
                 nums2Ptr++;
-            } else if (nums2Ptr == nums2.length) {
+            } else if (nums1[nums1Ptr] < nums2[nums2Ptr]) {
                 nums1Ptr++;
-            } else if (nums1[nums1Ptr] > nums2[nums2Ptr]) {
-                nums2Ptr++;
             } else {
-                nums1Ptr++;
+                return nums1[nums1Ptr];
             }
         }
 
