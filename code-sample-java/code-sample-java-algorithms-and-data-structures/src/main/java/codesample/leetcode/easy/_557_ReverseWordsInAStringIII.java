@@ -5,6 +5,7 @@ package codesample.leetcode.easy;
  */
 public class _557_ReverseWordsInAStringIII {
 
+    // Approach 1: find a word (aka find space ' ') => reverse this word, continue;
     public String reverseWords(String s) {
         var result = new StringBuilder();
         var wordStart = 0;
@@ -26,5 +27,46 @@ public class _557_ReverseWordsInAStringIII {
     private String revertWord(String wholeString, int from, int to) {
         var trimmed = wholeString.substring(from, to).trim();
         return new StringBuilder(trimmed).reverse().toString();
+    }
+
+    // Approach 2: reverse all characters, then reverse words order;
+    public String reverseWordsViaCharacters(String s) {
+        var n = s.length();
+        var asCharArr = s.toCharArray();
+        var left = 0;
+        var right = n-1;
+
+        // reverse all characters
+        while (left < right) {
+            var tmp = asCharArr[left];
+            asCharArr[left] = asCharArr[right];
+            asCharArr[right] = tmp;
+            left++;
+            right--;
+        }
+
+        // reverse all words
+        var reversedString = new String(asCharArr);
+        String[] words = reversedString.split(" ");
+
+        left = 0;
+        right = words.length - 1;
+        while (left < right) {
+            var tmp = words[left];
+            words[left] = words[right];
+            words[right] = tmp;
+            left++;
+            right--;
+        }
+
+        var answer = new StringBuilder();
+        for (int i = 0; i < words.length; i++) {
+            answer.append(words[i]);
+            if (i != words.length - 1) {
+                answer.append(" ");
+            }
+        }
+
+        return answer.toString();
     }
 }
