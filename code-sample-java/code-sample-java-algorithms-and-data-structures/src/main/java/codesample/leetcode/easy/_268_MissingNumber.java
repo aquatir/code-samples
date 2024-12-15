@@ -1,5 +1,6 @@
 package codesample.leetcode.easy;
 
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -47,6 +48,31 @@ public class _268_MissingNumber {
         }
 
         return xorExpected ^ xorActual;
+    }
+
+    public int missingNumberHashing(int[] nums) {
+        var set = new HashSet<Integer>();
+
+        var min = Integer.MAX_VALUE;
+        var max = Integer.MIN_VALUE;
+        for (var num: nums) {
+            min = Math.min(min, num);
+            max = Math.max(max, num);
+            set.add(num);
+        }
+
+        for (int num = min; num <= max; num++) {
+            if (!set.contains(num)) {
+                return num;
+            }
+        }
+
+
+        if (min != 0) {
+            return 0;
+        } else {
+            return max + 1;
+        }
     }
 
 }
