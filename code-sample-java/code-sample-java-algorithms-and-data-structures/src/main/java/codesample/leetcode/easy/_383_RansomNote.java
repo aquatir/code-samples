@@ -9,7 +9,28 @@ import java.util.PriorityQueue;
  */
 public class _383_RansomNote {
     class Solution {
+
+        // faster coding solution
         public boolean canConstruct(String ransomNote, String magazine) {
+            var freq = new HashMap<Character, Integer>();
+            for (var c: magazine.toCharArray()) {
+                freq.put(c, 1 + freq.getOrDefault(c, 0));
+            }
+
+            for (var c: ransomNote.toCharArray()) {
+                if (freq.getOrDefault(c, 0) == 0) {
+                    return false;
+                } else {
+                    freq.put(c, freq.get(c) - 1);
+                }
+            }
+
+            return true;
+        }
+
+
+        // old solution
+        public boolean canConstructTwoFrequencies(String ransomNote, String magazine) {
             Map<Character, Integer> freq = new HashMap<>();
 
             for (int i = 0; i < magazine.length(); i++) {
