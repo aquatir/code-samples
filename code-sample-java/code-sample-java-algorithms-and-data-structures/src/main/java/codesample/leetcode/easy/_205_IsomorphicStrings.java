@@ -7,8 +7,39 @@ import java.util.HashMap;
  */
 public class _205_IsomorphicStrings {
 
-    // one-pass. Compare mapping from both sides
+    // replace each character with a transformation
+    // if we replace each char with an index where it was first met, two string will be the same
+    // e.g. "egg" and "abb" will both become "0 1 1"
     public boolean isIsomorphic(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+
+        return transform(s).equals(transform(t));
+    }
+
+    private String transform(String s) {
+        var sb = new StringBuilder();
+        var firstIndex = new HashMap<Character, Integer>();
+
+        for (int i = 0; i < s.length(); i++) {
+            var ch = s.charAt(i);
+
+            if (!firstIndex.containsKey(ch)) {
+                firstIndex.put(ch, i);
+            }
+
+            sb.append(firstIndex.get(ch));
+            sb.append(" ");
+        }
+
+        return sb.toString();
+    }
+
+
+
+    // one-pass. Compare mapping from both sides
+    public boolean isIsomorphicOnePass(String s, String t) {
         if (s.length() != t.length()) {
             return false;
         }
