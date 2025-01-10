@@ -35,6 +35,9 @@ public class _24_SwapNodesInPairs {
         ListNode prev = null;
         // move by two nodes at once.
         while (cur != null && cur.next != null) {
+            // assuming we have [prev] -> [a] -> [b] list before a call
+            // after a call we will have [prev] -> [b] -> [a].
+            // a function call will return node [a]. The next node we need to rotate will be [a].next
             var afterRotation = rotate(prev, cur, cur.next);
             prev = afterRotation;
             cur = afterRotation.next;
