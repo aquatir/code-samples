@@ -26,8 +26,10 @@ public class _83_RemoveDuplicatesFromSortedList {
 
     public ListNode deleteDuplicates(ListNode head) {
 
-        ListNode cur = head;
 
+        /**
+        // big brain solution
+        ListNode cur = head;
         while (cur != null && cur.next != null) {
             if (cur.val == cur.next.val) {
                 cur.next = cur.next.next;
@@ -35,7 +37,28 @@ public class _83_RemoveDuplicatesFromSortedList {
                 cur = cur.next;
             }
         }
+        return head;
+        */
 
+
+        // approach:
+        // cur always updates to cur.next on each iteration
+        // if next element is different => put cur as next for nonDupList
+        // otherwise; don't put it as next (only cur updates)
+        // what if next is null? last update => exit
+        var nonDupList = head;  // change what next of this points too
+        var cur = head;         // iterate over elements
+        while (cur != null) {
+            var next = cur.next;
+            if (next != null && next.val != cur.val) {
+                nonDupList.next = next;
+                nonDupList = nonDupList.next;
+            }
+            if (next == null) {
+                nonDupList.next = null;
+            }
+            cur = next;
+        }
         return head;
     }
 
